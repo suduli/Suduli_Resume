@@ -1,29 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-const Navigation = () => {
-  const [activeSection, setActiveSection] = useState(0)
-
-  const sections = [
-    { id: 0, name: 'Landing' },
-    { id: 1, name: 'Experience' },
-    { id: 2, name: 'Skills' },
-    { id: 3, name: 'Projects' },
-    { id: 4, name: 'Contact' }
-  ]
-
-  const handleNavClick = (sectionId) => {
-    setActiveSection(sectionId)
-    // TODO: Implement camera movement to section
-    console.log(`Navigate to section: ${sectionId}`)
-  }
-
+const Navigation = ({ sections, currentSection, onSectionChange }) => {
   return (
     <nav className="navigation">
       {sections.map((section) => (
         <div
           key={section.id}
-          className={`nav-dot ${activeSection === section.id ? 'active' : ''}`}
-          onClick={() => handleNavClick(section.id)}
+          className={`nav-dot ${currentSection === section.id ? 'active' : ''}`}
+          onClick={() => onSectionChange(section.id)}
           title={section.name}
         />
       ))}

@@ -1,40 +1,37 @@
-import React, { Suspense, useState, useEffect } from 'react'
-import { Canvas } from '@react-three/fiber'
-import Scene from './components/Scene'
+import React, { useState, useEffect } from 'react'
 import LoadingScreen from './components/LoadingScreen'
 import Navigation from './components/Navigation'
+import LandingSection from './components/LandingSection'
+import ExperienceSection from './components/ExperienceSection'
+import SkillsSection from './components/SkillsSection'
+import ProjectsSection from './components/ProjectsSection'
+import ContactSection from './components/ContactSection'
+import ParticlesBackground from './components/ParticlesBackground'
 import './styles/App.css'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
-  const [hasWebGL, setHasWebGL] = useState(true)
+  const [currentSection, setCurrentSection] = useState(0)
 
   useEffect(() => {
-    // Check WebGL support
-    const canvas = document.createElement('canvas')
-    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
-    if (!gl) {
-      setHasWebGL(false)
-    }
-    
     // Simulate loading time
     const timer = setTimeout(() => {
       setIsLoading(false)
-    }, 3000)
+    }, 2000)
 
     return () => clearTimeout(timer)
   }, [])
 
-  if (!hasWebGL) {
-    return (
-      <div className="app">
-        <div className="fallback-content">
-          <h1 className="gradient-text">Suduli Kumar Balabantaray</h1>
-          <h2>Specialist Engineer | Automotive Software & Systems Validation</h2>
-          <p>Your browser doesn't support WebGL. Please use a modern browser to view the 3D portfolio.</p>
-        </div>
-      </div>
-    )
+  const sections = [
+    { id: 0, name: 'Landing', component: <LandingSection /> },
+    { id: 1, name: 'Experience', component: <ExperienceSection /> },
+    { id: 2, name: 'Skills', component: <SkillsSection /> },
+    { id: 3, name: 'Projects', component: <ProjectsSection /> },
+    { id: 4, name: 'Contact', component: <ContactSection /> }
+  ]
+
+  const handleSectionChange = (sectionId) => {
+    setCurrentSection(sectionId)
   }
 
   return (
@@ -42,37 +39,30 @@ function App() {
       {/* Loading Screen */}
       {isLoading && <LoadingScreen />}
       
+      {/* Particles Background */}
+      <ParticlesBackground />
+      
       {/* Navigation */}
-      <Navigation />
+      <Navigation 
+        sections={sections}
+        currentSection={currentSection}
+        onSectionChange={handleSectionChange}
+      />
       
-      {/* 3D Scene Canvas */}
-      <Suspense fallback={<LoadingScreen />}>
-        <Canvas
-          camera={{ position: [0, 0, 5], fov: 75 }}
-          className="canvas"
-          gl={{ 
-            antialias: true,
-            alpha: true,
-            powerPreference: "high-performance"
-          }}
-          onCreated={({ gl }) => {
-            gl.setSize(window.innerWidth, window.innerHeight)
-          }}
-          fallback={
-            <div className="fallback-content">
-              <h1 className="gradient-text">Suduli Kumar Balabantaray</h1>
-              <p>Loading 3D portfolio...</p>
-            </div>
-          }
-        >
-          <Scene />
-        </Canvas>
-      </Suspense>
-      
-      {/* UI Overlays */}
-      <div id="ui-overlay" className="ui-overlay">
-        {/* Content panels will be rendered here by the Scene component */}
-      </div>
+      {/* Main Content */}
+      <main className="main-content">
+        {sections.map((section, index) => (
+          <section
+            key={section.id}
+            className={`portfolio-section ${
+              currentSection === section.id ? 'active' : ''
+            }`}
+            id={`section-${section.id}`}
+          >
+            {section.component}
+          </section>
+        ))}
+      </main>
     </div>
   )
 }

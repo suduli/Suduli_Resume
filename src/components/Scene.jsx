@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { OrbitControls, Stars, PerspectiveCamera } from '@react-three/drei'
 import ParticleField from './ParticleField'
@@ -7,6 +7,10 @@ import LandingZone from './LandingZone'
 const Scene = () => {
   const cameraRef = useRef()
   const [currentSection, setCurrentSection] = useState(0)
+
+  useEffect(() => {
+    console.log('Scene component mounted')
+  }, [])
 
   useFrame((state, delta) => {
     // Smooth camera movement based on scroll or navigation

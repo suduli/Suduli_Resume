@@ -1,16 +1,12 @@
-import React, { useState } from 'react'
-import { Box, Text } from '@react-three/drei'
-import { createPortal } from 'react-dom'
+import React from 'react'
 
 const ExperienceSection = () => {
-  const [selectedCompany, setSelectedCompany] = useState(null)
-
   const companies = [
     {
       name: 'KPIT Technologies',
       position: 'Test Lead',
       duration: '10/2023 - Present',
-      location: [-4, 2, 0],
+      location: 'Bengaluru, India',
       color: '#00f5ff',
       achievements: [
         'Developed validation plans using IBM RQM for automotive OEM projects',
@@ -23,7 +19,7 @@ const ExperienceSection = () => {
       name: 'HL Klemove India',
       position: 'Specialist Engineer',
       duration: '02/2022 - 11/2023',
-      location: [-1, 1, 0],
+      location: 'Bengaluru, India',
       color: '#bd00ff',
       achievements: [
         'Performed system testing for DCU (Domain Control Unit) projects',
@@ -36,7 +32,7 @@ const ExperienceSection = () => {
       name: 'Mando Softtech India',
       position: 'Senior Engineer',
       duration: '03/2020 - 01/2022',
-      location: [2, 0, 0],
+      location: 'Bengaluru, India / Korea (Onsite)',
       color: '#00ff88',
       achievements: [
         'Conducted unit testing and integration testing for embedded software',
@@ -49,7 +45,7 @@ const ExperienceSection = () => {
       name: 'Binsoft Techno Solutions',
       position: 'Engineer',
       duration: '08/2017 - 01/2020',
-      location: [4, -1, 0],
+      location: 'Bengaluru, India',
       color: '#ff6b6b',
       achievements: [
         'Performed unit testing for automotive embedded software modules',
@@ -60,92 +56,67 @@ const ExperienceSection = () => {
     }
   ]
 
-  const handleCompanyClick = (company) => {
-    setSelectedCompany(company)
-  }
-
-  const closePanel = () => {
-    setSelectedCompany(null)
-  }
-
   return (
-    <>
-      {/* Section Title */}
-      <Text
-        position={[0, 4, 0]}
-        fontSize={1}
-        color="#ffffff"
-        anchorX="center"
-        anchorY="middle"
-      >
-        EXPERIENCE EXPRESSWAY
-      </Text>
+    <div className="experience-section">
+      <div className="section-header">
+        <h2 className="section-title gradient-text">Experience Expressway</h2>
+        <p className="section-subtitle">
+          Professional journey through automotive software testing and validation
+        </p>
+      </div>
 
-      {/* Company Representations */}
-      {companies.map((company, index) => (
-        <group key={index} position={company.location}>
-          <Box
-            args={[1, 1.5, 0.5]}
-            onClick={() => handleCompanyClick(company)}
-            onPointerOver={(e) => {
-              e.object.material.emissive.setHex(0x444444)
-              document.body.style.cursor = 'pointer'
-            }}
-            onPointerOut={(e) => {
-              e.object.material.emissive.setHex(0x000000)
-              document.body.style.cursor = 'default'
-            }}
-          >
-            <meshStandardMaterial color={company.color} />
-          </Box>
-          
-          <Text
-            position={[0, -1, 0]}
-            fontSize={0.3}
-            color="#ffffff"
-            anchorX="center"
-            anchorY="middle"
-            maxWidth={3}
-          >
-            {company.name}
-          </Text>
-        </group>
-      ))}
+      <div className="experience-timeline">
+        {companies.map((company, index) => (
+          <div key={index} className="experience-card glass">
+            <div className="experience-header">
+              <div className="company-info">
+                <h3 style={{ color: company.color }}>{company.name}</h3>
+                <h4>{company.position}</h4>
+                <div className="experience-meta">
+                  <span className="duration">{company.duration}</span>
+                  <span className="location">{company.location}</span>
+                </div>
+              </div>
+              <div className="company-indicator" style={{ backgroundColor: company.color }}></div>
+            </div>
+            
+            <div className="achievements">
+              <h5>Key Achievements:</h5>
+              <ul>
+                {company.achievements.map((achievement, achievementIndex) => (
+                  <li key={achievementIndex}>{achievement}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
 
-      {/* Connection Path */}
-      <mesh position={[0, 0.5, -0.5]}>
-        <boxGeometry args={[10, 0.1, 0.1]} />
-        <meshStandardMaterial color="#00f5ff" opacity={0.3} transparent />
-      </mesh>
-
-      {/* Content Panel */}
-      {selectedCompany && createPortal(
-        <div 
-          className="glass-panel content-panel visible"
-          style={{
-            top: '20%',
-            right: '5%',
-            maxWidth: '400px'
-          }}
-        >
-          <button className="close-btn" onClick={closePanel}>×</button>
-          <h2>{selectedCompany.name}</h2>
-          <h3>{selectedCompany.position}</h3>
-          <p style={{ color: '#00f5ff', marginBottom: '1rem' }}>
-            {selectedCompany.duration}
-          </p>
-          <h4 style={{ color: '#ffffff', marginBottom: '0.5rem' }}>
-            Key Achievements:
-          </h4>
-          <ul>
-            {selectedCompany.achievements.map((achievement, index) => (
-              <li key={index}>{achievement}</li>
-            ))}
-          </ul>
-        </div>,
-        document.getElementById('ui-overlay')
-      )}
-    </>
+      <div className="experience-summary glass">
+        <h3>Professional Summary</h3>
+        <p>
+          <strong>5+ years</strong> of experience in automotive embedded software testing, 
+          specializing in <strong>ADAS validation</strong>, <strong>HIL/SIL testing</strong>, 
+          and <strong>safety-critical systems</strong>. Expert in <strong>ISO 26262</strong> 
+          standards and automotive OEM project delivery.
+        </p>
+        
+        <div className="summary-stats">
+          <div className="summary-stat">
+            <span className="stat-number">200+</span>
+            <span className="stat-label">Defects Debugged</span>
+          </div>
+          <div className="summary-stat">
+            <span className="stat-number">95%</span>
+            <span className="stat-label">Test Coverage Achieved</span>
+          </div>
+          <div className="summary-stat">
+            <span className="stat-number">40%</span>
+            <span className="stat-label">Testing Efficiency Improved</span>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
