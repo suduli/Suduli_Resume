@@ -1,0 +1,153 @@
+/* Global Styles - Futuristic Portfolio */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Futuristic Color Palette */
+  --primary-cyan: #00f5ff;
+  --primary-purple: #bd00ff;
+  --primary-green: #00ff88;
+  --dark-bg: #0a0a0a;
+  --dark-secondary: #1a1a1a;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  
+  /* Typography */
+  --font-primary: 'Space Grotesk', sans-serif;
+  --font-secondary: 'Inter', sans-serif;
+  
+  /* Glassmorphism */
+  --glass-backdrop: blur(20px);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  background: var(--dark-bg);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
+  
+  /* Custom scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-cyan) transparent;
+}
+
+body::-webkit-scrollbar {
+  width: 6px;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary-cyan), var(--primary-purple));
+  border-radius: 3px;
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+/* Glassmorphism utility classes */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-panel {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(45deg, var(--primary-cyan), var(--primary-purple), var(--primary-green));
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+p {
+  font-family: var(--font-secondary);
+  font-weight: 400;
+}
+
+/* Button styles */
+.btn-primary {
+  background: linear-gradient(45deg, var(--primary-cyan), var(--primary-purple));
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  color: white;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 245, 255, 0.3);
+}
+
+/* Utility classes */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.flex { display: flex; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-column { flex-direction: column; }
+
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.h-screen { height: 100vh; }
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .glass-panel {
+    padding: 1rem;
+    margin: 1rem;
+  }
+  
+  body {
+    font-size: 14px;
+  }
+}
