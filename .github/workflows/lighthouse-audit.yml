@@ -1,0 +1,52 @@
+name: Lighthouse Audit
+
+on:
+  push:
+    branches:
+      - 'ci/*'
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies (frontend)
+        working-directory: ./frontend
+        run: |
+          npm ci
+
+      - name: Build frontend
+        working-directory: ./frontend
+        run: |
+          npm run build
+
+      - name: Start static server
+        working-directory: ./frontend
+        run: |
+          # start simple static server in background on port 5000
+          npx http-server build -p 5000 -c-1 &
+          # give server time to start
+          sleep 3
+
+      - name: Run Lighthouse (HTML + JSON)
+        working-directory: ./frontend
+        env:
+          # use bundler-installed chrome if available, otherwise rely on system chrome
+          CHROME_PATH: /usr/bin/google-chrome-stable
+        run: |
+          mkdir -p tests/lighthouse
+          # run lighthouse and save both html and json
+          npx -y lighthouse http://127.0.0.1:5000 --output=json --output=html --output-path=tests/lighthouse/report --chrome-flags="--headless --no-sandbox" --only-categories=performance,accessibility,best-practices,seo || true
+
+      - name: Upload Lighthouse artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: frontend/tests/lighthouse/
