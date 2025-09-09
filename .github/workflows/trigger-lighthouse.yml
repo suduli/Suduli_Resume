@@ -3,8 +3,9 @@ name: Trigger Lighthouse
 on:
   push:
     branches:
-      - main
-      - 'ci-trigger/*'
+  - main
+  - 'ci-trigger/*'
+  - 'ci/*'
 
 jobs:
   noop:
