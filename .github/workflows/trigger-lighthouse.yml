@@ -1,0 +1,21 @@
+name: Trigger Lighthouse
+
+on:
+  push:
+    branches:
+      - main
+      - 'ci-trigger/*'
+
+jobs:
+  noop:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Create marker
+        run: echo "Lighthouse CI trigger" > lighthouse-trigger.txt
+      - name: Upload marker
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-trigger
+          path: lighthouse-trigger.txt
