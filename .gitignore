@@ -6,12 +6,28 @@ bin-release/
 
 # Other files and folders
 .settings/
+.vscode/
+.idea/
+node_modules/
+dist/
+build/
 
 # Executables
 *.swf
 *.air
 *.ipa
 *.apk
+
+# Temporary files
+*.tmp
+*.temp
+*~
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
 
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
