@@ -114,11 +114,11 @@
   .container {
     padding: 0.75rem 1.5rem;
   }
-  
+
   .mobileMenuToggle {
     display: block;
   }
-  
+
   .navList {
     position: fixed;
     top: 0;
@@ -134,22 +134,22 @@
     transition: right 0.3s ease-in-out;
     z-index: 1000;
   }
-  
+
   .mobileOpen .navList {
     right: 0;
   }
-  
+
   .navItem {
     margin: 1rem 0;
     width: 100%;
   }
-  
+
   .navLink {
     display: block;
     width: 100%;
     text-align: left;
   }
-  
+
   .activeIndicator {
     width: 4px;
     height: 100%;
@@ -157,22 +157,22 @@
     top: 0;
     bottom: auto;
   }
-  
+
   .themeSwitcherContainer {
     position: absolute;
     top: 1rem;
     right: 5rem;
   }
-  
+
   /* Menu button animation for open state */
   .mobileOpen .menuBar:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
   }
-  
+
   .mobileOpen .menuBar:nth-child(2) {
     opacity: 0;
   }
-  
+
   .mobileOpen .menuBar:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
   }
@@ -193,23 +193,23 @@
     opacity: 0;
     animation: fadeIn 0.3s forwards;
   }
-  
+
   /* Improved animation for mobile menu */
   .navList {
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
     right: 0;
   }
-  
+
   .mobileOpen .navList {
     transform: translateX(0);
   }
-  
+
   /* Improved accessibility for mobile menu */
   .navLink {
     padding: 0.75rem 0;
   }
-  
+
   /* Better touch targets for mobile */
   .navItem {
     margin: 0.5rem 0;
@@ -221,11 +221,11 @@
   .container {
     padding: 0.75rem 1.5rem;
   }
-  
+
   .navItem {
     margin: 0 0.75rem;
   }
-  
+
   .navLink {
     font-size: 0.9rem;
   }
@@ -236,11 +236,11 @@
   .container {
     padding: 0.75rem 1rem;
   }
-  
+
   .themeSwitcherContainer {
     right: 4rem;
   }
-  
+
   .navList {
     width: 85%;
     padding: 5rem 1.5rem 2rem;
@@ -253,7 +253,7 @@
     padding-top: 3.5rem;
     overflow-y: auto;
   }
-  
+
   .navItem {
     margin: 0.25rem 0;
   }

@@ -98,7 +98,9 @@
 
 /* Animation for skill progress bars */
 @keyframes progress {
-  from { width: 0; }
+  from {
+    width: 0;
+  }
 }
 
 .skill-progress {

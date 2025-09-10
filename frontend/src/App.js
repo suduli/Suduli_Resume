@@ -43,7 +43,7 @@ function AppContent() {
     education, 
     awards, 
     languages,
-  contactForm,
+    contactForm,
     loading, 
     error 
   } = useData();

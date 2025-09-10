@@ -127,15 +127,27 @@
 
 /* Animation for theme change */
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @-webkit-keyframes pulse {
-  0% { -webkit-transform: scale(1); }
-  50% { -webkit-transform: scale(1.1); }
-  100% { -webkit-transform: scale(1); }
+  0% {
+    -webkit-transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+  }
 }
 
 .toggle:active {
@@ -150,20 +162,22 @@
 }
 
 /* Edge specific fix */
-@supports (-ms-ime-align:auto) {
-  .toggle, .icon {
+@supports (-ms-ime-align: auto) {
+  .toggle,
+  .icon {
     transition: none !important;
   }
-  
+
   .switching .toggle {
     animation: none;
   }
 }
 
 /* Safari specific fix */
-@media not all and (min-resolution:.001dpcm) { 
-  @supports (-webkit-appearance:none) {
-    .toggle, .icon {
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    .toggle,
+    .icon {
       -webkit-transition-duration: 0.5s !important;
       transition-duration: 0.5s !important;
       transform: translateZ(0);
@@ -173,33 +187,35 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-    
+
     .switching .toggle {
       -webkit-animation-duration: 0.5s !important;
       animation-duration: 0.5s !important;
     }
-    
+
     /* Additional fix for Safari Mobile */
-    .toggleLight, .toggleDark {
+    .toggleLight,
+    .toggleDark {
       transform: translateZ(0);
       -webkit-transform: translateZ(0);
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
     }
-    
+
     /* Ensure icon transitions work properly in Safari */
-    .sunIcon, .moonIcon {
+    .sunIcon,
+    .moonIcon {
       transform: translateZ(0) scale(0.5) rotate(-45deg);
       -webkit-transform: translateZ(0) scale(0.5) rotate(-45deg);
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
     }
-    
+
     .toggleLight .sunIcon {
       transform: translateZ(0) scale(1) rotate(0);
       -webkit-transform: translateZ(0) scale(1) rotate(0);
     }
-    
+
     .toggleDark .moonIcon {
       transform: translateZ(0) scale(1) rotate(0);
       -webkit-transform: translateZ(0) scale(1) rotate(0);

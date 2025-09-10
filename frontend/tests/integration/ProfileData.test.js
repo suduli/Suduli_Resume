@@ -12,80 +12,80 @@ import LocalStorageService from '../../src/services/LocalStorageService';
 // Sample profile data for testing
 const sampleProfileData = {
   profile: {
-    name: "Suduli Kumar Balabantaray",
-    title: "Embedded Test Engineer",
-    location: "Bengaluru, India",
+    name: 'Suduli Kumar Balabantaray',
+    title: 'Embedded Test Engineer',
+    location: 'Bengaluru, India',
     contact: {
-      email: "suduli.office@gmail.com",
-      phone: "+91 9500097614",
-      linkedIn: "https://www.linkedin.com/in/suduli/",
-      github: "https://github.com/suduli"
+      email: 'suduli.office@gmail.com',
+      phone: '+91 9500097614',
+      linkedIn: 'https://www.linkedin.com/in/suduli/',
+      github: 'https://github.com/suduli'
     },
-    about: "Experienced professional with 7+ years in Independent Verification & Validation for Critical Systems in the automotive domain...",
-    photo: "/assets/images/profile.jpg",
-    objective: "To work in a professional atmosphere that would give a scope to display my skills request for a challenging position. Where I can use my skills to grow me and my organization."
+    about: 'Experienced professional with 7+ years in Independent Verification & Validation for Critical Systems in the automotive domain...',
+    photo: '/assets/images/profile.jpg',
+    objective: 'To work in a professional atmosphere that would give a scope to display my skills request for a challenging position. Where I can use my skills to grow me and my organization.'
   },
   experience: [
     {
-      id: "exp-1",
-      company: "KPIT Technologies Ltd",
-      position: "Test Lead",
-      startDate: "2023-11-01",
-      endDate: "present",
-      location: "Bengaluru, India",
-      description: "Leading validation and testing efforts for automotive systems",
+      id: 'exp-1',
+      company: 'KPIT Technologies Ltd',
+      position: 'Test Lead',
+      startDate: '2023-11-01',
+      endDate: 'present',
+      location: 'Bengaluru, India',
+      description: 'Leading validation and testing efforts for automotive systems',
       highlights: [
-        "Developed and managed validation plans using IBM ALM with traceability to requirements from DOORS® Next Generation (DNG)",
-        "Conducted Sanity, Manual, Functional Testing Performance Testing and Automated testing using dSPACE and ECU-Test Tool"
+        'Developed and managed validation plans using IBM ALM with traceability to requirements from DOORS® Next Generation (DNG)',
+        'Conducted Sanity, Manual, Functional Testing Performance Testing and Automated testing using dSPACE and ECU-Test Tool'
       ],
-      technologies: ["IBM ALM", "DOORS Next Generation", "dSPACE", "ECU-Test Tool"],
-      keywords: ["validation", "testing", "automotive", "infotainment"]
+      technologies: ['IBM ALM', 'DOORS Next Generation', 'dSPACE', 'ECU-Test Tool'],
+      keywords: ['validation', 'testing', 'automotive', 'infotainment']
     }
   ],
   projects: [
     {
-      id: "proj-1",
-      title: "BCM-Systems Validation",
-      description: "Automotive software validation for Stellantis OEM...",
-      role: "Lead Tester",
+      id: 'proj-1',
+      title: 'BCM-Systems Validation',
+      description: 'Automotive software validation for Stellantis OEM...',
+      role: 'Lead Tester',
       achievements: [
-        "Spearheaded manual/automated testing of ECU software using dSPACE environments"
+        'Spearheaded manual/automated testing of ECU software using dSPACE environments'
       ],
-      technologies: ["IBM RQM", "DOORS DNG", "ECU-Test", "dSPACE"],
-      image: "/assets/images/projects/bcm-validation.jpg",
+      technologies: ['IBM RQM', 'DOORS DNG', 'ECU-Test', 'dSPACE'],
+      image: '/assets/images/projects/bcm-validation.jpg',
       links: []
     }
   ],
   skills: {
     categories: [
       {
-        name: "Programming & Scripting",
+        name: 'Programming & Scripting',
         skills: [
-          { name: "Embedded C", level: 90, yearsExperience: 7 },
-          { name: "Python", level: 85, yearsExperience: 5 }
+          { name: 'Embedded C', level: 90, yearsExperience: 7 },
+          { name: 'Python', level: 85, yearsExperience: 5 }
         ]
       }
     ]
   },
   education: [
     {
-      degree: "B.E",
-      institution: "The Aeronautical Society of lndia",
-      location: "India"
+      degree: 'B.E',
+      institution: 'The Aeronautical Society of lndia',
+      location: 'India'
     }
   ],
   awards: [
     {
-      title: "Best project award in LRR25",
-      issuer: "",
-      date: "",
-      description: ""
+      title: 'Best project award in LRR25',
+      issuer: '',
+      date: '',
+      description: ''
     }
   ],
   languages: [
     {
-      name: "English",
-      proficiency: "Fluent"
+      name: 'English',
+      proficiency: 'Fluent'
     }
   ]
 };
@@ -401,8 +401,8 @@ describe('Profile Data Loading Integration Tests', () => {
       ...sampleProfileData,
       profile: {
         ...sampleProfileData.profile,
-        name: "Suduli K. Balabantaray",
-        title: "Senior Embedded Test Engineer"
+        name: 'Suduli K. Balabantaray',
+        title: 'Senior Embedded Test Engineer'
       }
     };
     

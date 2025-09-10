@@ -145,7 +145,7 @@
   .menuToggle {
     display: block;
   }
-  
+
   .nav {
     position: fixed;
     top: 0;
@@ -159,47 +159,47 @@
     transition: right 0.3s ease-in-out;
     z-index: 1000;
   }
-  
+
   .header.menuOpen .nav {
     right: 0;
   }
-  
+
   .navList {
     flex-direction: column;
     width: 100%;
   }
-  
+
   .navItem {
     margin: 0.5rem 0;
     width: 100%;
   }
-  
+
   .navLink {
     display: block;
     padding: 0.75rem 0;
     width: 100%;
     text-align: left;
   }
-  
+
   /* Menu button animation for open state */
   .header.menuOpen .menuBar:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
   }
-  
+
   .header.menuOpen .menuBar:nth-child(2) {
     opacity: 0;
   }
-  
+
   .header.menuOpen .menuBar:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
   }
 }
 
 /* Theme-specific styles */
-[data-theme="dark"] .header {
+[data-theme='dark'] .header {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-[data-theme="dark"] .menuBar {
+[data-theme='dark'] .menuBar {
   background-color: var(--color-text-primary);
 }

@@ -101,14 +101,14 @@
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  
+
   .about-image {
     position: relative;
     top: 0;
     max-width: 400px;
     margin: 0 auto;
   }
-  
+
   .about-content h1 {
     font-size: 2.5rem;
   }
@@ -118,15 +118,15 @@
   .about-content h1 {
     font-size: 2rem;
   }
-  
+
   .about-title {
     font-size: 1.5rem;
   }
-  
+
   .summary-text {
     font-size: 1.1rem;
   }
-  
+
   .about-cta {
     flex-direction: column;
   }

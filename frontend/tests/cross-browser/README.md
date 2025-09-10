@@ -1,21 +1,22 @@
 # Cross-Browser Testing Guide
 
 ## Overview
+
 This document outlines the process for conducting cross-browser testing for the Interactive Portfolio Website. Cross-browser testing ensures that the website functions and appears correctly across different browsers, operating systems, and devices.
 
 ## Supported Browsers
 
 The portfolio website should work correctly on the following browsers:
 
-| Browser | Version | Platform | Priority |
-|---------|---------|----------|----------|
-| Chrome | Latest 2 versions | Windows, macOS, Android | High |
-| Firefox | Latest 2 versions | Windows, macOS, Android | High |
-| Edge | Latest 2 versions | Windows | High |
-| Safari | Latest 2 versions | macOS, iOS | High |
-| Opera | Latest version | Windows, macOS | Medium |
-| Samsung Internet | Latest version | Android | Medium |
-| Internet Explorer | 11 | Windows | Low (Graceful degradation) |
+| Browser           | Version           | Platform                | Priority                   |
+| ----------------- | ----------------- | ----------------------- | -------------------------- |
+| Chrome            | Latest 2 versions | Windows, macOS, Android | High                       |
+| Firefox           | Latest 2 versions | Windows, macOS, Android | High                       |
+| Edge              | Latest 2 versions | Windows                 | High                       |
+| Safari            | Latest 2 versions | macOS, iOS              | High                       |
+| Opera             | Latest version    | Windows, macOS          | Medium                     |
+| Samsung Internet  | Latest version    | Android                 | Medium                     |
+| Internet Explorer | 11                | Windows                 | Low (Graceful degradation) |
 
 ## Testing Approach
 

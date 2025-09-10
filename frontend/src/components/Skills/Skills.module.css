@@ -155,11 +155,11 @@
   .title {
     font-size: 2.5rem;
   }
-  
+
   .skillsGrid {
     grid-template-columns: 1fr;
   }
-  
+
   .visualizationContainer {
     height: 300px;
   }
@@ -169,12 +169,12 @@
   .skills {
     padding: 4rem 1rem;
   }
-  
+
   .categories {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .categoryButton {
     width: 80%;
   }

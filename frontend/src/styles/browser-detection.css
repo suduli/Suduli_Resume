@@ -42,7 +42,7 @@
 }
 
 /* Force hardware acceleration in Safari mobile */
-.browser-safari-mobile .theme-transition, 
+.browser-safari-mobile .theme-transition,
 .browser-safari-mobile .toggle,
 .browser-safari-mobile button,
 .browser-safari-mobile a,
@@ -62,16 +62,18 @@
 
 /* Re-enable transitions after Safari has applied the theme */
 .browser-safari-mobile .safari-transitions-enabled * {
-  transition: background-color var(--theme-transition-duration) var(--animation-timing),
-              color var(--theme-transition-duration) var(--animation-timing),
-              border-color var(--theme-transition-duration) var(--animation-timing),
-              box-shadow var(--theme-transition-duration) var(--animation-timing) !important;
+  transition:
+    background-color var(--theme-transition-duration) var(--animation-timing),
+    color var(--theme-transition-duration) var(--animation-timing),
+    border-color var(--theme-transition-duration) var(--animation-timing),
+    box-shadow var(--theme-transition-duration) var(--animation-timing) !important;
 }
 
 /* Edge specific transitions */
 .browser-edge .theme-transition * {
-  transition: background-color var(--theme-transition-duration) var(--animation-timing),
-              color var(--theme-transition-duration) var(--animation-timing),
-              border-color var(--theme-transition-duration) var(--animation-timing),
-              box-shadow var(--theme-transition-duration) var(--animation-timing) !important;
+  transition:
+    background-color var(--theme-transition-duration) var(--animation-timing),
+    color var(--theme-transition-duration) var(--animation-timing),
+    border-color var(--theme-transition-duration) var(--animation-timing),
+    box-shadow var(--theme-transition-duration) var(--animation-timing) !important;
 }

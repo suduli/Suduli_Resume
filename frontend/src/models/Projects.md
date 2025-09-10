@@ -28,24 +28,21 @@ const project = createProject({
   title: 'Portfolio Website',
   description: 'Interactive portfolio website built with React',
   role: 'Lead Developer',
-  achievements: [
-    'Implemented responsive design',
-    'Created interactive components'
-  ],
+  achievements: ['Implemented responsive design', 'Created interactive components'],
   technologies: ['React', 'CSS', 'JavaScript'],
   collaboration: ['Worked with UI/UX designer'],
   image: '/assets/images/projects/portfolio.jpg',
   links: [
     { type: 'demo', url: 'https://example.com', label: 'Live Demo' },
-    { type: 'github', url: 'https://github.com/user/repo', label: 'GitHub Repository' }
-  ]
+    { type: 'github', url: 'https://github.com/user/repo', label: 'GitHub Repository' },
+  ],
 });
 
 // Only required fields
 const minimalProject = createProject({
   title: 'Minimal Project',
   description: 'A simple project',
-  technologies: ['JavaScript']
+  technologies: ['JavaScript'],
 });
 ```
 
@@ -106,7 +103,7 @@ const technologies = getUniqueTechnologies(projectsArray);
 // Useful for creating technology filter options
 const technologyOptions = getUniqueTechnologies(projectsArray).map(tech => ({
   label: tech,
-  value: tech
+  value: tech,
 }));
 ```
 
@@ -144,12 +141,13 @@ const projectWithLinks = createProject({
   links: [
     { type: 'demo', url: 'https://example.com/demo', label: 'Live Demo' },
     { type: 'github', url: 'https://github.com/user/repo', label: 'GitHub' },
-    { type: 'docs', url: 'https://example.com/docs', label: 'Documentation' }
-  ]
+    { type: 'docs', url: 'https://example.com/docs', label: 'Documentation' },
+  ],
 });
 ```
 
 Common link types include:
+
 - `demo`: Link to a live demo
 - `github`: Link to GitHub repository
 - `docs`: Link to documentation
@@ -168,5 +166,4 @@ The Projects model is designed to be used with React components that display pro
 4. Use `filterProjectsByTechnology()` to implement technology filtering
 5. Use `getUniqueTechnologies()` to generate filter options from available data
 6. Use `sortProjects()` to allow users to sort projects by different criteria
-
 ````

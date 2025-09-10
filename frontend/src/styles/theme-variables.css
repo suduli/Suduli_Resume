@@ -19,18 +19,18 @@
   --color-border: #dee2e6;
   --color-border-hover: #ced4da;
   --color-shadow: rgba(0, 0, 0, 0.1);
-  
+
   /* Status Colors */
   --color-success: #28a745;
   --color-warning: #ffc107;
   --color-error: #dc3545;
   --color-info: #17a2b8;
-  
+
   /* Typography */
   --font-heading: 'Orbitron', sans-serif;
   --font-body: 'Roboto', sans-serif;
   --font-code: 'Fira Code', monospace;
-  
+
   /* Animation Settings */
   --animation-duration: 300ms;
   --animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
@@ -38,7 +38,7 @@
   --particle-opacity: 0.7;
   --background-gradient: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
   --card-glow: 0 0 15px rgba(52, 152, 219, 0.5);
-  
+
   /* Spacing */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
@@ -46,19 +46,19 @@
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
   --spacing-xxl: 3rem;
-  
+
   /* Border Radius */
   --border-radius-sm: 0.25rem;
   --border-radius-md: 0.5rem;
   --border-radius-lg: 1rem;
   --border-radius-circle: 50%;
-  
+
   /* Shadows */
   --shadow-small: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
   --shadow-large: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
   --shadow-inset: inset 0 1px 4px rgba(0, 0, 0, 0.1);
-  
+
   /* Z-index Layers */
   --z-index-dropdown: 1000;
   --z-index-sticky: 1020;
@@ -67,10 +67,10 @@
   --z-index-modal: 1050;
   --z-index-popover: 1060;
   --z-index-tooltip: 1070;
-  
+
   /* Focus Ring */
   --focus-ring: 0 0 0 3px rgba(52, 152, 219, 0.5);
-  
+
   /* Background Components */
   --color-background-card: var(--color-surface);
   --color-background-secondary: #e9ecef;
@@ -78,7 +78,7 @@
 }
 
 /* Dark Theme */
-[data-theme="dark"] {
+[data-theme='dark'] {
   --color-primary: #6c5ce7;
   --color-secondary: #00b894;
   --color-accent: #e84393;
@@ -91,35 +91,35 @@
   --color-border: #273c75;
   --color-border-hover: #4a69bd;
   --color-shadow: rgba(0, 0, 0, 0.3);
-  
+
   /* Status Colors */
   --color-success: #1dd1a1;
   --color-warning: #feca57;
   --color-error: #ff6b6b;
   --color-info: #54a0ff;
-  
+
   /* Animation Settings */
   --particle-color: #6c5ce7;
   --particle-opacity: 0.8;
   --background-gradient: linear-gradient(to right, #0f0c29, #302b63, #24243e);
   --card-glow: 0 0 15px rgba(108, 92, 231, 0.7);
-  
+
   /* Shadows */
   --shadow-small: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.15);
   --shadow-large: 0 10px 20px rgba(0, 0, 0, 0.25), 0 3px 6px rgba(0, 0, 0, 0.2);
-  
+
   /* Background Components */
   --color-background-card: var(--color-surface);
   --color-background-secondary: #0c1324;
   --color-background-tertiary: #1e293b;
-  
+
   /* Focus Ring */
   --focus-ring: 0 0 0 3px rgba(108, 92, 231, 0.5);
 }
 
 /* High Contrast Theme */
-[data-theme="high-contrast"] {
+[data-theme='high-contrast'] {
   --color-primary: #f1c40f;
   --color-secondary: #2ecc71;
   --color-accent: #e74c3c;
@@ -132,35 +132,35 @@
   --color-border: #f1c40f;
   --color-border-hover: #f39c12;
   --color-shadow: rgba(241, 196, 15, 0.3);
-  
+
   /* Status Colors */
   --color-success: #2ecc71;
   --color-warning: #f39c12;
   --color-error: #e74c3c;
   --color-info: #3498db;
-  
+
   /* Animation Settings */
   --particle-color: #f1c40f;
   --particle-opacity: 0.9;
   --background-gradient: linear-gradient(to bottom, #000000, #121212);
   --card-glow: 0 0 15px rgba(241, 196, 15, 0.8);
-  
+
   /* Shadows */
   --shadow-small: 0 1px 3px rgba(241, 196, 15, 0.3), 0 1px 2px rgba(241, 196, 15, 0.4);
   --shadow-medium: 0 4px 6px rgba(241, 196, 15, 0.2), 0 1px 3px rgba(241, 196, 15, 0.3);
   --shadow-large: 0 10px 20px rgba(241, 196, 15, 0.3), 0 3px 6px rgba(241, 196, 15, 0.4);
-  
+
   /* Background Components */
   --color-background-card: var(--color-surface);
   --color-background-secondary: #1a1a1a;
   --color-background-tertiary: #222222;
-  
+
   /* Focus Ring */
   --focus-ring: 0 0 0 3px rgba(241, 196, 15, 0.8);
 }
 
 /* Twilight Theme */
-[data-theme="twilight"] {
+[data-theme='twilight'] {
   --color-primary: #a29bfe;
   --color-secondary: #55efc4;
   --color-accent: #fd79a8;
@@ -173,29 +173,29 @@
   --color-border: #636e72;
   --color-border-hover: #74b9ff;
   --color-shadow: rgba(0, 0, 0, 0.2);
-  
+
   /* Status Colors */
   --color-success: #55efc4;
   --color-warning: #fdcb6e;
   --color-error: #ff7675;
   --color-info: #74b9ff;
-  
+
   /* Animation Settings */
   --particle-color: #a29bfe;
   --particle-opacity: 0.75;
   --background-gradient: linear-gradient(135deg, #2d3436 0%, #4b6584 100%);
   --card-glow: 0 0 15px rgba(162, 155, 254, 0.6);
-  
+
   /* Shadows */
   --shadow-small: 0 1px 3px rgba(0, 0, 0, 0.18), 0 1px 2px rgba(0, 0, 0, 0.3);
   --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.12);
   --shadow-large: 0 10px 20px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.15);
-  
+
   /* Background Components */
   --color-background-card: var(--color-surface);
   --color-background-secondary: #2c3e50;
   --color-background-tertiary: #34495e;
-  
+
   /* Focus Ring */
   --focus-ring: 0 0 0 3px rgba(162, 155, 254, 0.5);
 }
@@ -210,10 +210,11 @@
 
 /* Transitions for theme changes */
 * {
-  transition: background-color var(--animation-duration) var(--animation-timing),
-              color var(--animation-duration) var(--animation-timing),
-              border-color var(--animation-duration) var(--animation-timing),
-              box-shadow var(--animation-duration) var(--animation-timing);
+  transition:
+    background-color var(--animation-duration) var(--animation-timing),
+    color var(--animation-duration) var(--animation-timing),
+    border-color var(--animation-duration) var(--animation-timing),
+    box-shadow var(--animation-duration) var(--animation-timing);
 }
 
 /* Special class for controlling theme transitions, especially in Edge */
@@ -228,10 +229,11 @@
 
 /* Enhanced transition settings for Edge-specific issues */
 .theme-transition * {
-  transition: background-color var(--edge-transition-duration) var(--animation-timing),
-              color var(--edge-transition-duration) var(--animation-timing),
-              border-color var(--edge-transition-duration) var(--animation-timing),
-              box-shadow var(--edge-transition-duration) var(--animation-timing) !important;
+  transition:
+    background-color var(--edge-transition-duration) var(--animation-timing),
+    color var(--edge-transition-duration) var(--animation-timing),
+    border-color var(--edge-transition-duration) var(--animation-timing),
+    box-shadow var(--edge-transition-duration) var(--animation-timing) !important;
 }
 
 /* Safari Mobile specific rules */
@@ -242,7 +244,7 @@
 }
 
 /* Force hardware acceleration in Safari mobile */
-.browser-safari-mobile .theme-transition, 
+.browser-safari-mobile .theme-transition,
 .browser-safari-mobile .toggle,
 .browser-safari-mobile button,
 .browser-safari-mobile a,
@@ -257,10 +259,11 @@
 
 /* Apply transitions based on device/browser */
 .browser-edge .theme-transition * {
-  transition: background-color var(--theme-transition-duration) var(--animation-timing),
-              color var(--theme-transition-duration) var(--animation-timing),
-              border-color var(--theme-transition-duration) var(--animation-timing),
-              box-shadow var(--theme-transition-duration) var(--animation-timing) !important;
+  transition:
+    background-color var(--theme-transition-duration) var(--animation-timing),
+    color var(--theme-transition-duration) var(--animation-timing),
+    border-color var(--theme-transition-duration) var(--animation-timing),
+    box-shadow var(--theme-transition-duration) var(--animation-timing) !important;
 }
 
 .browser-safari-mobile * {
@@ -268,10 +271,11 @@
 }
 
 .browser-safari-mobile .safari-transitions-enabled * {
-  transition: background-color var(--theme-transition-duration) var(--animation-timing),
-              color var(--theme-transition-duration) var(--animation-timing),
-              border-color var(--theme-transition-duration) var(--animation-timing),
-              box-shadow var(--theme-transition-duration) var(--animation-timing) !important;
+  transition:
+    background-color var(--theme-transition-duration) var(--animation-timing),
+    color var(--theme-transition-duration) var(--animation-timing),
+    border-color var(--theme-transition-duration) var(--animation-timing),
+    box-shadow var(--theme-transition-duration) var(--animation-timing) !important;
 }
 
 /* Disable transitions when prefers-reduced-motion */

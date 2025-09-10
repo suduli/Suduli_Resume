@@ -5,15 +5,15 @@
   h1 {
     font-size: 2.5rem;
   }
-  
+
   h2 {
     font-size: 2rem;
   }
-  
+
   p {
     font-size: 1rem;
   }
-  
+
   .container {
     max-width: 90%;
   }
@@ -23,11 +23,11 @@
   h1 {
     font-size: 2.2rem;
   }
-  
+
   h2 {
     font-size: 1.8rem;
   }
-  
+
   .container {
     max-width: 95%;
     padding: 0 15px;
@@ -39,32 +39,32 @@
   h1 {
     font-size: 2rem;
   }
-  
+
   h2 {
     font-size: 1.5rem;
   }
-  
+
   h3 {
     font-size: 1.2rem;
   }
-  
+
   p {
     font-size: 0.95rem;
     line-height: 1.5;
   }
-  
+
   .container {
     width: 100%;
     padding: 0 10px;
   }
-  
+
   /* Button sizing */
-  button, 
+  button,
   .button {
     padding: 8px 16px;
     font-size: 0.9rem;
   }
-  
+
   /* Reduce margins and paddings */
   section {
     padding: 40px 0;
@@ -76,19 +76,19 @@
   h1 {
     font-size: 1.8rem;
   }
-  
+
   h2 {
     font-size: 1.3rem;
   }
-  
+
   p {
     font-size: 0.9rem;
   }
-  
+
   section {
     padding: 30px 0;
   }
-  
+
   /* Adjust spacing */
   .section-title {
     margin-bottom: 1.5rem;
@@ -100,16 +100,16 @@
   .hero-content {
     text-align: center;
   }
-  
+
   .hero-image {
     width: 80%;
     margin: 20px auto;
   }
-  
+
   .hero-title {
     font-size: 2rem;
   }
-  
+
   .hero-subtitle {
     font-size: 1.2rem;
   }
@@ -120,15 +120,15 @@
   .nav-container {
     padding: 10px;
   }
-  
+
   .nav-links {
     display: none; /* Hide desktop navigation */
   }
-  
+
   .mobile-nav-toggle {
     display: block; /* Show mobile menu button */
   }
-  
+
   .mobile-nav {
     position: fixed;
     top: 0;
@@ -142,14 +142,14 @@
     justify-content: center;
     align-items: center;
   }
-  
+
   .mobile-nav a {
     color: white;
     font-size: 1.2rem;
     margin: 15px 0;
     text-decoration: none;
   }
-  
+
   .close-menu {
     position: absolute;
     top: 20px;
@@ -172,11 +172,11 @@
     grid-template-columns: 1fr;
     gap: 15px;
   }
-  
+
   .project-card {
     max-width: 100%;
   }
-  
+
   .project-image {
     height: 200px;
   }
@@ -187,19 +187,20 @@
   .contact-form {
     width: 100%;
   }
-  
+
   .form-group {
     margin-bottom: 15px;
   }
-  
-  input, textarea {
+
+  input,
+  textarea {
     padding: 10px;
   }
-  
+
   .contact-info {
     flex-direction: column;
   }
-  
+
   .contact-item {
     margin-bottom: 15px;
   }
@@ -210,16 +211,16 @@
   .about-content {
     flex-direction: column;
   }
-  
+
   .about-text {
     width: 100%;
   }
-  
+
   .about-image {
     width: 80%;
     margin: 20px auto;
   }
-  
+
   .skills-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -237,16 +238,16 @@
     text-align: center;
     padding: 20px 0;
   }
-  
+
   .footer-content {
     flex-direction: column;
   }
-  
+
   .footer-links,
   .footer-social {
     margin-top: 15px;
   }
-  
+
   .footer-social a {
     margin: 0 10px;
   }

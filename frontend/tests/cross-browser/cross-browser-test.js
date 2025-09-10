@@ -156,40 +156,40 @@ function displayManualTestGuide(browserId, testIds) {
       
       // Display specific test instructions based on test ID
       switch (test.testId) {
-        case 'theme-colors':
-          console.log('      - Switch between all themes and verify colors match the design');
-          console.log('      - Check text contrast is sufficient on all backgrounds');
-          break;
-        case 'fonts':
-          console.log('      - Verify all fonts are loading correctly');
-          console.log('      - Check for any font fallback issues');
-          break;
-        case 'layout':
-          console.log('      - Ensure all elements are properly aligned');
-          console.log('      - Check for any overflow or layout issues');
-          break;
-        case 'landing-animations':
-          console.log('      - Verify entrance animations play correctly');
-          console.log('      - Check that animations complete properly');
-          break;
-        case 'scroll-animations':
-          console.log('      - Scroll down and ensure elements animate in');
-          console.log('      - Check that animations trigger at the right scroll position');
-          break;
-        case 'hover-effects':
-          console.log('      - Hover over project cards and verify animations');
-          console.log('      - Check buttons and links for hover state changes');
-          break;
-        case 'animation-perf':
-          console.log('      - Observe animations for any stuttering or jank');
-          console.log('      - Test on low-performance mode if available');
-          break;
-        case 'screen-reader':
-          console.log('      - Enable screen reader and navigate the site');
-          console.log('      - Verify all content is properly announced');
-          break;
-        default:
-          console.log('      - Test according to feature requirements');
+      case 'theme-colors':
+        console.log('      - Switch between all themes and verify colors match the design');
+        console.log('      - Check text contrast is sufficient on all backgrounds');
+        break;
+      case 'fonts':
+        console.log('      - Verify all fonts are loading correctly');
+        console.log('      - Check for any font fallback issues');
+        break;
+      case 'layout':
+        console.log('      - Ensure all elements are properly aligned');
+        console.log('      - Check for any overflow or layout issues');
+        break;
+      case 'landing-animations':
+        console.log('      - Verify entrance animations play correctly');
+        console.log('      - Check that animations complete properly');
+        break;
+      case 'scroll-animations':
+        console.log('      - Scroll down and ensure elements animate in');
+        console.log('      - Check that animations trigger at the right scroll position');
+        break;
+      case 'hover-effects':
+        console.log('      - Hover over project cards and verify animations');
+        console.log('      - Check buttons and links for hover state changes');
+        break;
+      case 'animation-perf':
+        console.log('      - Observe animations for any stuttering or jank');
+        console.log('      - Test on low-performance mode if available');
+        break;
+      case 'screen-reader':
+        console.log('      - Enable screen reader and navigate the site');
+        console.log('      - Verify all content is properly announced');
+        break;
+      default:
+        console.log('      - Test according to feature requirements');
       }
     });
   });

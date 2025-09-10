@@ -182,8 +182,8 @@ const Experience = ({ experiences = [], awards = [], className }) => {
 Experience.propTypes = {
   experiences: PropTypes.arrayOf(
     PropTypes.shape({
-  title: PropTypes.string,
-  position: PropTypes.string,
+      title: PropTypes.string,
+      position: PropTypes.string,
       company: PropTypes.string.isRequired,
       location: PropTypes.string,
       startDate: PropTypes.string.isRequired,

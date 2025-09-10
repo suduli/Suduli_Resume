@@ -65,7 +65,9 @@
   margin-bottom: 4rem;
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 
 .timelineItem.visible {
@@ -260,7 +262,9 @@
   padding: 1.5rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   border-left: 3px solid var(--theme-accent);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   opacity: 0;
   transform: translateY(30px);
 }
@@ -311,27 +315,27 @@
   .timeline::before {
     left: 2rem;
   }
-  
+
   .timelineItem {
     flex-direction: column;
   }
-  
+
   .timelineContent {
     width: calc(100% - 4rem);
     margin-left: 4rem !important;
     margin-right: 0 !important;
   }
-  
+
   .timelineMarker {
     left: 2rem;
   }
-  
+
   /* Reset connector arrows */
   .timelineItem:nth-child(odd) .timelineContent::after,
   .timelineItem:nth-child(even) .timelineContent::after {
     display: none;
   }
-  
+
   .awardsGrid {
     grid-template-columns: 1fr;
   }
@@ -341,20 +345,20 @@
   .sectionTitle {
     font-size: 2rem;
   }
-  
+
   .timelineContent {
     padding: 1rem;
   }
-  
+
   .jobTitle {
     font-size: 1.1rem;
   }
-  
+
   .companyInfo {
     flex-direction: column;
     align-items: flex-start;
   }
-  
+
   .location {
     margin-left: 0;
     padding-left: 0;

@@ -39,7 +39,9 @@
   box-shadow: var(--shadow-medium);
   opacity: 0;
   transform: translateX(-20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
   height: fit-content;
 }
 
@@ -83,7 +85,7 @@
   font-weight: 600;
 }
 
-.infoText p, 
+.infoText p,
 .infoText a {
   font-family: var(--font-body);
   font-size: 1rem;
@@ -149,7 +151,9 @@
   box-shadow: var(--shadow-medium);
   opacity: 0;
   transform: translateX(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 
 .contactForm.visible {
@@ -178,7 +182,7 @@
   font-weight: 500;
 }
 
-.input, 
+.input,
 .textarea {
   width: 100%;
   padding: 0.8rem 1rem;
@@ -196,7 +200,7 @@
   min-height: 120px;
 }
 
-.input:focus, 
+.input:focus,
 .textarea:focus {
   outline: none;
   border-color: var(--color-accent-primary);
@@ -270,22 +274,22 @@
     font-size: 2.75rem;
     margin-bottom: 2.5rem;
   }
-  
+
   .contactContent {
     gap: 2.5rem;
   }
-  
-  .contactInfo, 
+
+  .contactInfo,
   .contactForm {
     padding: 1.75rem;
   }
-  
+
   .infoTitle,
   .formTitle {
     font-size: 1.4rem;
     margin-bottom: 1.25rem;
   }
-  
+
   .infoItems {
     gap: 1.25rem;
   }
@@ -295,38 +299,38 @@
   .contact {
     padding: 5rem 1.5rem;
   }
-  
+
   .title {
     font-size: 2.5rem;
     margin-bottom: 2rem;
   }
-  
+
   .contactContent {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  
+
   .contactInfo,
   .contactForm {
     transform: translateY(20px);
     padding: 1.5rem;
   }
-  
+
   .contactInfo.visible,
   .contactForm.visible {
     transform: translateY(0);
   }
-  
+
   .infoTitle,
   .formTitle {
     font-size: 1.3rem;
     margin-bottom: 1rem;
   }
-  
+
   .infoItems {
     gap: 1rem;
   }
-  
+
   .submitButton {
     width: 100%;
   }
@@ -336,52 +340,52 @@
   .contact {
     padding: 4rem 1rem;
   }
-  
+
   .title {
     font-size: 2.25rem;
     margin-bottom: 1.75rem;
   }
-  
+
   .contactInfo,
   .contactForm {
     padding: 1.25rem;
   }
-  
+
   .formTitle,
   .infoTitle {
     font-size: 1.2rem;
   }
-  
+
   .socialIcons {
     justify-content: center;
   }
-  
+
   .infoItem {
     align-items: center;
     flex-direction: column;
     text-align: center;
     gap: 0.5rem;
   }
-  
+
   .infoIcon {
     margin-bottom: 0.5rem;
   }
-  
+
   .label {
     font-size: 0.9rem;
   }
-  
-  .input, 
+
+  .input,
   .textarea {
     padding: 0.75rem;
     font-size: 0.9rem;
   }
-  
+
   .submitButton {
     padding: 0.75rem 1.5rem;
     font-size: 0.9rem;
   }
-  
+
   .errorMessage {
     font-size: 0.8rem;
   }
@@ -392,17 +396,17 @@
   .contact {
     padding: 3rem 0.75rem;
   }
-  
+
   .title {
     font-size: 2rem;
     margin-bottom: 1.5rem;
   }
-  
+
   .contactInfo,
   .contactForm {
     padding: 1rem;
   }
-  
+
   .socialIcon {
     width: 2.25rem;
     height: 2.25rem;
@@ -416,67 +420,67 @@
     padding: 3rem 1.5rem;
     min-height: auto;
   }
-  
+
   .title {
     font-size: 2rem;
     margin-bottom: 1.5rem;
   }
-  
+
   .contactContent {
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
   }
-  
-  .contactInfo, 
+
+  .contactInfo,
   .contactForm {
     padding: 1.25rem;
   }
-  
+
   .infoTitle,
   .formTitle {
     font-size: 1.2rem;
     margin-bottom: 1rem;
   }
-  
+
   .infoItems {
     gap: 0.75rem;
   }
-  
+
   .infoItem {
     gap: 0.5rem;
   }
-  
+
   .infoIcon {
     font-size: 1.25rem;
     min-width: 1.5rem;
   }
-  
+
   .infoText h4 {
     font-size: 1rem;
     margin-bottom: 0.25rem;
   }
-  
+
   .infoText p,
   .infoText a {
     font-size: 0.9rem;
   }
-  
+
   .socialLinks {
     margin-top: 1.25rem;
     padding-top: 1.25rem;
   }
-  
+
   .socialTitle {
     font-size: 1rem;
     margin-bottom: 0.75rem;
   }
-  
+
   .socialIcon {
     width: 2rem;
     height: 2rem;
     font-size: 1rem;
   }
-  
+
   .textarea {
     min-height: 80px;
   }

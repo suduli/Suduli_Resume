@@ -30,12 +30,9 @@ const experience = createExperience({
   endDate: '2022-06-30',
   location: 'San Francisco, CA',
   description: 'Developed web applications using React and Node.js',
-  highlights: [
-    'Led development of customer-facing portal',
-    'Improved performance by 40%'
-  ],
+  highlights: ['Led development of customer-facing portal', 'Improved performance by 40%'],
   technologies: ['React', 'Node.js', 'MongoDB'],
-  keywords: ['frontend', 'backend', 'web development']
+  keywords: ['frontend', 'backend', 'web development'],
 });
 
 // Only required fields
@@ -43,7 +40,7 @@ const minimalExperience = createExperience({
   company: 'Startup Inc',
   position: 'Frontend Developer',
   startDate: '2018-06-01',
-  description: 'Built UI components'
+  description: 'Built UI components',
 });
 ```
 
@@ -67,11 +64,11 @@ import { formatDate } from './models/Experience';
 
 // Format dates for display
 const formattedStartDate = formatDate('2020-01-15', 'medium'); // e.g., "Jan 15, 2020"
-const formattedEndDate = formatDate('present', 'medium');      // "Present"
+const formattedEndDate = formatDate('present', 'medium'); // "Present"
 
 // Different formats
-const shortDate = formatDate('2020-01-15', 'short');           // e.g., "Jan 2020"
-const longDate = formatDate('2020-01-15', 'long');             // e.g., "January 15, 2020"
+const shortDate = formatDate('2020-01-15', 'short'); // e.g., "Jan 2020"
+const longDate = formatDate('2020-01-15', 'long'); // e.g., "January 15, 2020"
 ```
 
 ### Calculating and Formatting Duration

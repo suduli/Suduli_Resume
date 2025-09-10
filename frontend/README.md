@@ -48,7 +48,7 @@ frontend/
 - **React.js**: Frontend framework for building the UI components
 - **React Router**: For navigation between different sections
 - **React Context API**: For global state management (themes and data)
-- **Animation Libraries**: 
+- **Animation Libraries**:
   - anime.js: For text and UI animations
   - react-tsparticles: For background particle effects
   - Three.js: For 3D skill visualizations
@@ -117,12 +117,14 @@ The portfolio data is structured into several entities:
 ### Setup
 
 1. Clone the repository:
+
    ```
    git clone <repository-url>
    cd frontend
    ```
 
 2. Install dependencies:
+
    ```
    npm install
    ```

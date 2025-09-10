@@ -29,8 +29,8 @@ const customProfile = createProfile({
   title: 'Full Stack Developer',
   contact: {
     email: 'jane@example.com',
-    github: 'https://github.com/janedoe'
-  }
+    github: 'https://github.com/janedoe',
+  },
 });
 ```
 

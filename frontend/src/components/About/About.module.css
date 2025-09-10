@@ -71,7 +71,9 @@
   padding: 2rem;
   border-radius: 8px;
   box-shadow: var(--shadow-medium);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   margin-bottom: 2.5rem;
 }
 
@@ -132,7 +134,9 @@
   padding: 2rem;
   border-radius: 8px;
   box-shadow: var(--shadow-medium);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .languages:hover {
@@ -201,7 +205,9 @@
   padding: 2rem;
   border-radius: 8px;
   box-shadow: var(--shadow-medium);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .highlights:hover {
@@ -241,11 +247,11 @@
 }
 
 /* Theme-specific styles */
-[data-theme="light"] .about {
+[data-theme='light'] .about {
   background-color: var(--color-background-primary);
 }
 
-[data-theme="dark"] .about {
+[data-theme='dark'] .about {
   background-color: var(--color-background-primary);
 }
 
@@ -254,23 +260,23 @@
   .about {
     padding: 3rem 1.5rem;
   }
-  
+
   .sectionTitle {
     font-size: 2rem;
   }
-  
+
   .name {
     font-size: 1.75rem;
   }
-  
+
   .title {
     font-size: 1.25rem;
   }
-  
+
   .summary {
     font-size: 1.1rem;
   }
-  
+
   .languagesList {
     grid-template-columns: 1fr;
   }
@@ -280,16 +286,18 @@
   .about {
     padding: 2rem 1rem;
   }
-  
+
   .sectionTitle {
     font-size: 1.75rem;
   }
-  
+
   .name {
     font-size: 1.5rem;
   }
-  
-  .education, .languages, .highlights {
+
+  .education,
+  .languages,
+  .highlights {
     padding: 1.5rem;
   }
 }

@@ -41,7 +41,9 @@
 .socialLink {
   color: var(--theme-footer-link);
   font-size: 1.2rem;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,12 +67,12 @@
   .container {
     flex-direction: row;
   }
-  
+
   .copyright {
     margin-bottom: 0;
     text-align: left;
   }
-  
+
   .socialLinks {
     justify-content: flex-end;
   }
@@ -80,20 +82,20 @@
   .footer {
     padding: 1.5rem 0;
   }
-  
+
   .container {
     padding: 0 1rem;
   }
-  
+
   .copyright {
     font-size: 0.8rem;
     margin-bottom: 0.75rem;
   }
-  
+
   .socialLinks {
     gap: 1rem;
   }
-  
+
   .socialLink {
     font-size: 1.1rem;
   }
@@ -104,15 +106,15 @@
   .footer {
     padding: 1.25rem 0;
   }
-  
+
   .container {
     padding: 0 0.75rem;
   }
-  
+
   .copyright {
     font-size: 0.75rem;
   }
-  
+
   .socialLinks {
     gap: 0.75rem;
   }
@@ -123,17 +125,17 @@
   .footer {
     padding: 1rem 0;
   }
-  
+
   .container {
     flex-direction: row;
     padding: 0 1.5rem;
   }
-  
+
   .copyright {
     margin-bottom: 0;
     text-align: left;
   }
-  
+
   .socialLinks {
     justify-content: flex-end;
   }

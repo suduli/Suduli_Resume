@@ -64,24 +64,24 @@
     padding: 4rem 1rem;
     text-align: center;
   }
-  
+
   .hero-content {
     padding-right: 0;
     padding-top: 2rem;
   }
-  
+
   .hero-image {
     margin-bottom: 2rem;
   }
-  
+
   .hero-title {
     font-size: 2.5rem;
   }
-  
+
   .hero-subtitle {
     font-size: 1.5rem;
   }
-  
+
   .hero-cta {
     justify-content: center;
   }

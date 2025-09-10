@@ -162,17 +162,17 @@ textarea:focus {
   .contact-container {
     flex-direction: column;
   }
-  
+
   .contact-info {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
   }
-  
+
   .info-item {
     width: 45%;
   }
-  
+
   .social-links {
     width: 100%;
     justify-content: flex-start;
@@ -184,15 +184,15 @@ textarea:focus {
     flex-direction: column;
     gap: 0;
   }
-  
+
   .contact-form {
     padding: 1.5rem;
   }
-  
+
   .info-item {
     width: 100%;
   }
-  
+
   .contact-info {
     gap: 1rem;
   }
@@ -202,23 +202,23 @@ textarea:focus {
   .contact-section {
     padding: 3rem 0;
   }
-  
+
   .contact-form {
     padding: 1.2rem;
   }
-  
+
   .info-icon {
     width: 40px;
     height: 40px;
     font-size: 1rem;
   }
-  
+
   .social-links a {
     width: 35px;
     height: 35px;
     font-size: 1rem;
   }
-  
+
   .submit-btn {
     padding: 0.7rem 1.5rem;
   }
@@ -226,16 +226,16 @@ textarea:focus {
 
 /* Touch device optimizations */
 @media (hover: none) {
-  input, 
+  input,
   textarea,
   .submit-btn {
     font-size: 16px; /* Prevents iOS from zooming on focus */
   }
-  
+
   .submit-btn {
     padding: 12px 20px; /* Larger touch target */
   }
-  
+
   .social-links a {
     width: 44px;
     height: 44px;

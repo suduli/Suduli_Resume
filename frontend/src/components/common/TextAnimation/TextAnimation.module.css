@@ -50,14 +50,15 @@
 }
 
 /* The cursor blinking effect for typewriter */
-[data-animation="typewriter"]::after {
+[data-animation='typewriter']::after {
   content: '|';
   animation: blink 1s infinite step-end;
   margin-left: 2px;
 }
 
 @keyframes blink {
-  from, to {
+  from,
+  to {
     opacity: 1;
   }
   50% {
@@ -66,35 +67,35 @@
 }
 
 /* Theme-based animations */
-[data-theme="dark"] .fadeIn,
-[data-theme="dark"] .fadeInUp,
-[data-theme="dark"] .slideIn {
+[data-theme='dark'] .fadeIn,
+[data-theme='dark'] .fadeInUp,
+[data-theme='dark'] .slideIn {
   color: var(--color-text-primary);
   text-shadow: var(--card-glow);
 }
 
-[data-theme="dark"] [data-animation="typewriter"]::after {
+[data-theme='dark'] [data-animation='typewriter']::after {
   color: var(--color-accent);
 }
 
-[data-theme="high-contrast"] .fadeIn,
-[data-theme="high-contrast"] .fadeInUp,
-[data-theme="high-contrast"] .slideIn {
+[data-theme='high-contrast'] .fadeIn,
+[data-theme='high-contrast'] .fadeInUp,
+[data-theme='high-contrast'] .slideIn {
   color: var(--color-text-primary);
   text-shadow: var(--card-glow);
 }
 
-[data-theme="high-contrast"] [data-animation="typewriter"]::after {
+[data-theme='high-contrast'] [data-animation='typewriter']::after {
   color: var(--color-primary);
 }
 
-[data-theme="twilight"] .fadeIn,
-[data-theme="twilight"] .fadeInUp,
-[data-theme="twilight"] .slideIn {
+[data-theme='twilight'] .fadeIn,
+[data-theme='twilight'] .fadeInUp,
+[data-theme='twilight'] .slideIn {
   color: var(--color-text-primary);
   text-shadow: var(--card-glow);
 }
 
-[data-theme="twilight"] [data-animation="typewriter"]::after {
+[data-theme='twilight'] [data-animation='typewriter']::after {
   color: var(--color-accent);
 }

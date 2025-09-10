@@ -69,18 +69,18 @@
     flex-direction: column;
     gap: 1rem;
   }
-  
+
   .pagination-button.prev {
     order: 2;
     width: 100%;
     justify-content: center;
   }
-  
+
   .pagination-numbers {
     order: 1;
     margin: 0;
   }
-  
+
   .pagination-button.next {
     order: 3;
     width: 100%;

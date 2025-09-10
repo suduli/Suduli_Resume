@@ -990,8 +990,8 @@ describe('Animation Components Contract Tests', () => {
       const completeCallback = jest.fn();
       
       animation.onStart(startCallback)
-               .onUpdate(updateCallback)
-               .onComplete(completeCallback);
+        .onUpdate(updateCallback)
+        .onComplete(completeCallback);
       
       // Play the animation
       await animation.play();

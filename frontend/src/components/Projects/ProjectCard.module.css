@@ -28,8 +28,9 @@
   z-index: -1;
   opacity: 0;
   transition: opacity 0.5s ease;
-  box-shadow: 0 0 15px 2px var(--color-accent-primary), 
-              0 0 30px 5px rgba(59, 130, 246, 0.3);
+  box-shadow:
+    0 0 15px 2px var(--color-accent-primary),
+    0 0 30px 5px rgba(59, 130, 246, 0.3);
   pointer-events: none;
 }
 
@@ -142,12 +143,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   transition: 0.5s;
 }
 
@@ -273,14 +269,24 @@
   animation: highlightAppear 0.4s forwards;
 }
 
-.highlightItem:nth-child(1) { animation-delay: 0.1s; }
-.highlightItem:nth-child(2) { animation-delay: 0.2s; }
-.highlightItem:nth-child(3) { animation-delay: 0.3s; }
-.highlightItem:nth-child(4) { animation-delay: 0.4s; }
-.highlightItem:nth-child(5) { animation-delay: 0.5s; }
+.highlightItem:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.highlightItem:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.highlightItem:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.highlightItem:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.highlightItem:nth-child(5) {
+  animation-delay: 0.5s;
+}
 
 .highlightItem::before {
-  content: "•";
+  content: '•';
   position: absolute;
   left: 0;
   color: var(--color-accent-primary);
@@ -389,16 +395,16 @@
   .imageContainer {
     height: 180px;
   }
-  
+
   .projectTitle {
     font-size: 1.3rem;
     margin-bottom: 0.75rem;
   }
-  
+
   .projectInfo {
     padding: 1.25rem;
   }
-  
+
   .projectDescription {
     font-size: 0.9rem;
   }
@@ -408,48 +414,49 @@
   .imageContainer {
     height: 180px;
   }
-  
+
   .projectTitle {
     font-size: 1.2rem;
     margin-bottom: 0.75rem;
   }
-  
+
   .projectInfo {
     padding: 1.25rem;
   }
-  
+
   .buttons {
     gap: 0.75rem;
   }
-  
+
   .button {
     padding: 0.5rem 1rem;
     font-size: 0.85rem;
   }
-  
+
   /* Optimize for touch devices */
-  .button, .tag {
+  .button,
+  .tag {
     min-height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  
+
   /* Enhanced tap target size */
   .tag {
     padding: 0.4rem 0.8rem;
     min-width: 60px;
   }
-  
+
   /* Reduce animations for performance on mobile */
   .projectCard {
     animation: none;
   }
-  
+
   .button::after {
     display: none;
   }
-  
+
   .featuredBadge {
     font-size: 0.65rem;
     padding: 0.25rem 0.7rem;
@@ -460,66 +467,66 @@
   .imageContainer {
     height: 160px;
   }
-  
+
   .projectInitial {
     font-size: 3rem;
   }
-  
+
   .projectInfo {
     padding: 1rem;
   }
-  
+
   .projectTitle {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
   }
-  
+
   .projectDescription {
     font-size: 0.85rem;
     line-height: 1.4;
     margin-bottom: 0.75rem;
   }
-  
+
   .tags {
     gap: 0.4rem;
     margin-bottom: 0.75rem;
   }
-  
+
   .tag {
     font-size: 0.75rem;
     padding: 0.3rem 0.7rem;
   }
-  
+
   .buttons {
     flex-direction: column;
     gap: 0.5rem;
     width: 100%;
   }
-  
+
   .button {
     width: 100%;
     padding: 0.5rem 0;
     font-size: 0.85rem;
   }
-  
+
   .highlightsTitle {
     font-size: 0.95rem;
   }
-  
+
   .highlightItem {
     font-size: 0.8rem;
     margin-bottom: 0.3rem;
   }
-  
+
   /* Full overlay always visible on mobile for better UX */
   .overlay {
     opacity: 0.9;
   }
-  
+
   .overlayContent {
     transform: translateY(0);
   }
-  
+
   .featuredBadge {
     font-size: 0.6rem;
     padding: 0.2rem 0.6rem;
@@ -533,11 +540,11 @@
   .imageContainer {
     height: 140px;
   }
-  
+
   .projectTitle {
     font-size: 1rem;
   }
-  
+
   .projectInfo {
     padding: 0.75rem;
   }
@@ -550,26 +557,26 @@
     height: auto;
     max-height: 180px;
   }
-  
+
   .imageContainer {
     width: 40%;
     height: 100%;
   }
-  
+
   .projectInfo {
     width: 60%;
     padding: 0.75rem 1rem;
   }
-  
+
   .tags {
     margin-bottom: 0.5rem;
   }
-  
+
   .projectTitle {
     font-size: 1rem;
     margin-bottom: 0.5rem;
   }
-  
+
   .projectDescription {
     font-size: 0.8rem;
     line-height: 1.3;
@@ -595,7 +602,7 @@
     transition: none;
     animation: none;
   }
-  
+
   .projectCard.hovered {
     transform: translateY(-5px);
   }

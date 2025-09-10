@@ -87,12 +87,12 @@
   .container {
     flex-direction: row;
   }
-  
+
   .content {
     align-items: flex-start;
     text-align: left;
   }
-  
+
   .title {
     font-size: 3.5rem;
   }
@@ -104,7 +104,7 @@
     text-align: center;
     max-width: 100%;
   }
-  
+
   .imageContainer {
     max-width: 400px;
   }
@@ -114,15 +114,15 @@
   .hero {
     padding: 3rem 0;
   }
-  
+
   .title {
     font-size: 2.5rem;
   }
-  
+
   .subtitle {
     font-size: 1.25rem;
   }
-  
+
   .imageContainer {
     max-width: 300px;
   }
@@ -134,33 +134,33 @@
     padding: 2rem 0;
     min-height: 60vh;
   }
-  
+
   .container {
     gap: 1.5rem;
     padding: 0 1rem;
   }
-  
+
   .title {
     font-size: 2rem;
     margin-bottom: 0.5rem;
   }
-  
+
   .subtitle {
     font-size: 1rem;
     margin-bottom: 1rem;
   }
-  
+
   .description {
     font-size: 0.9rem;
     line-height: 1.5;
     margin-bottom: 1.5rem;
   }
-  
+
   .buttonGroup {
     width: 100%;
     justify-content: center;
   }
-  
+
   .imageContainer {
     max-width: 250px;
   }
@@ -171,15 +171,15 @@
   .hero {
     padding: 4rem 0 2rem;
   }
-  
+
   .container {
     gap: 2rem;
   }
-  
+
   .content {
     max-width: 80%;
   }
-  
+
   .imageContainer {
     max-width: 350px;
   }
@@ -191,25 +191,25 @@
     min-height: auto;
     padding: 2rem 0;
   }
-  
+
   .container {
     flex-direction: row;
     gap: 2rem;
   }
-  
+
   .content {
     align-items: flex-start;
     text-align: left;
   }
-  
+
   .imageContainer {
     max-width: 200px;
   }
-  
+
   .title {
     font-size: 2rem;
   }
-  
+
   .subtitle {
     font-size: 1rem;
   }
