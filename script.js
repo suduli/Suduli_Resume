@@ -105,6 +105,90 @@ particlesJS('particles-js', {
     "retina_detect": true
 });
 
+// Theme Toggle Functionality
+class ThemeManager {
+    constructor() {
+        this.themeToggle = document.getElementById('theme-toggle');
+        this.themeIcon = document.getElementById('theme-icon');
+        this.currentTheme = 'dark';
+        
+        this.init();
+    }
+    
+    init() {
+        // Check for saved theme or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme) {
+            this.currentTheme = savedTheme;
+        } else {
+            this.currentTheme = prefersDark ? 'dark' : 'light';
+        }
+        
+        this.applyTheme(this.currentTheme);
+        this.updateIcon();
+        
+        // Add event listener for theme toggle
+        this.themeToggle.addEventListener('click', () => this.toggleTheme());
+        
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                this.currentTheme = e.matches ? 'dark' : 'light';
+                this.applyTheme(this.currentTheme);
+                this.updateIcon();
+            }
+        });
+    }
+    
+    toggleTheme() {
+        this.currentTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
+        this.applyTheme(this.currentTheme);
+        this.updateIcon();
+        localStorage.setItem('theme', this.currentTheme);
+    }
+    
+    applyTheme(theme) {
+        if (theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+        }
+        
+        // Update particles colors for the theme
+        this.updateParticlesTheme(theme);
+    }
+    
+    updateIcon() {
+        if (this.currentTheme === 'dark') {
+            this.themeIcon.className = 'fas fa-sun';
+        } else {
+            this.themeIcon.className = 'fas fa-moon';
+        }
+    }
+    
+    updateParticlesTheme(theme) {
+        // Update particles.js colors dynamically
+        if (window.pJSDom && window.pJSDom[0] && window.pJSDom[0].pJS) {
+            const pJS = window.pJSDom[0].pJS;
+            if (theme === 'light') {
+                pJS.particles.color.value = ['#0070f3', '#f56565', '#38a169'];
+                pJS.particles.line_linked.color = '#0070f3';
+            } else {
+                pJS.particles.color.value = ['#00f5ff', '#ff6b6b', '#00ff88'];
+                pJS.particles.line_linked.color = '#00f5ff';
+            }
+            pJS.fn.particlesRefresh();
+        }
+    }
+}
+
+// Initialize theme manager when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new ThemeManager();
+});
+
 // Mobile Navigation Toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
