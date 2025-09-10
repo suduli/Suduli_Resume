@@ -1,0 +1,140 @@
+/* Footer Styles */
+.footer {
+  padding: 2rem 0;
+  width: 100%;
+  margin-top: auto; /* Push footer to bottom of flex container */
+}
+
+.footer-light {
+  background-color: var(--theme-footer-bg);
+  color: var(--theme-footer-text);
+}
+
+.footer-dark {
+  background-color: var(--theme-footer-bg);
+  color: var(--theme-footer-text);
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copyright {
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.socialLink {
+  color: var(--theme-footer-link);
+  font-size: 1.2rem;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.socialLink:hover {
+  color: var(--theme-footer-link-hover);
+  transform: translateY(-2px);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
+  
+  .copyright {
+    margin-bottom: 0;
+    text-align: left;
+  }
+  
+  .socialLinks {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 1.5rem 0;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .copyright {
+    font-size: 0.8rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .socialLinks {
+    gap: 1rem;
+  }
+  
+  .socialLink {
+    font-size: 1.1rem;
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 360px) {
+  .footer {
+    padding: 1.25rem 0;
+  }
+  
+  .container {
+    padding: 0 0.75rem;
+  }
+  
+  .copyright {
+    font-size: 0.75rem;
+  }
+  
+  .socialLinks {
+    gap: 0.75rem;
+  }
+}
+
+/* Landscape Mode */
+@media (max-height: 500px) and (orientation: landscape) {
+  .footer {
+    padding: 1rem 0;
+  }
+  
+  .container {
+    flex-direction: row;
+    padding: 0 1.5rem;
+  }
+  
+  .copyright {
+    margin-bottom: 0;
+    text-align: left;
+  }
+  
+  .socialLinks {
+    justify-content: flex-end;
+  }
+}

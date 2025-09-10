@@ -1,0 +1,81 @@
+{
+  "browser": "chrome-mobile",
+  "timestamp": "2025-09-09T12:22:00.865Z",
+  "tests": {
+    "navigation": {
+      "passed": true,
+      "duration": 506,
+      "error": null
+    },
+    "theme-switching": {
+      "passed": true,
+      "duration": 368,
+      "error": null
+    },
+    "data-loading": {
+      "passed": true,
+      "duration": 431,
+      "error": null
+    },
+    "form-validation": {
+      "passed": true,
+      "duration": 456,
+      "error": null
+    },
+    "reduced-motion": {
+      "passed": false,
+      "duration": 474,
+      "error": "Element not found or test failed"
+    },
+    "mobile-layout": {
+      "passed": true,
+      "duration": 204,
+      "error": null
+    },
+    "tablet-layout": {
+      "passed": false,
+      "duration": 269,
+      "error": "Element not found or test failed"
+    },
+    "desktop-layout": {
+      "passed": true,
+      "duration": 521,
+      "error": null
+    },
+    "menu-responsive": {
+      "passed": true,
+      "duration": 472,
+      "error": null
+    },
+    "keyboard-nav": {
+      "passed": true,
+      "duration": 401,
+      "error": null
+    },
+    "aria": {
+      "passed": true,
+      "duration": 284,
+      "error": null
+    },
+    "contrast": {
+      "passed": true,
+      "duration": 324,
+      "error": null
+    },
+    "load-time": {
+      "passed": true,
+      "duration": 133,
+      "error": null
+    },
+    "memory-usage": {
+      "passed": true,
+      "duration": 326,
+      "error": null
+    },
+    "resource-usage": {
+      "passed": true,
+      "duration": 543,
+      "error": null
+    }
+  }
+}

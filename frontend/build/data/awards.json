@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "title": "Excellence in Test Automation",
+    "issuer": "KPIT Technologies",
+    "date": "2021",
+    "description": "Awarded for implementing an innovative test automation framework that significantly reduced testing time and improved reliability."
+  },
+  {
+    "id": 2,
+    "title": "Outstanding Performance Award",
+    "issuer": "Continental Automotive",
+    "date": "2018",
+    "description": "Recognized for exceptional contribution to a critical project with tight deadlines."
+  },
+  {
+    "id": 3,
+    "title": "Best Technical Solution",
+    "issuer": "KPIT Annual Innovation Contest",
+    "date": "2020",
+    "description": "Won for developing a real-time CAN signal analyzer tool that improved debugging efficiency."
+  }
+]

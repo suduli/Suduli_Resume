@@ -1,0 +1,86 @@
+{
+  "timestamp": "2025-09-09T12:22:00.916Z",
+  "browsers": {
+    "chrome": {
+      "total": 15,
+      "passed": 13,
+      "failed": 2,
+      "passRate": 86.66666666666667
+    },
+    "firefox": {
+      "total": 15,
+      "passed": 9,
+      "failed": 6,
+      "passRate": 60
+    },
+    "edge": {
+      "total": 15,
+      "passed": 11,
+      "failed": 4,
+      "passRate": 73.33333333333333
+    },
+    "chrome-mobile": {
+      "total": 15,
+      "passed": 13,
+      "failed": 2,
+      "passRate": 86.66666666666667
+    },
+    "safari-mobile": {
+      "total": 15,
+      "passed": 13,
+      "failed": 2,
+      "passRate": 86.66666666666667
+    }
+  },
+  "testCategories": {
+    "core": {
+      "total": 20,
+      "passed": 18,
+      "failed": 2,
+      "passRate": 90
+    },
+    "visual": {
+      "total": 0,
+      "passed": 0,
+      "failed": 0,
+      "passRate": 0
+    },
+    "animation": {
+      "total": 5,
+      "passed": 4,
+      "failed": 1,
+      "passRate": 80
+    },
+    "responsive": {
+      "total": 20,
+      "passed": 15,
+      "failed": 5,
+      "passRate": 75
+    },
+    "a11y": {
+      "total": 15,
+      "passed": 11,
+      "failed": 4,
+      "passRate": 73.33333333333333
+    },
+    "performance": {
+      "total": 15,
+      "passed": 11,
+      "failed": 4,
+      "passRate": 73.33333333333333
+    }
+  },
+  "overallPassRate": 78.66666666666666,
+  "criticalIssues": [
+    {
+      "browser": "edge",
+      "testId": "theme-switching",
+      "message": "Core functionality 'theme-switching' failed in edge"
+    },
+    {
+      "browser": "safari-mobile",
+      "testId": "theme-switching",
+      "message": "Core functionality 'theme-switching' failed in safari-mobile"
+    }
+  ]
+}

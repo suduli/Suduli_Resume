@@ -1,0 +1,145 @@
+/* Landing Component Styles */
+.landing {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  overflow: hidden;
+}
+
+.landing-light {
+  background-color: var(--theme-landing-bg);
+  color: var(--theme-landing-text);
+}
+
+.landing-dark {
+  background-color: var(--theme-landing-bg);
+  color: var(--theme-landing-text);
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-family: 'Orbitron', sans-serif;
+  color: var(--theme-landing-title);
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  color: var(--theme-landing-subtitle);
+  opacity: 0.9;
+}
+
+.description {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  color: var(--theme-landing-description);
+  opacity: 0.8;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.buttonWrapper {
+  opacity: 0; /* Initial state for animation */
+}
+
+.scrollIndicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  animation: fadeInAndBounce 2s ease-in-out 3s forwards;
+  opacity: 0;
+}
+
+.scrollText {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.scrollArrow {
+  width: 24px;
+  height: 24px;
+  animation: bounce 1.5s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes fadeInAndBounce {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+/* Media Queries */
+@media (max-width: 767px) {
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1.5rem;
+  }
+  
+  .description {
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .buttonContainer {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+}

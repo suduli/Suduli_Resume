@@ -1,0 +1,79 @@
+[
+  {
+    "id": "proj-1",
+    "title": "BCM-Systems Validation",
+    "description": "Automotive software validation for Stellantis OEM, focusing on safety-critical Infotainment embedded systems including steering controls, crash detection, and vehicle lighting. Implemented end-to-end testing processes from requirement analysis to automated validation.",
+    "role": "Lead Tester",
+    "achievements": [
+      "Spearheaded manual/automated testing of ECU software using dSPACE environments",
+      "Reduced manual testing by 40% via optimized test scripts and ECU-Test automation",
+      "Achieved 95% requirement traceability using IBM RQM/DNG integration",
+      "Created reusable XAM signal mapping files, cutting test setup time by 30%",
+      "Led debugging of 200+ defects across critical features (Drive Mode, crash detection)"
+    ],
+    "technologies": ["IBM RQM", "DOORS DNG", "ECU-Test", "dSPACE", "XAM signal mapping"],
+    "collaboration": [
+      "Partnered with Stellantis engineers, developers, and integration teams",
+      "Coordinated with cross-functional teams for requirement reviews and defect resolution"
+    ],
+    "image": "/assets/images/projects/bcm-validation.jpg",
+    "links": []
+  },
+  {
+    "id": "proj-2",
+    "title": "DCU 20 (Domain Control Unit)",
+    "description": "Centralized ADAS domain controller (DCU) designed to process data from various vehicle sensors, including cameras and radars. Centralization approach simplifies the architecture, reduces costs, and enhances scalability and software updates. Eliminated the need for individual ECUs for each function.",
+    "role": "Point of Contact (POC)",
+    "achievements": [
+      "Successfully conducted System Testing including EOL, Failsafe, and USM Testing"
+    ],
+    "technologies": ["Canoe", "VtestStudio", "ADAS Analyser", "Trace32", "Jira", "CAPL", "Python"],
+    "collaboration": [
+      "Collaborated closely with developers to prepare software demos for the HKMC client",
+      "Worked onsite at the Korea Head Office"
+    ],
+    "environment": "Zero DTC Environment, Windows 10",
+    "image": "/assets/images/projects/dcu20.jpg",
+    "links": []
+  },
+  {
+    "id": "proj-3",
+    "title": "CAnalyzerAI",
+    "description": "An AI-powered tool for analyzing CAN bus data in automotive systems",
+    "role": "Developer",
+    "technologies": ["AI/ML", "CAN Protocol", "JavaScript", "Python"],
+    "image": "/assets/images/projects/canalyzerai.jpg",
+    "links": [
+      {
+        "type": "demo",
+        "url": "https://suduli.github.io/CAnalyzerAI/",
+        "label": "Live Demo"
+      },
+      {
+        "type": "github",
+        "url": "https://github.com/suduli/CAnalyzerAI",
+        "label": "GitHub Repository"
+      }
+    ]
+  },
+  {
+    "id": "proj-4",
+    "title": "AI-ASIL-Analyser",
+    "description": "Tool for analyzing Automotive Safety Integrity Level (ASIL) using AI techniques",
+    "role": "Developer",
+    "technologies": ["AI/ML", "Automotive Safety", "ISO 26262", "JavaScript", "Python"],
+    "image": "/assets/images/projects/ai-asil-analyser.jpg",
+    "links": [
+      {
+        "type": "demo",
+        "url": "https://suduli.github.io/AI-ASIL-Analyser/",
+        "label": "Live Demo"
+      },
+      {
+        "type": "github",
+        "url": "https://github.com/suduli/AI-ASIL-Analyser",
+        "label": "GitHub Repository"
+      }
+    ]
+  }
+]

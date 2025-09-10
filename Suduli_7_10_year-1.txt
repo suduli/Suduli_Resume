@@ -1,0 +1,147 @@
+﻿Suduli Kumar Balabantaray
+Bengaluru, India
+
++91 9500097614  | suduli.office@gmail.com
+
+Objective
+
+To work in a professional atmosphere that would give a scope to display my skills request for a challenging position. Where
+I can use my skills to grow me and my organization.
+
+Skills
+
+Having 7 years 10 month of experience in Independent Verification (IV) & Validation (V) for Critical Systems in the
+automotive domain.
+Experience on RQM TOOLS such as RTC,RQM,DOORS,RHAPSODY,CLEAR QUEST AND EWM.
+Programming & Scripting: Embedded C, Python, CAPL
+Expertise in Performing Functional Testing ,Performance Testing,White Box Testing and Black Box Testing.
+Proficiency Infotainment testing, (HIL/SIL),System Testing, Unit Testing, Integration Testing (Module based integration
+Testing Functional Testing,Performance Testing,Diagnostics and Regression Testing.
+Proficient in utilizing ECU TEST Tool, Dspace and Vector tools including CANalyzer, CANdb, CANdela, CANoe,
+VectorCast, and VtestStudio for advanced automotive software analysis and testing.
+Experience in Test Case Design, Execution, Defect Reporting and Validation.
+Good Experience in structural coverage analysis (Statement, Branch and MC/DC).
+Protocols & Standards: CAN (ISO-11898), UDS (ISO-14229),AUTOSAR,XCP, ISO-26262 Guidelines
+Hands on Experience on software life cycle (SDLC, STLC and Bug Life Cycle).
+Involved in Testing, Analysis and raising tickets in Jira tool.
+Debugging, Falshing & Analysis: Trace32, Understand C
+
+Experience
+
+KPIT Technologies Ltd 11/2023 - Till now
+Test Lead
+
+1. Developed and managed validation plans using IBM ALM with traceability to requirements from DOORS® Next
+Generation (DNG). 
+
+2. Conducted Sanity, Manual, Functional Testing  Performance Testing and Automated testing using dSPACE and
+ECU-Test Tool.
+
+3. Oversaw validation of features like infotainment system like Steering Wheel Controls, Horn, and Crash detection
+in system.
+
+4. Collaborated with cross-functional teams and provided regular project updates to stakeholders.
+5. Identified, tracked, and resolved Dev issues with timely fixes and retesting.
+
+HL Klemove India Pvt Ltd(Halla Group) 2/2022 - 11/2023
+Specialist Embedded Test Engineer
+
+1. Test Development: Design and execute test plans for embedded systems, both manually and using automation.
+2. ECU Management: Utilize Trace32 for ECU flashing and validate firmware/software updates on
+
+embedded hardware.
+3. Environment Setup: Establish a Zero DTC environment with ADAS Analyser and maintain comprehensive test
+
+environments.
+4. Collaboration: Work with developers, product managers, and the development team to ensure
+
+system requirements are met and defects are addressed.
+5. Defect Management: Identify and track system defects, maintaining a database of known issues and resolutions.
+
+Mando Softtech India Pvt Ltd(Halla Group) 3/2020 - 2/2022
+Senior Embedded Test Engineer
+
+1. Unit Testing: Designed, implemented, and executed unit tests for software components using
+VectorCAST,ensuring each function met design specifications.
+
+2. Defect Management: Identified, logged, and tracked system defects, maintaining a record at the unit level.
+3. Utilized VectorCAST to achieve desired code coverage, identifying untested code areas and addressing them.
+4. Integration Testing: Designed tests for software module integration, ensuring seamless functionality and validating
+
+integration with external systems.
+
+
+
+5. Project Management:Handled estimation, work allocation, and reviews. Set up MC/DC, identified bugs,and
+participated in peer reviews.
+
+Binsoft Techno Solutions 09/2017 - 02/2020
+Test Engineer
+
+1. Unit Testing: Designed, implemented, and executed unit tests for software components using
+VectorCAST,ensuring each function met design specifications.
+
+2. Defect Management: Identified, logged, and tracked system defects, maintaining a record at the unit level.
+3. Code Coverage: Utilized VectorCAST to achieve desired code coverage, identifying untested code areas.
+
+Projects
+
+BCM-Systems Validation
+1. Project Overview: Automotive software validation for Stellantis OEM,focusing on safety-critical Infotainment
+
+embedded systems including steering controls, crash detection, and vehicle lighting. Implemented end-to-end
+testing processes from requirement analysis to automated validation.
+
+2. Collaboration - Partnered with Stellantis engineers, developers, and integration teams - Coordinated with cross-
+functional teams for requirement reviews and defect resolution.
+
+3. Role & Achievements: Lead Tester: Spearheaded manual/automated testing of ECU software using dSPACE
+environments.
+
+4. Process Architect: Reduced manual testing by 40% via optimized test scripts and ECU-Test automation.
+5. Quality Assurance: Achieved 95% requirement traceability using IBM RQM/DNG integration.
+6. Innovation Driver: Created reusable XAM signal mapping files, cutting test setup time by 30%.
+7. Issue Resolution: Led debugging of 200+ defects across critical features (Drive Mode, crash detection).
+8. Tools Used: Proficient in test management tools (IBM RQM, DOORS DNG) and automation frameworks (ECU-
+
+Test, TBC/TCF cоnfigurations) conriguratous( Experienced in dSPACE virtual ECU setups, XAM signal mapping,
+and establishing bi-directional traceability between DNG and ROM.
+
+DCU 20(Domain Control Unit)
+Project Overview:
+Centralized ADAS domain controller (DCU) designed to process data from various vehicle sensors, including cameras
+and radars. Centralization approach simplifies the architecture, reduces costs, and enhances scalability and
+software updates.Eliminated the need for individual ECUs for each function.
+Collaboration:
+
+Collaborated closely with developers to prepare software demos for the HKMC client.
+
+Work Environment:
+ Worked onsite at the Korea Head Office.
+Utilized a Zero DTC Environment, CAPL, Python and Windows 10.
+
+Tools Used:
+Canoe, VtestStudio, ADAS Analyser, Trace32, and Jira.
+
+Achievements:
+Successfully conducted System Testing including EOL, Failsafe, and USM Testing.
+
+Role:
+Served as the Point of Contact (POC) for the project. 
+
+Achievements & Awards
+
+Best project award in LRR25
+Best project award in MRR30
+Spotlight Award from HL Mando Softtech India
+Spotlight Award from HL Klemove India
+
+Education
+
+The Aeronautical Society of lndia
+B.E
+
+Languages
+
+English
+Hindi

@@ -1,0 +1,35 @@
+name: Lighthouse Audit
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: |
+          cd frontend
+          npm ci
+      - name: Start app
+        run: |
+          cd frontend
+          nohup npm start &
+          # wait for server to boot
+          npx wait-on http://localhost:3000 -t 60000
+      - name: Run Lighthouse
+        run: |
+          cd frontend
+          npx -y lighthouse http://localhost:3000 --output=json --output=html --output-path=tests/lighthouse/report.html --chrome-flags="--no-sandbox --headless" --only-categories=performance,accessibility,best-practices,seo --quiet
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: frontend/tests/lighthouse/report.html

@@ -1,0 +1,42 @@
+{
+  "formFields": [
+    {
+      "id": "name",
+      "type": "text",
+      "label": "Full Name",
+      "placeholder": "Your full name",
+      "required": true,
+      "validation": "^[a-zA-Z ]{2,50}$"
+    },
+    {
+      "id": "email",
+      "type": "email",
+      "label": "Email Address",
+      "placeholder": "your.email@example.com",
+      "required": true,
+      "validation": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+    },
+    {
+      "id": "subject",
+      "type": "text",
+      "label": "Subject",
+      "placeholder": "What is this regarding?",
+      "required": true,
+      "validation": "^.{5,100}$"
+    },
+    {
+      "id": "message",
+      "type": "textarea",
+      "label": "Message",
+      "placeholder": "Your message here...",
+      "required": true,
+      "validation": "^[\\s\\S]{10,1000}$"
+    }
+  ],
+  "submitButton": {
+    "text": "Send Message",
+    "loadingText": "Sending..."
+  },
+  "successMessage": "Thank you for your message! I'll get back to you as soon as possible.",
+  "errorMessage": "There was an error sending your message. Please try again."
+}

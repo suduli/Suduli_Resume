@@ -1,0 +1,66 @@
+{
+  "categories": [
+    {
+      "name": "Programming & Scripting",
+      "skills": [
+        { "name": "Embedded C", "level": 90, "yearsExperience": 7 },
+        { "name": "Python", "level": 85, "yearsExperience": 5 },
+        { "name": "CAPL", "level": 90, "yearsExperience": 6 }
+      ]
+    },
+    {
+      "name": "Testing & QA",
+      "skills": [
+        { "name": "Functional Testing", "level": 95, "yearsExperience": 7 },
+        { "name": "Performance Testing", "level": 90, "yearsExperience": 7 },
+        { "name": "White Box Testing", "level": 85, "yearsExperience": 7 },
+        { "name": "Black Box Testing", "level": 95, "yearsExperience": 7 },
+        { "name": "Infotainment Testing", "level": 90, "yearsExperience": 5 },
+        { "name": "System Testing", "level": 95, "yearsExperience": 7 },
+        { "name": "Unit Testing", "level": 90, "yearsExperience": 7 },
+        { "name": "Integration Testing", "level": 90, "yearsExperience": 7 },
+        { "name": "Regression Testing", "level": 95, "yearsExperience": 7 }
+      ]
+    },
+    {
+      "name": "Tools & Technologies",
+      "skills": [
+        { "name": "RQM", "level": 85, "yearsExperience": 6 },
+        { "name": "RTC", "level": 85, "yearsExperience": 6 },
+        { "name": "DOORS", "level": 90, "yearsExperience": 6 },
+        { "name": "RHAPSODY", "level": 80, "yearsExperience": 5 },
+        { "name": "CLEAR QUEST", "level": 75, "yearsExperience": 4 },
+        { "name": "EWM", "level": 80, "yearsExperience": 5 },
+        { "name": "ECU TEST Tool", "level": 95, "yearsExperience": 5 },
+        { "name": "Dspace", "level": 90, "yearsExperience": 5 },
+        { "name": "CANalyzer", "level": 95, "yearsExperience": 6 },
+        { "name": "CANdb", "level": 90, "yearsExperience": 6 },
+        { "name": "CANdela", "level": 85, "yearsExperience": 5 },
+        { "name": "CANoe", "level": 95, "yearsExperience": 6 },
+        { "name": "VectorCast", "level": 90, "yearsExperience": 6 },
+        { "name": "VtestStudio", "level": 85, "yearsExperience": 5 },
+        { "name": "Trace32", "level": 90, "yearsExperience": 5 },
+        { "name": "Understand C", "level": 85, "yearsExperience": 6 },
+        { "name": "Jira", "level": 90, "yearsExperience": 5 }
+      ]
+    },
+    {
+      "name": "Protocols & Standards",
+      "skills": [
+        { "name": "CAN (ISO-11898)", "level": 95, "yearsExperience": 7 },
+        { "name": "UDS (ISO-14229)", "level": 90, "yearsExperience": 6 },
+        { "name": "AUTOSAR", "level": 85, "yearsExperience": 5 },
+        { "name": "XCP", "level": 80, "yearsExperience": 4 },
+        { "name": "ISO-26262", "level": 90, "yearsExperience": 6 }
+      ]
+    },
+    {
+      "name": "Software Development",
+      "skills": [
+        { "name": "SDLC", "level": 90, "yearsExperience": 7 },
+        { "name": "STLC", "level": 95, "yearsExperience": 7 },
+        { "name": "Bug Life Cycle", "level": 95, "yearsExperience": 7 }
+      ]
+    }
+  ]
+}

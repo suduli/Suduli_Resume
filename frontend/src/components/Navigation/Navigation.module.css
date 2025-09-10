@@ -1,0 +1,270 @@
+/* Navigation Component Styles */
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.navigation-light {
+  background-color: var(--theme-nav-bg);
+  color: var(--theme-nav-text);
+}
+
+.navigation-dark {
+  background-color: var(--theme-nav-bg);
+  color: var(--theme-nav-text);
+}
+
+/* Scrolled state */
+.navigation.scrolled {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.navItem {
+  margin: 0 1rem;
+  position: relative;
+}
+
+.navLink {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--theme-nav-text);
+  text-decoration: none;
+  padding: 0.5rem 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.navLink:hover {
+  color: var(--theme-accent);
+}
+
+.navLink.active {
+  color: var(--theme-accent);
+}
+
+.activeIndicator {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--theme-accent);
+  border-radius: 1px;
+}
+
+.themeSwitcherContainer {
+  display: flex;
+  align-items: center;
+  margin-left: 1.5rem;
+}
+
+/* Mobile menu toggle */
+.mobileMenuToggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1100;
+}
+
+.menuIcon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 1.5rem;
+  height: 1.2rem;
+}
+
+.menuBar {
+  width: 100%;
+  height: 2px;
+  background-color: var(--theme-nav-text);
+  transition: all 0.3s ease;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 0.75rem 1.5rem;
+  }
+  
+  .mobileMenuToggle {
+    display: block;
+  }
+  
+  .navList {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: var(--theme-nav-bg);
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5rem 2rem 2rem;
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+  }
+  
+  .mobileOpen .navList {
+    right: 0;
+  }
+  
+  .navItem {
+    margin: 1rem 0;
+    width: 100%;
+  }
+  
+  .navLink {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .activeIndicator {
+    width: 4px;
+    height: 100%;
+    left: -10px;
+    top: 0;
+    bottom: auto;
+  }
+  
+  .themeSwitcherContainer {
+    position: absolute;
+    top: 1rem;
+    right: 5rem;
+  }
+  
+  /* Menu button animation for open state */
+  .mobileOpen .menuBar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  
+  .mobileOpen .menuBar:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .mobileOpen .menuBar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}
+
+/* Enhanced mobile menu functionality */
+@media (max-width: 768px) {
+  /* Dark overlay for mobile menu */
+  .mobileOpen::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 990;
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+  }
+  
+  /* Improved animation for mobile menu */
+  .navList {
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    right: 0;
+  }
+  
+  .mobileOpen .navList {
+    transform: translateX(0);
+  }
+  
+  /* Improved accessibility for mobile menu */
+  .navLink {
+    padding: 0.75rem 0;
+  }
+  
+  /* Better touch targets for mobile */
+  .navItem {
+    margin: 0.5rem 0;
+  }
+}
+
+/* Tablet specific adjustments */
+@media (min-width: 769px) and (max-width: 991px) {
+  .container {
+    padding: 0.75rem 1.5rem;
+  }
+  
+  .navItem {
+    margin: 0 0.75rem;
+  }
+  
+  .navLink {
+    font-size: 0.9rem;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 360px) {
+  .container {
+    padding: 0.75rem 1rem;
+  }
+  
+  .themeSwitcherContainer {
+    right: 4rem;
+  }
+  
+  .navList {
+    width: 85%;
+    padding: 5rem 1.5rem 2rem;
+  }
+}
+
+/* Landscape orientation handling */
+@media (max-height: 500px) and (orientation: landscape) {
+  .navList {
+    padding-top: 3.5rem;
+    overflow-y: auto;
+  }
+  
+  .navItem {
+    margin: 0.25rem 0;
+  }
+}
+
+/* Animation for mobile menu overlay */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

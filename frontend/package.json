@@ -1,0 +1,77 @@
+{
+  "name": "suduli-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "animejs": "^3.2.1",
+    "framer-motion": "^10.16.0",
+    "gsap": "^3.12.2",
+    "localforage": "^1.10.0",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-intersection-observer": "^9.5.2",
+    "react-router-dom": "^6.15.0",
+    "react-scripts": "5.0.1",
+    "react-tsparticles": "^2.12.0",
+    "three": "^0.155.0",
+    "tsparticles": "^2.12.0",
+    "tsparticles-engine": "^2.12.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+  "lighthouse": "npx -y lighthouse http://localhost:3000 --output=json --output=html --output-path=tests/lighthouse/report.html --chrome-flags=\"--headless\" --only-categories=performance,accessibility,best-practices,seo --quiet",
+    "test": "react-scripts test",
+    "test:all": "NODE_ENV=test jest --config jest.config.js",
+    "eject": "react-scripts eject",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "format": "prettier --write \"src/**/*.{js,jsx,css}\"",
+    "prepare": "cd .. && husky install frontend/.husky"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.4",
+    "@babel/preset-env": "^7.28.3",
+    "@babel/preset-react": "^7.27.1",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "babel-jest": "^30.1.2",
+    "eslint": "^8.48.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.3",
+    "identity-obj-proxy": "^3.0.0",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.2"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+      "^gsap$": "<rootDir>/__mocks__/gsap/index.js",
+      "^gsap/ScrollTrigger$": "<rootDir>/__mocks__/gsap/ScrollTrigger.js"
+    }
+  }
+}

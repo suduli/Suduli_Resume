@@ -1,0 +1,37 @@
+{
+  "fields": [
+    {
+      "id": "name",
+      "label": "Name",
+      "type": "text",
+      "placeholder": "Your Name",
+      "required": true
+    },
+    {
+      "id": "email",
+      "label": "Email",
+      "type": "email",
+      "placeholder": "your.email@example.com",
+      "required": true
+    },
+    {
+      "id": "subject",
+      "label": "Subject",
+      "type": "text",
+      "placeholder": "Subject",
+      "required": true
+    },
+    {
+      "id": "message",
+      "label": "Message",
+      "type": "textarea",
+      "placeholder": "Your message here...",
+      "required": true
+    }
+  ],
+  "submitButton": {
+    "text": "Send Message"
+  },
+  "successMessage": "Thank you! Your message has been sent successfully.",
+  "errorMessage": "Sorry, there was an error sending your message. Please try again."
+}

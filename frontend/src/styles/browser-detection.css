@@ -1,0 +1,77 @@
+/* browser-detection.css */
+
+/* Browser-specific variables */
+.browser-edge {
+  --theme-transition-duration: 350ms;
+}
+
+.browser-safari-mobile {
+  --theme-transition-duration: 500ms;
+}
+
+.browser-safari {
+  --theme-transition-duration: 400ms;
+}
+
+.browser-chrome {
+  --theme-transition-duration: 300ms;
+}
+
+.browser-firefox {
+  --theme-transition-duration: 350ms;
+}
+
+/* Device-specific variables */
+.device-mobile {
+  --theme-transition-duration: 450ms;
+}
+
+.device-ios {
+  --theme-transition-duration: 500ms;
+}
+
+.device-android {
+  --theme-transition-duration: 450ms;
+}
+
+/* Safari Mobile specific rules */
+.browser-safari-mobile .toggle {
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Force hardware acceleration in Safari mobile */
+.browser-safari-mobile .theme-transition, 
+.browser-safari-mobile .toggle,
+.browser-safari-mobile button,
+.browser-safari-mobile a,
+.browser-safari-mobile nav,
+.browser-safari-mobile header,
+.browser-safari-mobile footer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fix for Safari mobile transitions */
+.browser-safari-mobile * {
+  transition-property: none !important;
+}
+
+/* Re-enable transitions after Safari has applied the theme */
+.browser-safari-mobile .safari-transitions-enabled * {
+  transition: background-color var(--theme-transition-duration) var(--animation-timing),
+              color var(--theme-transition-duration) var(--animation-timing),
+              border-color var(--theme-transition-duration) var(--animation-timing),
+              box-shadow var(--theme-transition-duration) var(--animation-timing) !important;
+}
+
+/* Edge specific transitions */
+.browser-edge .theme-transition * {
+  transition: background-color var(--theme-transition-duration) var(--animation-timing),
+              color var(--theme-transition-duration) var(--animation-timing),
+              border-color var(--theme-transition-duration) var(--animation-timing),
+              box-shadow var(--theme-transition-duration) var(--animation-timing) !important;
+}

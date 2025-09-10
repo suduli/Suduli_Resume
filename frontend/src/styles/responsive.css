@@ -1,0 +1,498 @@
+/* 
+ * Responsive Design Adaptations
+ * This file contains all the responsive design adaptations for the portfolio website.
+ * It uses mobile-first approach and targets specific breakpoints.
+ */
+
+/* Base variables for responsive design */
+:root {
+  /* Breakpoints */
+  --breakpoint-xs: 480px;   /* Extra small devices */
+  --breakpoint-sm: 576px;   /* Small devices */
+  --breakpoint-md: 768px;   /* Medium devices */
+  --breakpoint-lg: 992px;   /* Large devices */
+  --breakpoint-xl: 1200px;  /* Extra large devices */
+  
+  /* Containers */
+  --container-padding-xs: 1rem;
+  --container-padding-sm: 1.5rem;
+  --container-padding-md: 2rem;
+  --container-padding-lg: 2.5rem;
+  
+  /* Content scaling */
+  --content-scale-factor-xs: 0.8;
+  --content-scale-factor-sm: 0.85;
+  --content-scale-factor-md: 0.9;
+  --content-scale-factor-lg: 0.95;
+  --content-scale-factor-xl: 1;
+}
+
+/* ========= GLOBAL RESPONSIVE UTILITIES ========= */
+
+/* Container adjustments */
+.container {
+  width: 100%;
+  max-width: var(--breakpoint-xl);
+  margin: 0 auto;
+  padding: 0 var(--container-padding-xs);
+}
+
+@media (min-width: 576px) {
+  .container {
+    padding: 0 var(--container-padding-sm);
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--container-padding-md);
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    padding: 0 var(--container-padding-lg);
+  }
+}
+
+/* Font size adjustments for mobile devices */
+@media (max-width: 576px) {
+  h1, .h1 {
+    font-size: calc(2.5rem * var(--content-scale-factor-xs)) !important;
+  }
+  
+  h2, .h2 {
+    font-size: calc(2rem * var(--content-scale-factor-xs)) !important;
+  }
+  
+  h3, .h3 {
+    font-size: calc(1.75rem * var(--content-scale-factor-xs)) !important;
+  }
+  
+  p, .body-text {
+    font-size: calc(1rem * var(--content-scale-factor-xs)) !important;
+  }
+}
+
+/* ========= NAVIGATION RESPONSIVE ENHANCEMENTS ========= */
+
+/* Enhanced mobile navigation */
+@media (max-width: 768px) {
+  .navigation .container {
+    padding: 0.5rem var(--container-padding-xs);
+  }
+  
+  /* Mobile menu overlay */
+  .mobileOpen::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 990;
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+  }
+  
+  /* Improved animation for mobile menu */
+  .navigation .navList {
+    width: 80%;
+    max-width: 300px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .mobileOpen .navList {
+    transform: translateX(0);
+  }
+  
+  /* Improved accessibility for mobile menu */
+  .navLink {
+    padding: 0.75rem 0;
+  }
+  
+  /* Better touch targets for mobile */
+  .navItem {
+    margin: 0.5rem 0;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 991px) {
+  .navigation .container {
+    padding: 0.75rem var(--container-padding-sm);
+  }
+  
+  .navItem {
+    margin: 0 0.75rem;
+  }
+}
+
+/* ========= HERO SECTION RESPONSIVE ENHANCEMENTS ========= */
+
+/* Mobile hero adjustments */
+@media (max-width: 576px) {
+  .hero {
+    padding: 2rem 0;
+    min-height: 60vh;
+  }
+  
+  .hero .container {
+    gap: 1.5rem;
+  }
+  
+  .hero .title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .hero .subtitle {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero .description {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero .imageContainer {
+    max-width: 100%;
+  }
+  
+  .hero .buttonGroup {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .hero .buttonGroup button {
+    flex: 1;
+    min-width: 120px;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Tablet hero adjustments */
+@media (min-width: 577px) and (max-width: 991px) {
+  .hero {
+    padding: 3rem 0;
+  }
+  
+  .hero .container {
+    gap: 2rem;
+  }
+  
+  .hero .imageContainer {
+    max-width: 350px;
+    margin: 0 auto;
+  }
+}
+
+/* Large screen hero layout */
+@media (min-width: 992px) {
+  .hero .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .hero .content {
+    flex: 1;
+    margin-right: 2rem;
+  }
+  
+  .hero .imageContainer {
+    flex: 1;
+  }
+}
+
+/* ========= PROJECTS SECTION RESPONSIVE ENHANCEMENTS ========= */
+
+/* Mobile projects adjustments */
+@media (max-width: 576px) {
+  .projects {
+    padding: 3rem 1rem;
+  }
+  
+  .projects .title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .projectsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .filterButton {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Smaller project cards for mobile */
+  .projectCard {
+    margin-bottom: 1rem;
+  }
+  
+  .projectCard .imageContainer {
+    height: 160px;
+  }
+  
+  .projectCard .projectTitle {
+    font-size: 1.2rem;
+  }
+  
+  .projectCard .projectDescription {
+    font-size: 0.9rem;
+  }
+  
+  .projectCard .tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
+}
+
+/* Tablet projects adjustments */
+@media (min-width: 577px) and (max-width: 768px) {
+  .projectsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+/* Medium screen projects adjustments */
+@media (min-width: 769px) and (max-width: 991px) {
+  .projectsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+}
+
+/* Large screen projects layout */
+@media (min-width: 992px) {
+  .projectsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2.5rem;
+  }
+}
+
+/* ========= CONTACT SECTION RESPONSIVE ENHANCEMENTS ========= */
+
+/* Mobile contact adjustments */
+@media (max-width: 576px) {
+  .contact {
+    padding: 3rem 1rem;
+  }
+  
+  .contact .title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .contactContent {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .contactInfo, 
+  .contactForm {
+    padding: 1.5rem;
+  }
+  
+  .infoTitle, 
+  .formTitle {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .formGroup {
+    margin-bottom: 1rem;
+  }
+  
+  .input, 
+  .textarea {
+    padding: 0.6rem 0.8rem;
+  }
+  
+  .submitButton {
+    width: 100%;
+    padding: 0.7rem 1.5rem;
+  }
+}
+
+/* Tablet contact adjustments */
+@media (min-width: 577px) and (max-width: 991px) {
+  .contactContent {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  /* Create side-by-side info items for better tablet layout */
+  .infoItems {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  
+  .socialLinks {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ========= ANIMATIONS OPTIMIZATIONS FOR MOBILE DEVICES ========= */
+
+/* Reduce or disable animations for battery preservation */
+@media (max-width: 768px) {
+  /* Adjust or disable expensive animations */
+  .projectCard,
+  .contactInfo,
+  .contactForm {
+    animation-duration: 0.3s;
+  }
+  
+  /* Simplify hover effects for touch devices */
+  .projectCard.hovered {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+  }
+  
+  /* Always show project card details on mobile */
+  .projectCard .additionalInfo {
+    opacity: 1;
+    height: auto;
+  }
+  
+  /* Disable parallax or complex transforms on mobile */
+  .projectCard.hovered {
+    transform: none !important;
+  }
+}
+
+/* ========= PERFORMANCE OPTIMIZATIONS ========= */
+
+/* Prefer transform over opacity for animations */
+@media (max-width: 768px) {
+  .fadeIn,
+  .visible {
+    will-change: transform, opacity;
+  }
+}
+
+/* Media query for low-battery or data-saver mode */
+@media (prefers-reduced-data: reduce) {
+  /* Disable or simplify image loading */
+  img.lazyload {
+    transition: opacity 0.1s;
+  }
+}
+
+/* ========= UTILITY ANIMATIONS ========= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ========= RESPONSIVE TYPOGRAPHY ========= */
+
+/* Fluid typography using clamp */
+.fluid-text-xl {
+  font-size: clamp(1.75rem, 5vw, 3rem);
+}
+
+.fluid-text-lg {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.fluid-text-md {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+}
+
+.fluid-text-sm {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+}
+
+.fluid-text-xs {
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+}
+
+/* ========= TOUCH-SPECIFIC ADAPTATIONS ========= */
+
+@media (hover: none) {
+  /* Optimizations for touch devices */
+  .navLink,
+  .button,
+  .socialIcon,
+  .projectCard {
+    /* Ensure tap targets are at least 44x44px */
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Disable hover-only styles */
+  .navLink:hover,
+  .button:hover,
+  .socialIcon:hover {
+    transform: none;
+  }
+  
+  /* Make overlays always visible on touch devices */
+  .projectCard .overlay {
+    opacity: 1;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+  }
+  
+  /* Ensure buttons are always visible */
+  .projectCard .button {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ========= PRINT STYLES ========= */
+
+@media print {
+  /* Optimize for printing */
+  .navigation,
+  .themeSwitcherContainer,
+  .buttonGroup,
+  .contactForm {
+    display: none !important;
+  }
+  
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+  
+  /* Ensure content fits nicely on paper */
+  .hero,
+  .projects,
+  .contact {
+    padding: 1rem 0 !important;
+    min-height: auto !important;
+  }
+  
+  /* Force page breaks at major sections */
+  .projects,
+  .contact {
+    page-break-before: always;
+  }
+  
+  /* Ensure images print well */
+  img {
+    max-width: 100% !important;
+  }
+}

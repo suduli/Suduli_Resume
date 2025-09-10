@@ -1,0 +1,136 @@
+:root {
+  /* Main colors */
+  --primary-color: #0070f3;
+  --primary-color-light: rgba(0, 112, 243, 0.1);
+  --primary-color-dark: #0060df;
+  --accent-color: #7928ca;
+  --accent-color-light: rgba(121, 40, 202, 0.1);
+  
+  /* Background colors */
+  --background-color: #ffffff;
+  --background-color-rgb: 255, 255, 255;
+  --background-color-alt: #f7f7f7;
+  --card-bg-color: #ffffff;
+  --footer-bg-color: #1a1a1a;
+  --input-bg-color: #ffffff;
+  
+  /* Text colors */
+  --text-color: #333333;
+  --text-color-light: #666666;
+  --footer-text-color: #f5f5f5;
+  --footer-text-color-light: #b3b3b3;
+  --footer-heading-color: #ffffff;
+  
+  /* Border colors */
+  --border-color: #e0e0e0;
+  --footer-border-color: #333333;
+  
+  /* Footer social icons */
+  --footer-social-bg: #333333;
+  --footer-social-color: #ffffff;
+  
+  /* Form elements */
+  --success-bg-color: rgba(39, 174, 96, 0.1);
+  --success-color: #27ae60;
+  --error-bg-color: rgba(231, 76, 60, 0.1);
+  --error-color: #e74c3c;
+  --disabled-color: #a0a0a0;
+  
+  /* Tag colors */
+  --tag-bg-color: rgba(0, 112, 243, 0.1);
+  --tag-text-color: #0070f3;
+  
+  /* Transition speeds */
+  --transition-speed: 0.3s;
+  
+  /* Font sizes (for fluid typography) */
+  --base-font-size: 16px;
+  --h1-font-size: 2.75rem;
+  --h2-font-size: 2.25rem;
+  --h3-font-size: 1.5rem;
+  --h4-font-size: 1.25rem;
+  --small-font-size: 0.875rem;
+  
+  /* Spacing variables */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  
+  /* Border radius */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 16px;
+  --border-radius-circle: 50%;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  
+  /* Z-index layers */
+  --z-index-dropdown: 100;
+  --z-index-navbar: 200;
+  --z-index-modal: 300;
+  --z-index-tooltip: 400;
+}
+
+/* Dark mode theme */
+[data-theme="dark"] {
+  --primary-color: #0094ff;
+  --primary-color-light: rgba(0, 148, 255, 0.15);
+  --primary-color-dark: #0077cc;
+  --accent-color: #9f42fb;
+  --accent-color-light: rgba(159, 66, 251, 0.15);
+  
+  --background-color: #121212;
+  --background-color-rgb: 18, 18, 18;
+  --background-color-alt: #1a1a1a;
+  --card-bg-color: #1e1e1e;
+  --footer-bg-color: #111111;
+  --input-bg-color: #2a2a2a;
+  
+  --text-color: #f0f0f0;
+  --text-color-light: #b0b0b0;
+  --footer-text-color: #f0f0f0;
+  --footer-text-color-light: #aaaaaa;
+  --footer-heading-color: #ffffff;
+  
+  --border-color: #404040;
+  --footer-border-color: #2a2a2a;
+  
+  --footer-social-bg: #2a2a2a;
+  --footer-social-color: #f0f0f0;
+  
+  --tag-bg-color: rgba(0, 148, 255, 0.15);
+  --tag-text-color: #0094ff;
+}
+
+/* Enhanced theme transition for browser compatibility */
+.theme-transition {
+  /* Add additional properties specifically for Edge */
+  transition: background-color 0.4s ease, color 0.4s ease !important;
+  transition-delay: 0.05s !important;
+  will-change: background-color, color;
+}
+
+/* Optimized transitions for Safari Mobile */
+@media not all and (min-resolution:.001dpcm) { 
+  @supports (-webkit-appearance:none) {
+    html[data-theme] * {
+      -webkit-transition: none !important;
+      transition: background-color 0.5s ease, color 0.5s ease !important;
+    }
+  }
+}
+
+/* Reduces animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

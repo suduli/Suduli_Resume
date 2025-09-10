@@ -1,0 +1,81 @@
+{
+  "browser": "firefox",
+  "timestamp": "2025-09-09T12:22:00.852Z",
+  "tests": {
+    "navigation": {
+      "passed": true,
+      "duration": 253,
+      "error": null
+    },
+    "theme-switching": {
+      "passed": true,
+      "duration": 539,
+      "error": null
+    },
+    "data-loading": {
+      "passed": true,
+      "duration": 354,
+      "error": null
+    },
+    "form-validation": {
+      "passed": true,
+      "duration": 529,
+      "error": null
+    },
+    "reduced-motion": {
+      "passed": true,
+      "duration": 319,
+      "error": null
+    },
+    "mobile-layout": {
+      "passed": false,
+      "duration": 399,
+      "error": "Element not found or test failed"
+    },
+    "tablet-layout": {
+      "passed": true,
+      "duration": 195,
+      "error": null
+    },
+    "desktop-layout": {
+      "passed": true,
+      "duration": 346,
+      "error": null
+    },
+    "menu-responsive": {
+      "passed": false,
+      "duration": 450,
+      "error": "Element not found or test failed"
+    },
+    "keyboard-nav": {
+      "passed": true,
+      "duration": 393,
+      "error": null
+    },
+    "aria": {
+      "passed": false,
+      "duration": 557,
+      "error": "Element not found or test failed"
+    },
+    "contrast": {
+      "passed": false,
+      "duration": 478,
+      "error": "Element not found or test failed"
+    },
+    "load-time": {
+      "passed": false,
+      "duration": 445,
+      "error": "Element not found or test failed"
+    },
+    "memory-usage": {
+      "passed": false,
+      "duration": 452,
+      "error": "Element not found or test failed"
+    },
+    "resource-usage": {
+      "passed": true,
+      "duration": 317,
+      "error": null
+    }
+  }
+}

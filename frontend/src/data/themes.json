@@ -1,0 +1,107 @@
+{
+  "themes": [
+    {
+      "id": "light",
+      "name": "Light Theme",
+      "isDefault": true,
+      "colors": {
+        "primary": "#0050ff",
+        "secondary": "#00c8ff",
+        "accent": "#6600ff",
+        "background": "#ffffff",
+        "surface": "#f8f9fa",
+        "text": "#212529",
+        "textSecondary": "#6c757d",
+        "border": "#dee2e6",
+        "shadow": "rgba(0, 0, 0, 0.1)",
+        "success": "#28a745",
+        "warning": "#ffc107",
+        "error": "#dc3545",
+        "info": "#17a2b8"
+      },
+      "fonts": {
+        "heading": "'Orbitron', sans-serif",
+        "body": "'Roboto', sans-serif",
+        "code": "'Fira Code', monospace"
+      },
+      "animations": {
+        "particleColor": "#0050ff",
+        "particleOpacity": 0.6,
+        "backgroundGradient": "linear-gradient(120deg, #f8f9fa, #e9ecef)",
+        "cardGlow": "rgba(0, 80, 255, 0.15)"
+      },
+      "variant": "light"
+    },
+    {
+      "id": "dark",
+      "name": "Dark Theme",
+      "isDefault": false,
+      "colors": {
+        "primary": "#00c8ff",
+        "secondary": "#0050ff",
+        "accent": "#bb00ff",
+        "background": "#121212",
+        "surface": "#1e1e1e",
+        "text": "#f8f9fa",
+        "textSecondary": "#adb5bd",
+        "border": "#343a40",
+        "shadow": "rgba(0, 0, 0, 0.25)",
+        "success": "#28a745",
+        "warning": "#ffc107",
+        "error": "#dc3545",
+        "info": "#17a2b8"
+      },
+      "fonts": {
+        "heading": "'Orbitron', sans-serif",
+        "body": "'Roboto', sans-serif",
+        "code": "'Fira Code', monospace"
+      },
+      "animations": {
+        "particleColor": "#00c8ff",
+        "particleOpacity": 0.8,
+        "backgroundGradient": "linear-gradient(120deg, #121212, #0a0a0a)",
+        "cardGlow": "rgba(0, 200, 255, 0.25)"
+      },
+      "variant": "dark"
+    },
+    {
+      "id": "cyberpunk",
+      "name": "Cyberpunk",
+      "isDefault": false,
+      "colors": {
+        "primary": "#00ffd5",
+        "secondary": "#ff00aa",
+        "accent": "#ffff00",
+        "background": "#0a0a16",
+        "surface": "#141428",
+        "text": "#ffffff",
+        "textSecondary": "#adb5bd",
+        "border": "#343a40",
+        "shadow": "rgba(0, 255, 213, 0.25)",
+        "success": "#00ff66",
+        "warning": "#ffcc00",
+        "error": "#ff0033",
+        "info": "#00ccff"
+      },
+      "fonts": {
+        "heading": "'Orbitron', sans-serif",
+        "body": "'Rajdhani', sans-serif",
+        "code": "'Fira Code', monospace"
+      },
+      "animations": {
+        "particleColor": "#00ffd5",
+        "particleOpacity": 0.9,
+        "backgroundGradient": "linear-gradient(135deg, #0a0a16 0%, #141428 100%)",
+        "cardGlow": "rgba(0, 255, 213, 0.35)"
+      },
+      "variant": "custom"
+    }
+  ],
+  "preferences": {
+    "detectSystemTheme": true,
+    "fallbackTheme": "dark",
+    "enableAnimations": true,
+    "reducedMotion": false,
+    "transitionSpeed": 300
+  }
+}
