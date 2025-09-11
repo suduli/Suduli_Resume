@@ -132,6 +132,15 @@ class ThemeManager {
         // Add event listener for theme toggle
         this.themeToggle.addEventListener('click', () => this.toggleTheme());
         
+        // Add keyboard support for theme toggle
+        this.themeToggle.addEventListener('keydown', (e) => {
+            // Support Enter and Space keys
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.toggleTheme();
+            }
+        });
+        
         // Listen for system theme changes
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
             if (!localStorage.getItem('theme')) {
@@ -150,6 +159,9 @@ class ThemeManager {
     }
     
     applyTheme(theme) {
+        // Add loading class for smooth transition
+        document.documentElement.classList.add('theme-transitioning');
+        
         if (theme === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
         } else {
@@ -161,14 +173,49 @@ class ThemeManager {
         
         // Update navbar background for current scroll position
         updateNavbarBackground();
+        
+        // Remove transition class after transition completes
+        // Check if user prefers reduced motion
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const transitionDuration = prefersReducedMotion ? 0 : 300;
+        
+        setTimeout(() => {
+            document.documentElement.classList.remove('theme-transitioning');
+        }, transitionDuration);
     }
     
     updateIcon() {
         if (this.currentTheme === 'dark') {
             this.themeIcon.className = 'fas fa-sun';
+            this.themeToggle.setAttribute('aria-label', 'Switch to light theme');
+            this.themeToggle.setAttribute('title', 'Switch to light theme');
         } else {
             this.themeIcon.className = 'fas fa-moon';
+            this.themeToggle.setAttribute('aria-label', 'Switch to dark theme');
+            this.themeToggle.setAttribute('title', 'Switch to dark theme');
         }
+        
+        // Announce theme change to screen readers
+        this.announceThemeChange();
+    }
+    
+    announceThemeChange() {
+        // Create or update live region for screen reader announcements
+        let announcement = document.getElementById('theme-announcement');
+        if (!announcement) {
+            announcement = document.createElement('div');
+            announcement.id = 'theme-announcement';
+            announcement.setAttribute('aria-live', 'polite');
+            announcement.setAttribute('aria-atomic', 'true');
+            announcement.className = 'visually-hidden';
+            document.body.appendChild(announcement);
+        }
+        
+        // Clear and set new announcement
+        announcement.textContent = '';
+        setTimeout(() => {
+            announcement.textContent = `Theme changed to ${this.currentTheme} mode`;
+        }, 100);
     }
     
     updateParticlesTheme(theme) {

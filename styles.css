@@ -54,6 +54,17 @@ html {
     --shadow-primary: rgba(0, 245, 255, 0.2);
     --navbar-bg: rgba(12, 12, 12, 0.95);
     --navbar-bg-scroll: rgba(12, 12, 12, 0.98);
+    
+    /* Transition variables for smooth theme changes */
+    --transition-duration: 0.3s;
+    --transition-easing: ease;
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --transition-duration: 0s;
+    }
 }
 
 /* Light Theme */
@@ -82,7 +93,8 @@ body {
     color: var(--text-primary);
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%);
     overflow-x: hidden;
-    transition: color 0.3s ease, background 0.3s ease;
+    transition: color var(--transition-duration) var(--transition-easing), 
+                background var(--transition-duration) var(--transition-easing);
 }
 
 .container {
@@ -149,6 +161,14 @@ body {
     transition: all 0.3s ease;
     color: var(--accent-primary);
     margin-left: 20px;
+    position: relative;
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .theme-toggle {
+        transition: none;
+    }
 }
 
 .theme-toggle:hover {
@@ -157,8 +177,61 @@ body {
     box-shadow: 0 5px 15px var(--shadow-primary);
 }
 
+/* Enhanced focus styles for WCAG compliance */
+.theme-toggle:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(0, 245, 255, 0.2);
+}
+
+/* Light theme focus styles */
+[data-theme="light"] .theme-toggle:focus {
+    outline: 2px solid var(--accent-primary);
+    box-shadow: 0 0 0 4px rgba(0, 112, 243, 0.2);
+}
+
+/* Active state for better feedback */
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+/* Loading state during theme transition */
+.theme-transitioning .theme-toggle {
+    pointer-events: none;
+}
+
+.theme-transitioning .theme-toggle i {
+    animation: spin 0.5s ease-in-out;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(180deg); }
+}
+
+/* Respect reduced motion preferences for animations */
+@media (prefers-reduced-motion: reduce) {
+    .theme-transitioning .theme-toggle i {
+        animation: none;
+    }
+}
+
 .theme-toggle i {
     font-size: 16px;
+    transition: transform 0.2s ease;
+}
+
+/* Visually hidden class for screen reader announcements */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
 }
 
 .nav-menu {
