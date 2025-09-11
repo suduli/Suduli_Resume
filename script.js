@@ -158,6 +158,9 @@ class ThemeManager {
         
         // Update particles colors for the theme
         this.updateParticlesTheme(theme);
+        
+        // Update navbar background for current scroll position
+        updateNavbarBackground();
     }
     
     updateIcon() {
@@ -218,15 +221,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Navbar scroll effect
-window.addEventListener('scroll', () => {
+// Navbar scroll effect - Theme aware
+function updateNavbarBackground() {
     const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(12, 12, 12, 0.98)';
+    const isLightTheme = document.documentElement.hasAttribute('data-theme');
+    const scrolled = window.scrollY > 50;
+    
+    if (isLightTheme) {
+        // Light theme colors
+        navbar.style.background = scrolled ? 'rgba(248, 250, 252, 0.98)' : 'rgba(248, 250, 252, 0.95)';
     } else {
-        navbar.style.background = 'rgba(12, 12, 12, 0.95)';
+        // Dark theme colors
+        navbar.style.background = scrolled ? 'rgba(12, 12, 12, 0.98)' : 'rgba(12, 12, 12, 0.95)';
     }
-});
+}
+
+window.addEventListener('scroll', updateNavbarBackground);
 
 // Intersection Observer for animations
 const observerOptions = {
@@ -641,13 +651,8 @@ const throttledScrollHandler = throttle(() => {
     // Scroll-based animations and effects
     const scrolled = window.pageYOffset;
     
-    // Update navbar background
-    const navbar = document.querySelector('.navbar');
-    if (scrolled > 50) {
-        navbar.style.background = 'rgba(12, 12, 12, 0.98)';
-    } else {
-        navbar.style.background = 'rgba(12, 12, 12, 0.95)';
-    }
+    // Update navbar background (theme-aware)
+    updateNavbarBackground();
     
     // Update scroll progress
     const progress = (scrolled / (document.body.scrollHeight - window.innerHeight)) * 100;
