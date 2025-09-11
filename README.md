@@ -56,9 +56,16 @@ The website design is inspired by:
 
 ## 🚀 Getting Started
 
+### Live Website
+Visit the live website at: [https://suduli.github.io/Suduli_Resume_Automotive/](https://suduli.github.io/Suduli_Resume_Automotive/)
+
+### Local Development
 1. Clone the repository
 2. Open `index.html` in your web browser
 3. No build process required - pure HTML, CSS, and JavaScript
+
+### Deployment
+The website is automatically deployed to GitHub Pages using GitHub Actions whenever changes are pushed to the main branch.
 
 ## 📄 Professional Information
 
@@ -72,8 +79,9 @@ The website showcases professional information including:
 
 ## 🔗 Links
 
+- **Live Website**: [https://suduli.github.io/Suduli_Resume_Automotive/](https://suduli.github.io/Suduli_Resume_Automotive/)
 - **LinkedIn Profile**: [linkedin.com/in/suduli](https://www.linkedin.com/in/suduli/)
-- **Live Website**: Open `index.html` in your browser
+- **Local Development**: Open `index.html` in your browser
 
 ## 📞 Contact
 
