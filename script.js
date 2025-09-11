@@ -1,4 +1,4 @@
-// Particle.js Configuration
+// Enhanced Particle.js Configuration with advanced mouse interactions
 particlesJS('particles-js', {
     "particles": {
         "number": {
@@ -25,7 +25,7 @@ particlesJS('particles-js', {
             "value": 0.5,
             "random": false,
             "anim": {
-                "enable": false,
+                "enable": true,
                 "speed": 1,
                 "opacity_min": 0.1,
                 "sync": false
@@ -35,8 +35,8 @@ particlesJS('particles-js', {
             "value": 3,
             "random": true,
             "anim": {
-                "enable": false,
-                "speed": 40,
+                "enable": true,
+                "speed": 2,
                 "size_min": 0.1,
                 "sync": false
             }
@@ -50,14 +50,14 @@ particlesJS('particles-js', {
         },
         "move": {
             "enable": true,
-            "speed": 6,
+            "speed": 3,
             "direction": "none",
             "random": false,
             "straight": false,
             "out_mode": "out",
             "bounce": false,
             "attract": {
-                "enable": false,
+                "enable": true,
                 "rotateX": 600,
                 "rotateY": 1200
             }
@@ -68,7 +68,7 @@ particlesJS('particles-js', {
         "events": {
             "onhover": {
                 "enable": true,
-                "mode": "repulse"
+                "mode": ["grab", "bubble"]
             },
             "onclick": {
                 "enable": true,
@@ -78,20 +78,20 @@ particlesJS('particles-js', {
         },
         "modes": {
             "grab": {
-                "distance": 400,
+                "distance": 200,
                 "line_linked": {
                     "opacity": 1
                 }
             },
             "bubble": {
-                "distance": 400,
-                "size": 40,
+                "distance": 150,
+                "size": 8,
                 "duration": 2,
-                "opacity": 8,
+                "opacity": 0.8,
                 "speed": 3
             },
             "repulse": {
-                "distance": 200,
+                "distance": 100,
                 "duration": 0.4
             },
             "push": {
@@ -103,6 +103,200 @@ particlesJS('particles-js', {
         }
     },
     "retina_detect": true
+});
+
+// Enhanced Mouse Interaction Effects
+class ParticleEnhancer {
+    constructor() {
+        this.mousePosition = { x: 0, y: 0 };
+        this.mouseVelocity = { x: 0, y: 0 };
+        this.lastMousePosition = { x: 0, y: 0 };
+        this.mouseTrail = [];
+        this.animationId = null;
+        this.isMouseInside = false;
+        
+        this.init();
+    }
+    
+    init() {
+        const particlesContainer = document.getElementById('particles-js');
+        if (!particlesContainer) return;
+        
+        // Add mouse tracking
+        particlesContainer.addEventListener('mousemove', (e) => {
+            this.updateMousePosition(e);
+        });
+        
+        particlesContainer.addEventListener('mouseenter', () => {
+            this.isMouseInside = true;
+            this.startEnhancedEffects();
+        });
+        
+        particlesContainer.addEventListener('mouseleave', () => {
+            this.isMouseInside = false;
+            this.mouseTrail = [];
+        });
+        
+        // Start the enhancement loop
+        this.animate();
+    }
+    
+    updateMousePosition(e) {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const newX = e.clientX - rect.left;
+        const newY = e.clientY - rect.top;
+        
+        // Calculate velocity
+        this.mouseVelocity.x = newX - this.mousePosition.x;
+        this.mouseVelocity.y = newY - this.mousePosition.y;
+        
+        this.lastMousePosition = { ...this.mousePosition };
+        this.mousePosition.x = newX;
+        this.mousePosition.y = newY;
+        
+        // Add to trail
+        this.mouseTrail.push({
+            x: newX,
+            y: newY,
+            time: Date.now(),
+            velocity: Math.sqrt(this.mouseVelocity.x ** 2 + this.mouseVelocity.y ** 2)
+        });
+        
+        // Limit trail length
+        if (this.mouseTrail.length > 20) {
+            this.mouseTrail.shift();
+        }
+        
+        // Enhance particles based on mouse movement
+        this.enhanceNearbyParticles();
+    }
+    
+    enhanceNearbyParticles() {
+        if (!window.pJSDom || !window.pJSDom[0] || !window.pJSDom[0].pJS) return;
+        
+        const pJS = window.pJSDom[0].pJS;
+        const particles = pJS.particles.array;
+        const velocity = Math.sqrt(this.mouseVelocity.x ** 2 + this.mouseVelocity.y ** 2);
+        
+        particles.forEach(particle => {
+            const dx = particle.x - this.mousePosition.x;
+            const dy = particle.y - this.mousePosition.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            // Enhanced attraction/repulsion based on velocity
+            if (distance < 100) {
+                const force = (100 - distance) / 100;
+                const velocityMultiplier = Math.min(velocity / 10, 2);
+                
+                if (velocity > 5) {
+                    // Fast movement: attraction
+                    particle.vx += -dx * force * 0.02 * velocityMultiplier;
+                    particle.vy += -dy * force * 0.02 * velocityMultiplier;
+                } else {
+                    // Slow movement: gentle repulsion
+                    particle.vx += dx * force * 0.01;
+                    particle.vy += dy * force * 0.01;
+                }
+                
+                // Change opacity based on interaction
+                if (particle.opacity) {
+                    particle.opacity.value = Math.min(1, 0.5 + force * 0.5);
+                }
+                
+                // Change size based on velocity
+                if (particle.radius) {
+                    const baseSize = particle.radius_backup || particle.radius;
+                    if (!particle.radius_backup) particle.radius_backup = particle.radius;
+                    particle.radius = baseSize * (1 + velocityMultiplier * 0.3);
+                }
+            }
+        });
+    }
+    
+    startEnhancedEffects() {
+        // Create temporary particles along mouse trail for fast movement
+        if (!window.pJSDom || !window.pJSDom[0] || !window.pJSDom[0].pJS) return;
+        
+        const velocity = Math.sqrt(this.mouseVelocity.x ** 2 + this.mouseVelocity.y ** 2);
+        
+        if (velocity > 10 && this.mouseTrail.length > 3) {
+            // Add temporary trail particles
+            this.createTrailParticles();
+        }
+    }
+    
+    createTrailParticles() {
+        if (!window.pJSDom || !window.pJSDom[0] || !window.pJSDom[0].pJS) return;
+        
+        const pJS = window.pJSDom[0].pJS;
+        const colors = ['#00f5ff', '#ff6b6b', '#00ff88'];
+        
+        // Create a few particles along the trail
+        for (let i = 0; i < 3; i++) {
+            const trailPoint = this.mouseTrail[this.mouseTrail.length - 1 - i * 2];
+            if (!trailPoint) continue;
+            
+            const particle = {
+                x: trailPoint.x + (Math.random() - 0.5) * 20,
+                y: trailPoint.y + (Math.random() - 0.5) * 20,
+                vx: (Math.random() - 0.5) * 2,
+                vy: (Math.random() - 0.5) * 2,
+                radius: Math.random() * 2 + 1,
+                opacity: {
+                    value: 0.8,
+                    anim: {
+                        enable: true,
+                        speed: 5,
+                        opacity_min: 0,
+                        sync: false
+                    }
+                },
+                color: colors[Math.floor(Math.random() * colors.length)],
+                life_duration: 1000, // 1 second
+                birth_time: Date.now()
+            };
+            
+            pJS.particles.array.push(particle);
+        }
+        
+        // Clean up old temporary particles
+        this.cleanupTemporaryParticles();
+    }
+    
+    cleanupTemporaryParticles() {
+        if (!window.pJSDom || !window.pJSDom[0] || !window.pJSDom[0].pJS) return;
+        
+        const pJS = window.pJSDom[0].pJS;
+        const now = Date.now();
+        
+        pJS.particles.array = pJS.particles.array.filter(particle => {
+            if (particle.life_duration && particle.birth_time) {
+                return (now - particle.birth_time) < particle.life_duration;
+            }
+            return true;
+        });
+    }
+    
+    animate() {
+        if (this.isMouseInside) {
+            // Clean up old trail points
+            const now = Date.now();
+            this.mouseTrail = this.mouseTrail.filter(point => (now - point.time) < 1000);
+            
+            // Cleanup temporary particles
+            this.cleanupTemporaryParticles();
+        }
+        
+        this.animationId = requestAnimationFrame(() => this.animate());
+    }
+}
+
+// Initialize enhanced particle effects when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Wait for particles.js to load
+    setTimeout(() => {
+        new ParticleEnhancer();
+    }, 1000);
 });
 
 // Theme Toggle Functionality
