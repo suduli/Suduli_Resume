@@ -1,109 +1,97 @@
-// Particle.js Configuration
-particlesJS('particles-js', {
-    "particles": {
-        "number": {
-            "value": 80,
-            "density": {
-                "enable": true,
-                "value_area": 800
-            }
-        },
-        "color": {
-            "value": ["#00f5ff", "#ff6b6b", "#00ff88"]
-        },
-        "shape": {
-            "type": "circle",
-            "stroke": {
-                "width": 0,
-                "color": "#000000"
-            },
-            "polygon": {
-                "nb_sides": 5
-            }
-        },
-        "opacity": {
-            "value": 0.5,
-            "random": false,
-            "anim": {
-                "enable": false,
-                "speed": 1,
-                "opacity_min": 0.1,
-                "sync": false
-            }
-        },
-        "size": {
-            "value": 3,
-            "random": true,
-            "anim": {
-                "enable": false,
-                "speed": 40,
-                "size_min": 0.1,
-                "sync": false
-            }
-        },
-        "line_linked": {
-            "enable": true,
-            "distance": 150,
-            "color": "#00f5ff",
-            "opacity": 0.4,
-            "width": 1
-        },
-        "move": {
-            "enable": true,
-            "speed": 1.5,
-            "direction": "none",
-            "random": false,
-            "straight": false,
-            "out_mode": "out",
-            "bounce": false,
-            "attract": {
-                "enable": false,
-                "rotateX": 600,
-                "rotateY": 1200
-            }
+// Particle.js Configuration with deferred init (handles CDN failure + async fallback)
+const PARTICLE_CONFIG = {
+    particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: ["#00f5ff", "#ff6b6b", "#00ff88"] },
+        shape: { type: "circle", stroke: { width: 0, color: "#000000" }, polygon: { nb_sides: 5 } },
+        opacity: { value: 0.5, random: false, anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false } },
+        size: { value: 3, random: true, anim: { enable: false, speed: 40, size_min: 0.1, sync: false } },
+        line_linked: { enable: true, distance: 150, color: "#00f5ff", opacity: 0.4, width: 1 },
+        move: { enable: true, speed: 1.5, direction: "none", random: false, straight: false, out_mode: "out", bounce: false, attract: { enable: false, rotateX: 600, rotateY: 1200 } }
+    },
+    interactivity: {
+        // Use 'window' so interactions still work even if other content overlays the canvas
+        detect_on: "window",
+        events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+        modes: {
+            grab: { distance: 400, line_linked: { opacity: 1 } },
+            bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
+            repulse: { distance: 200, duration: 0.4 },
+            push: { particles_nb: 4 },
+            remove: { particles_nb: 2 }
         }
     },
-    "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-            "onhover": {
-                "enable": true,
-                "mode": "repulse"
-            },
-            "onclick": {
-                "enable": true,
-                "mode": "push"
-            },
-            "resize": true
-        },
-        "modes": {
-            "grab": {
-                "distance": 400,
-                "line_linked": {
-                    "opacity": 1
-                }
-            },
-            "bubble": {
-                "distance": 400,
-                "size": 40,
-                "duration": 2,
-                "opacity": 8,
-                "speed": 3
-            },
-            "repulse": {
-                "distance": 200,
-                "duration": 0.4
-            },
-            "push": {
-                "particles_nb": 4
-            },
-            "remove": {
-                "particles_nb": 2
+    retina_detect: true
+};
+
+function initParticlesWithRetry(maxAttempts = 40, intervalMs = 125){
+    let attempts = 0;
+    const timer = setInterval(() => {
+        attempts++;
+        if (typeof window.particlesJS === 'function') {
+            try {
+                window.particlesJS('particles-js', PARTICLE_CONFIG);
+                console.info('[particles] initialized after', attempts, 'attempt(s)');
+                attachParticleVisibilityOptimization();
+                logParticleDiagnostics();
+            } catch (e) {
+                console.error('[particles] initialization error:', e);
+            }
+            clearInterval(timer);
+        } else if (attempts >= maxAttempts) {
+            clearInterval(timer);
+            console.error('[particles] failed to initialize: particlesJS not available');
+            const placeholder = document.getElementById('particles-js');
+            if (placeholder) {
+                placeholder.innerHTML = '<div style="color:#ff6b6b;font:14px/1.4 system-ui,Arial,sans-serif;padding:8px;">Particle background unavailable.</div>';
             }
         }
-    },
-    "retina_detect": true
-});
+    }, intervalMs);
+}
+
+// Start polling after DOM ready (fallback may be injected async on CDN error)
+document.addEventListener('DOMContentLoaded', () => initParticlesWithRetry());
+
+// Performance: attach optimization only after particles initialized
+function attachParticleVisibilityOptimization(){
+    function handleVisibility(){
+        if(!window.pJSDom || !pJSDom[0]) return;
+        const pJS = pJSDom[0].pJS;
+        if(document.hidden){
+            if(!pJS._origCount) pJS._origCount = pJS.particles.array.length;
+            const target = Math.max(10, Math.round(pJS._origCount * 0.25));
+            while(pJS.particles.array.length > target){ pJS.particles.array.pop(); }
+        } else if(pJS._origCount){
+            const deficit = pJS._origCount - pJS.particles.array.length;
+            if(deficit > 0 && pJS.fn && pJS.fn.modes && pJS.fn.modes.pushParticles){
+                pJS.fn.modes.pushParticles(deficit);
+            }
+        }
+    }
+    document.addEventListener('visibilitychange', handleVisibility, { once:false });
+}
+
+// Diagnostics to verify container & interaction readiness
+function logParticleDiagnostics(){
+    const el = document.getElementById('particles-js');
+    if(!el){ console.warn('[particles][diag] container not found'); return; }
+    const cs = getComputedStyle(el);
+    console.info('[particles][diag] container styles', {
+        zIndex: cs.zIndex,
+        width: cs.width,
+        height: cs.height,
+        pointerEvents: cs.pointerEvents
+    });
+    console.info('[particles][diag] detect_on =', PARTICLE_CONFIG.interactivity.detect_on);
+    // Check that the internal canvas exists
+    const canvas = el.querySelector('canvas');
+    if(canvas){
+        const ccs = getComputedStyle(canvas);
+        console.info('[particles][diag] canvas styles', { pointerEvents: ccs.pointerEvents, width: canvas.width, height: canvas.height });
+    } else {
+        console.warn('[particles][diag] canvas element not yet present');
+    }
+}
 
 // Theme Toggle Functionality
 class ThemeManager {
