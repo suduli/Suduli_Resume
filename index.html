@@ -185,19 +185,8 @@
         <div class="container">
             <h2 class="section-title">Skills & Expertise</h2>
             <!-- Redesigned Skills Explorer -->
-            <div style="text-align:center;margin:-40px 0 60px;">
-                <a href="skills/index.html" class="btn btn-primary" style="text-decoration:none;display:inline-block;">
-                    Explore UI/UX Design Styles →
-                </a>
-            </div>
-            <!-- Rotating Skill Orbit (Figma-inspired) -->
-            <div class="rotating-skills-wrapper" aria-labelledby="rotating-skills-title">
-                <h3 id="rotating-skills-title" class="rotating-skills-heading">Core Proficiency Map</h3>
-                <p class="rotating-skills-sub">Interactive radial visualization of highlighted capabilities. Hover or focus icons for details. Respects reduced motion preferences.</p>
-                <div id="rotating-skills" class="rotating-skills" role="group" aria-label="Rotating skill map">
-                    <div class="rs-fallback" aria-hidden="true">Loading skill orbit…</div>
-                </div>
-            </div>
+            <!-- Removed external skills style explorer (rotation + variants) -->
+            <!-- Previously a link to skills/index.html existed here. Rotation feature & separate style variants removed. -->
             <div class="skills-explorer" aria-describedby="skills-intro" role="region" aria-label="Skills explorer">
                 <p id="skills-intro" class="skills-intro-text">Explore, search and filter professional competencies. Toggle views, drill into details, and quickly locate relevant expertise.</p>
 
@@ -634,6 +623,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
             onerror="this.onerror=null; console.log('Anime.js fallback loaded');"></script>
     <script src="script.js"></script>
-    <script type="module" src="skills/rotating-skills.js"></script>
 </body>
 </html>

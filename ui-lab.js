@@ -1,18 +1,6 @@
 // UI/UX Design Lab JS (module)
 const designs = [
   {
-    id:'glass', title:'Glassmorphic Grid', meta:'Layered / Translucent', type:'aesthetic', icon:'fa-clone',
-    desc:'Frosted panels, depth shadows & color-mixed gradients delivering premium futuristic depth.',
-    tags:['glass','gradient','depth'],
-    href:'skills/style-glass.html'
-  },
-  {
-    id:'minimal', title:'Minimal Cards', meta:'Whitespace / Focus', type:'minimal', icon:'fa-border-all',
-    desc:'Neutral surfaces & reduced chroma emphasize hierarchy, clarity and cognitive ease.',
-    tags:['clean','focus','calm'],
-    href:'skills/style-minimal.html'
-  },
-  {
     id:'automotive', title:'Automotive HUD', meta:'Data / Precision', type:'automotive', icon:'fa-gauge-high',
     desc:'Inspired by digital cockpit & HUD clusters—high contrast metrics, radial motifs & motion cues.',
     tags:['hud','speed','telemetry'],

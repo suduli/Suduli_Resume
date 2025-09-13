@@ -100,3 +100,45 @@ body.style-retro .level-badge { background:#222; border:1px solid #333; }
 @keyframes fade { from { opacity:0; transform:translateY(14px);} to { opacity:1; transform:translateY(0);} }
 
 @media (max-width:760px){ .app-shell { padding:70px 1.1rem 3rem; } .variant-title { font-size:1.8rem; } }
+
+/* ========================= RADIAL / ROTATING LAYOUT ========================= */
+/* Opt-in page adds class .style-rotating on body */
+body.style-rotating { --radial-size:620px; --radial-item-size:120px; }
+@media (max-width:840px){ body.style-rotating { --radial-size:480px; --radial-item-size:105px; } }
+@media (max-width:600px){ body.style-rotating { --radial-size:360px; --radial-item-size:90px; } }
+
+body.style-rotating .radial-stage { position:relative; width:var(--radial-size); height:var(--radial-size); margin:0 auto; perspective:1600px; }
+body.style-rotating .radial-ring { position:absolute; inset:0; border-radius:50%; animation:spin 40s linear infinite; transform-origin:50% 50%; will-change:transform; }
+body.style-rotating .radial-stage[data-paused="true"] .radial-ring { animation-play-state:paused; }
+body.style-rotating .radial-item { position:absolute; top:50%; left:50%; width:var(--radial-item-size); height:var(--radial-item-size); margin:-60px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:.75rem; border-radius:24px; background:var(--sk-surface); border:1px solid var(--sk-border); backdrop-filter:blur(14px) saturate(150%); box-shadow:0 8px 24px -10px rgba(0,0,0,.55),0 0 0 1px var(--sk-border); transition:var(--sk-transition), box-shadow .6s ease; cursor:default; }
+body.style-rotating .radial-item:hover { transform:translate3d(var(--tx),var(--ty),40px) scale(1.12) rotateZ(var(--angle)); z-index:10; box-shadow:0 18px 48px -14px rgba(0,245,255,.45),0 0 0 1px var(--sk-accent); border-color:var(--sk-accent); }
+body.style-rotating .radial-item h4 { font-size:.8rem; margin:.2rem 0 .3rem; letter-spacing:.5px; }
+body.style-rotating .radial-item .skill-cat { font-size:.5rem; letter-spacing:1px; margin-bottom:.15rem; }
+body.style-rotating .radial-item .level-badge { position:static; font-size:.5rem; margin-bottom:.2rem; background:var(--sk-surface-alt); }
+body.style-rotating .radial-item .progress { height:4px; margin:.25rem 0 .4rem; }
+body.style-rotating .radial-item .skill-desc, 
+body.style-rotating .radial-item .skill-tags { display:none; }
+
+/* Center nucleus info */
+body.style-rotating .radial-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:180px; height:180px; border-radius:50%; background:radial-gradient(circle at 30% 30%,var(--sk-surface),rgba(255,255,255,0.02)); border:1px solid var(--sk-border); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:1.2rem; gap:.5rem; box-shadow:0 12px 32px -12px rgba(0,0,0,.6), 0 0 0 1px var(--sk-border); backdrop-filter:blur(16px) saturate(180%); animation:pulse 6s ease-in-out infinite; }
+body.style-rotating .radial-center h3 { margin:0; font-size:.9rem; letter-spacing:1px; font-weight:700; background:linear-gradient(45deg,var(--sk-accent),var(--sk-accent-alt)); -webkit-background-clip:text; color:transparent; }
+body.style-rotating .radial-center p { margin:0; font-size:.6rem; line-height:1.3; color:var(--sk-text-dim); }
+
+/* Drag cue */
+body.style-rotating .drag-hint { font-size:.55rem; letter-spacing:1px; opacity:.55; margin-top:.3rem; }
+
+/* Accessibility fallback list below stage */
+body.style-rotating .radial-fallback { margin:2.5rem auto 0; max-width:860px; display:grid; gap:.65rem; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); }
+body.style-rotating .radial-fallback button { background:var(--sk-surface); border:1px solid var(--sk-border); border-radius:14px; padding:.65rem .75rem .55rem; font-size:.65rem; font-weight:600; letter-spacing:.5px; color:var(--sk-text-dim); cursor:pointer; transition:var(--sk-transition); text-align:left; }
+body.style-rotating .radial-fallback button:hover, body.style-rotating .radial-fallback button:focus { color:var(--sk-text); border-color:var(--sk-accent); outline:none; box-shadow:0 0 0 2px rgba(0,245,255,.25); }
+
+/* Prefers reduced motion: disable continuous spin, allow manual drag only */
+@media (prefers-reduced-motion: reduce){
+  body.style-rotating .radial-ring { animation:none; }
+}
+
+@keyframes spin { from { transform:rotateZ(0deg); } to { transform:rotateZ(360deg); } }
+@keyframes pulse { 0%,100% { box-shadow:0 12px 32px -12px rgba(0,0,0,.6), 0 0 0 1px var(--sk-border); }
+  50% { box-shadow:0 22px 46px -16px rgba(0,245,255,.4), 0 0 0 1px var(--sk-accent); }
+}
+

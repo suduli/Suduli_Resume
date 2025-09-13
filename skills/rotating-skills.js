@@ -1,141 +1,48 @@
-import { SKILLS } from './skills-data.js';
-import { SkillIcons, skillKey } from './skill-icons.js';
+import { SKILLS, colorForCategory } from './skills-data.js';
 
-/* Rotating Skill Orbit Module
- * Features:
- *  - Radial distribution of skill icons across multiple concentric rings (auto sized)
- *  - Continuous CSS driven rotation with different speeds & reverse directions per ring
- *  - Hover focus: pauses global spin and highlights hovered skill with label & progress arc
- *  - Accessibility: keyboard focusable icons, ARIA live region for skill detail, reduced motion support
- *  - Responsive: recalculates radii & icon sizes on resize (debounced)
- */
+// Reuse theme toggle & particles from existing renderer (lightweight duplication to avoid coupling)
+const PARTICLE_CONFIG = { particles:{ number:{ value:40, density:{ enable:true, value_area:900 }}, color:{ value:['#00f5ff','#ff6b6b','#00ff88'] }, shape:{ type:'circle' }, opacity:{ value:.25 }, size:{ value:3, random:true }, line_linked:{ enable:true, distance:140, color:'#00f5ff', opacity:.25, width:1 }, move:{ enable:true, speed:1 } }, interactivity:{ detect_on:'window', events:{ onhover:{ enable:true, mode:'repulse' } }, modes:{ repulse:{ distance:150, duration:.4 } } }, retina_detect:true };
 
-const CONFIG = {
-  minIcon: 42,
-  maxIcon: 70,
-  ringGap: 70,
-  maxRings: 4,
-  baseSpin: 28, // seconds for full revolution outer ring
-  pauseOnHover: true
-};
+function initParticles(){ if(!document.getElementById('particles-js')) return; let tries=0; const t=setInterval(()=>{ tries++; if(window.particlesJS){ window.particlesJS('particles-js', PARTICLE_CONFIG); clearInterval(t);} else if(tries>25){ clearInterval(t);} },120); }
 
-function prefersReducedMotion(){
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+class ThemeToggle { constructor(){ this.btn=document.getElementById('theme-toggle'); if(!this.btn) return; this.icon=this.btn.querySelector('i'); this.current= localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark':'light'); this.apply(this.current,false); this.btn.addEventListener('click',()=> this.toggle()); this.btn.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); this.toggle(); }}); }
+	toggle(){ this.current=this.current==='dark'?'light':'dark'; this.apply(this.current,true); localStorage.setItem('theme',this.current);} 
+	apply(theme, animate){ if(theme==='light') document.documentElement.setAttribute('data-theme','light'); else document.documentElement.removeAttribute('data-theme'); if(this.icon){ this.icon.className = theme==='dark' ? 'fas fa-sun':'fas fa-moon'; this.btn.setAttribute('aria-label', theme==='dark'?'Switch to light theme':'Switch to dark theme'); } if(animate){ document.documentElement.classList.add('theme-transition'); setTimeout(()=> document.documentElement.classList.remove('theme-transition'),320);} }
 }
 
-function partitionSkills(skills){
-  // Simple distribution: try to fill inner rings with fewer items
-  const rings = [];
-  const copy = skills.slice();
-  // Sort by level descending so higher level closer to center visually
-  copy.sort((a,b)=> b.level - a.level);
-  const ringCap = [6, 8, 10, 12];
-  for(let i=0;i<CONFIG.maxRings && copy.length;i++){
-    rings.push(copy.splice(0, ringCap[i]));
-  }
-  return rings;
+/* -------------------------------- Radial Layout ----------------------------- */
+function buildRadial(){ const stage=document.querySelector('.radial-stage'); if(!stage) return; const ring=document.createElement('div'); ring.className='radial-ring'; stage.appendChild(ring); const center=document.createElement('div'); center.className='radial-center'; center.innerHTML='<h3>Skills Orbit</h3><p>Auto rotating showcase.<br/>Hover to inspect. Drag to spin.</p><div class="drag-hint"><i class="fas fa-arrows-alt"></i> DRAG</div>'; stage.appendChild(center);
+	const total=SKILLS.length; const radius = (parseInt(getComputedStyle(stage).width)/2) - 80; // margin for item size
+	SKILLS.forEach((s,i)=>{ const angle=(360/total)*i; const rad= angle * Math.PI/180; const x=Math.cos(rad)*radius; const y=Math.sin(rad)*radius; const el=document.createElement('div'); el.className='radial-item'; el.style.setProperty('--angle', angle+'deg'); el.style.setProperty('--tx', x+'px'); el.style.setProperty('--ty', y+'px'); const catColor=colorForCategory(s.category); el.innerHTML=`<div class="skill-cat" style="color:var(--sk-accent);">${s.category}</div><h4>${s.name}</h4><div class="progress" aria-hidden="true"><span style="width:${s.level}%;"></span></div><span class="level-badge">${s.level}%</span>`; // minimal info
+		// initial transform positioning
+		el.style.transform=`translate3d(${x}px,${y}px,0) rotateZ(${angle}deg)`; ring.appendChild(el); });
+	// Accessibility fallback buttons list
+	const fallback=document.querySelector('.radial-fallback'); if(fallback){ fallback.innerHTML=''; SKILLS.forEach((s,i)=>{ const b=document.createElement('button'); b.type='button'; b.textContent=s.name+' ('+s.level+'%)'; b.setAttribute('data-index',i); b.addEventListener('focus',()=> focusItem(i)); fallback.appendChild(b); }); }
+
+	function focusItem(i){ const items=[...ring.querySelectorAll('.radial-item')]; const target=items[i]; if(!target) return; // pause spin
+		stage.dataset.paused='true'; ring.style.animationPlayState='paused'; items.forEach(it=> it.style.zIndex=''); target.style.zIndex='20'; }
 }
 
-function createSVGArc(percent){
-  const size = 54; const r = 24; const c = 2 * Math.PI * r; const dash = (percent/100) * c;
-  return `<svg class="skill-arc" viewBox='0 0 ${size} ${size}' aria-hidden='true'>
-    <circle class='arc-bg' cx='${size/2}' cy='${size/2}' r='${r}' />
-    <circle class='arc-fg' cx='${size/2}' cy='${size/2}' r='${r}' stroke-dasharray='${dash} ${c-dash}' />
-  </svg>`;
+/* --------------------------- Drag Interaction ------------------------------ */
+function enableDrag(){ const stage=document.querySelector('.radial-stage'); const ring=document.querySelector('.radial-ring'); if(!stage||!ring) return; let dragging=false, lastX=0, velocity=0, current=0, lastTime=0; const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches; if(prefersReduced){ ring.style.animation='none'; }
+	function setRotation(v){ current=v; ring.style.transform=`rotate(${current}deg)`; }
+	stage.addEventListener('pointerdown',e=>{ dragging=true; stage.dataset.paused='true'; ring.style.animationPlayState='paused'; lastX=e.clientX; velocity=0; lastTime=performance.now(); stage.setPointerCapture(e.pointerId); });
+	stage.addEventListener('pointermove',e=>{ if(!dragging) return; const dx=e.clientX-lastX; const now=performance.now(); const dt=now-lastTime; lastTime=now; lastX=e.clientX; const delta= dx * 0.25; setRotation(current+delta); velocity = delta/(dt||16)*16; });
+	stage.addEventListener('pointerup',e=>{ if(!dragging) return; dragging=false; stage.releasePointerCapture(e.pointerId); if(Math.abs(velocity)>0.1){ const start=performance.now(); const startVel=velocity; const friction=0.015; (function inertia(ts){ const t=ts-start; const decel=startVel * Math.exp(-friction*t); if(Math.abs(decel)>0.05){ setRotation(current+decel); requestAnimationFrame(inertia); } }) (start); }
+	});
+	// keyboard accessibility: arrow keys rotate
+	stage.setAttribute('tabindex','0'); stage.addEventListener('keydown',e=>{ if(e.key==='ArrowLeft'){ stage.dataset.paused='true'; setRotation(current-10);} else if(e.key==='ArrowRight'){ stage.dataset.paused='true'; setRotation(current+10);} else if(e.key===' '){ // toggle pause/resume
+			if(stage.dataset.paused==='true'){ delete stage.dataset.paused; ring.style.animationPlayState='running'; }
+			else { stage.dataset.paused='true'; ring.style.animationPlayState='paused'; }
+			e.preventDefault(); }
+	});
+	// hover pause/resume (desktop only)
+	stage.addEventListener('pointerenter',()=>{ stage.dataset.paused='true'; ring.style.animationPlayState='paused'; });
+	stage.addEventListener('pointerleave',()=>{ if(!dragging && !matchMedia('(prefers-reduced-motion: reduce)').matches){ delete stage.dataset.paused; ring.style.animationPlayState='running'; }});
 }
 
-function buildOrbit(){
-  const mount = document.getElementById('rotating-skills');
-  if(!mount) return;
-  const skills = SKILLS.slice(0,32); // limit for readability
-  const rings = partitionSkills(skills);
-  mount.innerHTML = '';
-  mount.classList.add('rotating-skills-ready');
+// Skip link for accessibility
+function injectSkip(){ if(document.getElementById('skip-link')) return; const a=document.createElement('a'); a.id='skip-link'; a.href='#main'; a.textContent='Skip to content'; a.style.cssText='position:absolute;left:-999px;top:0;background:var(--sk-accent);color:#000;padding:8px 14px;font-weight:700;z-index:2000;border-radius:0 0 6px 0;'; a.addEventListener('focus',()=> a.style.left='0'); a.addEventListener('blur',()=> a.style.left='-999px'); document.body.prepend(a); }
 
-  const viewport = document.createElement('div');
-  viewport.className='rs-viewport';
-  viewport.setAttribute('role','group');
-  viewport.setAttribute('aria-label','Rotating skill visualization');
-  mount.appendChild(viewport);
+document.addEventListener('DOMContentLoaded',()=>{ new ThemeToggle(); initParticles(); injectSkip(); buildRadial(); enableDrag(); });
 
-  const announce = document.createElement('div');
-  announce.id='rs-live';
-  announce.className='visually-hidden';
-  announce.setAttribute('aria-live','polite');
-  mount.appendChild(announce);
-
-  rings.forEach((ringSkills, ringIndex) => {
-    const ring = document.createElement('div');
-    ring.className = 'rs-ring';
-    ring.dataset.ring = String(ringIndex);
-    const speed = CONFIG.baseSpin - ringIndex * 6; // faster inner ring
-    ring.style.setProperty('--ring-idx', ringIndex);
-    ring.style.setProperty('--spin-duration', (prefersReducedMotion()?0: speed)+'s');
-    if(ringIndex % 2 === 1) ring.classList.add('reverse');
-
-    const count = ringSkills.length;
-    ringSkills.forEach((skill, i) => {
-      const iconWrap = document.createElement('button');
-      iconWrap.type='button';
-      iconWrap.className='rs-skill';
-      iconWrap.style.setProperty('--item-index', i);
-      iconWrap.style.setProperty('--item-count', count);
-      iconWrap.setAttribute('data-skill', skill.name);
-      iconWrap.setAttribute('aria-label', `${skill.name} proficiency ${skill.level} percent`);
-      iconWrap.innerHTML = `
-        <span class='rs-icon' aria-hidden='true'>${SkillIcons[skillKey(skill.name)] || fallbackIcon()}</span>
-        ${createSVGArc(skill.level)}
-      `;
-      iconWrap.addEventListener('mouseenter', () => focusSkill(iconWrap, skill, announce));
-      iconWrap.addEventListener('focus', () => focusSkill(iconWrap, skill, announce));
-      iconWrap.addEventListener('mouseleave', () => unfocusSkill(iconWrap));
-      iconWrap.addEventListener('blur', () => unfocusSkill(iconWrap));
-      ring.appendChild(iconWrap);
-    });
-    viewport.appendChild(ring);
-  });
-
-  if(CONFIG.pauseOnHover){
-    mount.addEventListener('pointerenter', () => mount.classList.add('paused'));
-    mount.addEventListener('pointerleave', () => mount.classList.remove('paused'));
-  }
-}
-
-function fallbackIcon(){
-  return `<svg viewBox='0 0 40 40'><circle cx='20' cy='20' r='12' fill='none' stroke='currentColor' stroke-width='2'/><circle cx='20' cy='20' r='4' fill='currentColor'/></svg>`;
-}
-
-function focusSkill(el, skill, announce){
-  el.classList.add('active');
-  const panel = ensureInfoPanel(el.closest('#rotating-skills'));
-  panel.innerHTML = `
-    <h4>${skill.name}</h4>
-    <div class='level-row'><span class='badge'>${skill.level}%</span><div class='bar'><span style='width:${skill.level}%'></span></div></div>
-    <p>${skill.desc || ''}</p>
-  `;
-  announce.textContent = `${skill.name} ${skill.level} percent`;
-}
-function unfocusSkill(el){ el.classList.remove('active'); }
-
-function ensureInfoPanel(root){
-  let panel = root.querySelector('.rs-info');
-  if(!panel){
-    panel = document.createElement('div');
-    panel.className='rs-info';
-    panel.setAttribute('role','region');
-    panel.setAttribute('aria-label','Skill detail');
-    root.appendChild(panel);
-  }
-  return panel;
-}
-
-function debounce(fn, delay=180){ let t; return (...args)=>{ clearTimeout(t); t=setTimeout(()=> fn(...args), delay); }; }
-
-function recalc(){
-  // Could implement dynamic sizing logic if container size queries needed
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  if(document.getElementById('rotating-skills')) buildOrbit();
-  window.addEventListener('resize', debounce(recalc, 250));
-});

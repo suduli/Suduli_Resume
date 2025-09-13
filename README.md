@@ -59,6 +59,7 @@ The website design is inspired by:
   - Keyboard shortcuts ( / focuses search ) & full keyboard navigation
   - Live results count announcements (ARIA polite region)
   - Animated progress indicators with reduced‑motion safeguards
+  - Legacy rotating/orbit skills visualization removed (simplified & consolidated)
 - **Progress Bars** - Animated skill level indicators
 - **Counter Animation** - Animated statistics in about section
 - **Contact Form** - Interactive form with validation
@@ -94,9 +95,9 @@ The website showcases professional information including:
 
 ## 📞 Contact
 
-## 🧩 Modifying the Skills Explorer
+## 🧩 Modifying the Skills Explorer / Legacy Data
 
-The redesigned Skills & Expertise section is data-driven. Update or extend skills by editing the `SKILLS_DATA` array inside `script.js` ("Skills Explorer Redesign" block).
+The redesigned Skills & Expertise section is data-driven. Update or extend skills by editing the `SKILLS_DATA` array inside `script.js` ("Skills Explorer Redesign" block). A previous separate `/skills` directory (multiple style variants + rotating orbit visualization) has been fully removed. Its simpler data set was merged under the constant `LEGACY_SKILLS` in `script.js` for historical reference or future reuse.
 
 Skill object schema:
 ```
@@ -111,7 +112,7 @@ Skill object schema:
 }
 ```
 
-Add a new category simply by introducing a new `category` value. Color assignment is deterministic (hash → palette) so no extra config required.
+Add a new category simply by introducing a new `category` value. Color assignment is deterministic (hash → palette) so no extra config required. The legacy color function is still exposed (`legacyColorForCategory`) but can be removed later if unused.
 
 Accessibility notes:
 - All interactive elements have focus styles and ARIA labels.
