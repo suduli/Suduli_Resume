@@ -184,9 +184,34 @@
     <section id="skills" class="skills">
         <div class="container">
             <h2 class="section-title">Skills & Expertise</h2>
-            <!-- Redesigned Skills Explorer -->
-            <!-- Removed external skills style explorer (rotation + variants) -->
-            <!-- Previously a link to skills/index.html existed here. Rotation feature & separate style variants removed. -->
+            
+            <!-- New Rotating Skills Section -->
+            <div class="rotating-skills-section" aria-label="Rotating skills visualization">
+                <div class="rotating-skills-container">
+                    <div class="skills-orbit" id="skillsOrbit">
+                        <!-- Skills will be dynamically inserted here -->
+                    </div>
+                    <div class="orbit-center">
+                        <div class="center-content">
+                            <h3 class="center-title">Technical Skills</h3>
+                            <p class="center-subtitle">8+ Years Experience</p>
+                        </div>
+                    </div>
+                    <div class="rotation-controls">
+                        <button class="control-btn" id="pauseRotation" aria-label="Pause rotation">
+                            <i class="fas fa-pause"></i>
+                        </button>
+                        <button class="control-btn" id="reverseRotation" aria-label="Reverse rotation">
+                            <i class="fas fa-undo"></i>
+                        </button>
+                        <button class="control-btn" id="speedToggle" aria-label="Toggle speed">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Existing Skills Explorer -->
             <div class="skills-explorer" aria-describedby="skills-intro" role="region" aria-label="Skills explorer">
                 <p id="skills-intro" class="skills-intro-text">Explore, search and filter professional competencies. Toggle views, drill into details, and quickly locate relevant expertise.</p>
 

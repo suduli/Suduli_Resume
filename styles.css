@@ -743,6 +743,308 @@ section {
     gap: 60px;
 }
 
+/* ================= Rotating Skills Section ================= */
+.rotating-skills-section {
+    margin: 60px 0;
+    padding: 40px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.rotating-skills-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.skills-orbit {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    border: 2px solid var(--border-accent);
+    background: radial-gradient(circle at center, 
+        rgba(0, 245, 255, 0.05) 0%, 
+        rgba(255, 107, 107, 0.03) 50%, 
+        transparent 70%);
+    animation: rotateOrbit 30s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes rotateOrbit {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .skills-orbit {
+        animation: none;
+    }
+    .skill-item {
+        animation: none !important;
+    }
+}
+
+.skill-item {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, 
+        color-mix(in srgb, var(--bg-card) 90%, var(--accent-primary) 10%), 
+        color-mix(in srgb, var(--bg-card) 95%, var(--accent-secondary) 5%));
+    border: 2px solid var(--border-primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    animation: counterRotate 30s linear infinite reverse;
+    box-shadow: 0 4px 20px rgba(0, 245, 255, 0.1);
+}
+
+@keyframes counterRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.skill-item:hover {
+    transform: scale(1.2);
+    border-color: var(--accent-primary);
+    box-shadow: 0 8px 30px var(--shadow-primary);
+    background: linear-gradient(145deg, 
+        color-mix(in srgb, var(--bg-card) 80%, var(--accent-primary) 20%), 
+        color-mix(in srgb, var(--bg-card) 90%, var(--accent-secondary) 10%));
+}
+
+.skill-item .skill-icon {
+    font-size: 24px;
+    color: var(--accent-primary);
+    margin-bottom: 4px;
+}
+
+.skill-item .skill-name {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+    line-height: 1.1;
+    letter-spacing: 0.3px;
+}
+
+/* Orbit Center */
+.orbit-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, 
+        var(--bg-card), 
+        color-mix(in srgb, var(--bg-card) 95%, var(--accent-primary) 5%));
+    border: 3px solid var(--accent-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 20px 60px rgba(0, 245, 255, 0.2);
+    z-index: 10;
+}
+
+.center-content {
+    text-align: center;
+}
+
+.center-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.center-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Rotation Controls */
+.rotation-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    background: var(--bg-card);
+    padding: 8px 16px;
+    border-radius: 25px;
+    border: 1px solid var(--border-primary);
+    backdrop-filter: blur(10px);
+}
+
+.control-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border-accent);
+    background: var(--bg-card);
+    color: var(--accent-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 245, 255, 0.2);
+}
+
+.control-btn.active {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .rotating-skills-container {
+        height: 500px;
+        max-width: 500px;
+    }
+    
+    .skills-orbit {
+        width: 400px;
+        height: 400px;
+    }
+    
+    .orbit-center {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .center-title {
+        font-size: 18px;
+    }
+    
+    .center-subtitle {
+        font-size: 12px;
+    }
+    
+    .skill-item {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .skill-item .skill-icon {
+        font-size: 20px;
+    }
+    
+    .skill-item .skill-name {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 480px) {
+    .rotating-skills-container {
+        height: 400px;
+        max-width: 400px;
+    }
+    
+    .skills-orbit {
+        width: 320px;
+        height: 320px;
+    }
+    
+    .orbit-center {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .center-title {
+        font-size: 16px;
+    }
+    
+    .center-subtitle {
+        font-size: 11px;
+    }
+    
+    .skill-item {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .skill-item .skill-icon {
+        font-size: 18px;
+    }
+    
+    .skill-item .skill-name {
+        font-size: 8px;
+    }
+    
+    .rotation-controls {
+        bottom: 10px;
+        padding: 6px 12px;
+    }
+    
+    .control-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+}
+
+/* Animation states for controls */
+.skills-orbit.paused {
+    animation-play-state: paused;
+}
+
+.skills-orbit.paused .skill-item {
+    animation-play-state: paused;
+}
+
+.skills-orbit.reversed {
+    animation-direction: reverse;
+}
+
+.skills-orbit.reversed .skill-item {
+    animation-direction: normal;
+}
+
+.skills-orbit.fast {
+    animation-duration: 15s;
+}
+
+.skills-orbit.fast .skill-item {
+    animation-duration: 15s;
+}
+
+.skills-orbit.slow {
+    animation-duration: 60s;
+}
+
+.skills-orbit.slow .skill-item {
+    animation-duration: 60s;
+}
+/* ============================================================ */
+
 /* ================= Dynamic Skill Carousels ================= */
 .skill-carousels { display:flex; flex-direction:column; gap:70px; }
 .skill-carousel { position:relative; }

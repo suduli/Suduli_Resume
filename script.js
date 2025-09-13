@@ -894,8 +894,230 @@ function setupCarouselInteractions(section, track){
 // Initialize after DOM content & after fonts to avoid layout shift
 document.addEventListener('DOMContentLoaded', () => {
     buildSkillCarousels();
+    initRotatingSkills();
 });
 // ===========================================================
+
+// ================= Rotating Skills Implementation =================
+// Skill data optimized for rotating display
+const ROTATING_SKILLS = [
+    { name: 'Testing', icon: 'fa-vials', category: 'Testing Methodologies' },
+    { name: 'Python', icon: 'fa-python', category: 'Programming' },
+    { name: 'CAN', icon: 'fa-network-wired', category: 'Protocols' },
+    { name: 'VectorCast', icon: 'fa-cube', category: 'Tools' },
+    { name: 'Debug', icon: 'fa-bug', category: 'Analysis' },
+    { name: 'Coverage', icon: 'fa-chart-pie', category: 'Quality' },
+    { name: 'DOORS', icon: 'fa-door-open', category: 'Requirements' },
+    { name: 'Git', icon: 'fa-code-branch', category: 'Version Control' },
+    { name: 'SDLC', icon: 'fa-project-diagram', category: 'Lifecycle' },
+    { name: 'C/C++', icon: 'fa-code', category: 'Programming' },
+    { name: 'AUTOSAR', icon: 'fa-car', category: 'Standards' },
+    { name: 'HIL/SIL', icon: 'fa-microchip', category: 'Simulation' }
+];
+
+function initRotatingSkills() {
+    const skillsOrbit = document.getElementById('skillsOrbit');
+    const pauseBtn = document.getElementById('pauseRotation');
+    const reverseBtn = document.getElementById('reverseRotation');
+    const speedBtn = document.getElementById('speedToggle');
+    
+    if (!skillsOrbit) return;
+    
+    // Create skill items
+    ROTATING_SKILLS.forEach((skill, index) => {
+        const skillItem = document.createElement('div');
+        skillItem.className = 'skill-item';
+        skillItem.setAttribute('title', `${skill.name} - ${skill.category}`);
+        
+        // Calculate position on circle
+        const angle = (index / ROTATING_SKILLS.length) * 360;
+        const radius = 210; // Half of orbit width minus skill item radius
+        const x = Math.cos((angle - 90) * Math.PI / 180) * radius;
+        const y = Math.sin((angle - 90) * Math.PI / 180) * radius;
+        
+        skillItem.style.left = `calc(50% + ${x}px - 40px)`;
+        skillItem.style.top = `calc(50% + ${y}px - 40px)`;
+        
+        skillItem.innerHTML = `
+            <div class="skill-icon">
+                <i class="fas ${skill.icon}"></i>
+            </div>
+            <div class="skill-name">${skill.name}</div>
+        `;
+        
+        // Add click handler for skill details
+        skillItem.addEventListener('click', () => {
+            showSkillDetails(skill);
+        });
+        
+        skillsOrbit.appendChild(skillItem);
+    });
+    
+    // Control handlers
+    let isPaused = false;
+    let isReversed = false;
+    let speedMode = 'normal'; // normal, fast, slow
+    
+    pauseBtn?.addEventListener('click', () => {
+        isPaused = !isPaused;
+        skillsOrbit.classList.toggle('paused', isPaused);
+        pauseBtn.classList.toggle('active', isPaused);
+        pauseBtn.innerHTML = isPaused ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
+        pauseBtn.setAttribute('aria-label', isPaused ? 'Resume rotation' : 'Pause rotation');
+    });
+    
+    reverseBtn?.addEventListener('click', () => {
+        isReversed = !isReversed;
+        skillsOrbit.classList.toggle('reversed', isReversed);
+        reverseBtn.classList.toggle('active', isReversed);
+        reverseBtn.setAttribute('aria-label', isReversed ? 'Normal rotation' : 'Reverse rotation');
+    });
+    
+    speedBtn?.addEventListener('click', () => {
+        // Cycle through speed modes: normal -> fast -> slow -> normal
+        skillsOrbit.classList.remove('fast', 'slow');
+        
+        if (speedMode === 'normal') {
+            speedMode = 'fast';
+            skillsOrbit.classList.add('fast');
+            speedBtn.innerHTML = '<i class="fas fa-forward"></i>';
+        } else if (speedMode === 'fast') {
+            speedMode = 'slow';
+            skillsOrbit.classList.add('slow');
+            speedBtn.innerHTML = '<i class="fas fa-backward"></i>';
+        } else {
+            speedMode = 'normal';
+            speedBtn.innerHTML = '<i class="fas fa-tachometer-alt"></i>';
+        }
+        
+        speedBtn.classList.toggle('active', speedMode !== 'normal');
+        speedBtn.setAttribute('aria-label', `Speed: ${speedMode}`);
+    });
+    
+    // Keyboard controls
+    document.addEventListener('keydown', (e) => {
+        if (e.target.closest('.rotating-skills-section')) {
+            switch(e.key) {
+                case ' ':
+                case 'Space':
+                    e.preventDefault();
+                    pauseBtn?.click();
+                    break;
+                case 'r':
+                case 'R':
+                    e.preventDefault();
+                    reverseBtn?.click();
+                    break;
+                case 's':
+                case 'S':
+                    e.preventDefault();
+                    speedBtn?.click();
+                    break;
+            }
+        }
+    });
+    
+    // Touch/mouse interaction to manually rotate
+    let isDragging = false;
+    let startAngle = 0;
+    let currentRotation = 0;
+    
+    skillsOrbit.addEventListener('mousedown', startDrag);
+    skillsOrbit.addEventListener('touchstart', startDrag, { passive: false });
+    
+    function startDrag(e) {
+        e.preventDefault();
+        isDragging = true;
+        
+        const rect = skillsOrbit.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        const clientX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+        const clientY = e.type === 'mousedown' ? e.clientY : e.touches[0].clientY;
+        
+        startAngle = Math.atan2(clientY - centerY, clientX - centerX);
+        
+        // Pause rotation while dragging
+        if (!isPaused) {
+            skillsOrbit.style.animationPlayState = 'paused';
+        }
+        
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('mouseup', endDrag);
+        document.addEventListener('touchmove', drag, { passive: false });
+        document.addEventListener('touchend', endDrag);
+    }
+    
+    function drag(e) {
+        if (!isDragging) return;
+        
+        e.preventDefault();
+        const rect = skillsOrbit.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+        const clientY = e.type === 'mousemove' ? e.clientY : e.touches[0].clientY;
+        
+        const currentAngle = Math.atan2(clientY - centerY, clientX - centerX);
+        const deltaAngle = currentAngle - startAngle;
+        
+        currentRotation += deltaAngle * (180 / Math.PI);
+        skillsOrbit.style.transform = `rotate(${currentRotation}deg)`;
+        
+        startAngle = currentAngle;
+    }
+    
+    function endDrag() {
+        isDragging = false;
+        
+        // Resume rotation if not paused
+        if (!isPaused) {
+            skillsOrbit.style.animationPlayState = 'running';
+        }
+        
+        document.removeEventListener('mousemove', drag);
+        document.removeEventListener('mouseup', endDrag);
+        document.removeEventListener('touchmove', drag);
+        document.removeEventListener('touchend', endDrag);
+    }
+}
+
+function showSkillDetails(skill) {
+    // Find the skill in the detailed data and scroll to it in the explorer
+    const skillCards = document.querySelectorAll('.skill-card-ex, .skill-row');
+    const targetSkill = Array.from(skillCards).find(card => {
+        const nameElement = card.querySelector('.skill-name, .skill-row-name');
+        return nameElement && nameElement.textContent.toLowerCase().includes(skill.name.toLowerCase());
+    });
+    
+    if (targetSkill) {
+        // Clear any existing search/filters
+        const searchInput = document.getElementById('skill-search');
+        if (searchInput) {
+            searchInput.value = skill.name;
+            searchInput.dispatchEvent(new Event('input'));
+        }
+        
+        // Scroll to the target skill with some delay to allow filtering
+        setTimeout(() => {
+            targetSkill.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+            });
+            
+            // Briefly highlight the skill
+            targetSkill.style.outline = '2px solid var(--accent-primary)';
+            targetSkill.style.outlineOffset = '4px';
+            setTimeout(() => {
+                targetSkill.style.outline = '';
+                targetSkill.style.outlineOffset = '';
+            }, 2000);
+        }, 100);
+    }
+}
+// ============================================================
 
 // ===================== Skills Explorer Redesign =====================
 // Data model for enhanced skills explorer (richer than carousel)
