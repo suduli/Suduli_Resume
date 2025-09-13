@@ -13,6 +13,7 @@ A futuristic and interactive resume website showcasing professional automotive e
   - About section with statistics
   - Experience timeline
   - Skills showcase with progress bars
+    - Interactive Skills Explorer (search, category chips, view toggle, accessibility focused)
   - Education highlights
   - Featured projects portfolio
   - Contact form
@@ -50,6 +51,14 @@ The website design is inspired by:
 - **Particle Background** - Mouse hover and click interactions
 - **Smooth Scrolling** - Enhanced navigation experience
 - **Hover Effects** - Dynamic button and card animations
+- **Skills Explorer**
+  - Real-time search across names, descriptions & keywords
+  - Filter by category using accessible toggle chips
+  - Grid and List (accordion) view modes with persistence (localStorage)
+  - Expandable skill detail panels (attributes, tags)
+  - Keyboard shortcuts ( / focuses search ) & full keyboard navigation
+  - Live results count announcements (ARIA polite region)
+  - Animated progress indicators with reduced‑motion safeguards
 - **Progress Bars** - Animated skill level indicators
 - **Counter Animation** - Animated statistics in about section
 - **Contact Form** - Interactive form with validation
@@ -84,6 +93,33 @@ The website showcases professional information including:
 - **Local Development**: Open `index.html` in your browser
 
 ## 📞 Contact
+
+## 🧩 Modifying the Skills Explorer
+
+The redesigned Skills & Expertise section is data-driven. Update or extend skills by editing the `SKILLS_DATA` array inside `script.js` ("Skills Explorer Redesign" block).
+
+Skill object schema:
+```
+{
+  id: 'unique-id',
+  name: 'Skill Name',
+  category: 'Category Group',        // Used for grouping & filtering
+  level: 0-100,                      // Numeric proficiency (visual bar)
+  description: 'Short descriptive sentence.',
+  keywords: ['search','tags'],       // Aids search & tag rendering (first 5 shown)
+  attributes: { Key:'Value', ... }   // Rendered in detail panel as definition list
+}
+```
+
+Add a new category simply by introducing a new `category` value. Color assignment is deterministic (hash → palette) so no extra config required.
+
+Accessibility notes:
+- All interactive elements have focus styles and ARIA labels.
+- Results region uses `aria-live="polite"` for count updates.
+- List view groups are accordion sections with proper `aria-expanded` states.
+- Press `/` anywhere to jump to search.
+
+To switch default view mode, change the `activeView` initialization (`grid` or `list`). User preference persists via `localStorage` key `skillsViewMode`.
 
 For any inquiries or collaborations, please use the contact form on the website or reach out through the provided contact methods.
 

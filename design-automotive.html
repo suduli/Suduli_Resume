@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Automotive HUD Design</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><link rel="stylesheet" href="design-automotive.css"></head><body class="hud">
+<div id="particles-js"></div>
+<header class="hud-bar"><a href="ui-lab.html" class="hud-back"><i class="fas fa-arrow-left"></i><span>Lab</span></a><h1 class="hud-title">Automotive HUD</h1><button id="theme-toggle" class="hud-theme" aria-label="Toggle theme"><i id="theme-icon" class="fas fa-moon"></i></button></header>
+<main class="hud-main">
+  <section class="hud-grid" aria-label="Resume snapshot">
+    <article class="hud-card speed" aria-label="Experience years"><h2>Experience</h2><div class="metric"><span class="num" data-target="8">0</span><span class="unit">yrs</span></div><p class="meta">System & Validation</p></article>
+    <article class="hud-card rpm" aria-label="Projects delivered"><h2>Projects</h2><div class="metric"><span class="num" data-target="50">0</span><span class="unit">+</span></div><p class="meta">Delivered end-to-end</p></article>
+    <article class="hud-card fuel" aria-label="Core stack"><h2>Core Stack</h2><ul class="list"><li>VectorCast</li><li>Trace32</li><li>CANoe</li><li>Python</li></ul></article>
+    <article class="hud-card temps" aria-label="Focus domains"><h2>Domains</h2><ul class="chips"><li>ADAS</li><li>Infotainment</li><li>Diagnostics</li><li>Safety</li></ul></article>
+    <article class="hud-card gauges" aria-label="Skill gauges"><h2>Key Signals</h2><div class="gauges-wrap"><div class="gauge" data-val="90"><span>Testing</span></div><div class="gauge" data-val="80"><span>Automation</span></div><div class="gauge" data-val="75"><span>Coverage</span></div><div class="gauge" data-val="70"><span>Safety</span></div></div></article>
+    <article class="hud-card timeline" aria-label="Recent roles"><h2>Recent Roles</h2><ol class="timeline-list"><li><strong>Test Lead</strong> KPIT</li><li><strong>Specialist Test Eng</strong> HL Klemove</li><li><strong>Sr Embedded QA</strong> Mando</li></ol></article>
+  </section>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+<script src="design-automotive.js" type="module"></script>
+</body></html>
