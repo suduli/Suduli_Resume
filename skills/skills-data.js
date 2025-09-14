@@ -1,5 +1,16 @@
 // Shared skills data (subset reused) for variant pages
 export const SKILLS = [
+  // Learning category (newly added section)
+  { name: 'Machine Learning', category: 'Learning', level: 60, tags:['ai','algorithms','data'], desc: 'Statistical modeling techniques for predictive analytics.', endorsements: 3, experience: 'Currently exploring applications in automotive testing' },
+  { name: 'AI', category: 'Learning', level: 55, tags:['deep-learning','neural-networks'], desc: 'Artificial intelligence systems and algorithms.', endorsements: 2, experience: 'Studying applications for automotive systems' },
+  { name: 'Vibe Coding', category: 'Learning', level: 50, tags:['innovative','experimental'], desc: 'Modern coding approach emphasizing aesthetic and intuitive design.', endorsements: 1, experience: 'Exploring for enhanced UI/UX implementation' },
+  { name: 'KDT (Keyword-Driven Testing)', category: 'Learning', level: 65, tags:['automation','frameworks'], desc: 'Framework approach using keywords for test automation.', endorsements: 3, experience: 'Implementing in current test processes' },
+  { name: 'Xray', category: 'Learning', level: 58, tags:['jira','test-management'], desc: 'Test management tool for Jira ecosystems.', endorsements: 2, experience: 'Adopting for test reporting and management' },
+  { name: 'Gherkin', category: 'Learning', level: 62, tags:['bdd','specifications'], desc: 'Business-readable domain-specific language for behavior descriptions.', endorsements: 3, experience: 'Implementing in current project documentation' },
+  { name: 'Behavior-Driven Development (BDD)', category: 'Learning', level: 60, tags:['agile','collaboration'], desc: 'Development approach emphasizing collaboration between technical and non-technical participants.', endorsements: 2, experience: 'Adopting methodologies for current projects' },
+  { name: 'Cucumber in Python', category: 'Learning', level: 55, tags:['bdd','automation'], desc: 'Python implementation of Cucumber for BDD test automation.', endorsements: 1, experience: 'Building test suites with this framework' },
+  { name: 'Love', category: 'Learning', level: 95, tags:['passion','dedication'], desc: 'Bringing passion and dedication to all technical endeavors.', endorsements: 8, experience: 'Lifelong commitment to craftsmanship' },
+  
   { name: 'Black Box Testing', category: 'Testing', level: 92, tags:['functional','system','validation'], desc: 'Focus on external behavior without viewing internal code.', endorsements: 15, experience: '5+ years in automotive testing projects' },
   { name: 'Regression Testing', category: 'Testing', level: 88, tags:['stability','maintenance'], desc: 'Ensures unchanged behavior after code modifications.', endorsements: 12, experience: '4 years in software maintenance' },
   { name: 'Integration Testing', category: 'Testing', level: 86, tags:['interfaces','modules'], desc: 'Validates contract between combined modules.', endorsements: 10, experience: '3 years in module integration' },

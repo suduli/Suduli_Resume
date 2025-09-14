@@ -758,7 +758,12 @@ function groupSkillsByCategory() {
 function createCategoryItems(container, skillsByCategory) {
     console.log('Creating category items for categories:', Object.keys(skillsByCategory));
     
-    const categories = Object.keys(skillsByCategory).sort();
+    // Custom sort to move "Learning" category to the end
+    const categories = Object.keys(skillsByCategory).sort((a, b) => {
+        if (a === 'Learning') return 1;  // Move "Learning" to end
+        if (b === 'Learning') return -1; // Move "Learning" to end
+        return a.localeCompare(b);      // Sort others alphabetically
+    });
 
     categories.forEach(category => {
         const skills = skillsByCategory[category];
@@ -799,7 +804,8 @@ function getCategoryIcon(category) {
         'Tools': 'fa-toolbox',
         'Coverage': 'fa-chart-pie',
         'Requirements': 'fa-clipboard-list',
-        'Version Control': 'fa-code-branch'
+        'Version Control': 'fa-code-branch',
+        'Learning': 'fa-brain'
     };
 
     return iconMap[category] || 'fa-circle-notch';

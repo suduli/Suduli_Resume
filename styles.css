@@ -41,7 +41,7 @@ html {
     --bg-primary: #0c0c0c;
     --bg-secondary: #1a1a2e;
     --bg-tertiary: #16213e;
-    --bg-card: rgba(255, 255, 255, 0.05);
+    --bg-card: rgba(255, 255, 255, 0);
     --bg-card-hover: rgba(0, 245, 255, 0.1);
     --text-primary: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.8);
@@ -72,7 +72,7 @@ html {
     --bg-primary: #f8fafc;
     --bg-secondary: #f1f5f9;
     --bg-tertiary: #e2e8f0;
-    --bg-card: rgba(255, 255, 255, 0.1);
+    --bg-card: rgba(255, 255, 255, 0);
     --bg-card-hover: rgba(0, 123, 191, 0.1);
     --text-primary: #1e293b;
     --text-secondary: #475569;
@@ -263,6 +263,35 @@ body {
 
 .nav-link:hover::before {
     width: 100%;
+}
+
+/* Social Icons in Navigation */
+.nav-social-icons {
+    display: flex;
+    gap: 16px;
+    margin-left: 20px;
+}
+
+.social-icon {
+    color: var(--text-primary);
+    font-size: 20px;
+    transition: all 0.3s ease;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+}
+
+.social-icon:hover {
+    color: var(--accent-primary);
+    transform: translateY(-3px);
+    border-color: var(--accent-primary);
+    background: var(--bg-card-hover);
+    box-shadow: 0 6px 16px -4px var(--shadow-primary);
 }
 
 .hamburger {
@@ -622,6 +651,14 @@ section {
 /* Anchor styling inside highlight (if any auto-linked) */
 .experience-highlight a { color: var(--accent-primary); font-weight:600; text-decoration:none; }
 .experience-highlight a:hover, .experience-highlight a:focus { text-decoration:underline; }
+
+/* Timeline company links */
+.timeline-company a { color: var(--accent-secondary); text-decoration: none; transition: color 0.3s ease; }
+.timeline-company a:hover, .timeline-company a:focus { color: var(--accent-primary); text-decoration: underline; }
+
+/* HUD timeline links */
+.hud-card.timeline a { color: var(--accent-primary); text-decoration: none; transition: color 0.3s ease; }
+.hud-card.timeline a:hover, .hud-card.timeline a:focus { color: var(--accent-secondary); text-decoration: underline; }
 
 /* Fallback for browsers without mask-composite support */
 @supports not ((mask-composite: exclude) or (-webkit-mask-composite: xor)) {
@@ -1532,6 +1569,17 @@ section {
     font-weight: 500;
 }
 
+.method-value a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.method-value a:hover {
+    color: var(--accent-primary);
+    text-decoration: underline;
+}
+
 .contact-form {
     background: var(--bg-card);
     padding: 40px;
@@ -1589,11 +1637,22 @@ section {
     color: var(--text-secondary);
     font-size: 20px;
     transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
 }
 
 .social-links a:hover {
     color: var(--accent-primary);
     transform: translateY(-3px);
+    border-color: var(--accent-primary);
+    background: var(--bg-card-hover);
+    box-shadow: 0 6px 16px -4px var(--shadow-primary);
 }
 
 /* Animations */
@@ -1743,6 +1802,17 @@ section {
         grid-template-columns: 1fr;
         gap: 40px;
     }
+    
+    .nav-social-icons {
+        margin-left: 10px;
+        gap: 10px;
+    }
+    
+    .social-icon {
+        font-size: 18px;
+        width: 32px;
+        height: 32px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1764,6 +1834,11 @@ section {
     
     .hamburger {
         display: flex;
+    }
+    
+    .nav-social-icons {
+        margin-left: auto;
+        margin-right: 15px;
     }
     
     .title-main {
@@ -1822,6 +1897,10 @@ section {
         gap: 20px;
         text-align: center;
     }
+    
+    .social-links {
+        justify-content: center;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1845,5 +1924,15 @@ section {
     
     .nav-container {
         padding: 0 15px;
+    }
+    
+    .nav-social-icons {
+        gap: 8px;
+    }
+    
+    .social-icon {
+        font-size: 16px;
+        width: 28px;
+        height: 28px;
     }
 }
