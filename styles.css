@@ -72,7 +72,7 @@ html {
     --bg-primary: #f8fafc;
     --bg-secondary: #f1f5f9;
     --bg-tertiary: #e2e8f0;
-    --bg-card: rgba(255, 255, 255, 0.9);
+    --bg-card: rgba(255, 255, 255, 0.1);
     --bg-card-hover: rgba(0, 123, 191, 0.1);
     --text-primary: #1e293b;
     --text-secondary: #475569;
