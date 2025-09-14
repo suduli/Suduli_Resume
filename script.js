@@ -427,34 +427,106 @@ document.addEventListener('DOMContentLoaded', function() {
 // Contact form handling
 const contactForm = document.querySelector('.form');
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         // Get form data
-        const formData = new FormData(this);
-        const name = this.querySelector('input[type="text"]').value;
-        const email = this.querySelector('input[type="email"]').value;
-        const message = this.querySelector('textarea').value;
+        const nameInput = this.querySelector('input[type="text"]');
+        const emailInput = this.querySelector('input[type="email"]');
+        const messageInput = this.querySelector('textarea');
         
-        // Simple validation
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const message = messageInput.value.trim();
+        
+        // Basic validation
         if (!name || !email || !message) {
             showNotification('Please fill in all fields.', 'error');
             return;
         }
         
-        // Simulate form submission
+        // Email validation
+        if (!isValidEmail(email)) {
+            showNotification('Please enter a valid email address.', 'error');
+            return;
+        }
+        
+        // Message length validation
+        if (message.length < 10) {
+            showNotification('Please enter a more detailed message (at least 10 characters).', 'error');
+            return;
+        }
+        
+        // Prepare form submission
         const submitBtn = this.querySelector('.btn-primary');
         const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Sending...';
-        submitBtn.disabled = true;
+        const originalDisabled = submitBtn.disabled;
         
-        setTimeout(() => {
-            showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-            this.reset();
+        try {
+            // Update button state
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            submitBtn.classList.add('loading');
+            
+            // Send email via API
+            const response = await fetch('/api/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    message: message
+                })
+            });
+            
+            const result = await response.json();
+            
+            if (response.ok && result.success) {
+                showNotification(result.message || 'Message sent successfully! I\'ll get back to you soon.', 'success');
+                this.reset(); // Clear form
+                
+                // Optional: Track successful contact form submission
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'contact_form_submit', {
+                        event_category: 'engagement',
+                        event_label: 'email_sent'
+                    });
+                }
+            } else {
+                throw new Error(result.message || 'Failed to send message');
+            }
+            
+        } catch (error) {
+            console.error('Contact form error:', error);
+            
+            let errorMessage = 'Failed to send message. Please try again later.';
+            
+            // Handle specific error cases
+            if (error.message.includes('rate limit') || error.message.includes('Too many requests')) {
+                errorMessage = 'Please wait a moment before sending another message.';
+            } else if (error.message.includes('network') || error.message.includes('fetch')) {
+                errorMessage = 'Network error. Please check your connection and try again.';
+            } else if (error.message) {
+                errorMessage = error.message;
+            }
+            
+            showNotification(errorMessage, 'error');
+            
+        } finally {
+            // Restore button state
             submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }, 2000);
+            submitBtn.disabled = originalDisabled;
+            submitBtn.classList.remove('loading');
+        }
     });
+}
+
+// Email validation function
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
 }
 
 // Phone number reveal functionality
