@@ -1,0 +1,40 @@
+{
+  "name": "suduli-automotive-resume-visitor-counter",
+  "version": "1.0.0",
+  "description": "Visitor counter system for Suduli's automotive resume website",
+  "main": "api/visitors.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Build step not required for static site'",
+    "start": "vercel dev",
+    "deploy": "vercel --prod",
+    "test": "node test/visitor-counter.test.js"
+  },
+  "keywords": [
+    "visitor-counter",
+    "analytics",
+    "portfolio",
+    "automotive",
+    "serverless"
+  ],
+  "author": "Suduli Kumar Balabantaray",
+  "license": "MIT",
+  "dependencies": {
+    "firebase-admin": "^11.11.1",
+    "@supabase/supabase-js": "^2.38.5"
+  },
+  "devDependencies": {
+    "vercel": "^32.5.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/suduli/Suduli_Resume_Automotive.git"
+  },
+  "bugs": {
+    "url": "https://github.com/suduli/Suduli_Resume_Automotive/issues"
+  },
+  "homepage": "https://github.com/suduli/Suduli_Resume_Automotive#readme"
+}

@@ -1061,5 +1061,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1000);
 });
 
+// Initialize visitor counter
+document.addEventListener('DOMContentLoaded', () => {
+    /**
+     * Initialize visitor counter
+     */
+    function initializeVisitorCounter() {
+        try {
+            if (typeof VisitorCounter !== 'undefined') {
+                // Initialize with configuration
+                window.visitorCounter = new VisitorCounter({
+                    // API endpoint - update this with your actual endpoint
+                    apiEndpoint: 'https://your-vercel-app.vercel.app/api/visitors',
+                    
+                    // Display configuration
+                    displayElement: '#visitor-counter',
+                    animateNumbers: true,
+                    
+                    // Tracking configuration
+                    trackUniqueVisitors: true,
+                    trackTotalViews: true,
+                    trackReturnVisitors: true,
+                    
+                    // Enable localStorage fallback
+                    useLocalStorage: true,
+                    
+                    // Debug mode - enable for testing, disable in production
+                    debug: true
+                });
+                
+                console.log('[VisitorCounter] Initialized successfully');
+            } else {
+                console.warn('[VisitorCounter] VisitorCounter class not available');
+            }
+        } catch (error) {
+            console.error('[VisitorCounter] Failed to initialize:', error);
+        }
+    }
+    
+    // Initialize visitor counter with a small delay to ensure DOM is ready
+    setTimeout(initializeVisitorCounter, 500);
+});
+
 
 

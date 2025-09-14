@@ -1,0 +1,189 @@
+{
+  "firestore": {
+    "description": "Firebase Firestore database schema and security rules for visitor counter",
+    "collections": {
+      "website_stats": {
+        "description": "Collection to store aggregate website statistics",
+        "documents": {
+          "visitor_counters": {
+            "description": "Document containing visitor counter data",
+            "fields": {
+              "uniqueVisitors": {
+                "type": "number",
+                "description": "Total number of unique visitors",
+                "default": 0
+              },
+              "totalPageViews": {
+                "type": "number", 
+                "description": "Total number of page views",
+                "default": 0
+              },
+              "returnVisitors": {
+                "type": "number",
+                "description": "Total number of return visits",
+                "default": 0
+              },
+              "lastUpdated": {
+                "type": "timestamp",
+                "description": "Timestamp of last update"
+              },
+              "createdAt": {
+                "type": "timestamp",
+                "description": "Timestamp when document was created"
+              }
+            }
+          }
+        }
+      },
+      "visitor_logs": {
+        "description": "Collection to store individual visitor session data",
+        "documents": {
+          "[auto-generated-id]": {
+            "description": "Each document represents a visitor session",
+            "fields": {
+              "sessionId": {
+                "type": "string",
+                "description": "Unique identifier for the visitor session"
+              },
+              "isNewVisitor": {
+                "type": "boolean",
+                "description": "True if this is the first visit from this session"
+              },
+              "userAgent": {
+                "type": "string",
+                "description": "Browser user agent string"
+              },
+              "referrer": {
+                "type": "string",
+                "description": "URL that referred the visitor to the site"
+              },
+              "url": {
+                "type": "string",
+                "description": "URL of the page being visited"
+              },
+              "viewport": {
+                "type": "string",
+                "description": "Browser viewport dimensions (widthxheight)"
+              },
+              "timezone": {
+                "type": "string",
+                "description": "Visitor's timezone"
+              },
+              "timestamp": {
+                "type": "timestamp",
+                "description": "When the visit occurred"
+              },
+              "createdAt": {
+                "type": "timestamp",
+                "description": "When the record was created"
+              },
+              "ipAddress": {
+                "type": "string",
+                "description": "Visitor's IP address (optional, for analytics)"
+              }
+            },
+            "indexes": [
+              {
+                "fields": ["sessionId"],
+                "description": "Index for efficient session lookups"
+              },
+              {
+                "fields": ["timestamp"],
+                "description": "Index for time-based queries"
+              },
+              {
+                "fields": ["isNewVisitor"],
+                "description": "Index for filtering new vs return visitors"
+              }
+            ]
+          }
+        }
+      },
+      "daily_stats": {
+        "description": "Collection to store daily aggregated statistics",
+        "documents": {
+          "[YYYY-MM-DD]": {
+            "description": "Each document represents statistics for a specific date",
+            "fields": {
+              "date": {
+                "type": "string",
+                "description": "Date in YYYY-MM-DD format"
+              },
+              "uniqueVisitors": {
+                "type": "number",
+                "description": "Unique visitors for this date",
+                "default": 0
+              },
+              "totalPageViews": {
+                "type": "number",
+                "description": "Total page views for this date",
+                "default": 0
+              },
+              "returnVisitors": {
+                "type": "number",
+                "description": "Return visitors for this date",
+                "default": 0
+              },
+              "bounceRate": {
+                "type": "number",
+                "description": "Bounce rate percentage for this date",
+                "default": 0
+              },
+              "avgSessionDuration": {
+                "type": "number",
+                "description": "Average session duration in seconds",
+                "default": 0
+              },
+              "createdAt": {
+                "type": "timestamp",
+                "description": "When the record was created"
+              },
+              "updatedAt": {
+                "type": "timestamp",
+                "description": "When the record was last updated"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "security_rules": {
+    "description": "Firestore security rules for visitor counter",
+    "rules": "rules_version = '2';\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    // Allow read access to website stats for everyone\n    match /website_stats/{document} {\n      allow read: if true;\n      allow write: if request.auth != null; // Only authenticated users can write\n    }\n    \n    // Allow read access to daily stats for everyone\n    match /daily_stats/{document} {\n      allow read: if true;\n      allow write: if request.auth != null;\n    }\n    \n    // Visitor logs - write only, no public read access\n    match /visitor_logs/{document} {\n      allow read: if request.auth != null; // Only authenticated users can read\n      allow create: if true; // Anyone can create visitor logs\n      allow update, delete: if request.auth != null;\n    }\n  }\n}"
+  },
+  "firestore_initialization": {
+    "description": "JavaScript code to initialize Firestore collections",
+    "code": "const admin = require('firebase-admin');\n\n// Initialize Firebase Admin\nif (!admin.apps.length) {\n  admin.initializeApp({\n    credential: admin.credential.cert({\n      projectId: process.env.FIREBASE_PROJECT_ID,\n      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,\n      privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\\\n/g, '\\n'),\n    }),\n    databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com`\n  });\n}\n\nconst db = admin.firestore();\n\n// Initialize visitor counters document\nasync function initializeVisitorCounters() {\n  const docRef = db.collection('website_stats').doc('visitor_counters');\n  const doc = await docRef.get();\n  \n  if (!doc.exists) {\n    await docRef.set({\n      uniqueVisitors: 0,\n      totalPageViews: 0,\n      returnVisitors: 0,\n      lastUpdated: admin.firestore.FieldValue.serverTimestamp(),\n      createdAt: admin.firestore.FieldValue.serverTimestamp()\n    });\n    console.log('Visitor counters document initialized');\n  }\n}\n\n// Initialize daily stats document for today\nasync function initializeDailyStats() {\n  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format\n  const docRef = db.collection('daily_stats').doc(today);\n  const doc = await docRef.get();\n  \n  if (!doc.exists) {\n    await docRef.set({\n      date: today,\n      uniqueVisitors: 0,\n      totalPageViews: 0,\n      returnVisitors: 0,\n      bounceRate: 0,\n      avgSessionDuration: 0,\n      createdAt: admin.firestore.FieldValue.serverTimestamp(),\n      updatedAt: admin.firestore.FieldValue.serverTimestamp()\n    });\n    console.log(`Daily stats document initialized for ${today}`);\n  }\n}\n\n// Run initialization\ninitializeVisitorCounters();\ninitializeDailyStats();"
+  },
+  "sample_queries": {
+    "description": "Sample Firestore queries for analytics",
+    "queries": {
+      "get_visitor_stats": {
+        "description": "Get current visitor statistics",
+        "code": "const statsDoc = await db.collection('website_stats').doc('visitor_counters').get();\nconst stats = statsDoc.data();"
+      },
+      "get_daily_stats": {
+        "description": "Get daily statistics for the last 30 days",
+        "code": "const thirtyDaysAgo = new Date();\nthirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);\nconst startDate = thirtyDaysAgo.toISOString().split('T')[0];\n\nconst dailyStats = await db.collection('daily_stats')\n  .where('date', '>=', startDate)\n  .orderBy('date', 'desc')\n  .get();\n\nconst stats = dailyStats.docs.map(doc => doc.data());"
+      },
+      "get_recent_visitors": {
+        "description": "Get recent visitor logs",
+        "code": "const recentVisitors = await db.collection('visitor_logs')\n  .orderBy('timestamp', 'desc')\n  .limit(100)\n  .get();\n\nconst visitors = recentVisitors.docs.map(doc => doc.data());"
+      },
+      "get_unique_visitors_today": {
+        "description": "Get count of unique visitors today",
+        "code": "const today = new Date();\ntoday.setHours(0, 0, 0, 0);\n\nconst uniqueVisitorsToday = await db.collection('visitor_logs')\n  .where('timestamp', '>=', admin.firestore.Timestamp.fromDate(today))\n  .where('isNewVisitor', '==', true)\n  .get();\n\nconst count = uniqueVisitorsToday.size;"
+      }
+    }
+  },
+  "environment_variables": {
+    "description": "Required environment variables for Firebase setup",
+    "variables": {
+      "FIREBASE_PROJECT_ID": "Your Firebase project ID",
+      "FIREBASE_CLIENT_EMAIL": "Service account client email",
+      "FIREBASE_PRIVATE_KEY": "Service account private key (with escaped newlines)",
+      "DATABASE_TYPE": "Set to 'firestore' to use Firebase"
+    }
+  }
+}
