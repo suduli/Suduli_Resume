@@ -1,9 +1,18 @@
 <?php
+/**
+ * Server-side Visit Counter
+ * Tracks total visits and unique visitors
+ */
+
+// Set headers to prevent caching
 header('Content-Type: application/json');
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Cache-Control: post-check=0, pre-check=0', false);
+header('Pragma: no-cache');
 header('Access-Control-Allow-Origin: *');
 
 // Configuration
-$dataFile = __DIR__ . '/visits.json';
+$dataFile = __DIR__ . '/counter-data.json';
 
 // Initialize or load visit data
 function loadVisits() {
@@ -15,16 +24,42 @@ function loadVisits() {
             'lastReset' => time()
         ];
         file_put_contents($dataFile, json_encode($data));
+        chmod($dataFile, 0666); // Make writable
         return $data;
     }
     
-    return json_decode(file_get_contents($dataFile), true);
+    $content = file_get_contents($dataFile);
+    if (empty($content)) {
+        $data = [
+            'totalVisits' => 0,
+            'uniqueVisits' => 0,
+            'lastReset' => time()
+        ];
+        file_put_contents($dataFile, json_encode($data));
+        return $data;
+    }
+    
+    return json_decode($content, true);
 }
 
 // Save visit data
 function saveVisits($data) {
     global $dataFile;
-    file_put_contents($dataFile, json_encode($data));
+    
+    // Ensure directory exists
+    $directory = dirname($dataFile);
+    if (!file_exists($directory)) {
+        mkdir($directory, 0755, true);
+    }
+    
+    // Save data
+    try {
+        file_put_contents($dataFile, json_encode($data));
+        return true;
+    } catch (Exception $e) {
+        error_log('Error saving visit data: ' . $e->getMessage());
+        return false;
+    }
 }
 
 // Get visitor's ID (hashed IP + user agent)
@@ -38,7 +73,7 @@ function getVisitorId() {
         $ip = $ipParts[0] . '.' . $ipParts[1];
     }
     
-    return md5($ip . substr($agent, 0, 20));
+    return md5($ip . substr($agent, 0, 20) . $_SERVER['HTTP_ACCEPT_LANGUAGE']);
 }
 
 // Check if this is a new unique visit
@@ -56,9 +91,22 @@ function isNewUniqueVisit() {
     return true;
 }
 
+// Error handler
+function handleError($message) {
+    http_response_code(500);
+    echo json_encode(['error' => $message]);
+    exit;
+}
+
+// Try to load data
+try {
+    $data = loadVisits();
+} catch (Exception $e) {
+    handleError('Could not load visit data: ' . $e->getMessage());
+}
+
 // Handle the request
 $action = isset($_GET['action']) ? $_GET['action'] : 'get';
-$data = loadVisits();
 
 switch ($action) {
     case 'increment':
@@ -70,17 +118,25 @@ switch ($action) {
             $data['uniqueVisits']++;
         }
         
-        saveVisits($data);
+        // Save data
+        if (!saveVisits($data)) {
+            handleError('Could not save visit data.');
+        }
         break;
         
     case 'reset':
         // Optional: Add security check here before allowing reset
-        $data = [
-            'totalVisits' => 0,
-            'uniqueVisits' => 0,
-            'lastReset' => time()
-        ];
-        saveVisits($data);
+        // For example, check for admin key or password
+        if (isset($_GET['key']) && $_GET['key'] === 'your-secret-reset-key') {
+            $data = [
+                'totalVisits' => 0,
+                'uniqueVisits' => 0,
+                'lastReset' => time()
+            ];
+            saveVisits($data);
+        } else {
+            handleError('Unauthorized reset attempt.');
+        }
         break;
 }
 

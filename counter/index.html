@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visit Counter Test</title>
+    <title>Visit Counter</title>
     <link rel="stylesheet" href="counter.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -32,7 +32,7 @@
     </style>
 </head>
 <body>
-    <h1>Visit Counter Test</h1>
+    <h1>Visit Counter</h1>
     
     <div class="container">
         <div class="visit-counter">
@@ -51,7 +51,6 @@
         <div style="margin-top: 30px;">
             <button id="incrementBtn">+</button>
             <button id="decrementBtn">−</button>
-            <button id="refreshBtn">Refresh Data</button>
         </div>
     </div>
     
@@ -63,11 +62,10 @@
             });
             
             document.getElementById('decrementBtn').addEventListener('click', function() {
-                visitCounter.decrementCounter();
-            });
-            
-            document.getElementById('refreshBtn').addEventListener('click', function() {
-                visitCounter.fetchCounterData();
+                // This assumes you will add a decrementCounter method to the visitCounter
+                if (typeof visitCounter.decrementCounter === 'function') {
+                    visitCounter.decrementCounter();
+                }
             });
         });
     </script>
