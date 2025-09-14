@@ -1350,6 +1350,186 @@ section {
 
 /* ===================== End Skills Carousel Redesign ===================== */
 
+/* Client Recommendations Section */
+.recommendations {
+    padding: 80px 0;
+    background: var(--bg-secondary);
+}
+
+.recommendation-summary {
+    margin-top: 50px;
+}
+
+.recommendation-summary-content {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid var(--border-primary);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    transition: all 0.3s ease;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.recommendation-summary-content:hover {
+    transform: translateY(-5px);
+    background: var(--bg-card-hover);
+}
+
+.recommendation-summary-content.loading {
+    opacity: 0.8;
+}
+
+.recommendation-summary-content.error {
+    border-color: var(--accent-secondary);
+}
+
+.recommendation-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+    border-radius: 50%;
+    font-size: 36px;
+    color: white;
+    flex-shrink: 0;
+}
+
+.recommendation-icon.error {
+    background: linear-gradient(45deg, var(--accent-secondary), #ff8a80);
+}
+
+.recommendation-icon i {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.recommendation-info {
+    flex: 1;
+}
+
+.recommendation-title {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.recommendation-count {
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.count-number {
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--accent-primary);
+    line-height: 1;
+    text-shadow: 0 2px 8px rgba(0, 245, 255, 0.3);
+}
+
+.count-label {
+    font-size: 16px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.recommendation-description {
+    color: var(--text-tertiary);
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.recommendation-error {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.error-message {
+    color: var(--accent-secondary);
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.error-details {
+    color: var(--text-tertiary);
+    font-size: 12px;
+    font-style: italic;
+}
+
+/* Responsive Design for Recommendations */
+@media (max-width: 768px) {
+    .recommendations {
+        padding: 60px 0;
+    }
+    
+    .recommendation-summary-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px;
+        gap: 20px;
+    }
+    
+    .recommendation-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 28px;
+    }
+    
+    .recommendation-title {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    
+    .count-number {
+        font-size: 36px;
+    }
+    
+    .count-label {
+        font-size: 14px;
+    }
+    
+    .recommendation-count {
+        flex-direction: column;
+        gap: 5px;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .recommendation-summary-content {
+        padding: 20px;
+        margin: 0 15px;
+    }
+    
+    .recommendation-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+    
+    .recommendation-title {
+        font-size: 18px;
+    }
+    
+    .count-number {
+        font-size: 32px;
+    }
+    
+    .recommendation-description {
+        font-size: 13px;
+    }
+}
+
 /* Education Section */
 .education-grid {
     display: grid;
