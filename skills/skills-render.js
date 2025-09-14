@@ -9,7 +9,48 @@ class ThemeToggle { constructor(){ this.btn=document.getElementById('theme-toggl
   apply(theme, animate){ if(theme==='light') document.documentElement.setAttribute('data-theme','light'); else document.documentElement.removeAttribute('data-theme'); if(this.icon){ this.icon.className = theme==='dark' ? 'fas fa-sun':'fas fa-moon'; this.btn.setAttribute('aria-label', theme==='dark'?'Switch to light theme':'Switch to dark theme'); } if(animate){ document.documentElement.classList.add('theme-transition'); setTimeout(()=> document.documentElement.classList.remove('theme-transition'),320); } }
 }
 
-function renderSkills(){ const container=document.querySelector('.skills-wrapper'); if(!container) return; container.innerHTML=''; const bodyClass=[...document.body.classList].find(c=>c.startsWith('style-')) || 'style-glass'; SKILLS.forEach((s,i)=>{ const card=document.createElement('div'); card.className='skill-item fade-in'; card.style.animationDelay=(i*0.02)+'s'; const catColor=colorForCategory(s.category); card.innerHTML=`<span class="level-badge" aria-label="Proficiency level ${s.level} percent">${s.level}%</span><div class="skill-cat" data-cat="${s.category}" style="--cat-color:${catColor}">${s.category}</div><h4>${s.name}</h4><div class="progress" aria-hidden="true"><span style="width:${s.level}%;"></span></div><p class="skill-desc">${s.desc}</p><div class="skill-tags">${(s.tags||[]).map(t=>`<span>${t}</span>`).join('')}</div>`; container.appendChild(card); }); }
+function renderSkills(list){
+  const container = document.querySelector('.skills-wrapper');
+  if(!container) return;
+  container.innerHTML = '';
+  const items = Array.isArray(list) ? list : SKILLS;
+  const bodyClass = [...document.body.classList].find(c=>c.startsWith('style-')) || 'style-glass';
+
+  items.forEach((s,i)=>{
+    const card = document.createElement('div');
+    card.className = 'skill-item fade-in';
+    card.style.animationDelay = (i*0.02)+'s';
+    const catColor = colorForCategory(s.category);
+
+    let iconClass = 'fas fa-code'; // default
+    if(s.category === 'Testing') iconClass = 'fas fa-vial';
+    else if(s.category === 'Programming') iconClass = 'fas fa-code';
+    else if(s.category === 'Tools') iconClass = 'fas fa-tools';
+    else if(s.category === 'Protocols') iconClass = 'fas fa-network-wired';
+    else if(s.category === 'Safety') iconClass = 'fas fa-shield-alt';
+    else if(s.category === 'Coverage') iconClass = 'fas fa-chart-line';
+    else if(s.category === 'Requirements') iconClass = 'fas fa-list-check';
+    else if(s.category === 'Version Control') iconClass = 'fas fa-code-branch';
+    else if(s.category === 'Simulation') iconClass = 'fas fa-cogs';
+
+    card.innerHTML = `<div class="skill-header">
+      <i class="${iconClass}" aria-hidden="true"></i>
+      <span class="level-badge" aria-label="Proficiency level ${s.level} percent">${s.level}%</span>
+    </div>
+    <div class="skill-cat" data-cat="${s.category}" style="--cat-color:${catColor}">${s.category}</div>
+    <h4>${s.name}</h4>
+    <div class="progress" aria-hidden="true"><span style="width:${s.level}%;"></span></div>
+    <p class="skill-desc">${s.desc}</p>
+    <div class="skill-details">
+      <div class="endorsements"><i class="fas fa-thumbs-up" aria-hidden="true"></i> ${s.endorsements || 0} endorsements</div>
+      <div class="experience"><i class="fas fa-clock" aria-hidden="true"></i> ${s.experience || 'N/A'}</div>
+    </div>
+    <div class="skill-tags">${(s.tags||[]).map(t=>`<span>${t}</span>`).join('')}</div>
+    ${bodyClass === 'style-modern' ? '<button class="edit-btn" aria-label="Edit skill">Edit</button>' : ''}`;
+
+    container.appendChild(card);
+  });
+}
 
 function mountVariant(){ if(!document.querySelector('.skills-wrapper')) return; renderSkills(); }
 

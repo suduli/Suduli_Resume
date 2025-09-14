@@ -696,473 +696,338 @@ const throttledScrollHandler = throttle(() => {
 
 window.addEventListener('scroll', throttledScrollHandler);
 
-// ================= Dynamic Skill Carousels =================
-// Data model for categorized skills (deduplicated & structured)
-const SKILL_CATEGORIES = [
-    {
-        title: 'Technical Skills', icon: 'fa-gears', color: 'teal',
-        description: 'Core testing capabilities & collaborative strengths',
-        skills: [
-            'Black Box Testing','Regression Testing','Integration Testing','White Box Testing','Manual Testing','Test Case Design','Execution & Defect Reporting','Automation Testing','Clear Communication','Continuous Learning','Cross Functional Collaboration','Solution Driven'
-        ]
-    },
-    {
-        title: 'Protocols & Standards', icon: 'fa-network-wired', color: 'blue',
-        description: 'Automotive communication & safety frameworks',
-        skills: ['UDS','CAN','AUTOSAR','ISO 26262 Guidelines','LIN']
-    },
-    {
-        title: 'Programming & Scripting', icon: 'fa-code', color: 'green',
-        description: 'Implementation & automation languages',
-        skills: ['Embedded C','Python','CAPL']
-    },
-    {
-        title: 'Testing Methodologies', icon: 'fa-vials', color: 'purple',
-        description: 'Structured approaches & lifecycle strategies',
-        skills: ['White/Black Box','HIL Testing','SIL Testing','System Testing','Unit Testing','Integration Testing','Regression Testing','Agile Model']
-    },
-    {
-        title: 'Testing Tools', icon: 'fa-toolbox', color: 'orange',
-        description: 'Platforms & suites for automotive validation',
-        skills: [
-            'Vector Tools (CANoe, CANalyzer, CANdb, CANdela, VectorCast, vTESTstudio)',
-            'Trace32','UnderstandC','dSPACE','ECU-Test Tool','RQM','RTC','VectorCast','VtestStudio'
-        ]
-    },
-    {
-        title: 'Debugging & Analysis', icon: 'fa-bug', color: 'red',
-        description: 'Root-cause, flashing & static/dynamic insights',
-        skills: ['Flashing','Trace32 Debugging','Code Analysis']
-    },
-    {
-        title: 'Software Lifecycle', icon: 'fa-diagram-project', color: 'rose',
-        description: 'End-to-end engineering process mastery',
-        skills: ['SDLC','STLC','Bug Life Cycle']
-    },
-    {
-        title: 'Coverage Analysis', icon: 'fa-chart-pie', color: 'gold',
-        description: 'Quality measurement & structural assurance',
-        skills: ['Structural Coverage (Statement, Branch, Singular Point)','MC/DC Expertise']
-    },
-    {
-        title: 'Requirements Management', icon: 'fa-clipboard-list', color: 'teal',
-        description: 'Traceability & model-driven engineering',
-        skills: ['DOORS','Rhapsody']
-    },
-    {
-        title: 'Version Control', icon: 'fa-code-branch', color: 'blue',
-        description: 'Configuration & collaboration systems',
-        skills: ['Git','SVN']
-    },
-    {
-        title: 'Other Tools & Platforms', icon: 'fa-layer-group', color: 'green',
-        description: 'Complementary ecosystem competencies',
-        skills: [
-            'Python','CAN','CAPL','SIL','HIL','CANoe','Jira','RTC ROM','Understand C','dSPACE','Git','Visual Studio'
-        ]
+// ================= Skills Carousel Implementation =================
+
+// Import skills data
+import { SKILLS, CATEGORY_COLORS, colorForCategory } from './skills/skills-data.js';
+
+console.log('Skills data imported successfully:', SKILLS.length, 'skills loaded');
+
+// Carousel state
+let currentCategory = null;
+let carouselInitialized = false;
+
+// Initialize carousel after DOM content loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initializeSkillsCarousel();
+});
+
+function initializeSkillsCarousel() {
+    try {
+        if (carouselInitialized) return;
+
+        console.log('Initializing skills carousel...');
+        
+        const carouselContainer = document.querySelector('.categories-carousel');
+        const detailPanel = document.querySelector('.skills-detail-panel');
+
+        if (!carouselContainer || !detailPanel) {
+            console.warn('Skills carousel elements not found');
+            return;
+        }
+
+        console.log('Carousel elements found, proceeding with initialization...');
+
+        // Group skills by category
+        const skillsByCategory = groupSkillsByCategory();
+        console.log('Skills grouped by category:', Object.keys(skillsByCategory));
+
+        // Create category items
+        createCategoryItems(carouselContainer, skillsByCategory);
+
+        // Setup event listeners
+        setupCarouselEvents(carouselContainer, detailPanel, skillsByCategory);
+
+        carouselInitialized = true;
+        console.log('Skills carousel initialized successfully');
+    } catch (error) {
+        console.error('Error initializing skills carousel:', error);
     }
-];
+}
 
-function buildSkillCarousels(){
-    const container = document.getElementById('skills-dynamic');
-    if(!container) return;
-    container.innerHTML = '';
-    SKILL_CATEGORIES.forEach((cat, idx) => {
-        const section = document.createElement('div');
-        section.className = 'skill-carousel';
-        section.setAttribute('data-category-color', cat.color || 'blue');
-        section.setAttribute('role','group');
-        section.setAttribute('aria-label', cat.title);
+function groupSkillsByCategory() {
+    return SKILLS.reduce((acc, skill) => {
+        if (!acc[skill.category]) {
+            acc[skill.category] = [];
+        }
+        acc[skill.category].push(skill);
+        return acc;
+    }, {});
+}
 
-        const header = document.createElement('div');
-        header.className = 'skill-carousel-header';
-        header.innerHTML = `
-            <h3 class="skill-carousel-title"><i class="fas ${cat.icon}" aria-hidden="true"></i><span>${cat.title}</span></h3>
-            <div class="skill-carousel-controls">
-                <button class="skill-btn prev" aria-label="Scroll ${cat.title} left" data-dir="-1"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-                <button class="skill-btn next" aria-label="Scroll ${cat.title} right" data-dir="1"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
-                <div class="skill-progress-bar" aria-hidden="true"><div class="skill-progress-fill"></div></div>
-            </div>`;
-        section.appendChild(header);
+function createCategoryItems(container, skillsByCategory) {
+    console.log('Creating category items for categories:', Object.keys(skillsByCategory));
+    
+    const categories = Object.keys(skillsByCategory).sort();
 
-        const trackWrapper = document.createElement('div');
-        trackWrapper.className = 'skill-track-wrapper';
-        const track = document.createElement('div');
-        track.className = 'skill-track';
-        track.setAttribute('tabindex','0');
-        track.setAttribute('aria-label', `${cat.title} skills horizontal list`);
+    categories.forEach(category => {
+        const skills = skillsByCategory[category];
+        const categoryColor = colorForCategory(category);
 
-        cat.skills.forEach(skill => {
-            const card = document.createElement('div');
-            card.className = 'skill-card';
-            const iconClass = pickIconForSkill(skill);
-            card.innerHTML = `
-                <div class="skill-card-icon"><i class="fas ${iconClass}" aria-hidden="true"></i></div>
-                <div class="skill-card-title">${skill}</div>
-                <div class="skill-card-tags"></div>`;
-            track.appendChild(card);
+        const categoryItem = document.createElement('div');
+        categoryItem.className = 'category-item';
+        categoryItem.dataset.category = category;
+        categoryItem.setAttribute('role', 'button');
+        categoryItem.setAttribute('tabindex', '0');
+        categoryItem.setAttribute('aria-label', `View ${skills.length} skills in ${category}`);
+
+        categoryItem.innerHTML = `
+            <div class="category-icon">
+                <i class="fas ${getCategoryIcon(category)}" aria-hidden="true"></i>
+            </div>
+            <div class="category-title">${category}</div>
+            <div class="category-count">${skills.length} skills</div>
+        `;
+
+        // Add color class for theming
+        categoryItem.classList.add(`category-${categoryColor}`);
+
+        container.appendChild(categoryItem);
+        console.log('Created category item for:', category);
+    });
+    
+    console.log('Total category items created:', container.children.length);
+}
+
+function getCategoryIcon(category) {
+    const iconMap = {
+        'Testing': 'fa-vials',
+        'Simulation': 'fa-cogs',
+        'Programming': 'fa-code',
+        'Protocols': 'fa-network-wired',
+        'Safety': 'fa-shield-alt',
+        'Tools': 'fa-toolbox',
+        'Coverage': 'fa-chart-pie',
+        'Requirements': 'fa-clipboard-list',
+        'Version Control': 'fa-code-branch'
+    };
+
+    return iconMap[category] || 'fa-circle-notch';
+}
+
+function setupCarouselEvents(carouselContainer, detailPanel, skillsByCategory) {
+    const categoryItems = carouselContainer.querySelectorAll('.category-item');
+
+    categoryItems.forEach(item => {
+        // Click event
+        item.addEventListener('click', () => {
+            const category = item.dataset.category;
+            selectCategory(category, item, detailPanel, skillsByCategory);
         });
 
-        trackWrapper.appendChild(track);
-        const dragHint = document.createElement('div');
-        dragHint.className = 'skill-drag-hint';
-        dragHint.textContent = 'Drag / Scroll';
-        trackWrapper.appendChild(dragHint);
-        section.appendChild(trackWrapper);
-        container.appendChild(section);
+        // Keyboard events
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const category = item.dataset.category;
+                selectCategory(category, item, detailPanel, skillsByCategory);
+            }
+        });
 
-        setupCarouselInteractions(section, track);
+        // Hover events for preview (optional)
+        item.addEventListener('mouseenter', () => {
+            if (currentCategory !== item.dataset.category) {
+                item.classList.add('hover');
+            }
+        });
+
+        item.addEventListener('mouseleave', () => {
+            item.classList.remove('hover');
+        });
     });
-}
 
-function pickIconForSkill(name){
-    const lower = name.toLowerCase();
-    if(lower.includes('python')) return 'fa-python';
-    if(lower.includes('git')) return 'fa-code-branch';
-    if(lower.includes('coverage') || lower.includes('mcdc')) return 'fa-chart-line';
-    if(lower.includes('door')) return 'fa-door-open';
-    if(lower.includes('trace32') || lower.includes('debug')) return 'fa-microchip';
-    if(lower.includes('test') || lower.includes('unit')) return 'fa-vial';
-    if(lower.includes('integration') || lower.includes('system')) return 'fa-layer-group';
-    if(lower.includes('automation')) return 'fa-robot';
-    if(lower.includes('agile')) return 'fa-sync-alt';
-    if(lower.includes('can')) return 'fa-network-wired';
-    if(lower.includes('uds')) return 'fa-shield-alt';
-    if(lower.includes('autosar')) return 'fa-car';
-    if(lower.includes('rhapsody')) return 'fa-cube';
-    if(lower.includes('dspace')) return 'fa-satellite-dish';
-    if(lower.includes('jira')) return 'fa-ticket';
-    return 'fa-circle-notch';
-}
-
-function setupCarouselInteractions(section, track){
-    const prevBtn = section.querySelector('.skill-btn.prev');
-    const nextBtn = section.querySelector('.skill-btn.next');
-    const progressFill = section.querySelector('.skill-progress-fill');
-    const wrapper = section.querySelector('.skill-track-wrapper');
-
-    const updateScrollState = () => {
-        const maxScroll = track.scrollWidth - track.clientWidth;
-        const sc = track.scrollLeft;
-        const pct = maxScroll > 0 ? (sc / maxScroll) * 100 : 0;
-        progressFill.style.width = pct + '%';
-        prevBtn.disabled = sc <= 0; 
-        nextBtn.disabled = sc >= maxScroll - 2; 
-        wrapper.dataset.scrollStart = sc <= 0 ? 'true' : 'false';
-        wrapper.dataset.scrollEnd = sc >= maxScroll - 2 ? 'true' : 'false';
-    };
-
-    const scrollByAmount = (dir) => {
-        const amount = track.clientWidth * 0.7 * dir; // 70% viewport of track
-        track.scrollBy({ left: amount, behavior: 'smooth' });
-    };
-
-    prevBtn.addEventListener('click', () => scrollByAmount(-1));
-    nextBtn.addEventListener('click', () => scrollByAmount(1));
-    track.addEventListener('scroll', updateScrollState);
-    window.addEventListener('resize', updateScrollState);
-
-    // Keyboard horizontal scrolling
-    track.addEventListener('keydown', (e) => {
-        if(['ArrowRight','ArrowLeft','Home','End'].includes(e.key)){
-            e.preventDefault();
-            if(e.key==='ArrowRight') scrollByAmount(1);
-            else if(e.key==='ArrowLeft') scrollByAmount(-1);
-            else if(e.key==='Home') track.scrollTo({ left:0, behavior:'smooth'});
-            else if(e.key==='End') track.scrollTo({ left: track.scrollWidth, behavior:'smooth'});
+    // Close detail panel when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!carouselContainer.contains(e.target) && !detailPanel.contains(e.target)) {
+            closeDetailPanel(detailPanel);
         }
     });
 
-    // Drag to scroll (mouse / touch)
-    let isDown = false, startX=0, scrollStart=0; let dragMoved=false;
-    const start = (clientX) => { isDown=true; startX=clientX; scrollStart=track.scrollLeft; dragMoved=false; track.dataset.dragging='true'; };
-    const move = (clientX) => { if(!isDown) return; const dx = clientX - startX; track.scrollLeft = scrollStart - dx; if(Math.abs(dx) > 5) dragMoved=true; };
-    const end = () => { isDown=false; track.dataset.dragging='false'; };
-    track.addEventListener('mousedown', e => { start(e.clientX); });
-    track.addEventListener('mousemove', e => { if(isDown){ e.preventDefault(); move(e.clientX);} });
-    track.addEventListener('mouseleave', end);
-    track.addEventListener('mouseup', end);
-    track.addEventListener('click', e => { if(dragMoved) e.preventDefault(); });
-    track.addEventListener('touchstart', e => { const t=e.touches[0]; start(t.clientX); }, {passive:true});
-    track.addEventListener('touchmove', e => { const t=e.touches[0]; move(t.clientX); }, {passive:true});
-    track.addEventListener('touchend', end);
-
-    // Initial state
-    requestAnimationFrame(updateScrollState);
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && detailPanel.classList.contains('active')) {
+            closeDetailPanel(detailPanel);
+        }
+    });
 }
 
-// Initialize after DOM content & after fonts to avoid layout shift
-document.addEventListener('DOMContentLoaded', () => {
-    buildSkillCarousels();
-});
-// ===========================================================
+function selectCategory(category, item, detailPanel, skillsByCategory) {
+    console.log('Category selected:', category);
+    
+    // Update active state
+    document.querySelectorAll('.category-item').forEach(catItem => {
+        catItem.classList.remove('active');
+    });
+    item.classList.add('active');
 
-// ===================== Skills Explorer Redesign =====================
-// Data model for enhanced skills explorer (richer than carousel)
-const SKILLS_DATA = [
-    { id:'s1', name:'Black Box Testing', category:'Testing Methodologies', level:92, description:'Validation approach focusing on functional behavior without internal code awareness.', keywords:['functional','system','validation'], attributes:{ Type:'Functional', Focus:'External Behavior'} },
-    { id:'s2', name:'Regression Testing', category:'Testing Methodologies', level:88, description:'Ensuring existing functionality remains stable after changes or integrations.', keywords:['stability','maintenance'], attributes:{ Scope:'Broad', Trigger:'Code Change'} },
-    { id:'s3', name:'Integration Testing', category:'Testing Methodologies', level:86, description:'Verifies interactions and data flow between integrated modules.', keywords:['interfaces','modules'], attributes:{ Level:'Mid-tier', Focus:'Interfaces'} },
-    { id:'s4', name:'Manual Testing', category:'Testing Methodologies', level:90, description:'Human-driven exploratory & scripted execution for nuanced defect discovery.', keywords:['exploratory','scripted'], attributes:{ Strength:'Contextual Insight'} },
-    { id:'s5', name:'Automation Testing', category:'Testing Methodologies', level:75, description:'Accelerated repeatable execution leveraging tool-based frameworks.', keywords:['repeatability','speed'], attributes:{ Benefit:'Scalability'} },
-    { id:'s6', name:'UDS', category:'Protocols & Standards', level:70, description:'Unified Diagnostic Services protocol used for ECU diagnostics & flashing.', keywords:['diagnostics','ecu','iso14229'], attributes:{ Domain:'Automotive', Type:'Protocol'} },
-    { id:'s7', name:'CAN', category:'Protocols & Standards', level:85, description:'Controller Area Network communication backbone in automotive distributed systems.', keywords:['bus','network','embedded'], attributes:{ Speed:'Classical / FD'} },
-    { id:'s8', name:'AUTOSAR', category:'Protocols & Standards', level:65, description:'Standardized automotive software architecture enabling portability & reuse.', keywords:['architecture','standard'], attributes:{ Layering:'MCAL/APPL'} },
-    { id:'s9', name:'ISO 26262 Guidelines', category:'Protocols & Standards', level:60, description:'Functional safety standard guiding lifecycle risk reduction in road vehicles.', keywords:['safety','compliance'], attributes:{ Domain:'Safety', Aspect:'Process'} },
-    { id:'s10', name:'Embedded C', category:'Programming & Scripting', level:82, description:'Low-level implementation for performance-critical embedded components.', keywords:['firmware','memory','pointers'], attributes:{ Paradigm:'Procedural'} },
-    { id:'s11', name:'Python', category:'Programming & Scripting', level:78, description:'Automation, report generation & analysis scripting for validation ecosystems.', keywords:['scripting','automation','analysis'], attributes:{ Style:'Multi-purpose'} },
-    { id:'s12', name:'CAPL', category:'Programming & Scripting', level:72, description:'Vector tool-focused language for CAN simulation & message orchestration.', keywords:['simulation','vector','bus'], attributes:{ Tool:'Vector'} },
-    { id:'s13', name:'Trace32 Debugging', category:'Debugging & Analysis', level:74, description:'Hardware-level program control & inspection for embedded targets.', keywords:['jtag','breakpoints','firmware'], attributes:{ Mode:'On-target'} },
-    { id:'s14', name:'VectorCast', category:'Testing Tools', level:80, description:'Unit & integration test environment enabling structural coverage insights.', keywords:['unit','coverage','automation'], attributes:{ Coverage:'MC/DC'} },
-    { id:'s15', name:'dSPACE', category:'Testing Tools', level:68, description:'HIL platform enabling real-time simulation for control system validation.', keywords:['hil','simulation','realtime'], attributes:{ Domain:'HIL'} },
-    { id:'s16', name:'ECU-Test Tool', category:'Testing Tools', level:66, description:'Test automation suite for ECU function & integration workflows.', keywords:['automation','ecu','vector'], attributes:{ Type:'Framework'} },
-    { id:'s17', name:'Code Analysis (UnderstandC)', category:'Debugging & Analysis', level:70, description:'Static exploration of complexity, dependencies & potential risk hotspots.', keywords:['static','complexity','metrics'], attributes:{ Benefit:'Risk Visibility'} },
-    { id:'s18', name:'MC/DC Expertise', category:'Coverage Analysis', level:78, description:'Modified Condition/Decision Coverage to assure decision logic robustness.', keywords:['coverage','safety','logic'], attributes:{ Context:'Safety-Critical'} },
-    { id:'s19', name:'DOORS', category:'Requirements Management', level:75, description:'Requirement traceability & change linkage across verification artifacts.', keywords:['traceability','requirements'], attributes:{ Strength:'Impact Tracking'} },
-    { id:'s20', name:'Rhapsody', category:'Requirements Management', level:55, description:'Model-driven systems & software design with UML/SysML constructs.', keywords:['modeling','uml'], attributes:{ Domain:'Systems'} },
-    { id:'s21', name:'Git', category:'Version Control', level:82, description:'Distributed version control ensuring efficient collaboration & branching.', keywords:['scm','branches','merge'], attributes:{ Strategy:'Feature Branching'} },
-    { id:'s22', name:'SVN', category:'Version Control', level:60, description:'Centralized repository control for legacy or regulated environments.', keywords:['centralized','legacy'], attributes:{ Mode:'Central'} },
-    { id:'s23', name:'HIL Testing', category:'Testing Methodologies', level:70, description:'Hardware-in-the-loop validation of control logic with real-time constraints.', keywords:['real-time','platform'], attributes:{ Layer:'System'} },
-    { id:'s24', name:'SIL Testing', category:'Testing Methodologies', level:68, description:'Software-in-loop validation using simulation for early defect detection.', keywords:['simulation','automation'], attributes:{ Benefit:'Early Shift-left'} },
-    { id:'s25', name:'System Testing', category:'Testing Methodologies', level:84, description:'End-to-end validation of integrated functional and non-functional goals.', keywords:['end-to-end','requirements'], attributes:{ Scope:'Full Stack'} },
-    { id:'s26', name:'Unit Testing', category:'Testing Methodologies', level:83, description:'Fine-grained verification of isolated logic with deterministic inputs.', keywords:['granular','logic'], attributes:{ Benefit:'Fast Feedback'} },
-    { id:'s27', name:'Flashing', category:'Debugging & Analysis', level:76, description:'Reliable deployment & verification of firmware images to ECUs.', keywords:['firmware','ecu','bootloader'], attributes:{ Concern:'Integrity'} },
-    { id:'s28', name:'Structural Coverage', category:'Coverage Analysis', level:77, description:'Statement & branch metrics illuminate unverified execution pathways.', keywords:['metrics','gaps'], attributes:{ Levels:'Stmt/Branch'} },
-    { id:'s29', name:'SDLC', category:'Software Lifecycle', level:82, description:'Governed phases from requirements through maintenance for quality delivery.', keywords:['process','phases'], attributes:{ Focus:'Lifecycle'} },
-    { id:'s30', name:'STLC', category:'Software Lifecycle', level:80, description:'Structured test lifecycle progression aligning verification maturity.', keywords:['test process','planning'], attributes:{ Alignment:'Quality Gates'} },
-    { id:'s31', name:'Bug Life Cycle', category:'Software Lifecycle', level:85, description:'Managed transition states ensuring resolution accountability & clarity.', keywords:['defect','workflow'], attributes:{ Tracking:'State Progression'} }
-];
+    // Update current category
+    currentCategory = category;
 
-// Config
-const SKILLS_UI = {
-    storageViewKey:'skillsViewMode',
-    selectors:{
-        results:'#skills-results', search:'#skill-search', clearSearch:'#skill-clear-search', chips:'#skill-chips', count:'#skills-count', clearFilters:'#skills-clear-filters', sort:'#skill-sort'
+    // Populate and show detail panel
+    populateDetailPanel(detailPanel, category, skillsByCategory[category]);
+
+    // Animate panel in
+    showDetailPanel(detailPanel);
+}
+
+function populateDetailPanel(panel, category, skills) {
+    const categoryColor = colorForCategory(category);
+    const categoryIcon = getCategoryIcon(category);
+
+    panel.innerHTML = `
+        <div class="detail-header">
+            <div class="detail-icon">
+                <i class="fas ${categoryIcon}" aria-hidden="true"></i>
+            </div>
+            <div class="detail-title">${category}</div>
+        </div>
+        <div class="detail-description">
+            Explore ${skills.length} specialized skills in ${category.toLowerCase()}.
+        </div>
+        <div class="skills-list">
+            ${skills.map(skill => createSkillItemHTML(skill)).join('')}
+        </div>
+    `;
+
+    // Add color class to panel
+    panel.className = `skills-detail-panel category-${categoryColor}`;
+
+    // Animate progress bars after panel is visible
+    setTimeout(() => {
+        animateProgressBars(panel);
+    }, 300);
+}
+
+function createSkillItemHTML(skill) {
+    const tagsHTML = skill.tags.map(tag => `<span class="skill-tag">${tag}</span>`).join('');
+
+    return `
+        <div class="skill-detail-item" data-skill="${skill.name}">
+            <div class="skill-name">
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                ${skill.name}
+            </div>
+            <div class="skill-level">${skill.level}% Proficiency</div>
+            <div class="skill-progress-bar">
+                <div class="skill-progress-fill" style="width: 0%; transition-delay: ${Math.random() * 0.5}s;"></div>
+            </div>
+            <div class="skill-description">${skill.desc}</div>
+            <div class="skill-experience">
+                <i class="fas fa-clock" aria-hidden="true"></i>
+                ${skill.experience}
+            </div>
+            <div class="skill-endorsements">
+                <i class="fas fa-thumbs-up" aria-hidden="true"></i>
+                ${skill.endorsements} endorsements
+            </div>
+            <div class="skill-tags">
+                ${tagsHTML}
+            </div>
+        </div>
+    `;
+}
+
+function showDetailPanel(panel) {
+    panel.classList.add('active');
+    panel.style.transform = 'translateX(0)';
+    panel.style.opacity = '1';
+
+    // Announce to screen readers
+    panel.setAttribute('aria-hidden', 'false');
+}
+
+function closeDetailPanel(panel) {
+    panel.classList.remove('active');
+    panel.style.transform = 'translateX(100%)';
+    panel.style.opacity = '0';
+
+    // Clear active state
+    document.querySelectorAll('.category-item').forEach(item => {
+        item.classList.remove('active');
+    });
+
+    currentCategory = null;
+
+    // Announce to screen readers
+    panel.setAttribute('aria-hidden', 'true');
+}
+
+function animateProgressBars(panel) {
+    const progressBars = panel.querySelectorAll('.skill-progress-fill');
+
+    progressBars.forEach((bar, index) => {
+        const skillItem = bar.closest('.skill-detail-item');
+        const skillName = skillItem.dataset.skill;
+        const skill = SKILLS.find(s => s.name === skillName);
+
+        if (skill) {
+            // Stagger the animations
+            setTimeout(() => {
+                bar.style.width = `${skill.level}%`;
+            }, index * 100);
+        }
+    });
+}
+
+// Utility function for grouping (if needed elsewhere)
+function groupBy(array, key) {
+    return array.reduce((result, item) => {
+        const group = item[key];
+        if (!result[group]) {
+            result[group] = [];
+        }
+        result[group].push(item);
+        return result;
+    }, {});
+}
+
+// ================= End Skills Carousel Implementation =================
+
+// Test function to verify carousel functionality
+window.testCarousel = function() {
+    console.log('Testing carousel functionality...');
+    
+    const carouselContainer = document.querySelector('.categories-carousel');
+    const detailPanel = document.querySelector('.skills-detail-panel');
+    
+    if (!carouselContainer) {
+        console.error('Categories carousel container not found!');
+        return;
     }
+    
+    if (!detailPanel) {
+        console.error('Skills detail panel not found!');
+        return;
+    }
+    
+    console.log('Carousel elements found');
+    console.log('Categories carousel:', carouselContainer);
+    console.log('Detail panel:', detailPanel);
+    
+    const categoryItems = carouselContainer.querySelectorAll('.category-item');
+    console.log('Category items found:', categoryItems.length);
+    
+    if (categoryItems.length > 0) {
+        console.log('First category item:', categoryItems[0]);
+        console.log('Category data:', {
+            category: categoryItems[0].dataset.category,
+            text: categoryItems[0].textContent.trim()
+        });
+    }
+    
+    console.log('Carousel test complete');
 };
 
-let activeView = localStorage.getItem(SKILLS_UI.storageViewKey) || 'grid';
-let activeSearch = '';
-let activeCategories = new Set();
-let activeSort = 'category';
+// Auto-run test after carousel initialization
+document.addEventListener('DOMContentLoaded', () => {
+    // Wait a bit for carousel to initialize
+    setTimeout(() => {
+        if (typeof window.testCarousel === 'function') {
+            console.log('Running carousel test...');
+            window.testCarousel();
+        }
+    }, 1000);
+});
 
-function initSkillsExplorer(){
-    const resultsEl = qs(SKILLS_UI.selectors.results);
-    if(!resultsEl) return; // abort if markup missing
-    resultsEl.dataset.view = activeView;
-    buildCategoryChips();
-    bindControls();
-    renderSkills();
-}
 
-function qs(sel, root=document){ return root.querySelector(sel); }
-function qsa(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
 
-function buildCategoryChips(){
-    const chipWrap = qs(SKILLS_UI.selectors.chips);
-    if(!chipWrap) return;
-    chipWrap.innerHTML = '';
-    const categories = Array.from(new Set(SKILLS_DATA.map(s=>s.category))).sort();
-    categories.forEach(cat => {
-        const btn = document.createElement('button');
-        btn.type='button';
-        btn.className='skill-chip';
-        btn.textContent=cat;
-        btn.setAttribute('role','listitem');
-        btn.dataset.color = pickCategoryColor(cat);
-        btn.setAttribute('aria-pressed','false');
-        btn.addEventListener('click', () => toggleCategory(cat, btn));
-        chipWrap.appendChild(btn);
-    });
-}
-
-function pickCategoryColor(cat){
-    const map = ['blue','green','orange','purple','red','teal','gold','rose'];
-    const idx = Math.abs(hashString(cat)) % map.length; return map[idx];
-}
-function hashString(str){ let h=0; for(let i=0;i<str.length;i++){ h = Math.imul(31,h) + str.charCodeAt(i) | 0;} return h; }
-
-function toggleCategory(category, btn){
-    if(activeCategories.has(category)) { activeCategories.delete(category); btn.setAttribute('aria-pressed','false'); }
-    else { activeCategories.add(category); btn.setAttribute('aria-pressed','true'); }
-    updateFiltersState();
-    renderSkills(true);
-}
-
-function bindControls(){
-    const searchEl = qs(SKILLS_UI.selectors.search);
-    const clearSearchBtn = qs(SKILLS_UI.selectors.clearSearch);
-    const sortEl = qs(SKILLS_UI.selectors.sort);
-    const clearFiltersBtn = qs(SKILLS_UI.selectors.clearFilters);
-    const resultsEl = qs(SKILLS_UI.selectors.results);
-
-    // Search
-    if(searchEl){
-        searchEl.addEventListener('input', e => {
-            activeSearch = e.target.value.trim();
-            clearSearchBtn.hidden = activeSearch.length === 0;
-            renderSkills();
-        });
-    }
-    if(clearSearchBtn){
-        clearSearchBtn.addEventListener('click', ()=> { searchEl.value=''; activeSearch=''; clearSearchBtn.hidden=true; searchEl.focus(); renderSkills(); });
-    }
-    // View toggle
-    qsa('.view-btn').forEach(btn => btn.addEventListener('click', ()=>{
-        const view = btn.dataset.view; if(view === activeView) return; activeView=view; localStorage.setItem(SKILLS_UI.storageViewKey, view); qsa('.view-btn').forEach(b=>b.setAttribute('aria-pressed', b===btn ? 'true':'false')); resultsEl.dataset.view=view; renderSkills(true);
-    }));
-    // Sort
-    if(sortEl){ sortEl.addEventListener('change', e=> { activeSort = e.target.value; renderSkills(true); }); }
-    // Clear filters
-    if(clearFiltersBtn){ clearFiltersBtn.addEventListener('click', ()=> { activeCategories.clear(); qsa('.skill-chip').forEach(ch=>ch.setAttribute('aria-pressed','false')); renderSkills(true); updateFiltersState(); }); }
-
-    // Keyboard shortcut: / focuses search
-    document.addEventListener('keydown', e => { if(e.key === '/' && document.activeElement !== searchEl){ e.preventDefault(); searchEl.focus(); } });
-}
-
-function updateFiltersState(){
-    const clearFiltersBtn = qs(SKILLS_UI.selectors.clearFilters);
-    if(clearFiltersBtn) clearFiltersBtn.hidden = activeCategories.size === 0;
-}
-
-function sortSkills(list){
-    switch(activeSort){
-        case 'name': return list.sort((a,b)=> a.name.localeCompare(b.name));
-        case 'level-desc': return list.sort((a,b)=> b.level - a.level);
-        case 'level-asc': return list.sort((a,b)=> a.level - b.level);
-        case 'category': default: return list.sort((a,b)=> a.category.localeCompare(b.category) || b.level - a.level);
-    }
-}
-
-function filterSkills(){
-    let list = SKILLS_DATA.slice();
-    if(activeCategories.size){ list = list.filter(s => activeCategories.has(s.category)); }
-    if(activeSearch){
-        const q = activeSearch.toLowerCase();
-        list = list.filter(s => s.name.toLowerCase().includes(q) || s.category.toLowerCase().includes(q) || s.description.toLowerCase().includes(q) || (s.keywords && s.keywords.some(k=>k.includes(q))));
-    }
-    return sortSkills(list);
-}
-
-function renderSkills(animate=false){
-    const resultsEl = qs(SKILLS_UI.selectors.results); if(!resultsEl) return;
-    const list = filterSkills();
-    updateCount(list.length);
-    const emptyEl = qs('#skills-empty');
-    if(list.length === 0){ resultsEl.innerHTML=''; if(emptyEl) emptyEl.hidden=false; return; } else if(emptyEl) emptyEl.hidden=true;
-    if(activeView === 'grid') renderGrid(list, resultsEl, animate); else renderListView(list, resultsEl, animate);
-    // Focus management after view change
-    if(animate){ setTimeout(()=> { resultsEl.focus({ preventScroll:true }); }, 20); }
-}
-
-function updateCount(count){ const countEl = qs(SKILLS_UI.selectors.count); if(!countEl) return; countEl.textContent = `${count} skill${count!==1?'s':''} displayed`; }
-
-function renderGrid(list, container, animate){
-    container.innerHTML='';
-    const tmpl = qs('#skill-card-template');
-    list.forEach(skill => {
-        const clone = tmpl.content.firstElementChild.cloneNode(true);
-        clone.dataset.skillId = skill.id;
-        const nameEl = clone.querySelector('.skill-name'); nameEl.textContent = skill.name; nameEl.id = `skill-name-${skill.id}`;
-        const lvlEl = clone.querySelector('.skill-level-badge'); lvlEl.textContent = skill.level + '%';
-        const catBadge = clone.querySelector('.skill-category-badge'); catBadge.textContent = skill.category;
-        const desc = clone.querySelector('.skill-description'); desc.textContent = skill.description;
-        const prog = clone.querySelector('.skill-progress-fill-ex'); requestAnimationFrame(()=> prog.style.width = skill.level + '%');
-        const tagsWrap = clone.querySelector('.skill-tags'); if(skill.keywords){ skill.keywords.slice(0,5).forEach(k => { const span=document.createElement('span'); span.className='tag-sm'; span.textContent=k; tagsWrap.appendChild(span); }); }
-        const expandBtn = clone.querySelector('.skill-expand-btn'); const panel = clone.querySelector('.skill-panel'); expandBtn.setAttribute('aria-controls', `skill-panel-${skill.id}`); panel.id = `skill-panel-${skill.id}`;
-        expandBtn.addEventListener('click', ()=> togglePanel(expandBtn, panel));
-        // Attributes
-        const dl = clone.querySelector('.skill-attributes'); Object.entries(skill.attributes || {}).forEach(([k,v])=> { const dt=document.createElement('dt'); dt.textContent=k; const dd=document.createElement('dd'); dd.textContent=v; dl.append(dt,dd); });
-        // Keyboard expand with Enter/Space on card
-        clone.addEventListener('keydown', e=> { if(e.key==='Enter' || e.key===' '){ e.preventDefault(); expandBtn.click(); } });
-        container.appendChild(clone);
-    });
-}
-
-function renderListView(list, container, animate){
-    container.innerHTML='';
-    const categories = groupBy(list, s=>s.category);
-    const catTmpl = qs('#skill-list-category-template');
-    const itemTmpl = qs('#skill-list-item-template');
-    Object.entries(categories).sort((a,b)=> a[0].localeCompare(b[0])).forEach(([cat, skills]) => {
-        const catClone = catTmpl.content.firstElementChild.cloneNode(true);
-        const catBtn = catClone.querySelector('.category-accordion-btn');
-        const catPanel = catClone.querySelector('.skill-category-panel');
-        const catName = catClone.querySelector('.cat-name'); catName.textContent = cat;
-        const catCount = catClone.querySelector('.cat-count'); catCount.textContent = skills.length;
-        const panelId = `cat-panel-${hashString(cat)}`; catPanel.id = panelId; catBtn.setAttribute('aria-controls', panelId);
-        catBtn.addEventListener('click', ()=> togglePanel(catBtn, catPanel));
-        const listUl = catClone.querySelector('.skill-list');
-        skills.sort((a,b)=> b.level - a.level).forEach(skill => {
-            const row = itemTmpl.content.firstElementChild.cloneNode(true);
-            row.dataset.skillId = skill.id;
-            const toggle = row.querySelector('.skill-row-toggle');
-            const rowPanel = row.querySelector('.skill-row-panel');
-            const nameSpan = row.querySelector('.skill-row-name'); nameSpan.textContent = skill.name;
-            const levelSpan = row.querySelector('.skill-row-level'); levelSpan.textContent = skill.level + '%';
-            const progFill = row.querySelector('.skill-row-progress-fill'); requestAnimationFrame(()=> progFill.style.width = skill.level + '%');
-            const desc = row.querySelector('.skill-row-desc'); desc.textContent = skill.description;
-            const tags = row.querySelector('.skill-row-tags'); (skill.keywords||[]).slice(0,6).forEach(k=> { const t=document.createElement('span'); t.className='tag-sm'; t.textContent=k; tags.appendChild(t); });
-            toggle.setAttribute('aria-controls', `row-panel-${skill.id}`); rowPanel.id = `row-panel-${skill.id}`;
-            toggle.addEventListener('click', ()=> togglePanel(toggle, rowPanel));
-            listUl.appendChild(row);
-        });
-        container.appendChild(catClone);
-    });
-}
-
-function togglePanel(control, panel){
-    const expanded = control.getAttribute('aria-expanded') === 'true';
-    control.setAttribute('aria-expanded', String(!expanded));
-    if(expanded){ panel.hidden = true; }
-    else { panel.hidden = false; animatePanel(panel); }
-}
-
-function animatePanel(panel){
-    panel.style.opacity=0; panel.style.transform='translateY(-4px)';
-    requestAnimationFrame(()=> { panel.style.transition='opacity .35s ease, transform .35s ease'; panel.style.opacity=1; panel.style.transform='translateY(0)'; setTimeout(()=> { panel.style.transition=''; }, 400); });
-}
-
-function groupBy(arr, keyFn){ return arr.reduce((acc,item)=>{ const k=keyFn(item); (acc[k]=acc[k]||[]).push(item); return acc; }, {}); }
-
-// Initialize after DOM content loaded
-document.addEventListener('DOMContentLoaded', initSkillsExplorer);
-// ===================== End Skills Explorer Redesign =====================
-
-// ====== Legacy standalone skills data integrated (rotation feature removed) ======
-// The rotating orbit & separate /skills/ pages were deprecated. Consolidated data from skills/skills-data.js.
-// If needed elsewhere, import from this centralized constant.
-const LEGACY_SKILLS = [
-    { name: 'Black Box Testing', category: 'Testing', level: 92, tags:['functional','system','validation'], desc: 'Focus on external behavior without viewing internal code.' },
-    { name: 'Regression Testing', category: 'Testing', level: 88, tags:['stability','maintenance'], desc: 'Ensures unchanged behavior after code modifications.' },
-    { name: 'Integration Testing', category: 'Testing', level: 86, tags:['interfaces','modules'], desc: 'Validates contract between combined modules.' },
-    { name: 'Unit Testing', category: 'Testing', level: 83, tags:['granular','logic'], desc: 'Isolates functionality for low-level logic validation.' },
-    { name: 'System Testing', category: 'Testing', level: 84, tags:['end-to-end'], desc: 'Verifies complete system behavior vs requirements.' },
-    { name: 'HIL Testing', category: 'Simulation', level: 70, tags:['hardware','realtime'], desc: 'Validates control logic with hardware in loop.' },
-    { name: 'SIL Testing', category: 'Simulation', level: 68, tags:['simulation','early'], desc: 'Software execution within simulated environment.' },
-    { name: 'Embedded C', category: 'Programming', level: 82, tags:['firmware','memory'], desc: 'Low-level language for performance and control.' },
-    { name: 'Python', category: 'Programming', level: 78, tags:['automation','scripting'], desc: 'Automation, reporting & tooling scripts.' },
-    { name: 'CAPL', category: 'Programming', level: 72, tags:['vector','bus'], desc: 'Vector tool scripting for CAN bus scenarios.' },
-    { name: 'UDS', category: 'Protocols', level: 70, tags:['diagnostics','ecu'], desc: 'Unified Diagnostic Services for ECUs.' },
-    { name: 'CAN', category: 'Protocols', level: 85, tags:['network','bus'], desc: 'Primary automotive communication bus.' },
-    { name: 'AUTOSAR', category: 'Protocols', level: 65, tags:['architecture'], desc: 'Standardized automotive software framework.' },
-    { name: 'ISO 26262', category: 'Safety', level: 60, tags:['functional safety'], desc: 'Guidelines for automotive functional safety.' },
-    { name: 'VectorCast', category: 'Tools', level: 80, tags:['unit','coverage'], desc: 'Unit & integration test environment.' },
-    { name: 'Trace32 Debugging', category: 'Tools', level: 74, tags:['jtag','firmware'], desc: 'Hardware level debugging & introspection.' },
-    { name: 'dSPACE', category: 'Tools', level: 68, tags:['hil','simulation'], desc: 'Real-time hardware in the loop platform.' },
-    { name: 'ECU-Test Tool', category: 'Tools', level: 66, tags:['automation','ecu'], desc: 'Automated functional/integration ECU testing.' },
-    { name: 'Structural Coverage', category: 'Coverage', level: 77, tags:['branch','statement'], desc: 'Execution path measurement for untested code.' },
-    { name: 'MC/DC', category: 'Coverage', level: 78, tags:['safety','logic'], desc: 'Modified Condition/Decision Coverage expertise.' },
-    { name: 'DOORS', category: 'Requirements', level: 75, tags:['traceability'], desc: 'Requirement management & impact tracking.' },
-    { name: 'Rhapsody', category: 'Requirements', level: 55, tags:['modeling'], desc: 'UML/SysML model-driven design tool.' },
-    { name: 'Git', category: 'Version Control', level: 82, tags:['branching'], desc: 'Distributed version control & collaboration.' },
-    { name: 'SVN', category: 'Version Control', level: 60, tags:['centralized'], desc: 'Centralized version control (legacy flows).' }
-];
-
-// Deterministic color mapping retained for potential reuse
-const LEGACY_CATEGORY_COLORS = ['teal','blue','purple','green','orange','red','gold','rose'];
-function legacyColorForCategory(cat){ let h=0; for(let i=0;i<cat.length;i++){ h = Math.imul(31,h)+cat.charCodeAt(i)|0; } return LEGACY_CATEGORY_COLORS[Math.abs(h)%LEGACY_CATEGORY_COLORS.length]; }
-
-// Example: expose globally for any inline usage (no longer separate module)
-window.LEGACY_SKILLS = LEGACY_SKILLS;
-window.legacyColorForCategory = legacyColorForCategory;

@@ -183,102 +183,25 @@
     <!-- Skills Section -->
     <section id="skills" class="skills">
         <div class="container">
-            <h2 class="section-title">Skills & Expertise</h2>
-            <!-- Redesigned Skills Explorer -->
-            <!-- Removed external skills style explorer (rotation + variants) -->
-            <!-- Previously a link to skills/index.html existed here. Rotation feature & separate style variants removed. -->
-            <div class="skills-explorer" aria-describedby="skills-intro" role="region" aria-label="Skills explorer">
-                <p id="skills-intro" class="skills-intro-text">Explore, search and filter professional competencies. Toggle views, drill into details, and quickly locate relevant expertise.</p>
-
-                <!-- Controls Bar -->
-                <div class="skills-controls" role="toolbar" aria-label="Skill filters and options">
-                    <div class="skill-search-wrapper">
-                        <label for="skill-search" class="visually-hidden">Search skills</label>
-                        <input id="skill-search" type="search" inputmode="search" placeholder="Search skills, tools, concepts..." autocomplete="off" aria-describedby="skill-search-help" />
-                        <div id="skill-search-help" class="visually-hidden">Type to filter skills by name, category, description or keyword.</div>
-                        <button id="skill-clear-search" class="btn-clear-search" type="button" aria-label="Clear search" hidden>&times;</button>
-                    </div>
-                    <div class="skill-view-toggle" role="group" aria-label="Toggle skill view layout">
-                        <button type="button" class="view-btn" data-view="grid" aria-pressed="true" aria-label="Grid view"><i class="fas fa-border-all" aria-hidden="true"></i></button>
-                        <button type="button" class="view-btn" data-view="list" aria-pressed="false" aria-label="List view"><i class="fas fa-list" aria-hidden="true"></i></button>
-                    </div>
-                    <div class="skill-sort-wrapper">
-                        <label for="skill-sort" class="visually-hidden">Sort skills</label>
-                        <select id="skill-sort" aria-label="Sort skills">
-                            <option value="category">Sort: Category</option>
-                            <option value="name">Sort: Name (A–Z)</option>
-                            <option value="level-desc">Sort: Level (High→Low)</option>
-                            <option value="level-asc">Sort: Level (Low→High)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Category Chips (dynamic) -->
-                <div class="skill-chips" id="skill-chips" role="list" aria-label="Skill categories"></div>
-
-                <!-- Results Meta -->
-                <div class="skills-meta" aria-live="polite" aria-atomic="true">
-                    <span id="skills-count" class="skills-count">Loading skills…</span>
-                    <button id="skills-clear-filters" class="link-btn" type="button" hidden>Clear filters</button>
-                </div>
-
-                <!-- Results Container -->
-                <div id="skills-results" class="skills-results" data-view="grid" tabindex="-1" aria-label="Skills results"></div>
-                <template id="skill-card-template">
-                    <article class="skill-card-ex" tabindex="0" data-skill-id="" role="group" aria-label="Skill card">
-                        <header class="skill-card-head">
-                            <h3 class="skill-name" id="skill-name-__ID__">Skill Name</h3>
-                            <span class="skill-level-badge" aria-label="Proficiency level">90%</span>
-                        </header>
-                        <div class="skill-progress-wrapper" aria-hidden="true">
-                            <div class="skill-progress-bar-ex"><div class="skill-progress-fill-ex"></div></div>
-                        </div>
-                        <div class="skill-meta-row">
-                            <span class="skill-category-badge">Category</span>
-                            <div class="skill-tags" aria-hidden="true"></div>
-                        </div>
-                        <p class="skill-description">Description text.</p>
-                        <button class="skill-expand-btn" type="button" aria-expanded="false" aria-controls="skill-panel-__ID__">Details <i class="fas fa-chevron-down" aria-hidden="true"></i></button>
-                        <div class="skill-panel" id="skill-panel-__ID__" hidden>
-                            <div class="skill-panel-inner">
-                                <dl class="skill-attributes"></dl>
-                            </div>
-                        </div>
-                    </article>
-                </template>
-                <template id="skill-list-category-template">
-                    <section class="skill-category-group" data-category="" aria-label="Category Group">
-                        <header class="skill-category-group-head">
-                            <button class="category-accordion-btn" type="button" aria-expanded="true" aria-controls="cat-panel-__CATID__">
-                                <span class="cat-name"></span>
-                                <span class="cat-count" aria-hidden="true"></span>
-                                <i class="fas fa-chevron-up" aria-hidden="true"></i>
-                            </button>
-                        </header>
-                        <div class="skill-category-panel" id="cat-panel-__CATID__">
-                            <ul class="skill-list" role="list"></ul>
-                        </div>
-                    </section>
-                </template>
-                <template id="skill-list-item-template">
-                    <li class="skill-row" data-skill-id="">
-                        <div class="skill-row-main">
-                            <button class="skill-row-toggle" type="button" aria-expanded="false" aria-controls="row-panel-__ID__">
-                                <span class="skill-row-name"></span>
-                                <span class="skill-row-level" aria-hidden="true"></span>
-                            </button>
-                            <div class="skill-row-progress" aria-hidden="true"><div class="skill-row-progress-fill"></div></div>
-                        </div>
-                        <div class="skill-row-panel" id="row-panel-__ID__" hidden>
-                            <p class="skill-row-desc"></p>
-                            <div class="skill-row-tags"></div>
-                        </div>
-                    </li>
-                </template>
-                <div id="skills-empty" class="skills-empty" hidden role="status" aria-live="polite">No skills match your current filters. Try adjusting search or categories.</div>
+            <div class="skills-intro">
+                <h2>Skills & Expertise</h2>
+                <p>Explore my technical competencies across various domains. Click on a category to dive deeper into specific skills, proficiency levels, and experience.</p>
             </div>
+            
+            <!-- Innovative Skills Carousel -->
+            <div class="skills-carousel-container">
+                <div class="categories-carousel">
+                    <!-- Categories will be dynamically inserted here -->
+                </div>
+                
+                <!-- Sliding Detail Panel -->
+                <div class="skills-detail-panel">
+                    <!-- Detail panel content will be dynamically inserted here -->
+                </div>
+            </div>
+            
             <noscript>
-                <p style="text-align:center;color:var(--text-secondary);margin-top:2rem;">Enable JavaScript to explore interactive skills with search & filtering.</p>
+                <p style="text-align:center;color:var(--text-secondary);margin-top:2rem;">Enable JavaScript to explore interactive skills with detailed views.</p>
             </noscript>
         </div>
     </section>
@@ -622,6 +545,6 @@
             onerror="this.onerror=null; var script = document.createElement('script'); script.src='particles-fallback.js'; document.head.appendChild(script);"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
             onerror="this.onerror=null; console.log('Anime.js fallback loaded');"></script>
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
