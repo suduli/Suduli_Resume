@@ -1,0 +1,61 @@
+/* Visit Counter Styles */
+.visit-counter {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.visit-counter:hover {
+    opacity: 1;
+}
+
+.visit-counter .counter-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--text-secondary);
+}
+
+.visit-counter .counter-item i {
+    font-size: 12px;
+    color: var(--accent-primary);
+}
+
+.visit-counter .count {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    color: var(--text-primary);
+    min-width: 1ch;
+    display: inline-block;
+}
+
+/* Animation for new visitors */
+.visit-counter .counter-item.pulse .count {
+    animation: counter-pulse 1s ease-out;
+}
+
+@keyframes counter-pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+        color: var(--accent-primary);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .visit-counter {
+        flex-direction: column;
+        gap: 5px;
+        align-items: center;
+    }
+}

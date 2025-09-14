@@ -457,34 +457,60 @@ if (contactForm) {
     });
 }
 
+// Phone number reveal functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const revealButton = document.getElementById('reveal-phone');
+    const phoneHidden = document.getElementById('phone-hidden');
+    const phoneNumber = document.getElementById('phone-number');
+    
+    if (revealButton && phoneHidden && phoneNumber) {
+        revealButton.addEventListener('click', function() {
+            phoneHidden.classList.add('hidden');
+            phoneNumber.classList.remove('hidden');
+            revealButton.innerHTML = '<i class="fas fa-copy"></i> Copy';
+            revealButton.classList.add('revealed');
+            
+            // Change button functionality to copy to clipboard
+            revealButton.removeEventListener('click', arguments.callee);
+            revealButton.addEventListener('click', function() {
+                const phoneText = phoneNumber.textContent;
+                navigator.clipboard.writeText(phoneText)
+                    .then(() => {
+                        revealButton.innerHTML = '<i class="fas fa-check"></i> Copied';
+                        showNotification('Phone number copied to clipboard!', 'success');
+                        
+                        setTimeout(() => {
+                            revealButton.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Could not copy text: ', err);
+                        showNotification('Failed to copy. Please try again.', 'error');
+                    });
+            });
+        });
+    }
+});
+
 // Notification system
 function showNotification(message, type) {
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
     notification.textContent = message;
     
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 15px 25px;
-        border-radius: 10px;
-        color: white;
-        font-weight: 500;
-        z-index: 10000;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        ${type === 'success' ? 'background: linear-gradient(45deg, #00ff88, #00cc6a);' : 'background: linear-gradient(45deg, #ff6b6b, #ff5252);'}
-    `;
-    
     document.body.appendChild(notification);
     
-    setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 100);
+    // Force reflow to ensure animation works
+    notification.offsetHeight;
     
+    // Show notification
     setTimeout(() => {
-        notification.style.transform = 'translateX(100%)';
+        notification.classList.add('show');
+    }, 10);
+    
+    // Hide and remove notification after delay
+    setTimeout(() => {
+        notification.classList.remove('show');
         setTimeout(() => {
             document.body.removeChild(notification);
         }, 300);

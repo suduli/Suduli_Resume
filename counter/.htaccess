@@ -1,0 +1,19 @@
+# Protect the visits.json file
+<Files "visits.json">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Enable CORS for the counter API
+<IfModule mod_headers.c>
+    <FilesMatch "counter\.php$">
+        Header set Access-Control-Allow-Origin "*"
+    </FilesMatch>
+</IfModule>
+
+# Add caching for counter.js and counter.css
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+</IfModule>

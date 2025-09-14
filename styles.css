@@ -1567,6 +1567,9 @@ section {
     font-size: 16px;
     color: var(--text-primary);
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .method-value a {
@@ -1578,6 +1581,79 @@ section {
 .method-value a:hover {
     color: var(--accent-primary);
     text-decoration: underline;
+}
+
+/* Phone reveal styles */
+.phone-hidden {
+    color: var(--accent-primary);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.phone-number {
+    transition: all 0.3s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+.btn-reveal {
+    background: var(--bg-card-hover);
+    color: var(--accent-primary);
+    border: 1px solid var(--border-accent);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-reveal:hover {
+    background: var(--accent-primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px var(--shadow-primary);
+}
+
+.btn-reveal.revealed {
+    background: var(--bg-card);
+}
+
+/* Notification System */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    max-width: 300px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.notification.success {
+    background-color: var(--accent-primary);
+    color: white;
+}
+
+.notification.error {
+    background-color: #ff4d4d;
+    color: white;
 }
 
 .contact-form {
