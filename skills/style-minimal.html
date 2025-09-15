@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Minimal Skills</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+		<link rel="stylesheet" href="skills-styles.css" />
+	</head>
+	<body class="style-minimal">
+		<div id="particles-js"></div>
+		<div class="app-shell" id="main">
+			<header class="variant-header">
+				<a class="back-link" href="index.html"><i class="fas fa-arrow-left"></i><span>Styles</span></a>
+				<h1 class="variant-title">Minimal Cards</h1>
+				<button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+			</header>
+
+			<p style="max-width:780px;color:var(--sk-text-dim);margin:-.5rem 0 1.8rem;font-size:.95rem;">
+				Whitespace first, clean edges, reduced chroma. Prioritizes scan efficiency and cognitive simplicity—great for documentation or enterprise
+				contexts.
+			</p>
+
+			<!-- Controls toolbar: search, filter, sort, view toggle -->
+			<div class="controls" role="region" aria-label="Skills controls">
+				<label class="control-row" for="skill-search">
+					<span class="visually-hidden">Search skills</span>
+					<input id="skill-search" type="search" placeholder="Search skills, tags, descriptions..." aria-label="Search skills" />
+				</label>
+				<div class="control-row">
+					<label for="category-filter">Category</label>
+					<select id="category-filter" aria-label="Filter by category">
+						<option value="all">All categories</option>
+					</select>
+				</div>
+				<div class="control-row">
+					<label for="sort-select">Sort</label>
+					<select id="sort-select" aria-label="Sort skills">
+						<option value="level-desc">Proficiency (high → low)</option>
+						<option value="level-asc">Proficiency (low → high)</option>
+						<option value="alpha">Alphabetical</option>
+					</select>
+				</div>
+				<div class="control-row view-toggle" role="group" aria-label="View toggle">
+					<button id="view-grid" aria-pressed="true" title="Grid view">Grid</button>
+					<button id="view-list" aria-pressed="false" title="List view">List</button>
+				</div>
+			</div>
+
+			<div class="skills-wrapper" aria-live="polite"></div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+		<script type="module" src="skills-render.js"></script>
+	</body>
+</html>
