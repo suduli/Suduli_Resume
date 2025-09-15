@@ -962,6 +962,15 @@ function showDetailPanel(panel) {
 
     // Announce to screen readers
     panel.setAttribute('aria-hidden', 'false');
+    
+    // Scroll to the detail panel with a smooth animation
+    setTimeout(() => {
+        panel.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest'
+        });
+    }, 300); // Wait for panel animation to start
 }
 
 function closeDetailPanel(panel) {
