@@ -241,11 +241,16 @@
                 if (excerptEl) excerptEl.remove();
                 if (wrapper) {
                     wrapper.classList.add('has-expanded');
+                    // Enable centered single-card mode
+                    wrapper.classList.add('center-card');
                     wrapper.dataset.paused = 'true';
                 }
                 // Recenter after styles apply
                 requestAnimationFrame(() => {
-                    centerHorizontally(card);
+                    // If center-card mode is active, layout handles centering; otherwise, scroll
+                    if (!wrapper || !wrapper.classList.contains('center-card')) {
+                        centerHorizontally(card);
+                    }
                     // Removed vertical centering to avoid page nudge
                     // If the card is far off-screen vertically, do a minimal scroll
                     safeScrollIntoView(card, { behavior: 'smooth', block: 'nearest' });
@@ -260,7 +265,7 @@
                     const onLoad = () => centerHorizontally(card);
                     img.addEventListener('load', onLoad, { once: true });
                 }
-            } else {
+        } else {
                 if (summary && !summary.querySelector('.rec-excerpt')) {
                     const p = document.createElement('p');
                     p.className = 'rec-excerpt';
@@ -268,7 +273,9 @@
                     summary.appendChild(p);
                 }
                 if (wrapper) {
-                    wrapper.classList.remove('has-expanded');
+            wrapper.classList.remove('has-expanded');
+            // Exit centered mode and restore default layout/scrolling
+            wrapper.classList.remove('center-card');
                     delete wrapper.dataset.paused;
                 }
                 // Cleanup resize listener if set

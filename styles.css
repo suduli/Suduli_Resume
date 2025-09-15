@@ -31,6 +31,50 @@ body {
     box-sizing: border-box;
 }
 
+    /* Center a single card within its container and prevent horizontal scroll */
+    .rec-cards-wrapper.center-card {
+        /* Switch to flex layout to center the active card */
+        display: flex !important;
+        justify-content: center;
+        align-items: stretch;
+        gap: 0;
+        /* Hide any horizontal overflow so no scrollbar appears */
+        overflow-x: hidden !important;
+        /* Disable scroll snapping/padding offsets used for the carousel */
+        scroll-snap-type: none !important;
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+
+    /* When marquee mode was enabled, collapse the inner scroller to a centering flex row */
+    .rec-cards-wrapper.center-card .scroller__inner {
+        display: flex !important;
+        width: 100% !important;
+        justify-content: center;
+        align-items: stretch;
+        gap: 0;
+        animation: none !important;
+        transform: none !important;
+    }
+
+    /* Only keep the expanded card in flow to allow perfect centering */
+    .rec-cards-wrapper.center-card .rec-card:not(.expanded) {
+        display: none !important;
+    }
+
+    /* Constrain the centered card to never exceed the visible width */
+    .rec-cards-wrapper.center-card .rec-card.expanded,
+    .rec-cards-wrapper.center-card .rec-card.expanded .rec-card-inner {
+        max-inline-size: min(100%, 720px);
+        inline-size: min(100% - 16px, 720px);
+    }
+
+    /* Neutralize any transforms that could nudge the centered card */
+    .rec-cards-wrapper.center-card .rec-card.expanded {
+        transform: none !important;
+    }
+
+
 html {
     scroll-behavior: smooth;
 }
