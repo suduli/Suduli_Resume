@@ -948,10 +948,6 @@ function createSkillItemHTML(skill) {
                 <i class="fas fa-clock" aria-hidden="true"></i>
                 ${skill.experience}
             </div>
-            <div class="skill-endorsements">
-                <i class="fas fa-thumbs-up" aria-hidden="true"></i>
-                ${skill.endorsements} endorsements
-            </div>
             <div class="skill-tags">
                 ${tagsHTML}
             </div>
