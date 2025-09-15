@@ -1352,8 +1352,24 @@ section {
 
 /* Client Recommendations Section */
 .recommendations {
+    /* Editable opacity (0 to 1). Override this variable where needed. */
+    --recommendations-opacity: 0;
+
     padding: 80px 0;
+    position: relative;
+    isolation: isolate; /* ensure ::before can sit behind content safely */
+    background: transparent; /* background handled by overlay below */
+}
+
+/* Background overlay with adjustable opacity that does NOT affect children */
+.recommendations::before {
+    content: "";
+    position: absolute;
+    inset: 0;
     background: var(--bg-secondary);
+    opacity: var(--recommendations-opacity, 1);
+    pointer-events: none;
+    z-index: -1; /* render behind content */
 }
 
 .recommendation-summary {
@@ -1528,6 +1544,418 @@ section {
     .recommendation-description {
         font-size: 13px;
     }
+}
+
+/* Recommendation Cards Component */
+.rec-cards-container {
+    margin-top: 16px;
+}
+
+.rec-cards-title {
+    display: none; /* hide title from page */
+}
+
+.rec-count {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.rec-cards-wrapper {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(260px, 320px);
+    gap: 16px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    /* Allow first/last items to center by extending snap area on both sides */
+    scroll-padding-left: 50%;
+    scroll-padding-right: 50%;
+    padding: 4px 8px 8px;
+    scrollbar-gutter: stable both-edges; /* avoid layout shift when scrollbar shows */
+}
+
+/* When one card is expanded, fade out the others for focus */
+.rec-cards-wrapper.has-expanded .rec-card { opacity: 0; filter: blur(2px); transition: opacity .35s ease, filter .35s ease, transform .25s ease; }
+.rec-cards-wrapper.has-expanded .rec-card.expanded { opacity: 1; filter: none; z-index: 2; transform: translateY(-2px); }
+
+/* Disable scroll snap and tune column widths when a card is expanded for better centering */
+.rec-cards-wrapper.has-expanded { 
+    scroll-snap-type: none; 
+    grid-auto-columns: minmax(280px, 360px);
+    /* Temporary edge space so first/last can center within scroll range */
+    padding-left: max(8px, 50%);
+    padding-right: max(8px, 50%);
+}
+.rec-cards-wrapper.has-expanded .rec-card:not(.expanded) { pointer-events: none; }
+
+@media (min-width: 720px) {
+    .rec-cards-wrapper.has-expanded { grid-auto-columns: minmax(320px, 420px); }
+}
+
+@media (min-width: 1024px) {
+    .rec-cards-wrapper.has-expanded { grid-auto-columns: minmax(360px, 520px); }
+}
+
+.rec-cards-wrapper::-webkit-scrollbar {
+    height: 10px;
+}
+
+.rec-cards-wrapper::-webkit-scrollbar-thumb {
+    background: var(--border-primary);
+    border-radius: 8px;
+}
+
+.rec-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    color: var(--text-primary);
+    scroll-snap-align: start;
+    position: relative;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    /* aspect-ratio removed to allow height to grow with content */
+    display: flex;
+    background-image: linear-gradient(180deg, var(--rec-accent-bg, transparent), transparent 40%);
+    border-left: 3px solid var(--rec-accent, var(--accent-primary));
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+.rec-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    padding: 1px;
+    background: linear-gradient(60deg, var(--rec-accent, var(--accent-primary)), transparent 40%, var(--accent-secondary));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    opacity: .4;
+    pointer-events: none;
+    transition: opacity .35s ease;
+}
+
+.rec-card:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+.rec-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.rec-card.expanded {
+    /* no aspect-ratio here; height naturally grows with content */
+    grid-column: span 2; /* horizontally expand to occupy two columns */
+    box-shadow: 0 18px 48px -10px rgba(0,245,255,0.2), 0 6px 18px rgba(0,0,0,0.6);
+    border-color: var(--border-accent);
+    /* Stronger frosted-glass when expanded */
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    background: linear-gradient(145deg,
+        color-mix(in srgb, var(--bg-card) 88%, var(--accent-primary) 12%) 0%,
+        color-mix(in srgb, var(--bg-card) 94%, var(--accent-secondary) 6%) 100%);
+    position: relative;
+}
+
+/* Glass highlight overlay */
+.rec-card.expanded::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    background:
+        radial-gradient(1200px 300px at -10% -10%, rgba(255,255,255,0.09), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,0.06), transparent 35%);
+    pointer-events: none;
+}
+
+/* Brighter accent stroke when expanded */
+.rec-card.expanded::before { opacity: .75; }
+
+/* Animated marquee mode: make expanded card wider horizontally */
+.rec-cards-wrapper[data-animated="true"] .rec-card.expanded {
+    flex: 0 0 clamp(360px, 58vw, 620px);
+    z-index: 2;
+}
+
+@media (min-width: 1024px) {
+    .rec-card.expanded { grid-column: span 2; }
+}
+
+.rec-card-inner {
+    display: flex;
+    flex-direction: column;
+    padding: 14px;
+    width: 100%;
+    cursor: pointer; /* clicking inner triggers expansion */
+    box-sizing: border-box; /* ensure padding doesn't force unintended sizing */
+    /* Performance-friendly animation defaults */
+    transform: translateZ(0) scale(1);
+    transform-origin: 50% 50%;
+    will-change: transform, opacity;
+    /* 280ms in the responsive, natural-feel range with an ease-out curve */
+    transition: transform 0.28s cubic-bezier(0.22, 0.61, 0.36, 1),
+                opacity 0.28s ease;
+}
+
+.rec-card.expanded::before { opacity: .7; }
+
+/* In expanded view, hide the brief summary and increase readability of details */
+.rec-card.expanded .rec-summary { display: none; }
+.rec-card.expanded .rec-details { 
+    font-size: 0.98rem; 
+    line-height: 1.6; 
+    margin-top: 12px; 
+    /* let container height auto-grow with content */
+}
+.rec-card.expanded .rec-full { font-size: 0.98rem; line-height: 1.65; }
+
+/* Subtle, natural interaction feedback */
+@media (hover: hover) {
+    .rec-card:hover .rec-card-inner,
+    .rec-card:focus-within .rec-card-inner {
+        /* small lift + scale for depth without jitter */
+        transform: translateY(-1px) scale(1.01);
+    }
+}
+
+/* On mobile/touch, keep effects gentler */
+@media (max-width: 480px) {
+    .rec-card:focus-within .rec-card-inner {
+        transform: scale(1.005);
+    }
+}
+
+/* Expanded state keeps a slight presence without being aggressive */
+.rec-card.expanded .rec-card-inner {
+    transform: scale(1.012);
+}
+
+/* Animate contextual affordance icon smoothly */
+.rec-toggle i {
+    transition: transform 0.28s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Visual hierarchy polish: fade/slide details after the card animates */
+@keyframes rec-fade-up {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.rec-card.expanded .rec-card-inner .rec-details {
+    /* trigger only when expanded becomes active */
+    animation: rec-fade-up 0.32s cubic-bezier(0.22, 0.61, 0.36, 1) 0.06s both;
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .rec-card,
+    .rec-card-inner,
+    .rec-toggle i {
+        transition: none !important;
+    }
+    .rec-card:hover,
+    .rec-card:hover .rec-card-inner,
+    .rec-card:focus-within .rec-card-inner,
+    .rec-card.expanded .rec-card-inner {
+        transform: none !important;
+    }
+    .rec-card.expanded .rec-card-inner .rec-details {
+        animation: none !important;
+    }
+}
+
+@supports not ((mask-composite: exclude) or (-webkit-mask-composite: xor)) {
+    .rec-card::before { display: none; }
+}
+.rec-card-header {
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: 10px;
+    align-items: center;
+}
+
+.rec-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2a2f45, #1a1f33);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e8ecff;
+    font-weight: 800;
+}
+
+.rec-avatar.with-img { padding: 0; background: none; }
+.rec-avatar-img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; display: block; }
+
+.rec-links a { color: #0a66c2; font-size: 18px; }
+.rec-links a:hover { filter: brightness(1.2); }
+
+.rec-meta { min-width: 0; }
+
+.rec-name {
+    font-size: 16px;
+    margin: 0;
+}
+
+.rec-company {
+    margin: 2px 0 0 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.rec-summary { margin-top: 10px; }
+
+.rec-excerpt {
+    margin: 0;
+    color: var(--text-primary);
+    line-height: 1.4;
+    display: -webkit-box;
+    line-clamp: 7;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.rec-quote-icon {
+    color: var(--rec-accent, var(--accent-primary));
+    opacity: 0.7;
+    margin-right: 6px;
+}
+
+.rec-details {
+    margin-top: 10px;
+    border-top: 1px dashed var(--border-primary);
+    padding-top: 10px;
+}
+
+.rec-full {
+    margin: 0 0 8px 0;
+    line-height: 1.45;
+}
+
+.rec-fields {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px 8px;
+    margin: 0;
+}
+
+.rec-fields dt {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.rec-fields dd { margin: 0; }
+
+.rec-toggle {
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent-primary);
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+}
+
+.rec-card.expanded .rec-toggle i { transform: rotate(180deg); }
+
+.rec-loading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    padding: 8px;
+}
+
+@media (min-width: 900px) {
+    .rec-cards-wrapper { grid-auto-columns: minmax(280px, 360px); }
+}
+
+@media (max-width: 480px) {
+    .rec-cards-wrapper { grid-auto-columns: 85vw; }
+}
+
+/* Progressive enhancement: Infinite marquee mode for recommendation cards */
+/* When enabled via data-animated, we switch layout to a flex-based inner track */
+.rec-cards-wrapper[data-animated="true"] {
+    /* Container becomes a viewport; inner track handles layout */
+    display: block;
+    overflow-x: hidden;
+    scroll-snap-type: none;
+    /* fade edges (mask) similar to CodePen visual polish */
+    --rec-gap: 16px;
+    --rec-fade-size: 80px;
+    -webkit-mask: linear-gradient(90deg,
+        transparent 0,
+        #000 calc(var(--rec-fade-size) * 0.6),
+        #000 calc(100% - var(--rec-fade-size) * 0.6),
+        transparent 100%
+    );
+            mask: linear-gradient(90deg,
+        transparent 0,
+        #000 calc(var(--rec-fade-size) * 0.6),
+        #000 calc(100% - var(--rec-fade-size) * 0.6),
+        transparent 100%
+    );
+}
+
+/* Track that scrolls infinitely */
+.rec-cards-wrapper[data-animated="true"] .scroller__inner {
+    display: inline-flex;
+    align-items: stretch;
+    gap: var(--rec-gap);
+    width: max-content; /* allow content to exceed container for marquee */
+    animation: rec-cards-marquee var(--_rec-marquee-duration, 45s) linear infinite;
+}
+
+/* Match grid auto-columns sizing using flex basis when animated */
+.rec-cards-wrapper[data-animated="true"] .rec-card {
+    flex: 0 0 clamp(260px, 30vw, 320px);
+}
+
+/* Pause on hover/focus for usability */
+.rec-cards-wrapper[data-animated="true"]:hover .scroller__inner,
+.rec-cards-wrapper[data-animated="true"]:focus-within .scroller__inner {
+    animation-play-state: paused;
+}
+/* Fully stop and reset when paused/expanded for precise centering */
+.rec-cards-wrapper.has-expanded .scroller__inner,
+.rec-cards-wrapper[data-paused="true"] .scroller__inner {
+    animation: none !important;
+    transform: none !important;
+}
+
+/* Allow manual scroll when expanded while keeping marquee DOM */
+.rec-cards-wrapper[data-animated="true"].has-expanded {
+    overflow-x: auto;
+}
+
+/* Make cloned cards non-interactive */
+.rec-card[data-clone="true"] {
+    pointer-events: none;
+}
+
+/* Keyframes inspired by Kevin Powell’s marquee pattern */
+@keyframes rec-cards-marquee {
+    to {
+        /* Move by half the track (original set width) + half the gap to align seamlessly */
+        transform: translateX(calc(-50% - var(--rec-gap) / 2));
+    }
+}
+
+/* Respect user motion preferences: no animation */
+@media (prefers-reduced-motion: reduce) {
+    .rec-cards-wrapper[data-animated="true"] .scroller__inner { animation: none !important; }
 }
 
 /* Education Section */

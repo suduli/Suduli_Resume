@@ -147,10 +147,14 @@ class RecommendationSummary {
                     <i class="fas fa-thumbs-up"></i>
                 </div>
                 <div class="recommendation-info">
-                    <h3 class="recommendation-title">Client Recommendations Received in ${this.currentYear}</h3>
+                    <h3 class="recommendation-title">Testimonial Received in ${this.currentYear}</h3>
                     <div class="recommendation-count">
                         <span class="count-number">${result.currentYearCount}</span>
                         <span class="count-label">Recommendations This Year</span>
+                    </div>
+                    <div class="recommendation-count" style="margin-top:10px;">
+                        <span class="count-number">${result.totalCount}</span>
+                        <span class="count-label">Total Recommendations Received</span>
                     </div>
                     <p class="recommendation-description">
                         Professional endorsements from colleagues and clients highlighting expertise in automotive testing and validation.
@@ -168,7 +172,7 @@ class RecommendationSummary {
                     <i class="fas fa-exclamation-triangle"></i>
                 </div>
                 <div class="recommendation-info">
-                    <h3 class="recommendation-title">Client Recommendations</h3>
+                    <h3 class="recommendation-title">Testimonial</h3>
                     <div class="recommendation-error">
                         <span class="error-message">Unable to load recommendation data</span>
                         <span class="error-details">${error.message}</span>
