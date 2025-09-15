@@ -1,0 +1,10 @@
+.skill-video-icon {
+    color: #ff0000;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.skill-video-icon:hover {
+    transform: scale(1.2);
+}

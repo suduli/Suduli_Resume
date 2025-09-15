@@ -924,6 +924,19 @@ function populateDetailPanel(panel, category, skills) {
     // Add color class to panel
     panel.className = `skills-detail-panel category-${categoryColor}`;
 
+    // Add click listener for youtube links
+    panel.querySelectorAll('[data-youtube-link]').forEach(item => {
+        item.addEventListener('click', (e) => {
+            // Prevent clicks on tags or other inner elements from triggering the video
+            if (e.target.closest('.skill-video-icon')) {
+                const youtubeLink = item.dataset.youtubeLink;
+                if (youtubeLink) {
+                    window.open(youtubeLink, '_blank');
+                }
+            }
+        });
+    });
+
     // Animate progress bars after panel is visible
     setTimeout(() => {
         animateProgressBars(panel);
@@ -932,12 +945,14 @@ function populateDetailPanel(panel, category, skills) {
 
 function createSkillItemHTML(skill) {
     const tagsHTML = skill.tags.map(tag => `<span class="skill-tag">${tag}</span>`).join('');
+    const youtubeIcon = skill.youtubeLink ? '<i class="fab fa-youtube skill-video-icon"></i>' : '';
 
     return `
-        <div class="skill-detail-item" data-skill="${skill.name}">
+        <div class="skill-detail-item" data-skill="${skill.name}" ${skill.youtubeLink ? `data-youtube-link="${skill.youtubeLink}"` : ''}>
             <div class="skill-name">
                 <i class="fas fa-check-circle" aria-hidden="true"></i>
                 ${skill.name}
+                ${youtubeIcon}
             </div>
             <div class="skill-level">${skill.level}% Proficiency</div>
             <div class="skill-progress-bar">

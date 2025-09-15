@@ -9,7 +9,7 @@ export const SKILLS = [
   { name: 'Gherkin', category: 'Learning', level: 62, tags:['bdd','specifications'], desc: 'Business-readable domain-specific language for behavior descriptions.', experience: 'Implementing in current project documentation' },
   { name: 'Behavior-Driven Development (BDD)', category: 'Learning', level: 60, tags:['agile','collaboration'], desc: 'Development approach emphasizing collaboration between technical and non-technical participants.', experience: 'Adopting methodologies for current projects' },
   { name: 'Cucumber in Python', category: 'Learning', level: 55, tags:['bdd','automation'], desc: 'Python implementation of Cucumber for BDD test automation.', experience: 'Building test suites with this framework' },
-  { name: 'Love', category: 'Learning', level: 95, tags:['passion','dedication'], desc: 'Bringing passion and dedication to all technical endeavors.', experience: 'Lifelong commitment to craftsmanship' },
+  { name: 'Love', category: 'Learning', level: 95, tags:['passion','dedication'], desc: 'Bringing passion and dedication to all technical endeavors.', experience: 'Lifelong commitment to craftsmanship', youtubeLink: 'https://www.youtube.com/watch?v=exDJJ3Fqyr4&ab_channel=GiveSomethingBackToBerlin' },
 
   { name: 'Black Box Testing', category: 'Testing', level: 92, tags:['functional','system','validation'], desc: 'Testing based on requirements and specifications without knowledge of internal structure.', experience: '5+ years in automotive testing projects' },
   { name: 'White Box Testing', category: 'Testing', level: 85, tags:['structural','internal','code-based'], desc: 'Testing based on the internal structure of the component or system.', experience: '4 years in structural testing' },
