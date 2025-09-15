@@ -4,8 +4,8 @@
 (function () {
     const Utils = (typeof RecommendationUtils !== 'undefined')
         ? RecommendationUtils
-        : (function(){ try { return require('./utils/recommendation-utils.js'); } catch (_) { return null; } })();
-    const CSV_PATH = './Recommendations_Received.csv';
+        : (function(){ try { return require('../../utils/recommendation-utils.js'); } catch (_) { return null; } })();
+    const CSV_PATH = 'assets/data/Recommendations_Received.csv';
     const SUMMARY_CONTAINER_ID = 'recommendation-summary';
     const CARDS_CONTAINER_ID = 'recommendation-cards';
 
@@ -15,22 +15,19 @@
         if (clean.length <= max) return clean;
         const cut = clean.slice(0, max);
         const lastSpace = cut.lastIndexOf(' ');
-        return (lastSpace > 80 ? cut.slice(0, lastSpace) : cut) + '…';
+        return (lastSpace > 80 ? cut.slice(0, lastSpace) : cut) + '\u2026';
     }
 
-    // CSV parsing now consolidated in utils
-
-    // Generate deterministic HSL color from a string
     function colorFromString(str) {
         const s = String(str || '');
         let hash = 0;
         for (let i = 0; i < s.length; i++) {
             hash = (hash << 5) - hash + s.charCodeAt(i);
-            hash |= 0; // Convert to 32bit int
+            hash |= 0;
         }
         const hue = Math.abs(hash) % 360;
-        const sat = 65; // %
-        const light = 55; // %
+        const sat = 65;
+        const light = 55;
         return {
             accent: `hsl(${hue} ${sat}% ${light}%)`,
             accentBg: `hsl(${hue} ${sat}% ${light}% / 0.12)`,
@@ -48,7 +45,6 @@
             return deduped;
         } catch (err) {
             console.warn('[recommendation-cards] CSV load failed, using fallback data:', err);
-            // Fallback minimal sample to avoid empty UI locally
             return [
                 {
                     'First Name': 'Sample',
@@ -88,9 +84,9 @@
         const text = rec.Text || '';
         const excerpt = truncate(text, 180);
         const photo = rec.Photo || rec['Photo URL'] || '';
-    // Normalize/sanitize LinkedIn URL
-    const rawLinkedIn = (rec.LinkedIn || rec['LinkedIn URL'] || rec['LinkedIn Profile'] || '').trim();
-    const linkedIn = /^https?:\/\//i.test(rawLinkedIn) ? rawLinkedIn : '';
+        // Normalize/sanitize LinkedIn URL
+        const rawLinkedIn = (rec.LinkedIn || rec['LinkedIn URL'] || rec['LinkedIn Profile'] || '').trim();
+        const linkedIn = /^https?:\/\//i.test(rawLinkedIn) ? rawLinkedIn : '';
         const { accent, accentBg } = colorFromString(name || company || index);
 
         const card = document.createElement('article');
@@ -219,7 +215,7 @@
                     const onLoad = () => centerHorizontally(card);
                     img.addEventListener('load', onLoad, { once: true });
                 }
-        } else {
+            } else {
                 if (summary && !summary.querySelector('.rec-excerpt')) {
                     const p = document.createElement('p');
                     p.className = 'rec-excerpt';
@@ -227,9 +223,9 @@
                     summary.appendChild(p);
                 }
                 if (wrapper) {
-            wrapper.classList.remove('has-expanded');
-            // Exit centered mode and restore default layout/scrolling
-            wrapper.classList.remove('center-card');
+                    wrapper.classList.remove('has-expanded');
+                    // Exit centered mode and restore default layout/scrolling
+                    wrapper.classList.remove('center-card');
                     delete wrapper.dataset.paused;
                 }
                 // Cleanup resize listener if set
@@ -328,7 +324,7 @@
                 try {
                     // If no size yet, fallback duration
                     let duration = 45; // seconds default
-                    const firstHalfWidth = originals.reduce((acc, el, idx) => acc + el.offsetWidth, 0) + (originals.length - 1) * 16;
+                    const firstHalfWidth = originals.reduce((acc, el, idx) => acc + el.offsetWidth, 0) + (originals.length - 1) * 16;   
                     // px per second target speed (~50 px/s desktop, ~35 px/s mobile)
                     const speed = window.innerWidth < 640 ? 35 : 50; // px/s
                     if (firstHalfWidth > 0) {
@@ -356,6 +352,17 @@
         }
     }
 
+    function renderError(container, err) {
+        container.innerHTML = `
+            <div class="rec-error">
+                <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+                <span>Failed to load recommendations</span>
+                <small>${err.message}</small>
+            </div>
+        `;
+    }
+
+    // Trigger mechanism: Event delegation approach from main branch
     function attachTrigger() {
         const root = document.getElementById(SUMMARY_CONTAINER_ID);
         if (!root) return;

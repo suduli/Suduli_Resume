@@ -9,7 +9,7 @@
     "start": "vercel dev",
   "preview": "http-server -p 5173 -c-1",
     "deploy": "vercel --prod",
-  "test": "node test/visitor-counter.test.js && node test/recommendations.test.js"
+  "test": "node tests/visitor-counter.test.js && node tests/recommendations.test.js"
   },
   "keywords": [
     "visitor-counter",

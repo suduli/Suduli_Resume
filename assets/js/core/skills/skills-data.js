@@ -10,7 +10,7 @@ export const SKILLS = [
   { name: 'Behavior-Driven Development (BDD)', category: 'Learning', level: 60, tags:['agile','collaboration'], desc: 'Development approach emphasizing collaboration between technical and non-technical participants.', endorsements: 2, experience: 'Adopting methodologies for current projects' },
   { name: 'Cucumber in Python', category: 'Learning', level: 55, tags:['bdd','automation'], desc: 'Python implementation of Cucumber for BDD test automation.', endorsements: 1, experience: 'Building test suites with this framework' },
   { name: 'Love', category: 'Learning', level: 95, tags:['passion','dedication'], desc: 'Bringing passion and dedication to all technical endeavors.', endorsements: 8, experience: 'Lifelong commitment to craftsmanship' },
-  
+
   { name: 'Black Box Testing', category: 'Testing', level: 92, tags:['functional','system','validation'], desc: 'Focus on external behavior without viewing internal code.', endorsements: 15, experience: '5+ years in automotive testing projects' },
   { name: 'Regression Testing', category: 'Testing', level: 88, tags:['stability','maintenance'], desc: 'Ensures unchanged behavior after code modifications.', endorsements: 12, experience: '4 years in software maintenance' },
   { name: 'Integration Testing', category: 'Testing', level: 86, tags:['interfaces','modules'], desc: 'Validates contract between combined modules.', endorsements: 10, experience: '3 years in module integration' },

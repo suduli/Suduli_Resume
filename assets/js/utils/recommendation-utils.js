@@ -1,8 +1,4 @@
-/**
- * Recommendation Utilities
- * Consolidated CSV parsing, date/year extraction, and deduplication helpers.
- * UMD-style: attaches to window.RecommendationUtils or module.exports
- */
+// moved from utils/recommendation-utils.js
 (function (root, factory) {
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = factory();

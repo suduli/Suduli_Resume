@@ -4,7 +4,7 @@ const fs = require('fs');
 
 console.log('🧪 Starting Recommendation Utils Tests...');
 
-const utils = require('../utils/recommendation-utils.js');
+const utils = require('../assets/js/utils/recommendation-utils.js');
 
 // Sample CSV content
 const csv = [
@@ -50,7 +50,7 @@ global.document = {
 global.window = {};
 global.fetch = async () => ({ ok: true, text: async () => csv });
 
-const RecommendationSummary = require('../recommendation-summary.js');
+const RecommendationSummary = require('../assets/js/features/recommendations/recommendation-summary.js');
 const summary = new RecommendationSummary();
 summary.currentYear = 2025;
 

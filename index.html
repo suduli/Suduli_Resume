@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suduli Kumar Balabantaray - Test Lead & IV&V Specialist</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="visitor-counter.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/visitor-counter.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -483,6 +483,8 @@
         </div>
     </section>
 
+    <!-- Testimonial logic is implemented in assets/js/recommendations/recommendation-summary.js -->
+
     <!-- Education Section -->
     <section id="education" class="education">
         <div class="container">
@@ -616,14 +618,14 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" 
-            onerror="this.onerror=null; var script = document.createElement('script'); script.src='particles-fallback.js'; document.head.appendChild(script);"></script>
+        onerror="this.onerror=null; var script = document.createElement('script'); script.src='assets/js/vendor/particles-fallback.js'; document.head.appendChild(script);"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
             onerror="this.onerror=null; console.log('Anime.js fallback loaded');"></script>
-    <script src="visitor-counter.js"></script>
+    <script src="assets/js/features/visitor-counter.js"></script>
     <!-- Shared utilities for recommendations -->
-    <script src="utils/recommendation-utils.js"></script>
-    <script src="recommendation-summary.js"></script>
-    <script src="recommendation-cards.js"></script>
-    <script type="module" src="script.js"></script>
+    <script src="assets/js/utils/recommendation-utils.js"></script>
+    <script src="assets/js/features/recommendations/recommendation-summary.js"></script>
+    <script src="assets/js/features/recommendations/recommendation-cards.js"></script>
+    <script type="module" src="assets/js/core/main.js"></script>
 </body>
 </html>
