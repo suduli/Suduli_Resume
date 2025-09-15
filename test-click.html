@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Test</title>
+    <style>
+        .recommendation-summary-content {
+            background: #f0f0f0;
+            padding: 20px;
+            margin: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .recommendation-summary-content:hover {
+            background: #e0e0e0;
+        }
+        #test-results {
+            margin: 20px;
+            padding: 10px;
+            background: #fffbf0;
+            border-left: 4px solid #ffeb3b;
+        }
+    </style>
+</head>
+<body>
+    <h1>Click Test for Recommendation Summary</h1>
+    
+    <div id="test-results">
+        <h3>Test Results:</h3>
+        <div id="log"></div>
+    </div>
+
+    <div id="recommendation-summary" class="recommendation-summary">
+        <div class="recommendation-summary-content">
+            <div class="recommendation-icon">
+                <i class="fas fa-thumbs-up"></i>
+            </div>
+            <div class="recommendation-info">
+                <h3 class="recommendation-title">Testimonial Received in 2025</h3>
+                <div class="recommendation-count">
+                    <span class="count-number">13</span>
+                    <span class="count-label">Recommendations This Year</span>
+                </div>
+                <div class="recommendation-count" style="margin-top:10px;">
+                    <span class="count-number">21</span>
+                    <span class="count-label">Total Recommendations Received</span>
+                </div>
+                <p class="recommendation-description">
+                    Click here to view testimonials. Professional endorsements from colleagues and clients highlighting expertise in automotive testing and validation.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/utils/recommendation-utils.js"></script>
+    <script src="assets/js/features/recommendations/recommendation-cards.js"></script>
+    
+    <script>
+        // Test logging
+        function log(message) {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            logDiv.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+        }
+        
+        // Override console.log to capture logs
+        const originalLog = console.log;
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            log(args.join(' '));
+        };
+        
+        // Test click manually
+        document.addEventListener('DOMContentLoaded', () => {
+            log('Page loaded');
+            
+            setTimeout(() => {
+                const summaryContent = document.querySelector('.recommendation-summary-content');
+                if (summaryContent) {
+                    log('Found recommendation-summary-content element');
+                    log('Cursor style: ' + summaryContent.style.cursor);
+                    log('Has click handler marker: ' + (summaryContent.dataset.clickHandlerAttached || 'no'));
+                    
+                    // Add our own test click handler
+                    summaryContent.addEventListener('click', () => {
+                        log('TEST: Manual click handler triggered!');
+                    });
+                    
+                } else {
+                    log('ERROR: recommendation-summary-content element not found');
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

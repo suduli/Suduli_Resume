@@ -64,6 +64,7 @@ The website design is inspired by:
 - **Counter Animation** - Animated statistics in about section
 - **Contact Form** - Interactive form with validation
 
+
 ## 🚀 Getting Started
 
 ### Live Website
@@ -73,6 +74,34 @@ Visit the live website at: [https://suduli.github.io/Suduli_Resume_Automotive/](
 1. Clone the repository
 2. Open `index.html` in your web browser
 3. No build process required - pure HTML, CSS, and JavaScript
+
+### Asset Structure (2025 Restructure)
+
+All assets are now organized under the `assets/` directory with improved logical grouping:
+
+```
+assets/
+  css/
+    main.css
+    visitor-counter.css
+  js/
+    core/                         # Core application logic
+      main.js                     # Main application script
+      vendor/                     # Third-party libraries
+        particles-fallback.js
+    features/                     # Feature-specific modules
+      visitor-counter.js
+      recommendations/
+        recommendation-summary.js
+        recommendation-cards.js
+    utils/                        # Shared utilities
+      recommendation-utils.js
+  data/                          # Static data files
+    Recommendations_Received.csv
+    Suduli_7_10_year-1.txt
+```
+
+Documentation has been moved to `docs/` directory, and tests are now in `tests/` for better organization. See `docs/README-STRUCTURE.md` for complete restructuring details.
 
 ### Deployment
 The website is automatically deployed to GitHub Pages using GitHub Actions whenever changes are pushed to the main branch.
@@ -128,6 +157,9 @@ For any inquiries or collaborations, please use the contact form on the website 
 
 *Built with ❤️ for the automotive industry*
 
-## 📣 Recommendation Cards
+
+## 📣 Recommendation Cards & Visitor Counter
 
 The Recommendations section includes an interactive summary tile. Clicking anywhere on the summary content (the element with class `recommendation-info`) dynamically loads `Recommendations_Received.csv` and renders horizontally scrollable recommendation cards right below. Each card shows a concise excerpt by default and expands to reveal full text and fields on click. If CSV cannot be fetched from a local file context, a small sample is shown as a fallback. For accurate local testing, serve the site (e.g., `npm run dev`) so the CSV can be fetched over HTTP.
+
+All recommendation logic is now in `assets/js/features/recommendations/`. Shared utilities are in `assets/js/utils/`. The visitor counter logic and styles are in `assets/js/features/visitor-counter.js` and `assets/css/visitor-counter.css`.

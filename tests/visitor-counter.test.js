@@ -86,7 +86,7 @@ global.Intl = {
 };
 
 const visitorCounterCode = fs.readFileSync(
-    path.join(__dirname, '../visitor-counter.js'), 
+    path.join(__dirname, '../assets/js/features/visitor-counter.js'), 
     'utf8'
 );
 

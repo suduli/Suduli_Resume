@@ -1,0 +1,14 @@
+/* Visitor Counter Styles */
+.visitor-counter-container {
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+/* ...existing code... */
+/* The rest of visitor-counter.css is unchanged and moved as-is. */
