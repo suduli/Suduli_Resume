@@ -90,14 +90,18 @@ const visitorCounterCode = fs.readFileSync(
     'utf8'
 );
 
-// Clean the code for Node.js execution
-const cleanedCode = visitorCounterCode
-    .replace(/if \(typeof module.*?\n/, '')
-    .replace(/window\.VisitorCounter = VisitorCounter;.*?\n/, '')
-    .replace(/module\.exports = VisitorCounter;.*?\n/, '');
+// Prevent background timers from keeping the process alive
+global.setInterval = () => 0;
 
-// Execute the code in the current context
-eval(cleanedCode);
+// Clean the code for Node.js execution by removing export blocks and window assignment
+const cleanedCode = visitorCounterCode
+    // Remove the CommonJS export block entirely (opening if to closing brace)
+    .replace(/if\s*\(typeof module[^]*?}\s*/m, '')
+    // Remove the window global assignment line
+    .replace(/window\.VisitorCounter\s*=\s*VisitorCounter;[^\n]*\n?/m, '');
+
+// Execute the code in the current context and expose the class
+eval(`${cleanedCode}\n;try{ global.VisitorCounter = VisitorCounter; }catch(e){}`);
 
 console.log('🧪 Starting Visitor Counter Tests...\n');
 

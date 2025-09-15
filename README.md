@@ -127,3 +127,7 @@ For any inquiries or collaborations, please use the contact form on the website 
 ---
 
 *Built with ❤️ for the automotive industry*
+
+## 📣 Recommendation Cards
+
+The Recommendations section includes an interactive summary tile. Clicking anywhere on the summary content (the element with class `recommendation-info`) dynamically loads `Recommendations_Received.csv` and renders horizontally scrollable recommendation cards right below. Each card shows a concise excerpt by default and expands to reveal full text and fields on click. If CSV cannot be fetched from a local file context, a small sample is shown as a fallback. For accurate local testing, serve the site (e.g., `npm run dev`) so the CSV can be fetched over HTTP.
