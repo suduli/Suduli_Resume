@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redesigned Visitor Counter Test</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/visitor-counter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            padding: 50px;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            margin: 0;
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Orbitron', monospace;
+            background: linear-gradient(45deg, #00f5ff, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #00f5ff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: #00f5ff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            background: rgba(0, 245, 255, 0.2);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Redesigned Visitor Counter</h1>
+        
+        <div id="visitor-counter"></div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <button onclick="refreshCounter()" style="
+                background: linear-gradient(45deg, #00f5ff, #ff6b6b);
+                border: none;
+                color: white;
+                padding: 12px 24px;
+                border-radius: 25px;
+                font-family: 'Rajdhani', sans-serif;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                <i class="fas fa-refresh"></i> Refresh Counter
+            </button>
+        </div>
+    </div>
+    
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+
+    <script src="assets/js/features/visitor-counter.js"></script>
+    <script>
+        // Initialize visitor counter with test data
+        const visitorCounter = new VisitorCounter({
+            displayElement: '#visitor-counter',
+            animateNumbers: true,
+            trackUniqueVisitors: true,
+            trackTotalViews: true,
+            trackReturnVisitors: true,
+            useLocalStorage: true,
+            debug: true
+        });
+        
+        // Override with test data for demonstration
+        visitorCounter.visitorData = {
+            uniqueVisitors: 1547,
+            totalPageViews: 8932,
+            returnVisitors: 423,
+            lastUpdated: Date.now()
+        };
+        
+        // Display the counter
+        visitorCounter.displayCounter();
+        
+        function refreshCounter() {
+            // Simulate new data
+            visitorCounter.visitorData.totalPageViews += Math.floor(Math.random() * 10) + 1;
+            visitorCounter.visitorData.uniqueVisitors += Math.floor(Math.random() * 3);
+            visitorCounter.visitorData.returnVisitors += Math.floor(Math.random() * 2);
+            visitorCounter.visitorData.lastUpdated = Date.now();
+            
+            visitorCounter.displayCounter();
+        }
+        
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (body.getAttribute('data-theme') === 'light') {
+                body.removeAttribute('data-theme');
+                themeIcon.className = 'fas fa-moon';
+            } else {
+                body.setAttribute('data-theme', 'light');
+                themeIcon.className = 'fas fa-sun';
+            }
+        }
+    </script>
+</body>
+</html>

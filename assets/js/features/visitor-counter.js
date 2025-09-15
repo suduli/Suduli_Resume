@@ -177,17 +177,42 @@ class VisitorCounter {
             this.log('Display element not found:', this.config.displayElement);
             return;
         }
+
+        // Add loading state
+        element.classList.add('loading');
+        
         const html = this.generateCounterHTML();
         element.innerHTML = html;
-        if (this.config.animateNumbers) {
-            this.animateCounters();
-        }
+        
+        // Remove loading state after a short delay to show the animation
+        setTimeout(() => {
+            element.classList.remove('loading');
+            
+            if (this.config.animateNumbers) {
+                this.animateCounters();
+            }
+            
+            // Add entrance animation
+            const container = element.querySelector('.visitor-counter-container');
+            if (container) {
+                container.style.opacity = '0';
+                container.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    container.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                    container.style.opacity = '1';
+                    container.style.transform = 'translateY(0)';
+                }, 100);
+            }
+        }, 300);
+        
         this.log('Counter displayed successfully');
     }
     generateCounterHTML() {
         const formatNumber = (num) => {
             return new Intl.NumberFormat().format(num);
         };
+        
         return `
             <div class="visitor-counter-container">
                 <div class="counter-title">
@@ -196,21 +221,30 @@ class VisitorCounter {
                 </div>
                 <div class="counter-stats">
                     ${this.config.trackTotalViews ? `
-                        <div class="counter-stat">
+                        <div class="counter-stat" data-stat="total-views">
                             <span class="counter-number" data-target="${this.visitorData.totalPageViews}">${formatNumber(this.visitorData.totalPageViews)}</span>
-                            <span class="counter-label">Total Views</span>
+                            <span class="counter-label">
+                                <i class="fas fa-eye"></i>
+                                Total Views
+                            </span>
                         </div>
                     ` : ''}
                     ${this.config.trackUniqueVisitors ? `
-                        <div class="counter-stat">
+                        <div class="counter-stat" data-stat="unique-visitors">
                             <span class="counter-number" data-target="${this.visitorData.uniqueVisitors}">${formatNumber(this.visitorData.uniqueVisitors)}</span>
-                            <span class="counter-label">Unique Visitors</span>
+                            <span class="counter-label">
+                                <i class="fas fa-users"></i>
+                                Unique Visitors
+                            </span>
                         </div>
                     ` : ''}
                     ${this.config.trackReturnVisitors ? `
-                        <div class="counter-stat">
+                        <div class="counter-stat" data-stat="return-visitors">
                             <span class="counter-number" data-target="${this.visitorData.returnVisitors}">${formatNumber(this.visitorData.returnVisitors)}</span>
-                            <span class="counter-label">Return Visits</span>
+                            <span class="counter-label">
+                                <i class="fas fa-redo"></i>
+                                Return Visits
+                            </span>
                         </div>
                     ` : ''}
                 </div>
@@ -222,21 +256,106 @@ class VisitorCounter {
     }
     animateCounters() {
         const counterNumbers = document.querySelectorAll('.counter-number');
-        counterNumbers.forEach(counter => {
+        const container = document.querySelector('.visitor-counter-container');
+        
+        counterNumbers.forEach((counter, index) => {
             const target = parseInt(counter.getAttribute('data-target'));
-            const increment = target / 50;
+            const increment = target / 60; // Slower animation for better effect
             let current = 0;
+            
+            // Add updating class for animation
+            const stat = counter.closest('.counter-stat');
+            if (stat) {
+                stat.classList.add('counter-updating');
+            }
+            
             const updateCounter = () => {
                 if (current < target) {
                     current += increment;
-                    counter.textContent = new Intl.NumberFormat().format(Math.ceil(current));
+                    const value = Math.ceil(current);
+                    counter.textContent = new Intl.NumberFormat().format(value);
+                    
+                    // Add subtle scale effect during counting
+                    const progress = current / target;
+                    const scale = 1 + (Math.sin(progress * Math.PI * 4) * 0.02);
+                    counter.style.transform = `scale(${scale})`;
+                    
                     requestAnimationFrame(updateCounter);
                 } else {
                     counter.textContent = new Intl.NumberFormat().format(target);
+                    counter.style.transform = 'scale(1)';
+                    
+                    // Remove updating class
+                    if (stat) {
+                        stat.classList.remove('counter-updating');
+                    }
+                    
+                    // Add completion effect
+                    this.addCompletionEffect(counter, index);
                 }
             };
-            updateCounter();
+            
+            // Stagger the animation start for each counter
+            setTimeout(() => {
+                updateCounter();
+            }, index * 200);
         });
+    }
+    
+    addCompletionEffect(counter, index) {
+        // Add a subtle glow effect when animation completes
+        counter.style.textShadow = '0 0 20px var(--accent-primary)';
+        counter.style.transition = 'text-shadow 0.3s ease';
+        
+        setTimeout(() => {
+            counter.style.textShadow = '0 0 10px rgba(0, 245, 255, 0.5)';
+        }, 300);
+        
+        // Add a particle effect (optional)
+        this.createParticleEffect(counter);
+    }
+    
+    createParticleEffect(element) {
+        const rect = element.getBoundingClientRect();
+        const particle = document.createElement('div');
+        
+        particle.style.cssText = `
+            position: fixed;
+            left: ${rect.left + rect.width / 2}px;
+            top: ${rect.top + rect.height / 2}px;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1000;
+            animation: particle-burst 0.6s ease-out forwards;
+        `;
+        
+        document.body.appendChild(particle);
+        
+        // Add the particle animation styles if not already present
+        if (!document.querySelector('#particle-animation-styles')) {
+            const style = document.createElement('style');
+            style.id = 'particle-animation-styles';
+            style.textContent = `
+                @keyframes particle-burst {
+                    0% {
+                        transform: scale(1) translate(0, 0);
+                        opacity: 1;
+                    }
+                    100% {
+                        transform: scale(0) translate(${Math.random() * 40 - 20}px, ${Math.random() * 40 - 20}px);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        setTimeout(() => {
+            particle.remove();
+        }, 600);
     }
     setupPeriodicUpdates() {
         setInterval(() => {
