@@ -8,83 +8,16 @@ class RecommendationSummary {
         this.containerId = 'recommendation-summary';
     }
 
-    // Parse CSV text into array of objects
-    parseCSV(csvText) {
-        const lines = csvText.trim().split('\n');
-        if (lines.length === 0) return [];
-
-        const headers = this.parseCSVLine(lines[0]);
-        const data = [];
-
-        for (let i = 1; i < lines.length; i++) {
-            const values = this.parseCSVLine(lines[i]);
-            if (values.length === headers.length) {
-                const row = {};
-                headers.forEach((header, index) => {
-                    row[header] = values[index];
-                });
-                data.push(row);
-            }
-        }
-
-        return data;
-    }
-
-    // Parse a single CSV line handling quoted fields with commas
-    parseCSVLine(line) {
-        const result = [];
-        let current = '';
-        let inQuotes = false;
-        let i = 0;
-
-        while (i < line.length) {
-            const char = line[i];
-            
-            if (char === '"' && (i === 0 || line[i - 1] === ',')) {
-                inQuotes = true;
-            } else if (char === '"' && inQuotes && (i === line.length - 1 || line[i + 1] === ',')) {
-                inQuotes = false;
-            } else if (char === ',' && !inQuotes) {
-                result.push(current.trim());
-                current = '';
-                i++;
-                continue;
-            } else {
-                current += char;
-            }
-            i++;
-        }
-        
-        result.push(current.trim());
-        return result;
-    }
-
-    // Extract year from date string (formats: MM/DD/YY, MM/DD/YYYY)
-    extractYear(dateString) {
-        if (!dateString) return null;
-        
+    // Utilities are sourced from utils/recommendation-utils.js when available
+    get utils() {
+        // Prefer global in browser; support require in tests
+        if (typeof RecommendationUtils !== 'undefined') return RecommendationUtils;
         try {
-            // Handle formats like "06/30/25, 12:37 PM" or "12/05/24, 02:33 PM"
-            const datePart = dateString.split(',')[0].trim();
-            const parts = datePart.split('/');
-            
-            if (parts.length === 3) {
-                let year = parseInt(parts[2]);
-                
-                // Convert 2-digit year to 4-digit
-                if (year < 50) {
-                    year += 2000; // 00-49 becomes 2000-2049
-                } else if (year < 100) {
-                    year += 1900; // 50-99 becomes 1950-1999
-                }
-                
-                return year;
-            }
-        } catch (error) {
-            console.warn('[RecommendationSummary] Invalid date format:', dateString);
+            // eslint-disable-next-line no-undef
+            return require('./utils/recommendation-utils.js');
+        } catch (_) {
+            return null;
         }
-        
-        return null;
     }
 
     // Process recommendations and count current year entries
@@ -96,7 +29,7 @@ class RecommendationSummary {
             // Only count VISIBLE status recommendations
             if (row.Status !== 'VISIBLE') continue;
             
-            const year = this.extractYear(row['Creation Date']);
+            const year = this.utils ? this.utils.extractYear(row['Creation Date']) : null;
             if (year === this.currentYear) {
                 // Create unique ID to handle duplicates
                 const uniqueId = `${row['First Name']}-${row['Last Name']}-${row.Company}`;
@@ -127,7 +60,8 @@ class RecommendationSummary {
                 throw new Error('CSV file is empty');
             }
             
-            const data = this.parseCSV(csvText);
+            const utils = this.utils;
+            const data = utils ? utils.parseCSV(csvText) : [];
             if (data.length === 0) {
                 throw new Error('No valid data found in CSV file');
             }

@@ -2,6 +2,9 @@
 // Renders horizontally scrollable cards with expand/collapse on click
 
 (function () {
+    const Utils = (typeof RecommendationUtils !== 'undefined')
+        ? RecommendationUtils
+        : (function(){ try { return require('./utils/recommendation-utils.js'); } catch (_) { return null; } })();
     const CSV_PATH = './Recommendations_Received.csv';
     const SUMMARY_CONTAINER_ID = 'recommendation-summary';
     const CARDS_CONTAINER_ID = 'recommendation-cards';
@@ -15,46 +18,7 @@
         return (lastSpace > 80 ? cut.slice(0, lastSpace) : cut) + '…';
     }
 
-    function parseCSVLine(line) {
-        const result = [];
-        let current = '';
-        let inQuotes = false;
-        for (let i = 0; i < line.length; i++) {
-            const ch = line[i];
-            if (ch === '"') {
-                if (inQuotes && line[i + 1] === '"') {
-                    current += '"';
-                    i++; // skip escaped quote
-                } else {
-                    inQuotes = !inQuotes;
-                }
-            } else if (ch === ',' && !inQuotes) {
-                result.push(current);
-                current = '';
-            } else {
-                current += ch;
-            }
-        }
-        result.push(current);
-        return result.map(v => v.trim());
-    }
-
-    function parseCSV(csvText) {
-        const lines = csvText.split(/\r?\n/).filter(l => l.trim().length > 0);
-        if (lines.length < 2) return [];
-        const headers = parseCSVLine(lines[0]);
-        const rows = [];
-        for (let i = 1; i < lines.length; i++) {
-            const values = parseCSVLine(lines[i]);
-            if (values.length !== headers.length) continue;
-            const row = {};
-            for (let j = 0; j < headers.length; j++) {
-                row[headers[j]] = values[j];
-            }
-            rows.push(row);
-        }
-        return rows;
-    }
+    // CSV parsing now consolidated in utils
 
     // Generate deterministic HSL color from a string
     function colorFromString(str) {
@@ -78,19 +42,9 @@
             const res = await fetch(CSV_PATH);
             if (!res.ok) throw new Error(`Failed to fetch CSV (${res.status})`);
             const text = await res.text();
-            const all = parseCSV(text);
-            // Only visible ones
-            const visible = all.filter(r => (r.Status || '').toUpperCase() === 'VISIBLE');
-            // Deduplicate by First + Last + Company + Text
-            const seen = new Set();
-            const deduped = [];
-            for (const r of visible) {
-                const key = [r['First Name'], r['Last Name'], r.Company, r.Text].join('|');
-                if (!seen.has(key)) {
-                    seen.add(key);
-                    deduped.push(r);
-                }
-            }
+            const all = Utils ? Utils.parseCSV(text) : [];
+            const visible = Utils ? Utils.filterVisible(all, { caseInsensitive: true }) : all;
+            const deduped = Utils ? Utils.dedupeByFields(visible, ['First Name','Last Name','Company','Text']) : visible;
             return deduped;
         } catch (err) {
             console.warn('[recommendation-cards] CSV load failed, using fallback data:', err);
