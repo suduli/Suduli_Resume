@@ -106,7 +106,6 @@ class VisitorCounter {
         try {
             const visitData = {
                 sessionId: this.userSession.sessionId,
-                isNewVisitor: this.userSession.isNewVisitor,
                 timestamp: now,
                 userAgent: navigator.userAgent,
                 referrer: document.referrer || 'direct',
@@ -114,17 +113,13 @@ class VisitorCounter {
                 viewport: `${window.innerWidth}x${window.innerHeight}`,
                 timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
             };
-            if (this.userSession.isNewVisitor && this.config.trackUniqueVisitors) {
-                this.visitorData.uniqueVisitors += 1;
+
+            const result = await this.sendToAPI(visitData);
+            
+            if (result && result.counters) {
+                this.visitorData = { ...this.visitorData, ...result.counters };
             }
-            if (this.config.trackTotalViews) {
-                this.visitorData.totalPageViews += 1;
-            }
-            if (!this.userSession.isNewVisitor && this.config.trackReturnVisitors) {
-                this.visitorData.returnVisitors += 1;
-            }
-            this.visitorData.lastUpdated = now;
-            await this.sendToAPI(visitData);
+
             if (this.config.useLocalStorage) {
                 this.saveToStorage('visitor_data', this.visitorData);
             }
@@ -158,8 +153,7 @@ class VisitorCounter {
             },
             body: JSON.stringify({
                 action: 'track_visit',
-                data: visitData,
-                counters: this.visitorData
+                data: visitData
             })
         });
         if (!response.ok) {

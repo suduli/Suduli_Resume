@@ -37,6 +37,8 @@ if (DATABASE_TYPE === 'firestore') {
     );
 }
 
+const crypto = require('crypto');
+
 // Rate limiting configuration
 const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
 const RATE_LIMIT_MAX_REQUESTS = 10;
@@ -108,7 +110,7 @@ async function handleGetVisitors(req, res) {
  */
 async function handleTrackVisit(req, res) {
     try {
-        const { action, data, counters } = req.body;
+        const { action, data } = req.body;
 
         if (action !== 'track_visit' || !data) {
             return res.status(400).json({ 
@@ -125,11 +127,20 @@ async function handleTrackVisit(req, res) {
             });
         }
 
+        // Determine if the visitor is new on the server-side
+        const clientIP = getClientIP(req);
+        const userAgent = req.headers['user-agent'] || '';
+        const fingerprint = crypto.createHash('sha256').update(clientIP + userAgent).digest('hex');
+        
+        const newVisitor = await isNewVisitor(data.sessionId, fingerprint);
+        data.isNewVisitor = newVisitor;
+        data.fingerprint = fingerprint; // Add fingerprint to data
+
         // Save visitor record
         await saveVisitorRecord(data);
 
-        // Update counters
-        const updatedStats = await updateVisitorStats(counters, data);
+        // Update counters on the server-side
+        const updatedStats = await updateVisitorStats(data);
 
         res.status(200).json({
             success: true,
@@ -169,22 +180,32 @@ async function getVisitorStatsFirestore() {
     return doc.data();
 }
 
-async function updateVisitorStatsFirestore(counters, visitorData) {
+async function updateVisitorStatsFirestore(visitorData) {
     const docRef = db.collection('website_stats').doc('visitor_counters');
-    
-    await docRef.update({
-        uniqueVisitors: counters.uniqueVisitors,
-        totalPageViews: counters.totalPageViews,
-        returnVisitors: counters.returnVisitors,
+    const stats = (await docRef.get()).data() || {};
+
+    const newStats = {
+        totalPageViews: (stats.totalPageViews || 0) + 1,
+        uniqueVisitors: stats.uniqueVisitors || 0,
+        returnVisitors: stats.returnVisitors || 0,
         lastUpdated: Date.now()
-    });
+    };
+
+    if (visitorData.isNewVisitor) {
+        newStats.uniqueVisitors += 1;
+    } else {
+        newStats.returnVisitors += 1;
+    }
     
-    return counters;
+    await docRef.set(newStats, { merge: true });
+    
+    return newStats;
 }
 
 async function saveVisitorRecordFirestore(data) {
     await db.collection('visitor_logs').add({
         ...data,
+        fingerprint: data.fingerprint,
         timestamp: admin.firestore.FieldValue.serverTimestamp(),
         createdAt: Date.now()
     });
@@ -227,22 +248,47 @@ async function getVisitorStatsSupabase() {
     };
 }
 
-async function updateVisitorStatsSupabase(counters, visitorData) {
-    const { error } = await db
+async function updateVisitorStatsSupabase(visitorData) {
+    const { data: currentStats, error: currentStatsError } = await db
+        .from('visitor_counters')
+        .select('*')
+        .single();
+
+    if (currentStatsError && currentStatsError.code !== 'PGRST116') { // Ignore 'not found' error
+        throw new Error(`Failed to get stats: ${currentStatsError.message}`);
+    }
+
+    const newStats = {
+        total_page_views: (currentStats?.total_page_views || 0) + 1,
+        unique_visitors: currentStats?.unique_visitors || 0,
+        return_visitors: currentStats?.return_visitors || 0,
+    };
+
+    if (visitorData.isNewVisitor) {
+        newStats.unique_visitors += 1;
+    } else {
+        newStats.return_visitors += 1;
+    }
+
+    const { data, error } = await db
         .from('visitor_counters')
         .update({
-            unique_visitors: counters.uniqueVisitors,
-            total_page_views: counters.totalPageViews,
-            return_visitors: counters.returnVisitors,
+            ...newStats,
             last_updated: new Date().toISOString()
         })
-        .eq('id', 1);
+        .eq('id', 1)
+        .select()
+        .single();
     
     if (error) {
         throw new Error(`Failed to update stats: ${error.message}`);
     }
     
-    return counters;
+    return {
+        uniqueVisitors: data.unique_visitors,
+        totalPageViews: data.total_page_views,
+        returnVisitors: data.return_visitors,
+    };
 }
 
 async function saveVisitorRecordSupabase(data) {
@@ -256,6 +302,7 @@ async function saveVisitorRecordSupabase(data) {
             url: data.url,
             viewport: data.viewport,
             timezone: data.timezone,
+            fingerprint: data.fingerprint,
             timestamp: new Date(data.timestamp).toISOString(),
             created_at: new Date().toISOString()
         });
@@ -276,11 +323,11 @@ async function getVisitorStats() {
     }
 }
 
-async function updateVisitorStats(counters, visitorData) {
+async function updateVisitorStats(visitorData) {
     if (DATABASE_TYPE === 'firestore') {
-        return await updateVisitorStatsFirestore(counters, visitorData);
+        return await updateVisitorStatsFirestore(visitorData);
     } else if (DATABASE_TYPE === 'supabase') {
-        return await updateVisitorStatsSupabase(counters, visitorData);
+        return await updateVisitorStatsSupabase(visitorData);
     }
 }
 
@@ -290,6 +337,40 @@ async function saveVisitorRecord(data) {
     } else if (DATABASE_TYPE === 'supabase') {
         return await saveVisitorRecordSupabase(data);
     }
+}
+
+/**
+ * Check if a visitor is new by checking for their session ID in the database
+ */
+async function isNewVisitor(sessionId, fingerprint) {
+    const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
+
+    if (DATABASE_TYPE === 'firestore') {
+        const sessionQuery = db.collection('visitor_logs').where('sessionId', '==', sessionId).where('timestamp', '>=', twentyFourHoursAgo).limit(1);
+        const fingerprintQuery = db.collection('visitor_logs').where('fingerprint', '==', fingerprint).where('timestamp', '>=', twentyFourHoursAgo).limit(1);
+
+        const [sessionSnapshot, fingerprintSnapshot] = await Promise.all([
+            sessionQuery.get(),
+            fingerprintQuery.get()
+        ]);
+
+        return sessionSnapshot.empty && fingerprintSnapshot.empty;
+    } else if (DATABASE_TYPE === 'supabase') {
+        const { data, error } = await db
+            .from('visitor_logs')
+            .select('session_id')
+            .or(`session_id.eq.${sessionId},fingerprint.eq.${fingerprint}`)
+            .gte('timestamp', twentyFourHoursAgo.toISOString())
+            .limit(1);
+            
+        if (error) {
+            console.error('Error checking for new visitor:', error);
+            return true; // Fail open, assume new visitor
+        }
+        
+        return data.length === 0;
+    }
+    return true;
 }
 
 /**
