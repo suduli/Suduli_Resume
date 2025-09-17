@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Toggle Test - Flexbox Navigation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+        }
+        
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        .test-instructions {
+            background: #e9ecef;
+            padding: 15px;
+            border-left: 4px solid #007bff;
+            margin: 10px 0;
+        }
+        
+        .test-checklist {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .test-checklist li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .test-checklist li:before {
+            content: "□ ";
+            font-size: 18px;
+            color: #007bff;
+        }
+        
+        .test-checklist li.completed:before {
+            content: "✓ ";
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 Theme Toggle Debug & Test Results</h1>
+    
+    <div class="test-section">
+        <h2>✅ Implementation Status</h2>
+        <ul class="test-checklist">
+            <li class="completed">HTML structure updated with nav-right-group wrapper</li>
+            <li class="completed">CSS updated to use flexbox layout instead of absolute positioning</li>
+            <li class="completed">Mobile responsive styles updated for new flex structure</li>
+            <li class="completed">Theme toggle JavaScript functionality maintained</li>
+        </ul>
+    </div>
+    
+    <div class="test-section">
+        <h2>🧪 What We Fixed</h2>
+        <div class="test-instructions">
+            <h3>Before (Problems):</h3>
+            <ul>
+                <li>Theme toggle was using absolute positioning</li>
+                <li>Conflicting CSS rules between mobile and desktop</li>
+                <li>Button could appear outside nav container bounds</li>
+                <li>Duplicate CSS rules causing positioning conflicts</li>
+            </ul>
+            
+            <h3>After (Solutions):</h3>
+            <ul>
+                <li>✅ Theme toggle now uses flexbox as a flex item</li>
+                <li>✅ Consolidated CSS rules, removed duplicates</li>
+                <li>✅ Proper flex container ensures button stays within nav</li>
+                <li>✅ Responsive behavior works consistently across devices</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>📱 Device Testing</h2>
+        <div class="test-instructions">
+            <h3>Test these scenarios on your main site:</h3>
+            <ol>
+                <li><strong>Desktop (1200px+):</strong> Theme toggle should appear between social icons and content</li>
+                <li><strong>Tablet (768px-1199px):</strong> Theme toggle should appear next to hamburger menu</li>
+                <li><strong>Mobile (≤767px):</strong> Social icons hidden, theme toggle next to hamburger</li>
+                <li><strong>Theme switching:</strong> Click the button to test dark/light mode toggle</li>
+                <li><strong>Responsive:</strong> Resize browser window to test all breakpoints</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>🔍 Debug Instructions</h2>
+        <div class="test-instructions">
+            <h3>If you still see positioning issues:</h3>
+            <ol>
+                <li><strong>Open Developer Tools (F12)</strong></li>
+                <li><strong>Find the navigation:</strong> Look for <code>.nav-container</code> in the DOM</li>
+                <li><strong>Check the structure:</strong> Verify you see the nav-right-group wrapper</li>
+                <li><strong>Check CSS properties:</strong> 
+                    <ul>
+                        <li><code>.nav-container</code> should have <code>display: flex</code></li>
+                        <li><code>.nav-right-group</code> should have <code>display: flex</code></li>
+                        <li><code>.theme-toggle</code> should have <code>position: relative</code> (not absolute)</li>
+                    </ul>
+                </li>
+                <li><strong>Test theme switching:</strong> Click the moon/sun icon to verify functionality</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>🎯 Expected Results</h2>
+        <div class="test-instructions">
+            <h3>Desktop Navigation Layout:</h3>
+            <p><code>[LOGO] — [MENU ITEMS] — [SOCIAL ICONS] [THEME TOGGLE] [HAMBURGER(hidden)]</code></p>
+            
+            <h3>Mobile Navigation Layout:</h3>
+            <p><code>[LOGO] — [MENU(hidden)] — [THEME TOGGLE] [HAMBURGER]</code></p>
+            
+            <h3>Theme Toggle Behavior:</h3>
+            <ul>
+                <li>🌙 Dark mode: Shows sun icon</li>
+                <li>☀️ Light mode: Shows moon icon</li>
+                <li>Smooth transition between themes</li>
+                <li>Maintains position during theme changes</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>🚀 Next Steps</h2>
+        <div class="test-instructions">
+            <ol>
+                <li><strong>Test your main site:</strong> Navigate to <a href="http://localhost:8011" target="_blank">http://localhost:8011</a></li>
+                <li><strong>Verify responsive behavior:</strong> Resize browser window or use device emulation</li>
+                <li><strong>Test theme switching:</strong> Click the theme toggle button multiple times</li>
+                <li><strong>Check mobile experience:</strong> Test on actual mobile device or emulator</li>
+                <li><strong>Clean up debug files:</strong> Remove debug files when satisfied</li>
+            </ol>
+            
+            <p><strong>If everything works:</strong> You can commit your changes and deploy!</p>
+            <p><strong>If issues persist:</strong> Check the console for JavaScript errors or CSS conflicts.</p>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>📋 Final Checklist</h2>
+        <ul class="test-checklist">
+            <li>Theme toggle appears in correct position on desktop</li>
+            <li>Theme toggle appears in correct position on mobile</li>
+            <li>Theme switching works (moon ↔ sun icon)</li>
+            <li>Dark/light theme transitions work smoothly</li>
+            <li>Navigation layout remains stable during theme changes</li>
+            <li>Responsive behavior works at all screen sizes</li>
+            <li>No console errors in browser developer tools</li>
+        </ul>
+    </div>
+    
+    <script>
+        // Add click functionality to checklist items
+        document.querySelectorAll('.test-checklist li').forEach(item => {
+            item.addEventListener('click', function() {
+                this.classList.toggle('completed');
+            });
+        });
+    </script>
+</body>
+</html>
