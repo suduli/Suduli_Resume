@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Toggle Active State Fix Test</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .test-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .test-container {
+            max-width: 390px;
+            margin: 0 auto;
+            border: 8px solid #333;
+            border-radius: 25px;
+            background: #333;
+            padding: 8px;
+            position: relative;
+        }
+
+        .mobile-screen {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            overflow: hidden;
+            min-height: 400px;
+        }
+
+        .test-instructions {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px;
+            border-left: 4px solid #28a745;
+        }
+
+        .click-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: none;
+            z-index: 9999;
+        }
+
+        .position-tracker {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <div class="click-indicator" id="clickIndicator">Button Clicked!</div>
+    
+    <div class="position-tracker" id="positionTracker">
+        <div>Button Position: <span id="buttonPos">--</span></div>
+        <div>Click Count: <span id="clickCount">0</span></div>
+    </div>
+
+    <div class="test-header">
+        <h1>🔧 Theme Toggle Active State Fix</h1>
+        <p><strong>Test:</strong> Click theme toggle and verify it doesn't move down</p>
+        <p><strong>Expected:</strong> Button stays in same vertical position during click</p>
+    </div>
+
+    <div class="test-container">
+        <div class="mobile-screen">
+            <!-- Navigation -->
+            <nav class="navbar">
+                <div class="nav-container">
+                    <div class="nav-logo">
+                        <span class="logo-text">SUDULI</span>
+                    </div>
+                    <ul class="nav-menu" id="nav-menu">
+                        <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+                        <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                    <button class="theme-toggle" id="theme-toggle" 
+                            aria-label="Toggle theme" 
+                            title="Toggle between light and dark theme">
+                        <i class="fas fa-moon" id="theme-icon" aria-hidden="true"></i>
+                    </button>
+                    <div class="hamburger" id="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </div>
+            </nav>
+
+            <div style="padding: 40px 20px; margin-top: 60px;">
+                <h2>Active State Test Content</h2>
+                <p>Click the theme toggle button (🌙) in the navigation above and watch its position carefully.</p>
+                
+                <div style="background: var(--bg-card); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <h3>✅ What Should Happen:</h3>
+                    <ul>
+                        <li>Button slightly scales down when clicked (:active state)</li>
+                        <li>Button maintains its vertical center position</li>
+                        <li>No jumping or moving down</li>
+                        <li>Smooth return to normal size when released</li>
+                    </ul>
+                </div>
+
+                <div style="background: var(--bg-secondary); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <h3>❌ Previous Issue:</h3>
+                    <ul>
+                        <li>Button would move down when clicked</li>
+                        <li>Lost vertical centering during :active state</li>
+                        <li>Transform conflict: scale() vs translateY(-50%)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-instructions">
+        <h3>🧪 Testing Instructions</h3>
+        <ol>
+            <li><strong>Resize browser</strong> to mobile width (≤768px)</li>
+            <li><strong>Click and hold</strong> the theme toggle button</li>
+            <li><strong>Observe position</strong> - it should stay vertically centered</li>
+            <li><strong>Release click</strong> - button should return to normal size</li>
+            <li><strong>Repeat test</strong> to ensure consistency</li>
+        </ol>
+
+        <div style="margin-top: 15px; padding: 15px; background: #e3f2fd; border-radius: 5px;">
+            <strong>💡 Technical Fix Applied:</strong><br>
+            <code>transform: translateY(-50%) scale(0.95);</code><br>
+            <small>Combines vertical centering with scale effect in mobile :active state</small>
+        </div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        const themeToggle = document.getElementById('theme-toggle');
+        const clickIndicator = document.getElementById('clickIndicator');
+        const positionTracker = document.getElementById('positionTracker');
+
+        function updatePosition() {
+            const rect = themeToggle.getBoundingClientRect();
+            document.getElementById('buttonPos').textContent = 
+                `Top: ${Math.round(rect.top)}px, Right: ${Math.round(window.innerWidth - rect.right)}px`;
+        }
+
+        // Theme toggle functionality
+        function toggleTheme() {
+            clickCount++;
+            document.getElementById('clickCount').textContent = clickCount;
+            
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            const themeIcon = document.getElementById('theme-icon');
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            
+            if (newTheme === 'light') {
+                themeIcon.className = 'fas fa-sun';
+            } else {
+                themeIcon.className = 'fas fa-moon';
+            }
+
+            // Show click indicator
+            clickIndicator.style.display = 'block';
+            setTimeout(() => {
+                clickIndicator.style.display = 'none';
+            }, 500);
+
+            updatePosition();
+        }
+
+        // Track mouse events for debugging
+        themeToggle.addEventListener('mousedown', () => {
+            updatePosition();
+        });
+
+        themeToggle.addEventListener('mouseup', () => {
+            setTimeout(updatePosition, 50); // Small delay to catch transition
+        });
+
+        themeToggle.addEventListener('click', toggleTheme);
+
+        // Initial position update
+        window.addEventListener('resize', updatePosition);
+        updatePosition();
+
+        // Auto-update position every second for debugging
+        setInterval(updatePosition, 1000);
+    </script>
+</body>
+</html>
