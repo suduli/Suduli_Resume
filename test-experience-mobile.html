@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience Section Mobile Test</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Debug overlay for mobile testing */
+        body::before {
+            content: "Screen Width: " attr(data-width);
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            z-index: 1000;
+        }
+
+        .device-frame {
+            max-width: 100%;
+            margin: 20px auto;
+            border: 20px solid #333;
+            border-radius: 25px;
+            background: #333;
+            padding: 20px 10px;
+            position: relative;
+        }
+
+        .device-frame::before {
+            content: attr(data-device);
+            position: absolute;
+            top: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #333;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .mobile-test {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Test viewport sizes */
+        .iphone-se { width: 320px; }
+        .iphone-12 { width: 390px; }
+        .galaxy-s20 { width: 412px; }
+        .ipad-mini { width: 768px; }
+
+        .debug-info {
+            background: #f0f0f0;
+            padding: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #007acc;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-info">
+        <h3>Experience Section Mobile Test</h3>
+        <p><strong>Test Focus:</strong> Timeline layout, content visibility, touch targets</p>
+        <p><strong>Key Issues:</strong> Entries 2+ poor text/layout on mobile</p>
+        <p><strong>Viewport Breakpoints:</strong> 480px (small mobile), 768px (tablet)</p>
+    </div>
+
+    <!-- iPhone SE Simulation (320px) -->
+    <div class="device-frame iphone-se" data-device="iPhone SE (320px)">
+        <div class="mobile-test">
+            <section class="experience">
+                <div class="container">
+                    <h2 class="section-title">Experience</h2>
+                    
+                    <!-- Experience Highlight -->
+                    <div class="experience-highlight">
+                        <h3 class="exp-role">Data Scientist</h3>
+                        <p class="exp-company">Suduli Analytics</p>
+                        <p class="exp-duration">2022 - Present</p>
+                        <ul class="exp-points">
+                            <li><i class="point-icon fas fa-chart-line"></i>Developed predictive models improving accuracy by 25%</li>
+                            <li><i class="point-icon fas fa-database"></i>Built ETL pipelines processing 1M+ records daily</li>
+                            <li><i class="point-icon fas fa-users"></i>Led cross-functional team of 5 engineers</li>
+                        </ul>
+                    </div>
+
+                    <!-- Timeline -->
+                    <div class="timeline">
+                        <!-- Entry 1 -->
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h3 class="timeline-title">Senior Data Analyst</h3>
+                                <p class="timeline-company">Tech Solutions Inc.</p>
+                                <p class="timeline-date">2020 - 2022</p>
+                                <ul class="role-points">
+                                    <li><i class="fas fa-chart-bar"></i>Designed dashboard solutions for executive reporting</li>
+                                    <li><i class="fas fa-code"></i>Automated reporting processes saving 20 hours/week</li>
+                                    <li><i class="fas fa-lightbulb"></i>Led data-driven initiatives increasing revenue by 15%</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Entry 2 (Problem area) -->
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h3 class="timeline-title">Data Analyst</h3>
+                                <p class="timeline-company">Digital Insights Corp</p>
+                                <p class="timeline-date">2018 - 2020</p>
+                                <ul class="role-points">
+                                    <li><i class="fas fa-database"></i>Performed statistical analysis on customer behavior data</li>
+                                    <li><i class="fas fa-chart-pie"></i>Created visualization tools for stakeholder presentations</li>
+                                    <li><i class="fas fa-search"></i>Conducted A/B testing to optimize user experience</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Entry 3 (Problem area) -->
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h3 class="timeline-title">Junior Data Analyst</h3>
+                                <p class="timeline-company">StartupTech Solutions</p>
+                                <p class="timeline-date">2017 - 2018</p>
+                                <ul class="role-points">
+                                    <li><i class="fas fa-table"></i>Cleaned and processed raw data from multiple sources</li>
+                                    <li><i class="fas fa-calculator"></i>Supported senior analysts with statistical modeling</li>
+                                    <li><i class="fas fa-presentation"></i>Prepared reports and presentations for management</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Entry 4 (Problem area) -->
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h3 class="timeline-title">Data Science Intern</h3>
+                                <p class="timeline-company">Innovation Labs</p>
+                                <p class="timeline-date">2016 - 2017</p>
+                                <ul class="role-points">
+                                    <li><i class="fas fa-graduation-cap"></i>Learned Python, SQL, and data visualization tools</li>
+                                    <li><i class="fas fa-project-diagram"></i>Assisted with machine learning proof-of-concepts</li>
+                                    <li><i class="fas fa-document-alt"></i>Documented data processes and methodologies</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- iPhone 12 Simulation (390px) -->
+    <div class="device-frame iphone-12" data-device="iPhone 12 (390px)">
+        <div class="mobile-test">
+            <section class="experience">
+                <div class="container">
+                    <h2 class="section-title">Experience</h2>
+                    
+                    <div class="experience-highlight">
+                        <h3 class="exp-role">Data Scientist</h3>
+                        <p class="exp-company">Suduli Analytics</p>
+                        <p class="exp-duration">2022 - Present</p>
+                        <ul class="exp-points">
+                            <li><i class="point-icon fas fa-chart-line"></i>Developed predictive models improving accuracy by 25%</li>
+                            <li><i class="point-icon fas fa-database"></i>Built ETL pipelines processing 1M+ records daily</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h3 class="timeline-title">Senior Data Analyst</h3>
+                                <p class="timeline-company">Tech Solutions Inc.</p>
+                                <p class="timeline-date">2020 - 2022</p>
+                                <ul class="role-points">
+                                    <li><i class="fas fa-chart-bar"></i>Designed dashboard solutions for executive reporting</li>
+                                    <li><i class="fas fa-code"></i>Automated reporting processes saving 20 hours/week</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h3 class="timeline-title">Data Analyst</h3>
+                                <p class="timeline-company">Digital Insights Corp</p>
+                                <p class="timeline-date">2018 - 2020</p>
+                                <ul class="role-points">
+                                    <li><i class="fas fa-database"></i>Performed statistical analysis on customer behavior data</li>
+                                    <li><i class="fas fa-chart-pie"></i>Created visualization tools for stakeholder presentations</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="debug-info">
+        <h3>Testing Checklist:</h3>
+        <ul>
+            <li>✅ Timeline items stack vertically on mobile</li>
+            <li>✅ Text remains readable (14px+ font size)</li>
+            <li>✅ Touch targets meet 48px minimum</li>
+            <li>✅ Timeline markers visible and positioned correctly</li>
+            <li>✅ Content doesn't overflow horizontally</li>
+            <li>✅ Adequate spacing between timeline entries</li>
+            <li>✅ Icons display properly with bullet points</li>
+        </ul>
+        
+        <h3>Key Mobile Fixes Applied:</h3>
+        <ul>
+            <li>Single-column timeline layout for mobile</li>
+            <li>Reduced timeline marker size (16px on small mobile)</li>
+            <li>Optimized padding and margins for touch interaction</li>
+            <li>Font size adjustments for readability</li>
+            <li>Timeline line repositioning for narrow screens</li>
+        </ul>
+    </div>
+
+    <script>
+        // Display current viewport width
+        function updateViewportInfo() {
+            document.body.setAttribute('data-width', window.innerWidth + 'px');
+        }
+        
+        window.addEventListener('resize', updateViewportInfo);
+        updateViewportInfo();
+
+        // Add Font Awesome for icons
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css';
+        document.head.appendChild(link);
+    </script>
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Section - Desktop vs Mobile Layout Test</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Demo layout styles */
+        .demo-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .layout-demo {
+            border: 3px solid #007acc;
+            border-radius: 15px;
+            margin: 30px 0;
+            overflow: hidden;
+            background: white;
+        }
+
+        .demo-header {
+            background: linear-gradient(135deg, #007acc, #0056b3);
+            color: white;
+            padding: 15px 20px;
+            font-weight: bold;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .desktop-demo {
+            min-width: 1024px;
+            transform: scale(0.85);
+            transform-origin: top left;
+            margin-bottom: -100px;
+        }
+
+        .mobile-demo {
+            max-width: 390px;
+            margin: 0 auto;
+        }
+
+        .layout-info {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+            border-radius: 5px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .feature-highlight {
+            background: rgba(0, 123, 255, 0.1);
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .feature-highlight h4 {
+            margin: 0 0 10px 0;
+            color: #007bff;
+        }
+
+        .responsive-indicator {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .desktop-demo {
+                transform: scale(0.4);
+                margin-bottom: -300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="responsive-indicator">
+        <div>Screen: <span id="screen-width"></span>px</div>
+        <div>Layout: <span id="layout-type"></span></div>
+    </div>
+
+    <div class="demo-container">
+        <h1>📱💻 Contact Section Layout Comparison</h1>
+        
+        <div class="layout-info">
+            <h2>🎯 Layout Strategy Overview</h2>
+            <p><strong>Desktop (769px+):</strong> Two-column grid layout with contact info on left, form on right</p>
+            <p><strong>Mobile (768px and below):</strong> Single-column stacked layout with visual divider</p>
+            <p><strong>All improvements retained:</strong> Better spacing, typography, touch targets, and visual hierarchy</p>
+        </div>
+
+        <!-- Desktop Layout Demo -->
+        <div class="layout-demo">
+            <div class="demo-header">
+                <i class="fas fa-desktop"></i>
+                Desktop Layout (1024px+) - Two Column Grid
+            </div>
+            <div class="desktop-demo">
+                <section id="contact" class="contact">
+                    <div class="container">
+                        <h2 class="section-title">Get In Touch</h2>
+                        <div class="contact-content">
+                            <div class="contact-info">
+                                <h3 class="contact-subtitle">Let's Connect</h3>
+                                <p class="contact-description">
+                                    I'm ready to discuss automotive testing opportunities, IV&V collaboration, or share insights about embedded systems validation and expertise in the automotive domain.
+                                </p>
+                                <div class="contact-methods">
+                                    <div class="contact-method">
+                                        <i class="fas fa-envelope"></i>
+                                        <div class="method-info">
+                                            <span class="method-label">Email</span>
+                                            <span class="method-value">suduli.office@gmail.com</span>
+                                        </div>
+                                    </div>
+                                    <div class="contact-method">
+                                        <i class="fab fa-linkedin"></i>
+                                        <div class="method-info">
+                                            <span class="method-label">LinkedIn</span>
+                                            <span class="method-value"><a href="#" target="_blank">linkedin.com/in/suduli</a></span>
+                                        </div>
+                                    </div>
+                                    <div class="contact-method">
+                                        <i class="fas fa-phone"></i>
+                                        <div class="method-info">
+                                            <span class="method-label">Phone</span>
+                                            <span class="method-value">
+                                                <span class="phone-hidden">Click to Reveal Contact Number</span>
+                                            </span>
+                                            <button class="btn-reveal">
+                                                <i class="fas fa-eye"></i> Reveal
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="contact-method">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <div class="method-info">
+                                            <span class="method-label">Location</span>
+                                            <span class="method-value">Bengaluru, India</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- No divider on desktop - grid layout provides separation -->
+                            
+                            <div class="contact-form">
+                                <h3>Send a Message</h3>
+                                <p class="form-subtitle">Ready to collaborate? Drop me a line and let's discuss your next project.</p>
+                                <form class="form">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Your Name" class="form-input" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" placeholder="Your Email" class="form-input" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea placeholder="Your Message" class="form-input" rows="5" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-paper-plane"></i>
+                                        Send Message
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Mobile Layout Demo -->
+        <div class="layout-demo">
+            <div class="demo-header">
+                <i class="fas fa-mobile-alt"></i>
+                Mobile Layout (768px and below) - Single Column Stack
+            </div>
+            <div class="mobile-demo">
+                <section id="contact" class="contact">
+                    <div class="container">
+                        <h2 class="section-title">Get In Touch</h2>
+                        <div class="contact-content">
+                            <div class="contact-info">
+                                <h3 class="contact-subtitle">Let's Connect</h3>
+                                <p class="contact-description">
+                                    Ready to discuss opportunities or collaborate on automotive testing projects?
+                                </p>
+                                <div class="contact-methods">
+                                    <div class="contact-method">
+                                        <i class="fas fa-envelope"></i>
+                                        <div class="method-info">
+                                            <span class="method-label">Email</span>
+                                            <span class="method-value">suduli.office@gmail.com</span>
+                                        </div>
+                                    </div>
+                                    <div class="contact-method">
+                                        <i class="fab fa-linkedin"></i>
+                                        <div class="method-info">
+                                            <span class="method-label">LinkedIn</span>
+                                            <span class="method-value"><a href="#" target="_blank">linkedin.com/in/suduli</a></span>
+                                        </div>
+                                    </div>
+                                    <div class="contact-method">
+                                        <i class="fas fa-phone"></i>
+                                        <div class="method-info">
+                                            <span class="method-label">Phone</span>
+                                            <span class="method-value">
+                                                <span class="phone-hidden">Click to Reveal</span>
+                                            </span>
+                                            <button class="btn-reveal">
+                                                <i class="fas fa-eye"></i> Reveal
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Visual separator shows on mobile -->
+                            <hr class="contact-divider">
+                            
+                            <div class="contact-form">
+                                <h3>Send a Message</h3>
+                                <p class="form-subtitle">Ready to collaborate? Drop me a line.</p>
+                                <form class="form">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Your Name" class="form-input" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" placeholder="Your Email" class="form-input" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea placeholder="Your Message" class="form-input" rows="5" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-paper-plane"></i>
+                                        Send Message
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="comparison-grid">
+            <div class="feature-highlight">
+                <h4>🖥️ Desktop Experience</h4>
+                <ul>
+                    <li>✅ Two-column grid layout (original design)</li>
+                    <li>✅ Contact info left, form right</li>
+                    <li>✅ No visual divider (grid provides separation)</li>
+                    <li>✅ Enhanced typography and spacing maintained</li>
+                    <li>✅ Professional side-by-side presentation</li>
+                </ul>
+            </div>
+            
+            <div class="feature-highlight">
+                <h4>📱 Mobile Experience</h4>
+                <ul>
+                    <li>✅ Single-column stacked layout</li>
+                    <li>✅ Visual divider between sections</li>
+                    <li>✅ Touch-friendly sizing (44px+ targets)</li>
+                    <li>✅ Optimized spacing and typography</li>
+                    <li>✅ Better readability and usability</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="layout-info">
+            <h3>🎯 Key Benefits of This Approach</h3>
+            <ul>
+                <li><strong>Desktop:</strong> Maintains original professional two-column layout</li>
+                <li><strong>Mobile:</strong> Optimized single-column with all modern improvements</li>
+                <li><strong>Responsive:</strong> Seamless transition between layouts at 768px breakpoint</li>
+                <li><strong>Accessibility:</strong> WCAG 2.1 AA compliant touch targets across all devices</li>
+                <li><strong>Typography:</strong> Enhanced readability with proper hierarchy on all screens</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function updateLayoutInfo() {
+            const width = window.innerWidth;
+            const layoutType = width > 768 ? 'Desktop (Two-Column)' : 'Mobile (Single-Column)';
+            
+            document.getElementById('screen-width').textContent = width;
+            document.getElementById('layout-type').textContent = layoutType;
+        }
+
+        window.addEventListener('resize', updateLayoutInfo);
+        updateLayoutInfo();
+
+        // Form handling
+        document.querySelectorAll('.form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const button = this.querySelector('.btn');
+                const originalHTML = button.innerHTML;
+                
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                button.disabled = true;
+                
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                    button.style.background = '#22c55e';
+                    
+                    setTimeout(() => {
+                        button.innerHTML = originalHTML;
+                        button.disabled = false;
+                        button.style.background = '';
+                        this.reset();
+                    }, 2000);
+                }, 1500);
+            });
+        });
+
+        // Phone reveal
+        document.querySelectorAll('.btn-reveal').forEach(button => {
+            button.addEventListener('click', function() {
+                this.innerHTML = '<i class="fas fa-check"></i> Revealed';
+                this.style.background = '#22c55e';
+                this.style.color = 'white';
+                this.disabled = true;
+            });
+        });
+    </script>
+</body>
+</html>

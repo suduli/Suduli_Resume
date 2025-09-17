@@ -1,0 +1,187 @@
+/* Mobile About Section Enhancement Patch */
+/* This file contains additional mobile fixes for the About Me section */
+
+/* Ensure proper mobile viewport handling */
+@viewport {
+    width: device-width;
+    initial-scale: 1.0;
+    maximum-scale: 5.0;
+    user-scalable: yes;
+}
+
+/* Additional mobile-specific fixes for About section */
+@media (max-width: 768px) {
+    /* Fix potential text overflow issues */
+    .about-intro,
+    .about-details {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+    }
+    
+    /* Ensure stats don't break layout */
+    .stat-item {
+        min-width: 0; /* Allow flex items to shrink */
+        flex-shrink: 1;
+        overflow: hidden;
+    }
+    
+    .stat-label {
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    /* Fix any potential image placeholder issues */
+    .image-placeholder {
+        flex-shrink: 0;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+/* Extra small devices (under 375px) */
+@media (max-width: 374px) {
+    .about-content {
+        padding: 0 8px;
+    }
+    
+    .about-intro {
+        font-size: 17px;
+    }
+    
+    .about-details {
+        font-size: 14px;
+    }
+    
+    .stat-number {
+        font-size: 26px;
+    }
+    
+    .stat-label {
+        font-size: 12px;
+    }
+    
+    .image-placeholder {
+        width: 140px;
+        height: 140px;
+        font-size: 48px;
+    }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 768px) and (orientation: landscape) and (max-height: 500px) {
+    .about {
+        padding: 40px 0;
+    }
+    
+    .about-content {
+        gap: 30px;
+    }
+    
+    .about-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        max-width: 400px;
+    }
+    
+    .stat-item {
+        padding: 12px 8px;
+        min-height: 60px;
+    }
+    
+    .image-placeholder {
+        width: 120px;
+        height: 120px;
+        font-size: 40px;
+    }
+}
+
+/* High DPI displays optimization */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .stat-item {
+        border-width: 0.5px;
+    }
+    
+    .image-placeholder {
+        border-width: 1.5px;
+    }
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+    .about-content {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .stat-item {
+        -webkit-tap-highlight-color: rgba(0, 245, 255, 0.2);
+    }
+}
+
+/* Android specific fixes */
+@media screen and (-webkit-device-pixel-ratio: 1.5),
+       screen and (-webkit-device-pixel-ratio: 2),
+       screen and (-webkit-device-pixel-ratio: 3) {
+    .stat-number {
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+/* Focus states for accessibility on mobile */
+@media (max-width: 768px) {
+    .stat-item:focus-within {
+        outline: 2px solid var(--accent-primary);
+        outline-offset: 2px;
+    }
+    
+    .image-placeholder:focus {
+        outline: 2px solid var(--accent-primary);
+        outline-offset: 4px;
+    }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    .stat-item:hover,
+    .image-placeholder:hover {
+        transform: none;
+    }
+}
+
+/* Dark mode improvements for mobile */
+@media (max-width: 768px) and (prefers-color-scheme: dark) {
+    .stat-item {
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+    }
+}
+
+/* Light mode improvements for mobile */
+@media (max-width: 768px) and (prefers-color-scheme: light) {
+    .stat-item {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+    }
+}
+
+/* Print styles for mobile */
+@media print and (max-width: 768px) {
+    .about {
+        padding: 20px 0;
+    }
+    
+    .about-content {
+        gap: 20px;
+    }
+    
+    .about-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        page-break-inside: avoid;
+    }
+}

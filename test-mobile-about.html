@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile About Section Test - Suduli Resume</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Test specific styles */
+        .test-header {
+            background: linear-gradient(135deg, #0c0c0c, #1a1a2e);
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #00f5ff;
+        }
+        
+        .test-info {
+            background: rgba(0, 245, 255, 0.1);
+            padding: 15px;
+            margin: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            color: #ffffff;
+        }
+        
+        .viewport-info {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 1000;
+        }
+        
+        .device-frames {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+            background: #1a1a2e;
+        }
+        
+        .device-frame {
+            border: 8px solid #333;
+            border-radius: 20px;
+            background: #000;
+            padding: 10px;
+            position: relative;
+        }
+        
+        .device-frame::before {
+            content: attr(data-device);
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #00f5ff;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .iphone-se {
+            width: 320px;
+            height: 568px;
+        }
+        
+        .iphone-12 {
+            width: 390px;
+            height: 844px;
+        }
+        
+        .samsung-s8 {
+            width: 360px;
+            height: 740px;
+        }
+        
+        .device-content {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            background: linear-gradient(135deg, #0c0c0c, #1a1a2e);
+        }
+    </style>
+</head>
+<body>
+    <div class="viewport-info" id="viewport-info">
+        Viewport: <span id="viewport-size"></span>
+    </div>
+    
+    <div class="test-header">
+        <h1>Mobile About Section Test</h1>
+        <p>Testing mobile responsiveness for About Me section</p>
+    </div>
+    
+    <div class="test-info">
+        <h3>Test Instructions:</h3>
+        <ul>
+            <li>Resize your browser to different mobile widths (320px, 390px, 480px, 768px)</li>
+            <li>Check if text content is fully visible without horizontal scrolling</li>
+            <li>Verify that stats stack properly on mobile</li>
+            <li>Ensure buttons are touch-friendly (min 48px height)</li>
+            <li>Test both portrait and landscape orientations</li>
+        </ul>
+    </div>
+
+    <!-- Test the actual About section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-intro">
+                        I have 8 years of experience in independent verification (IV) and validation (V) for critical systems in the automotive domain.
+                    </p>
+                    <p class="about-details">
+                        Expertise in automotive testing with extensive experience in RQM tools, programming languages, and advanced automotive software analysis. 
+                        Proficient in functional testing, performance testing, and validation, with a focus on infotainment systems, ADAS, and critical automotive components.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">8+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">4+</span>
+                            <span class="stat-label">Companies</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Hero section buttons -->
+    <section id="hero-test" style="padding: 40px 0; background: var(--bg-card);">
+        <div class="container">
+            <h2 class="section-title">Hero Buttons Test</h2>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="assets/data/Suduli_Resume.pdf" class="btn btn-secondary" download="Suduli_Resume.pdf">
+                    <i class="fas fa-download"></i> Download Resume
+                </a>
+                <a href="#about" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Device simulation frames for different screen sizes -->
+    <div class="device-frames">
+        <div class="device-frame iphone-se" data-device="iPhone SE (320px)">
+            <iframe class="device-content" src="about:blank" style="transform: scale(0.8); transform-origin: top left; width: 125%; height: 125%;"></iframe>
+        </div>
+        <div class="device-frame samsung-s8" data-device="Samsung S8 (360px)">
+            <iframe class="device-content" src="about:blank" style="transform: scale(0.8); transform-origin: top left; width: 125%; height: 125%;"></iframe>
+        </div>
+        <div class="device-frame iphone-12" data-device="iPhone 12 (390px)">
+            <iframe class="device-content" src="about:blank" style="transform: scale(0.8); transform-origin: top left; width: 125%; height: 125%;"></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Display current viewport dimensions
+        function updateViewportInfo() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            document.getElementById('viewport-size').textContent = `${width}x${height}`;
+            
+            // Update body class for different breakpoints
+            document.body.className = '';
+            if (width <= 320) {
+                document.body.classList.add('mobile-xs');
+            } else if (width <= 480) {
+                document.body.classList.add('mobile-sm');
+            } else if (width <= 768) {
+                document.body.classList.add('mobile-md');
+            } else if (width <= 1024) {
+                document.body.classList.add('tablet');
+            } else {
+                document.body.classList.add('desktop');
+            }
+        }
+        
+        // Update on load and resize
+        window.addEventListener('load', updateViewportInfo);
+        window.addEventListener('resize', updateViewportInfo);
+        
+        // Test touch events
+        if ('ontouchstart' in window) {
+            document.body.classList.add('touch-device');
+            console.log('Touch device detected');
+        }
+        
+        // Log mobile-specific CSS application
+        console.log('Testing mobile responsiveness...');
+        console.log('Current viewport:', window.innerWidth + 'x' + window.innerHeight);
+        
+        // Test orientation changes
+        window.addEventListener('orientationchange', function() {
+            setTimeout(function() {
+                updateViewportInfo();
+                console.log('Orientation changed to:', window.orientation);
+            }, 100);
+        });
+        
+        // Add debug overlay for mobile testing
+        function addDebugOverlay() {
+            const overlay = document.createElement('div');
+            overlay.id = 'debug-overlay';
+            overlay.style.cssText = `
+                position: fixed;
+                bottom: 10px;
+                left: 10px;
+                background: rgba(0, 0, 0, 0.8);
+                color: #00f5ff;
+                padding: 10px;
+                border-radius: 5px;
+                font-size: 11px;
+                z-index: 1000;
+                max-width: 200px;
+            `;
+            overlay.innerHTML = `
+                <div>Device: <span id="device-type"></span></div>
+                <div>Touch: <span id="touch-support"></span></div>
+                <div>Orientation: <span id="orientation"></span></div>
+                <div>Pixel Ratio: <span id="pixel-ratio"></span></div>
+            `;
+            document.body.appendChild(overlay);
+            
+            // Update debug info
+            document.getElementById('device-type').textContent = /Mobile|Android|iPhone|iPad/.test(navigator.userAgent) ? 'Mobile' : 'Desktop';
+            document.getElementById('touch-support').textContent = 'ontouchstart' in window ? 'Yes' : 'No';
+            document.getElementById('orientation').textContent = window.orientation !== undefined ? window.orientation + '°' : 'N/A';
+            document.getElementById('pixel-ratio').textContent = window.devicePixelRatio || '1';
+        }
+        
+        // Add debug overlay
+        setTimeout(addDebugOverlay, 1000);
+    </script>
+</body>
+</html>
