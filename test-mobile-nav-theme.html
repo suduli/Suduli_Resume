@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Navigation - Theme Toggle Test</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Test styling to visualize mobile layout */
+        .test-container {
+            padding: 20px;
+            background: var(--bg-primary);
+            min-height: 100vh;
+        }
+
+        .mobile-frame {
+            max-width: 390px;
+            margin: 0 auto;
+            border: 8px solid #333;
+            border-radius: 25px;
+            background: #333;
+            padding: 8px;
+            position: relative;
+        }
+
+        .mobile-frame::before {
+            content: 'iPhone 12 Pro - Mobile View';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #333;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .mobile-screen {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            overflow: hidden;
+            min-height: 600px;
+        }
+
+        .test-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .navigation-test {
+            background: #f8f9fa;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .position-guide {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 2000;
+        }
+
+        .test-button {
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .test-content {
+            padding: 20px;
+            margin-top: 80px;
+        }
+
+        .highlight-area {
+            background: rgba(255, 193, 7, 0.2);
+            border: 2px dashed #ffc107;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="position-guide">
+        <div>Screen: <span id="screen-width"></span>px</div>
+        <div>Mode: <span id="nav-mode">Desktop</span></div>
+        <button class="test-button" onclick="toggleMobileNav()">Toggle Menu</button>
+    </div>
+
+    <div class="test-info">
+        <h2>🎯 Mobile Navigation Theme Toggle Test</h2>
+        <p><strong>Objective:</strong> Verify theme toggle button is positioned on the right side of mobile navigation</p>
+        <p><strong>Layout:</strong> Logo (left) → Theme Toggle (right) → Hamburger Menu (far right)</p>
+        <p><strong>Resize browser to 768px or below to test mobile layout</strong></p>
+    </div>
+
+    <div class="mobile-frame">
+        <div class="mobile-screen">
+            <!-- Navigation -->
+            <nav class="navbar">
+                <div class="nav-container">
+                    <div class="nav-logo">
+                        <span class="logo-text">SUDULI</span>
+                    </div>
+                    <ul class="nav-menu" id="nav-menu">
+                        <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+                        <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+                        <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                        <li class="nav-item"><a href="#achievements" class="nav-link">Achievements</a></li>
+                        <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
+                        <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                    <div class="nav-social-icons">
+                        <a href="#" target="_blank" class="social-icon" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" target="_blank" class="social-icon" aria-label="GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <button class="theme-toggle" id="theme-toggle" 
+                            aria-label="Toggle theme" 
+                            title="Toggle between light and dark theme">
+                        <i class="fas fa-moon" id="theme-icon" aria-hidden="true"></i>
+                    </button>
+                    <div class="hamburger" id="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="test-content">
+                <div class="highlight-area">
+                    <h3>✅ Mobile Navigation Layout Test</h3>
+                    <p><strong>Expected Layout (Mobile):</strong></p>
+                    <ol>
+                        <li>SUDULI logo (left side)</li>
+                        <li>Theme toggle button (right side, before hamburger)</li>
+                        <li>Hamburger menu (far right)</li>
+                    </ol>
+                </div>
+
+                <div class="navigation-test">
+                    <h4>🧪 Navigation Positioning Checks</h4>
+                    <ul>
+                        <li>✅ Theme toggle: <code>right: 60px</code> (positioned left of hamburger)</li>
+                        <li>✅ Hamburger menu: <code>right: 15px</code> (far right edge)</li>
+                        <li>✅ Both elements: <code>position: absolute</code> for precise control</li>
+                        <li>✅ Z-index: <code>1001</code> to stay above mobile menu</li>
+                        <li>✅ Vertical centering: <code>top: 50%; transform: translateY(-50%)</code></li>
+                    </ul>
+                </div>
+
+                <div class="highlight-area">
+                    <h4>🎯 Testing Instructions</h4>
+                    <ol>
+                        <li>Resize browser window to 768px or below</li>
+                        <li>Verify theme toggle appears between logo and hamburger</li>
+                        <li>Click hamburger to open mobile menu</li>
+                        <li>Verify theme toggle remains visible and functional</li>
+                        <li>Test theme switching with toggle button</li>
+                    </ol>
+                </div>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation-test">
+        <h3>📏 CSS Changes Applied</h3>
+        <pre><code>/* Mobile theme toggle positioning */
+.theme-toggle {
+    position: absolute;
+    right: 60px; /* Position to the left of hamburger menu */
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0;
+    z-index: 1001;
+    width: 36px;
+    height: 36px;
+}
+
+/* Ensure hamburger is positioned correctly */
+.hamburger {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}</code></pre>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            const themeIcon = document.getElementById('theme-icon');
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            
+            if (newTheme === 'light') {
+                themeIcon.className = 'fas fa-sun';
+            } else {
+                themeIcon.className = 'fas fa-moon';
+            }
+        }
+
+        // Mobile navigation toggle
+        function toggleMobileNav() {
+            const navMenu = document.getElementById('nav-menu');
+            const hamburger = document.getElementById('hamburger');
+            
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            
+            const mode = navMenu.classList.contains('active') ? 'Menu Open' : 'Menu Closed';
+            document.getElementById('nav-mode').textContent = mode;
+        }
+
+        // Update screen width display
+        function updateScreenInfo() {
+            const width = window.innerWidth;
+            document.getElementById('screen-width').textContent = width;
+            
+            if (width <= 768) {
+                document.getElementById('nav-mode').textContent = 'Mobile';
+            } else {
+                document.getElementById('nav-mode').textContent = 'Desktop';
+            }
+        }
+
+        // Event listeners
+        document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+        document.getElementById('hamburger').addEventListener('click', toggleMobileNav);
+        window.addEventListener('resize', updateScreenInfo);
+        
+        // Initialize
+        updateScreenInfo();
+    </script>
+</body>
+</html>
