@@ -104,14 +104,14 @@ class ThemeManager {
     }
     
     init() {
-        // Check for saved theme or system preference
+        // Check for saved theme, default to dark theme
         const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         
         if (savedTheme) {
             this.currentTheme = savedTheme;
         } else {
-            this.currentTheme = prefersDark ? 'dark' : 'light';
+            // Default to dark theme regardless of system preference
+            this.currentTheme = 'dark';
         }
         
         this.applyTheme(this.currentTheme);
@@ -129,10 +129,11 @@ class ThemeManager {
             }
         });
         
-        // Listen for system theme changes
+        // Listen for system theme changes (only if no saved preference)
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
             if (!localStorage.getItem('theme')) {
-                this.currentTheme = e.matches ? 'dark' : 'light';
+                // Keep dark theme as default even when system preference changes
+                this.currentTheme = 'dark';
                 this.applyTheme(this.currentTheme);
                 this.updateIcon();
             }

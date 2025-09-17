@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Theme Default Test</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .test-container {
+            padding: 40px 20px;
+            margin-top: 80px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .test-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-primary);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .theme-indicator {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .instructions {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-primary);
+        }
+        
+        .test-steps {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .test-steps li {
+            background: var(--bg-tertiary);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 3px solid var(--accent-tertiary);
+        }
+        
+        .clear-storage-btn {
+            background: var(--accent-secondary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 10px 5px;
+        }
+        
+        .clear-storage-btn:hover {
+            background: var(--accent-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">SUDULI</span>
+            </div>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="nav-right-group">
+                <div class="social-icons">
+                    <a href="#" target="_blank" class="social-icon" aria-label="GitHub">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <button class="theme-toggle" id="theme-toggle" 
+                        aria-label="Toggle theme" 
+                        title="Toggle between light and dark theme">
+                    <i class="fas fa-moon" id="theme-icon" aria-hidden="true"></i>
+                </button>
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="test-container">
+        <div class="theme-indicator" id="theme-indicator">
+            🌙 DARK THEME IS NOW THE DEFAULT! 🌙
+        </div>
+        
+        <div class="test-section">
+            <h2>🧪 Dark Theme Default Test</h2>
+            <p>This test page verifies that dark theme is now set as the default theme when the website loads for the first time.</p>
+            
+            <div class="instructions">
+                <h3>📋 Test Instructions:</h3>
+                <ol class="test-steps">
+                    <li><strong>Clear Browser Storage:</strong> Click the button below to clear localStorage and simulate a first visit</li>
+                    <li><strong>Refresh Page:</strong> Reload this page (F5 or Ctrl+R)</li>
+                    <li><strong>Verify Dark Theme:</strong> The page should load in dark theme by default</li>
+                    <li><strong>Check Theme Icon:</strong> The theme toggle should show a sun icon (☀️) indicating dark mode is active</li>
+                    <li><strong>Test Toggle:</strong> Click the theme toggle to switch to light mode and back</li>
+                </ol>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="clear-storage-btn" onclick="clearStorageAndReload()">
+                    🗑️ Clear Storage & Reload
+                </button>
+                <button class="clear-storage-btn" onclick="showCurrentTheme()">
+                    🔍 Show Current Theme
+                </button>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h3>✅ Expected Behavior:</h3>
+            <ul>
+                <li>✓ Page loads in dark theme by default (black/dark background)</li>
+                <li>✓ Theme toggle shows sun icon (☀️) when dark theme is active</li>
+                <li>✓ Theme toggle shows moon icon (🌙) when light theme is active</li>
+                <li>✓ User's theme choice is saved for future visits</li>
+                <li>✓ Dark theme remains default even if system prefers light</li>
+            </ul>
+        </div>
+        
+        <div class="test-section">
+            <h3>📊 Current Status:</h3>
+            <div id="status-display" style="font-family: monospace; background: var(--bg-tertiary); padding: 15px; border-radius: 5px;">
+                Loading status...
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/core/main.js"></script>
+    <script>
+        function clearStorageAndReload() {
+            localStorage.removeItem('theme');
+            sessionStorage.clear();
+            location.reload();
+        }
+        
+        function showCurrentTheme() {
+            const currentTheme = document.documentElement.hasAttribute('data-theme') ? 'light' : 'dark';
+            const savedTheme = localStorage.getItem('theme');
+            const systemPreference = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            
+            alert(`Current Theme: ${currentTheme}\nSaved in LocalStorage: ${savedTheme}\nSystem Preference: ${systemPreference}`);
+        }
+        
+        function updateStatus() {
+            const currentTheme = document.documentElement.hasAttribute('data-theme') ? 'light' : 'dark';
+            const savedTheme = localStorage.getItem('theme');
+            const systemPreference = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            const themeIcon = document.getElementById('theme-icon');
+            const iconClass = themeIcon ? themeIcon.className : 'not found';
+            
+            const statusHtml = `
+                <strong>Current Active Theme:</strong> ${currentTheme}<br>
+                <strong>Saved in LocalStorage:</strong> ${savedTheme || 'none (using default)'}<br>
+                <strong>System Preference:</strong> ${systemPreference}<br>
+                <strong>Theme Icon Class:</strong> ${iconClass}<br>
+                <strong>Document data-theme:</strong> ${document.documentElement.getAttribute('data-theme') || 'not set (dark mode)'}
+            `;
+            
+            document.getElementById('status-display').innerHTML = statusHtml;
+            
+            // Update theme indicator
+            const indicator = document.getElementById('theme-indicator');
+            if (currentTheme === 'dark') {
+                indicator.innerHTML = '🌙 DARK THEME IS ACTIVE (DEFAULT) 🌙';
+                indicator.style.background = 'linear-gradient(135deg, #00f5ff, #ff6b6b)';
+            } else {
+                indicator.innerHTML = '☀️ LIGHT THEME IS ACTIVE ☀️';
+                indicator.style.background = 'linear-gradient(135deg, #0070f3, #f56565)';
+            }
+        }
+        
+        // Update status when page loads
+        document.addEventListener('DOMContentLoaded', updateStatus);
+        
+        // Update status when theme changes
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('#theme-toggle')) {
+                setTimeout(updateStatus, 100);
+            }
+        });
+        
+        // Update status periodically
+        setInterval(updateStatus, 2000);
+    </script>
+</body>
+</html>
