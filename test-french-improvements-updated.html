@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <title>Suduli Kumar Balabantaray - Chef de Test & Spécialiste IV&V</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/visitor-counter.css">
+    <link rel="stylesheet" href="assets/css/youtube-icon.css">
+    <link rel="stylesheet" href="assets/css/mobile-about-patch.css">
+    <link rel="stylesheet" href="assets/css/language-switcher.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">SUDULI</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link" data-i18n="nav.home">Accueil</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link" data-i18n="nav.about">À propos</a></li>
+                <li class="nav-item"><a href="#skills" class="nav-link" data-i18n="nav.skills">Compétences</a></li>
+                <li class="nav-item"><a href="#projects" class="nav-link" data-i18n="nav.projects">Projets</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a></li>
+            </ul>
+            <div class="nav-right-group">
+                <!-- Language Switcher -->
+                <div id="language-switcher-container"></div>
+                <button class="theme-toggle" id="theme-toggle" 
+                        aria-label="Passer au thème clair" 
+                        role="button" 
+                        tabindex="0"
+                        title="Passer au thème clair">
+                    <i class="fas fa-sun" id="theme-icon" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-line" data-i18n="hero.greeting">Bonjour, je suis</span>
+                    <span class="title-main" data-i18n="hero.name">SUDULI KUMAR BALABANTARAY</span>
+                    <span class="title-subtitle" data-i18n="hero.position">Chef de Test & Spécialiste IV&V</span>
+                </h1>
+                <p class="hero-description" data-i18n="hero.description">
+                    Je recherche un environnement professionnel qui offre des opportunités de mettre en valeur mes compétences et d'assumer des rôles stimulants où je peux contribuer à la croissance de moi-même et de mon organisation.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary" data-i18n="hero.contact_button">Entrer en contact</a>
+                    <a href="assets/data/Suduli_Resume.pdf" class="btn btn-secondary" download="Suduli_Resume.pdf" data-i18n="hero.download_resume"><i class="fas fa-download"></i> Télécharger le CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="skills-intro">
+                <h2 data-i18n="skills.title">Compétences et Expertise</h2>
+                <p data-i18n="skills.subtitle">Explorez mes compétences techniques dans divers domaines. Cliquez sur une catégorie pour approfondir les compétences spécifiques, les niveaux de compétence et l'expérience.</p>
+            </div>
+            
+            <!-- Test Skills Categories Display -->
+            <div class="skills-test-display">
+                <h3>Catégories de Compétences (test):</h3>
+                <div class="test-categories" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Innovative Skills Carousel -->
+            <div class="skills-carousel-container">
+                <div class="categories-carousel">
+                    <!-- Categories will be dynamically inserted here -->
+                </div>
+                
+                <!-- Sliding Detail Panel -->
+                <div class="skills-detail-panel">
+                    <!-- Detail panel content will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title" data-i18n="projects.title">Projets Phares</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title" data-i18n="projects.items.0.title">Validation Systèmes BCM</h3>
+                        <p class="project-description" data-i18n="projects.items.0.description">
+                            Validation logicielle automobile pour l'OEM Stellantis, se concentrant sur les systèmes embarqués d'infodivertissement critiques pour la sécurité incluant les contrôles de direction, la détection de crash et l'éclairage véhicule.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Stellantis</span>
+                            <span class="tag">IBM RQM/DNG</span>
+                            <span class="tag">ECU-Test</span>
+                            <span class="tag">dSPACE</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                <i class="fas fa-info-circle"></i> <span data-i18n="projects.details">Détails</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title" data-i18n="projects.items.2.title">CAnalyzerAI</h3>
+                        <p class="project-description" data-i18n="projects.items.2.description">
+                            Outil d'analyse de code C alimenté par IA qui fournit une évaluation intelligente de la qualité du code, la détection de vulnérabilités et des recommandations d'optimisation de performance.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">AI/ML</span>
+                            <span class="tag">Langage C</span>
+                            <span class="tag">Analyse de Code</span>
+                            <span class="tag">Automobile</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/suduli/CAnalyzerAI" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> <span data-i18n="projects.github">GitHub</span>
+                            </a>
+                            <a href="https://suduli.github.io/CAnalyzerAI/" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> <span data-i18n="projects.demo">Démo en Direct</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-intro">
+                <h2 data-i18n="contact.title">Contactez-moi</h2>
+                <p data-i18n="contact.description">Je suis prêt à discuter d'opportunités de tests automobiles, de collaboration IV&V ou à partager des insights sur la validation de systèmes embarqués et l'expertise dans le domaine automobile.</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-form-section">
+                    <h3 data-i18n="contact.form.title">Envoyer un Message</h3>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <input type="text" data-i18n="contact.form.placeholders.name" data-i18n-attr="placeholder" placeholder="Votre nom complet" class="form-input" required aria-label="Votre nom complet">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" data-i18n="contact.form.placeholders.email" data-i18n-attr="placeholder" placeholder="Votre adresse e-mail" class="form-input" required aria-label="Votre adresse e-mail">
+                        </div>
+                        <div class="form-group">
+                            <textarea data-i18n="contact.form.placeholders.message" data-i18n-attr="placeholder" placeholder="Votre message" class="form-input" rows="5" required aria-label="Votre message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" data-i18n="contact.form.send">Envoyer le Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Script for Skills Categories -->
+    <script type="module">
+        // Test the skills categories translation
+        function testSkillsCategories() {
+            if (!window.languageSwitcher) {
+                console.log('Language switcher not ready, retrying...');
+                setTimeout(testSkillsCategories, 100);
+                return;
+            }
+
+            const testContainer = document.querySelector('.test-categories');
+            if (!testContainer) return;
+
+            const categories = [
+                'Coverage', 'Programming', 'Protocols', 'Requirements', 
+                'Safety', 'Simulation', 'Software Lifecycle', 'Testing', 
+                'Tools', 'Version Control', 'Learning'
+            ];
+
+            categories.forEach(category => {
+                const translatedCategory = window.languageSwitcher.t(`skills.categories.${category}`) || category;
+                const testElement = document.createElement('div');
+                testElement.style.cssText = 'padding: 0.5rem; background: rgba(0, 245, 255, 0.1); border: 1px solid rgba(0, 245, 255, 0.3); border-radius: 0.25rem; text-align: center;';
+                testElement.innerHTML = `<strong>${translatedCategory}</strong><br><small>${category}</small>`;
+                testContainer.appendChild(testElement);
+            });
+        }
+
+        // Wait for language switcher to be ready
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(testSkillsCategories, 500);
+        });
+    </script>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="assets/js/core/skills/skills-data.js" type="module"></script>
+    <script src="assets/js/features/language-switcher.js"></script>
+    <script src="assets/js/core/main.js"></script>
+
+    <style>
+        /* Additional test styles */
+        .skills-test-display {
+            margin: 2rem 0;
+            padding: 1rem;
+            background: rgba(0, 245, 255, 0.05);
+            border-radius: 0.5rem;
+            border: 1px solid rgba(0, 245, 255, 0.2);
+        }
+        
+        .skills-test-display h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+    </style>
+</body>
+</html>

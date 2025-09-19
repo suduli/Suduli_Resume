@@ -143,6 +143,12 @@ class LanguageSwitcher {
             element.setAttribute('aria-label', translatedText);
         });
 
+        // Update page title
+        const pageTitle = this.t('page.title');
+        if (pageTitle && pageTitle !== 'page.title') {
+            document.title = pageTitle;
+        }
+
         // Update document language attribute
         document.documentElement.lang = this.currentLang;
         

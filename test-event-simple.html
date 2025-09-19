@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Language Event Test</title>
+</head>
+<body>
+    <h1>Language Event Test</h1>
+    <button onclick="testEvent()">Test Language Change Event</button>
+    <div id="output"></div>
+
+    <script>
+        // Listen for language changed events
+        window.addEventListener('languageChanged', (event) => {
+            const output = document.getElementById('output');
+            output.innerHTML += `<p>Event received: ${JSON.stringify(event.detail)}</p>`;
+        });
+
+        function testEvent() {
+            // Dispatch a test event
+            window.dispatchEvent(new CustomEvent('languageChanged', {
+                detail: { language: 'test' }
+            }));
+        }
+
+        console.log('Test page loaded');
+    </script>
+</body>
+</html>

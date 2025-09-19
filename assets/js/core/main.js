@@ -140,6 +140,11 @@ class ThemeManager {
                 this.updateIcon();
             }
         });
+        
+        // Listen for language changes to update theme toggle text
+        window.addEventListener('languageChanged', () => {
+            this.updateIcon();
+        });
     }
     
     toggleTheme() {
@@ -176,14 +181,29 @@ class ThemeManager {
     }
     
     updateIcon() {
+        // Get translations from the global language switcher if available
+        const t = (key) => {
+            if (window.languageSwitcher && typeof window.languageSwitcher.t === 'function') {
+                return window.languageSwitcher.t(key);
+            }
+            // Fallback to English
+            const fallbackTranslations = {
+                'theme.switch_to_light': 'Switch to light theme',
+                'theme.switch_to_dark': 'Switch to dark theme'
+            };
+            return fallbackTranslations[key] || key;
+        };
+        
         if (this.currentTheme === 'dark') {
             this.themeIcon.className = 'fas fa-sun';
-            this.themeToggle.setAttribute('aria-label', 'Switch to light theme');
-            this.themeToggle.setAttribute('title', 'Switch to light theme');
+            const lightThemeText = t('theme.switch_to_light');
+            this.themeToggle.setAttribute('aria-label', lightThemeText);
+            this.themeToggle.setAttribute('title', lightThemeText);
         } else {
             this.themeIcon.className = 'fas fa-moon';
-            this.themeToggle.setAttribute('aria-label', 'Switch to dark theme');
-            this.themeToggle.setAttribute('title', 'Switch to dark theme');
+            const darkThemeText = t('theme.switch_to_dark');
+            this.themeToggle.setAttribute('aria-label', darkThemeText);
+            this.themeToggle.setAttribute('title', darkThemeText);
         }
         
         // Announce theme change to screen readers
@@ -739,7 +759,33 @@ let carouselInitialized = false;
 // Initialize carousel after DOM content loaded
 document.addEventListener('DOMContentLoaded', () => {
     initializeSkillsCarousel();
+    
+    // Listen for language changes to refresh skills display
+    window.addEventListener('languageChanged', () => {
+        refreshSkillsDisplay();
+    });
 });
+
+function refreshSkillsDisplay() {
+    try {
+        console.log('Refreshing skills display for language change...');
+        
+        const carouselContainer = document.querySelector('.categories-carousel');
+        
+        if (!carouselContainer) return;
+        
+        // Clear existing categories
+        carouselContainer.innerHTML = '';
+        
+        // Recreate categories with new translations
+        const skillsByCategory = groupSkillsByCategory();
+        createCategoryItems(carouselContainer, skillsByCategory);
+        
+        console.log('Skills display refreshed');
+    } catch (error) {
+        console.error('Error refreshing skills display:', error);
+    }
+}
 
 function initializeSkillsCarousel() {
     try {
@@ -805,12 +851,21 @@ function createCategoryItems(container, skillsByCategory) {
         categoryItem.setAttribute('tabindex', '0');
         categoryItem.setAttribute('aria-label', `View ${skills.length} skills in ${category}`);
 
+        // Get translated category name
+        const translatedCategory = window.languageSwitcher ? 
+            window.languageSwitcher.t(`skills.categories.${category}`) || category : category;
+        
+        // Get translated skills count text
+        const skillsCountText = skills.length === 1 ? 
+            (window.languageSwitcher ? window.languageSwitcher.t('skills.skill_count') || 'skill' : 'skill') :
+            (window.languageSwitcher ? window.languageSwitcher.t('skills.skills_count') || 'skills' : 'skills');
+
         categoryItem.innerHTML = `
             <div class="category-icon">
                 <i class="fas ${getCategoryIcon(category)}" aria-hidden="true"></i>
             </div>
-            <div class="category-title">${category}</div>
-            <div class="category-count">${skills.length} skills</div>
+            <div class="category-title">${translatedCategory}</div>
+            <div class="category-count">${skills.length} ${skillsCountText}</div>
         `;
 
         // Add color class for theming

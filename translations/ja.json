@@ -30,6 +30,50 @@
   },
   "experience": {
     "title": "経験",
+    "test_lead": {
+      "title": "テストリード",
+      "company": "KPIT Technologies Ltd",
+      "duration": "2023年11月 – 現在",
+      "responsibilities": [
+        "IBM ALMを使用した包括的な検証計画の開発・管理。",
+        "DOORS Next Generation（DNG）を介した完全な要件トレーサビリティの確保。",
+        "Sanity、Manual、Functional & Performanceテストサイクルの実行。",
+        "dSPACE & ECU-Test Toolを使用した自動化イニシアチブの推進。",
+        "インフォテインメント機能セットの検証：ステアリングホイールコントロール、ホーン機能、クラッシュ検出メカニズム。"
+      ]
+    },
+    "senior_engineer": {
+      "title": "スペシャリスト組み込みテストエンジニア",
+      "company": "HL Klemove India Pvt Ltd (Halla Group)",
+      "duration": "2022年2月 - 2023年11月",
+      "responsibilities": [
+        "カバレッジとトレーサビリティを保証する組み込みテスト計画の設計・実行。",
+        "Trace32を使用したECUのフラッシュと検証；ファームウェアの整合性確認。",
+        "ADAS Analyserを活用したZero DTCテスト環境の確立。",
+        "構造化された根本原因追跡とデータベース衛生による欠陥ライフサイクルの管理。"
+      ]
+    },
+    "test_engineer": {
+      "title": "シニア組み込みテストエンジニア",
+      "company": "Mando Softtech India Pvt Ltd (Halla Group)",
+      "duration": "2020年3月 - 2022年2月",
+      "responsibilities": [
+        "VectorCASTでターゲットカバレッジを達成するユニットテストスイートの開発・実行。",
+        "モジュールインターフェースとデータフローを検証する統合テストシナリオの作成。",
+        "見積り、タスク割り当て、ピアレビューの推進；MC/DCプラクティスの実施。",
+        "体系的なレビューと計装を通じて欠陥を早期に積極的に特定。"
+      ]
+    },
+    "junior_engineer": {
+      "title": "テストエンジニア",
+      "company": "Binsoft Techno Solutions",
+      "duration": "2017年9月 - 2020年2月",
+      "responsibilities": [
+        "コアモジュール用VectorCASTを使用した基礎的なユニットテストの実装。",
+        "欠陥の捕捉、トリアージ、追跡；フィードバックループ速度の改善。",
+        "カバレッジメトリクスの監視・向上、未テストパスのハイライト。"
+      ]
+    },
     "current_role": {
       "title": "テストリード",
       "company": "KPIT Technologies Ltd",

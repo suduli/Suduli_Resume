@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <title>Test - Témoignages Français</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/language-switcher.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">SUDULI</span>
+            </div>
+            <div class="nav-right-group">
+                <!-- Language Switcher -->
+                <div id="language-switcher-container"></div>
+            </div>
+        </div>
+    </nav>
+
+    <section style="min-height: 100vh; padding: 2rem 0; background: var(--bg-primary);">
+        <div class="container">
+            <h1 style="text-align: center; color: var(--accent-color); margin-bottom: 3rem;">
+                Test des Témoignages Français
+            </h1>
+
+            <!-- Recommendations/Testimonials Section -->
+            <section id="recommendations" class="recommendations">
+                <div class="container">
+                    <h2 data-i18n="recommendations.title">Témoignages</h2>
+                    
+                    <!-- This is where the recommendation summary will be inserted -->
+                    <div id="recommendation-summary" class="recommendation-summary">
+                        <!-- Content will be loaded by recommendation-summary.js -->
+                    </div>
+
+                    <!-- Test display of translation keys -->
+                    <div style="margin-top: 2rem; padding: 1rem; background: rgba(0, 245, 255, 0.1); border-radius: 0.5rem;">
+                        <h3>Test des Clés de Traduction:</h3>
+                        <div style="display: grid; gap: 0.5rem; margin-top: 1rem;">
+                            <div>
+                                <strong>recommendations.title:</strong> 
+                                <span id="test-title" style="color: var(--accent-color);"></span>
+                            </div>
+                            <div>
+                                <strong>recommendations.testimonial_title:</strong> 
+                                <span id="test-testimonial-title" style="color: var(--accent-color);"></span>
+                            </div>
+                            <div>
+                                <strong>recommendations.recommendations_this_year:</strong> 
+                                <span id="test-this-year" style="color: var(--accent-color);"></span>
+                            </div>
+                            <div>
+                                <strong>recommendations.total_recommendations:</strong> 
+                                <span id="test-total" style="color: var(--accent-color);"></span>
+                            </div>
+                            <div>
+                                <strong>recommendations.description:</strong> 
+                                <span id="test-description" style="color: var(--accent-color);"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- French Project Descriptions Test -->
+                    <div style="margin-top: 2rem; padding: 1rem; background: rgba(0, 245, 255, 0.1); border-radius: 0.5rem;">
+                        <h3>Test des Descriptions de Projets Améliorées:</h3>
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <h4 data-i18n="projects.items.0.title" style="color: var(--accent-color);">BCM-Systems Validation</h4>
+                                <p data-i18n="projects.items.0.description" style="font-size: 0.9rem;">Description du projet BCM...</p>
+                            </div>
+                            <div>
+                                <h4 data-i18n="projects.items.2.title" style="color: var(--accent-color);">CAnalyzerAI</h4>
+                                <p data-i18n="projects.items.2.description" style="font-size: 0.9rem;">Description du projet CAnalyzerAI...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="assets/js/utils/recommendation-utils.js"></script>
+    <script src="assets/js/features/recommendations/recommendation-summary.js"></script>
+    <script src="assets/js/features/language-switcher.js"></script>
+
+    <script>
+        // Test the translation keys when language switcher is ready
+        function testTranslationKeys() {
+            if (!window.languageSwitcher || typeof window.languageSwitcher.t !== 'function') {
+                console.log('Language switcher not ready, retrying...');
+                setTimeout(testTranslationKeys, 100);
+                return;
+            }
+
+            // Test each translation key
+            const keys = [
+                'recommendations.title',
+                'recommendations.testimonial_title',
+                'recommendations.recommendations_this_year',
+                'recommendations.total_recommendations',
+                'recommendations.description'
+            ];
+
+            keys.forEach(key => {
+                const cleanKey = key.replace('recommendations.', '');
+                const element = document.getElementById(`test-${cleanKey.replace('_', '-')}`);
+                if (element) {
+                    element.textContent = window.languageSwitcher.t(key);
+                }
+            });
+
+            console.log('Translation test completed');
+        }
+
+        // Wait for DOM and language switcher to be ready
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(testTranslationKeys, 1000);
+            
+            // Also test on language change
+            window.addEventListener('languageChanged', () => {
+                setTimeout(testTranslationKeys, 100);
+            });
+        });
+    </script>
+
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .recommendations h2 {
+            text-align: center;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+        }
+        
+        /* Style for the recommendation summary */
+        .recommendation-summary {
+            background: rgba(0, 245, 255, 0.05);
+            border: 1px solid rgba(0, 245, 255, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+    </style>
+</body>
+</html>

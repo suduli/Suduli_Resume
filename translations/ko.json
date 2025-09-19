@@ -30,6 +30,50 @@
   },
   "experience": {
     "title": "경력",
+    "test_lead": {
+      "title": "테스트 리드",
+      "company": "KPIT Technologies Ltd",
+      "duration": "2023년 11월 – 현재",
+      "responsibilities": [
+        "IBM ALM을 사용한 포괄적인 검증 계획 개발 및 관리.",
+        "DOORS Next Generation(DNG)을 통한 완전한 요구사항 추적성 보장.",
+        "Sanity, Manual, Functional & Performance 테스트 사이클 실행.",
+        "dSPACE & ECU-Test Tool을 활용한 자동화 이니셔티브 추진.",
+        "인포테인먼트 기능 세트 검증: 스티어링 휠 컨트롤, 경적 기능, 충돌 감지 메커니즘."
+      ]
+    },
+    "senior_engineer": {
+      "title": "전문 임베디드 테스트 엔지니어",
+      "company": "HL Klemove India Pvt Ltd (Halla Group)",
+      "duration": "2022년 2월 - 2023년 11월",
+      "responsibilities": [
+        "커버리지와 추적성을 보장하는 임베디드 테스트 계획 설계 및 실행.",
+        "Trace32를 사용한 ECU 플래싱 및 검증; 펌웨어 무결성 확인.",
+        "ADAS Analyser를 활용한 Zero DTC 테스트 환경 구축.",
+        "구조화된 근본 원인 추적 및 데이터베이스 위생을 통한 결함 생명 주기 관리."
+      ]
+    },
+    "test_engineer": {
+      "title": "시니어 임베디드 테스트 엔지니어",
+      "company": "Mando Softtech India Pvt Ltd (Halla Group)",
+      "duration": "2020년 3월 - 2022년 2월",
+      "responsibilities": [
+        "VectorCAST로 목표 커버리지를 달성하는 단위 테스트 스위트 개발 및 실행.",
+        "모듈 인터페이스 및 데이터 흐름을 검증하는 통합 테스트 시나리오 생성.",
+        "추정, 작업 할당 및 동료 검토 주도; MC/DC 관행 시행.",
+        "체계적인 검토 및 계측을 통해 결함을 조기에 적극적으로 식별."
+      ]
+    },
+    "junior_engineer": {
+      "title": "테스트 엔지니어",
+      "company": "Binsoft Techno Solutions",
+      "duration": "2017년 9월 - 2020년 2월",
+      "responsibilities": [
+        "핵심 모듈용 VectorCAST를 사용한 기본 단위 테스트 구현.",
+        "결함 포착, 분류 및 추적; 피드백 루프 속도 개선.",
+        "커버리지 메트릭 모니터링 및 향상, 테스트되지 않은 경로 강조."
+      ]
+    },
     "current_role": {
       "title": "테스트 리드",
       "company": "KPIT Technologies Ltd",

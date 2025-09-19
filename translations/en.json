@@ -1,4 +1,7 @@
 {
+  "page": {
+    "title": "Suduli Kumar Balabantaray - Test Lead & IV&V Specialist"
+  },
   "nav": {
     "home": "Home",
     "about": "About",
@@ -31,7 +34,58 @@
     "test_lead": {
       "title": "Test Lead",
       "company": "KPIT Technologies Ltd",
-      "duration": "Nov 2023 – Present"
+      "duration": "Nov 2023 – Present",
+      "responsibilities": [
+        "Developed and managed comprehensive validation plans using IBM ALM.",
+        "Ensured complete requirement traceability via DOORS Next Generation (DNG).",
+        "Executed Sanity, Manual, Functional & Performance test cycles.",
+        "Spearheaded automation initiatives with dSPACE & ECU-Test Tool.",
+        "Validated Infotainment feature set: Steering Wheel Controls, Horn Functionality, Crash detection mechanisms."
+      ]
+    },
+    "senior_engineer": {
+      "title": "Specialist Embedded Test Engineer",
+      "company": "HL Klemove India Pvt Ltd (Halla Group)",
+      "duration": "February 2022 - November 2023",
+      "responsibilities": [
+        "Designed & executed embedded test plans ensuring coverage & traceability.",
+        "Flashed & validated ECUs using Trace32; confirmed firmware integrity.",
+        "Established Zero DTC test environments leveraging ADAS Analyser.",
+        "Managed defect lifecycle with structured root cause tracking & database hygiene."
+      ]
+    },
+    "test_engineer": {
+      "title": "Senior Embedded Test Engineer",
+      "company": "Mando Softtech India Pvt Ltd (Halla Group)",
+      "duration": "March 2020 - February 2022",
+      "responsibilities": [
+        "Developed & executed unit test suites with VectorCAST achieving target coverage.",
+        "Created integration test scenarios validating module interfaces & data flow.",
+        "Drove estimation, task allocation & peer reviews; enforced MC/DC practices.",
+        "Proactively identified defects early through systematic review & instrumentation."
+      ]
+    },
+    "junior_engineer": {
+      "title": "Test Engineer",
+      "company": "Binsoft Techno Solutions",
+      "duration": "September 2017 - February 2020",
+      "responsibilities": [
+        "Implemented foundational unit tests with VectorCAST for core modules.",
+        "Captured, triaged & tracked defects; improved feedback loop speed.",
+        "Monitored & raised coverage metrics, highlighting untested paths."
+      ]
+    },
+    "current_role": {
+      "title": "Test Lead",
+      "company": "KPIT Technologies Ltd",
+      "period": "Nov 2023 – Present",
+      "points": [
+        "Developed and managed comprehensive validation plans using IBM ALM.",
+        "Ensured complete requirement traceability via DOORS Next Generation (DNG).",
+        "Executed Sanity, Manual, Functional & Performance test cycles.",
+        "Spearheaded automation initiatives with dSPACE & ECU-Test Tool.",
+        "Validated Infotainment feature set: Steering Wheel Controls, Horn Functionality, Crash detection mechanisms."
+      ]
     },
     "roles": [
       {
@@ -70,10 +124,28 @@
   },
   "skills": {
     "title": "Skills & Expertise",
-    "description": "Explore my technical competencies across various domains. Click on a category to dive deeper into specific skills, proficiency levels, and experience."
+    "subtitle": "Explore my technical competencies across various domains. Click on a category to dive deeper into specific skills, proficiency levels, and experience.",
+    "categories": {
+      "Coverage": "Coverage",
+      "Programming": "Programming",
+      "Protocols": "Protocols",
+      "Requirements": "Requirements",
+      "Safety": "Safety",
+      "Simulation": "Simulation",
+      "Software Lifecycle": "Software Lifecycle",
+      "Testing": "Testing",
+      "Tools": "Tools",
+      "Version Control": "Version Control",
+      "Learning": "Learning"
+    },
+    "skills_count": "skills",
+    "skill_count": "skill"
   },
   "projects": {
     "title": "Featured Projects",
+    "details": "Details",
+    "github": "GitHub", 
+    "demo": "Live Demo",
     "items": [
       {
         "title": "BCM-Systems Validation",
@@ -118,7 +190,14 @@
     ]
   },
   "recommendations": {
-    "title": "Testimonial"
+    "title": "Testimonials",
+    "testimonial_title": "Testimonial Received in 2025",
+    "recommendations_this_year": "Recommendations This Year",
+    "total_recommendations": "Total Recommendations Received",
+    "description": "Professional endorsements from colleagues and clients highlighting expertise in automotive testing and validation.",
+    "loading": "Loading testimonials...",
+    "error": "Error loading testimonials",
+    "no_data": "No testimonials available at the moment"
   },
   "education": {
     "title": "Education",

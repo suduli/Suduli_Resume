@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Switching Debug Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .language-buttons {
+            margin: 10px 0;
+        }
+        .language-buttons button {
+            margin: 5px;
+            padding: 8px 16px;
+            border: none;
+            background: #007cba;
+            color: white;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .language-buttons button:hover {
+            background: #005a85;
+        }
+        .recommendation-summary-content {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .recommendation-info h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .recommendation-count {
+            margin: 5px 0;
+            color: #666;
+        }
+        .recommendation-description {
+            margin: 10px 0 0 0;
+            line-height: 1.5;
+        }
+        .debug-info {
+            background: #ffe;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Language Switching Debug Test</h1>
+    
+    <div class="test-section">
+        <h2>Current Language: <span id="current-lang">Loading...</span></h2>
+        <div class="language-buttons">
+            <button onclick="switchToLanguage('en')">English</button>
+            <button onclick="switchToLanguage('de')">German</button>
+            <button onclick="switchToLanguage('fr')">French</button>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Recommendation Summary Test</h2>
+        <div id="recommendation-summary" class="recommendation-summary">
+            <!-- Content will be dynamically loaded -->
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Debug Information</h2>
+        <div id="debug-info" class="debug-info">
+            Initializing...
+        </div>
+    </div>
+
+    <!-- Load the actual scripts -->
+    <script src="assets/js/utils/recommendation-utils.js"></script>
+    <script src="assets/js/features/recommendations/recommendation-summary.js"></script>
+    <script src="assets/js/features/language-switcher.js"></script>
+
+    <script>
+        // Debug script to test language switching
+        let debugLog = [];
+
+        function addDebugLog(message) {
+            debugLog.push(`${new Date().toLocaleTimeString()}: ${message}`);
+            document.getElementById('debug-info').innerHTML = debugLog.join('<br>');
+        }
+
+        function updateCurrentLanguage() {
+            const currentLang = window.languageSwitcher ? window.languageSwitcher.currentLang : 'Unknown';
+            document.getElementById('current-lang').textContent = currentLang;
+            addDebugLog(`Current language updated to: ${currentLang}`);
+        }
+
+        function switchToLanguage(lang) {
+            addDebugLog(`Switching to language: ${lang}`);
+            if (window.languageSwitcher) {
+                window.languageSwitcher.switchLanguage(lang);
+            } else {
+                addDebugLog('Error: Language switcher not available');
+            }
+        }
+
+        // Listen for language changes
+        window.addEventListener('languageChanged', (event) => {
+            addDebugLog(`Language changed event received: ${event.detail.language}`);
+            updateCurrentLanguage();
+        });
+
+        // Wait for everything to load
+        window.addEventListener('load', () => {
+            addDebugLog('Page loaded');
+            updateCurrentLanguage();
+            
+            // Check if recommendation summary is loaded
+            setTimeout(() => {
+                const summaryContainer = document.getElementById('recommendation-summary');
+                if (summaryContainer && summaryContainer.innerHTML.trim()) {
+                    addDebugLog('Recommendation summary content detected');
+                } else {
+                    addDebugLog('Warning: No recommendation summary content found');
+                }
+            }, 2000);
+        });
+
+        addDebugLog('Debug script initialized');
+    </script>
+</body>
+</html>

@@ -141,7 +141,7 @@ class RecommendationSummary {
             console.log(`[RecommendationSummary] Successfully loaded ${result.currentYearCount} recommendations for ${this.currentYear}`);
             
             // Listen for language changes to update the display
-            document.addEventListener('languageChanged', () => {
+            window.addEventListener('languageChanged', () => {
                 if (this.cachedResult) {
                     container.innerHTML = this.createSummaryHTML(this.cachedResult);
                 }
