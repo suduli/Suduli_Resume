@@ -254,7 +254,7 @@
     "copyright": "© 2024 Suduli Kumar Balabantaray. 모든 권리 보유."
   },
   "visitor_counter": {
-    "title": "방문자 통계",
+    "title": "방문자 카운터",
     "total_views": "총 조회수",
     "unique_visitors": "고유 방문자",
     "return_visits": "재방문",

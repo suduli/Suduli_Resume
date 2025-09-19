@@ -257,7 +257,7 @@
     "dark": "ダークテーマに切り替え"
   },
   "visitor_counter": {
-    "title": "訪問者統計",
+    "title": "ビジターカウンター",
     "total_views": "合計閲覧数",
     "unique_visitors": "ユニーク訪問者数",
     "return_visits": "再訪問数",

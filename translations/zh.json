@@ -220,6 +220,13 @@
   "footer": {
     "copyright": "© 2024 Suduli Kumar Balabantaray. 保留所有权利。"
   },
+  "visitor_counter": {
+    "title": "访问计数器",
+    "total_views": "总浏览量",
+    "unique_visitors": "独立访客",
+    "return_visits": "回访次数",
+    "last_updated": "最后更新"
+  },
   "lang_names": {
     "en": "英语",
     "de": "德语",

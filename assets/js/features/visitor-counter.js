@@ -510,7 +510,7 @@ class VisitorCounter {
             }
             // Fallback to English
             const fallbackTranslations = {
-                'visitor_counter.title': 'Website Analytics',
+                'visitor_counter.title': 'Visitor Counter',
                 'visitor_counter.total_views': 'Total Views',
                 'visitor_counter.unique_visitors': 'Unique Visitors', 
                 'visitor_counter.return_visits': 'Return Visits',

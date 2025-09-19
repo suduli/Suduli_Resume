@@ -245,6 +245,13 @@
   "footer": {
     "copyright": "© 2024 Suduli Kumar Balabantaray. All rights reserved."
   },
+  "visitor_counter": {
+    "title": "Visitor Counter",
+    "total_views": "Total Views",
+    "unique_visitors": "Unique Visitors",
+    "return_visits": "Return Visits",
+    "last_updated": "Last updated"
+  },
   "lang_names": {
     "en": "English",
     "de": "German",
