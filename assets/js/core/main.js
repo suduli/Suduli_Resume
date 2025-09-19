@@ -856,8 +856,8 @@ function createCategoryItems(container, skillsByCategory) {
         
         // Get translated skills count text
         const skillsCountText = skills.length === 1 ? 
-            (window.languageSwitcher ? window.languageSwitcher.t('skills.skill_count') || 'skill' : 'skill') :
-            (window.languageSwitcher ? window.languageSwitcher.t('skills.skills_count') || 'skills' : 'skills');
+            (window.languageSwitcher ? window.languageSwitcher.t('skills.skill') || 'skill' : 'skill') :
+            (window.languageSwitcher ? window.languageSwitcher.t('skills.skills') || 'skills' : 'skills');
 
         // Get translated aria-label
         const ariaLabelTemplate = skills.length === 1 ? 
@@ -975,16 +975,20 @@ function selectCategory(category, item, detailPanel, skillsByCategory) {
 function populateDetailPanel(panel, category, skills) {
     const categoryColor = colorForCategory(category);
     const categoryIcon = getCategoryIcon(category);
+    
+    // Get translated category name
+    const translatedCategory = window.languageSwitcher ? 
+        window.languageSwitcher.t(`skills.categories.${category}`) || category : category;
 
     panel.innerHTML = `
         <div class="detail-header">
             <div class="detail-icon">
                 <i class="fas ${categoryIcon}" aria-hidden="true"></i>
             </div>
-            <div class="detail-title">${category}</div>
+            <div class="detail-title">${translatedCategory}</div>
         </div>
         <div class="detail-description">
-            Explore ${skills.length} specialized skills in ${category.toLowerCase()}.
+            Explore ${skills.length} specialized skills in ${translatedCategory.toLowerCase()}.
         </div>
         <div class="skills-list">
             ${skills.map(skill => createSkillItemHTML(skill)).join('')}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinese Translation Improvements Test</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/language-switcher.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 20px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+        .test-section h2 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+        .test-item {
+            margin-bottom: 10px;
+            padding: 5px 0;
+        }
+        .key {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        .value {
+            margin-left: 10px;
+        }
+        .category-test {
+            display: inline-block;
+            margin: 5px;
+            padding: 8px 12px;
+            background-color: var(--accent-bg);
+            border-radius: 5px;
+            border: 1px solid var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <h1>Chinese Translation Improvements Test</h1>
+    
+    <!-- Language Switcher -->
+    <div id="language-switcher-container"></div>
+    
+    <div class="test-section">
+        <h2>1. Skills Categories (技能类别)</h2>
+        <p>Testing skill category translations:</p>
+        <div class="category-test" data-i18n="skills.categories.Coverage">Coverage</div>
+        <div class="category-test" data-i18n="skills.categories.Programming">Programming</div>
+        <div class="category-test" data-i18n="skills.categories.Protocols">Protocols</div>
+        <div class="category-test" data-i18n="skills.categories.Requirements">Requirements</div>
+        <div class="category-test" data-i18n="skills.categories.Safety">Safety</div>
+        <div class="category-test" data-i18n="skills.categories.Simulation">Simulation</div>
+        <div class="category-test" data-i18n="skills.categories.Software Lifecycle">Software Lifecycle</div>
+        <div class="category-test" data-i18n="skills.categories.Testing">Testing</div>
+        <div class="category-test" data-i18n="skills.categories.Tools">Tools</div>
+        <div class="category-test" data-i18n="skills.categories.Version Control">Version Control</div>
+        <div class="category-test" data-i18n="skills.categories.Learning">Learning</div>
+    </div>
+
+    <div class="test-section">
+        <h2>2. Skills Count (技能计数)</h2>
+        <div class="test-item">
+            <span class="key">Single skill:</span>
+            <span class="value">1 <span data-i18n="skills.skill">skill</span></span>
+        </div>
+        <div class="test-item">
+            <span class="key">Multiple skills:</span>
+            <span class="value">5 <span data-i18n="skills.skills">skills</span></span>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>3. Projects Details (项目详情)</h2>
+        <div class="test-item">
+            <span class="key">Project action button:</span>
+            <button style="padding: 5px 10px; margin-left: 10px;">
+                <span data-i18n="projects.details">Details</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>4. Testimonials (推荐信)</h2>
+        <div class="test-item">
+            <span class="key">Section title:</span>
+            <span class="value" data-i18n="recommendations.title">Recommendations</span>
+        </div>
+        <div class="test-item">
+            <span class="key">Testimonial this year:</span>
+            <span class="value" data-i18n="recommendations.testimonial_title">Testimonial Received in 2025</span>
+        </div>
+        <div class="test-item">
+            <span class="key">This year count:</span>
+            <span class="value" data-i18n="recommendations.recommendations_this_year">Recommendations This Year</span>
+        </div>
+        <div class="test-item">
+            <span class="key">Total count:</span>
+            <span class="value" data-i18n="recommendations.total_recommendations">Total Recommendations Received</span>
+        </div>
+        <div class="test-item">
+            <span class="key">Description:</span>
+            <span class="value" data-i18n="recommendations.description">Professional endorsements from colleagues and clients highlighting expertise in automotive testing and validation.</span>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>5. Contact Form Labels (联系表单标签)</h2>
+        <div class="test-item">
+            <span class="key">Name label:</span>
+            <span class="value" data-i18n="contact.form.labels.name">Name</span>
+        </div>
+        <div class="test-item">
+            <span class="key">Email label:</span>
+            <span class="value" data-i18n="contact.form.labels.email">Email Address</span>
+        </div>
+        <div class="test-item">
+            <span class="key">Message label:</span>
+            <span class="value" data-i18n="contact.form.labels.message">Message</span>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>6. Site Analytics (网站统计)</h2>
+        <div class="test-item">
+            <span class="key">Title:</span>
+            <span class="value" data-i18n="visitor_counter.title">Visitor Counter</span>
+        </div>
+        <div class="test-item">
+            <span class="key">Total Views:</span>
+            <span class="value" data-i18n="visitor_counter.total_views">Total Views</span>
+        </div>
+        <div class="test-item">
+            <span class="key">Unique Visitors:</span>
+            <span class="value" data-i18n="visitor_counter.unique_visitors">Unique Visitors</span>
+        </div>
+        <div class="test-item">
+            <span class="key">Return Visits:</span>
+            <span class="value" data-i18n="visitor_counter.return_visits">Return Visits</span>
+        </div>
+        <div class="test-item">
+            <span class="key">Last Updated:</span>
+            <span class="value" data-i18n="visitor_counter.last_updated">Last Updated</span>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Instructions</h2>
+        <ol>
+            <li>Switch to Chinese (中文) using the language switcher above</li>
+            <li>Verify all the text changes to Chinese translations</li>
+            <li>Check that skill categories are properly translated</li>
+            <li>Verify projects "Details" becomes "详情"</li>
+            <li>Check testimonial section translations</li>
+            <li>Verify contact form labels are translated</li>
+            <li>Check site analytics translations</li>
+        </ol>
+    </div>
+
+    <!-- JavaScript files -->
+    <script src="assets/js/features/language-switcher.js"></script>
+    <script>
+        // Wait for language switcher to load, then test
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Chinese translation test page loaded');
+            console.log('Available translations:', window.languageSwitcher ? Object.keys(window.languageSwitcher.translations) : 'Language switcher not loaded');
+            
+            // Test function to verify translations
+            function testTranslations() {
+                const testKeys = [
+                    'skills.categories.Coverage',
+                    'skills.categories.Programming', 
+                    'skills.skill',
+                    'skills.skills',
+                    'projects.details',
+                    'recommendations.title',
+                    'recommendations.testimonial_title',
+                    'contact.form.labels.name',
+                    'visitor_counter.title'
+                ];
+                
+                console.log('Testing key translations:');
+                testKeys.forEach(key => {
+                    const translation = window.languageSwitcher ? window.languageSwitcher.t(key) : 'N/A';
+                    console.log(`${key}: ${translation}`);
+                });
+            }
+            
+            // Test after a short delay to ensure everything is loaded
+            setTimeout(testTranslations, 1000);
+        });
+    </script>
+</body>
+</html>

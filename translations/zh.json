@@ -124,22 +124,38 @@
   "skills": {
     "title": "技能 & 专业知识",
     "subtitle": "探索我在各个领域的技术能力。点击类别深入了解具体技能、熟练程度和经验。",
-    "no_javascript": "启用JavaScript以探索具有详细视图的交互式技能。"
+    "no_javascript": "启用JavaScript以探索具有详细视图的交互式技能。",
+    "categories": {
+      "Coverage": "覆盖率",
+      "Programming": "编程",
+      "Protocols": "协议",
+      "Requirements": "需求",
+      "Safety": "安全",
+      "Simulation": "仿真",
+      "Software Lifecycle": "软件生命周期",
+      "Testing": "测试",
+      "Tools": "工具",
+      "Version Control": "版本控制",
+      "Learning": "学习"
+    },
+    "skills": "技能",
+    "skill": "技能"
   },
   "projects": {
     "title": "精选项目",
+    "details": "详情",
     "items": [
       {
         "title": "BCM-系统验证",
         "description": "为Stellantis OEM进行汽车软件验证，专注于安全关键信息娱乐嵌入式系统，包括方向盘控制、碰撞检测和车辆照明。实施从需求分析到自动化验证的端到端测试流程。",
         "tags": ["Stellantis", "IBM RQM/DNG", "ECU-Test", "dSPACE"],
-        "link_text": "详细信息"
+        "link_text": "详情"
       },
       {
         "title": "DCU 20（域控制单元）",
         "description": "设计用于处理包括摄像头和雷达在内的各种车辆传感器数据的集中式ADAS域控制器（DCU）。集中化方法简化了架构，降低了成本，增强了可扩展性和软件更新。",
         "tags": ["ADAS", "CAPL", "Trace32", "Canoe"],
-        "link_text": "详细信息"
+        "link_text": "详情"
       },
       {
         "title": "CAnalyzerAI",
@@ -172,7 +188,11 @@
     ]
   },
   "recommendations": {
-    "title": "推荐信"
+    "title": "推荐信",
+    "testimonial_title": "今年收到的推荐",
+    "recommendations_this_year": "今年推荐数",
+    "total_recommendations": "已收到的总推荐数",
+    "description": "来自同事和客户的专业推荐，突出我的汽车测试与验证专长。"
   },
   "education": {
     "title": "教育",
@@ -209,6 +229,11 @@
     "form": {
       "title": "发送消息",
       "subtitle": "准备合作了吗？给我留言，让我们讨论您的下一个项目。",
+      "labels": {
+        "name": "姓名",
+        "email": "电子邮件地址",
+        "message": "留言"
+      },
       "placeholders": {
         "name": "您的姓名",
         "email": "您的邮箱",
@@ -221,10 +246,10 @@
     "copyright": "© 2024 Suduli Kumar Balabantaray. 保留所有权利。"
   },
   "visitor_counter": {
-    "title": "访问计数器",
+    "title": "访问统计",
     "total_views": "总浏览量",
     "unique_visitors": "独立访客",
-    "return_visits": "回访次数",
+    "return_visits": "回访量",
     "last_updated": "最后更新"
   },
   "lang_names": {
