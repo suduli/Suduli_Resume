@@ -849,8 +849,7 @@ function createCategoryItems(container, skillsByCategory) {
         categoryItem.dataset.category = category;
         categoryItem.setAttribute('role', 'button');
         categoryItem.setAttribute('tabindex', '0');
-        categoryItem.setAttribute('aria-label', `View ${skills.length} skills in ${category}`);
-
+        
         // Get translated category name
         const translatedCategory = window.languageSwitcher ? 
             window.languageSwitcher.t(`skills.categories.${category}`) || category : category;
@@ -859,6 +858,19 @@ function createCategoryItems(container, skillsByCategory) {
         const skillsCountText = skills.length === 1 ? 
             (window.languageSwitcher ? window.languageSwitcher.t('skills.skill_count') || 'skill' : 'skill') :
             (window.languageSwitcher ? window.languageSwitcher.t('skills.skills_count') || 'skills' : 'skills');
+
+        // Get translated aria-label
+        const ariaLabelTemplate = skills.length === 1 ? 
+            (window.languageSwitcher ? window.languageSwitcher.t('skills.view_skill_in') || 'View {count} {skill} in {category}' : 'View {count} {skill} in {category}') :
+            (window.languageSwitcher ? window.languageSwitcher.t('skills.view_skills_in') || 'View {count} {skills} in {category}' : 'View {count} {skills} in {category}');
+        
+        const ariaLabel = ariaLabelTemplate
+            .replace('{count}', skills.length)
+            .replace('{skill}', skillsCountText)
+            .replace('{skills}', skillsCountText)
+            .replace('{category}', translatedCategory);
+        
+        categoryItem.setAttribute('aria-label', ariaLabel);
 
         categoryItem.innerHTML = `
             <div class="category-icon">
@@ -1005,6 +1017,10 @@ function createSkillItemHTML(skill) {
     const tagsHTML = skill.tags.map(tag => `<span class="skill-tag">${tag}</span>`).join('');
     const youtubeIcon = skill.youtubeLink ? '<i class="fab fa-youtube skill-video-icon"></i>' : '';
 
+    // Get translated proficiency text
+    const proficiencyText = window.languageSwitcher ? 
+        window.languageSwitcher.t('skills.proficiency_percent') || '% Proficiency' : '% Proficiency';
+
     return `
         <div class="skill-detail-item" data-skill="${skill.name}" ${skill.youtubeLink ? `data-youtube-link="${skill.youtubeLink}"` : ''}>
             <div class="skill-name">
@@ -1012,7 +1028,7 @@ function createSkillItemHTML(skill) {
                 ${skill.name}
                 ${youtubeIcon}
             </div>
-            <div class="skill-level">${skill.level}% Proficiency</div>
+            <div class="skill-level">${skill.level}${proficiencyText}</div>
             <div class="skill-progress-bar">
                 <div class="skill-progress-fill" style="width: 0%; transition-delay: ${Math.random() * 0.5}s;"></div>
             </div>

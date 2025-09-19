@@ -140,7 +140,11 @@
       "Learning": "Apprentissage"
     },
     "skills_count": "compétences",
-    "skill_count": "compétence"
+    "skill_count": "compétence",
+    "proficiency": "Compétence",
+    "proficiency_percent": "% de Compétence",
+    "view_skills_in": "Voir {count} {skills} dans {category}",
+    "view_skill_in": "Voir {count} {skill} dans {category}"
   },
   "projects": {
     "title": "Projets Phares",

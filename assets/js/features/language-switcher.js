@@ -143,6 +143,14 @@ class LanguageSwitcher {
             element.setAttribute('aria-label', translatedText);
         });
 
+        // Handle title translations
+        const elementsWithTitle = document.querySelectorAll('[data-i18n-title]');
+        elementsWithTitle.forEach(element => {
+            const key = element.getAttribute('data-i18n-title');
+            const translatedText = this.t(key);
+            element.setAttribute('title', translatedText);
+        });
+
         // Update page title
         const pageTitle = this.t('page.title');
         if (pageTitle && pageTitle !== 'page.title') {
