@@ -1,0 +1,266 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "about": "私について",
+    "experience": "経験",
+    "skills": "スキル",
+    "projects": "プロジェクト",
+    "achievements": "成果",
+    "education": "教育",
+    "contact": "お問い合わせ"
+  },
+  "hero": {
+    "greeting": "こんにちは、私は",
+    "name": "SUDULI KUMAR BALABANTARAY",
+    "title": "テストリード & IV&V スペシャリスト",
+    "position": "テストリード & IV&V スペシャリスト",
+    "description": "私のスキルを披露し、自分自身と組織の成長に貢献できる挑戦的な役割を担える機会を提供する専門的な環境を求めています。",
+    "contact_button": "お問い合わせ",
+    "download_resume": "履歴書ダウンロード",
+    "learn_more": "詳細を見る"
+  },
+  "about": {
+    "title": "私について",
+    "intro": "自動車分野のクリティカルシステムにおける独立検証（IV）および妥当性確認（V）で8年の経験があります。",
+    "details": "RQMツール、プログラミング言語、高度な自動車ソフトウェア解析における豊富な経験を持つ自動車テストの専門知識。インフォテインメントシステム、ADAS、重要な自動車コンポーネントに焦点を当てた機能テスト、パフォーマンステスト、検証に精通しています。",
+    "stats": {
+      "experience": "年の経験",
+      "projects": "完了プロジェクト",
+      "companies": "企業"
+    }
+  },
+  "experience": {
+    "title": "経験",
+    "test_lead": {
+      "title": "テストリード",
+      "company": "KPIT Technologies Ltd",
+      "duration": "2023年11月 – 現在",
+      "responsibilities": [
+        "IBM ALMを使用した包括的な検証計画の開発・管理。",
+        "DOORS Next Generation（DNG）を介した完全な要件トレーサビリティの確保。",
+        "Sanity、Manual、Functional & Performanceテストサイクルの実行。",
+        "dSPACE & ECU-Test Toolを使用した自動化イニシアチブの推進。",
+        "インフォテインメント機能セットの検証：ステアリングホイールコントロール、ホーン機能、クラッシュ検出メカニズム。"
+      ]
+    },
+    "senior_engineer": {
+      "title": "スペシャリスト組み込みテストエンジニア",
+      "company": "HL Klemove India Pvt Ltd (Halla Group)",
+      "duration": "2022年2月 - 2023年11月",
+      "responsibilities": [
+        "カバレッジとトレーサビリティを保証する組み込みテスト計画の設計・実行。",
+        "Trace32を使用したECUのフラッシュと検証；ファームウェアの整合性確認。",
+        "ADAS Analyserを活用したZero DTCテスト環境の確立。",
+        "構造化された根本原因追跡とデータベース衛生による欠陥ライフサイクルの管理。"
+      ]
+    },
+    "test_engineer": {
+      "title": "シニア組み込みテストエンジニア",
+      "company": "Mando Softtech India Pvt Ltd (Halla Group)",
+      "duration": "2020年3月 - 2022年2月",
+      "responsibilities": [
+        "VectorCASTでターゲットカバレッジを達成するユニットテストスイートの開発・実行。",
+        "モジュールインターフェースとデータフローを検証する統合テストシナリオの作成。",
+        "見積り、タスク割り当て、ピアレビューの推進；MC/DCプラクティスの実施。",
+        "体系的なレビューと計装を通じて欠陥を早期に積極的に特定。"
+      ]
+    },
+    "junior_engineer": {
+      "title": "テストエンジニア",
+      "company": "Binsoft Techno Solutions",
+      "duration": "2017年9月 - 2020年2月",
+      "responsibilities": [
+        "コアモジュール用VectorCASTを使用した基礎的なユニットテストの実装。",
+        "欠陥の捕捉、トリアージ、追跡；フィードバックループ速度の改善。",
+        "カバレッジメトリクスの監視・向上、未テストパスのハイライト。"
+      ]
+    },
+    "current_role": {
+      "title": "テストリード",
+      "company": "KPIT Technologies Ltd",
+      "period": "2023年11月 – 現在",
+      "points": [
+        "IBM ALMを使用した包括的な検証計画の開発・管理。",
+        "DOORS Next Generation（DNG）を介した完全な要件トレーサビリティの確保。",
+        "Sanity、Manual、Functional & Performanceテストサイクルの実行。",
+        "dSPACE & ECU-Test Toolを使用した自動化イニシアチブの推進。",
+        "インフォテインメント機能セットの検証：ステアリングホイールコントロール、ホーン機能、クラッシュ検出メカニズム。"
+      ]
+    },
+    "roles": [
+      {
+        "title": "スペシャリスト組み込みテストエンジニア",
+        "company": "HL Klemove India Pvt Ltd (Halla Group)",
+        "period": "2022年2月 - 2023年11月",
+        "points": [
+          "カバレッジとトレーサビリティを保証する組み込みテスト計画の設計・実行。",
+          "Trace32を使用したECUのフラッシュと検証；ファームウェアの整合性確認。",
+          "ADAS Analyserを活用したZero DTCテスト環境の確立。",
+          "構造化された根本原因追跡とデータベース衛生による欠陥ライフサイクルの管理。"
+        ]
+      },
+      {
+        "title": "シニア組み込みテストエンジニア",
+        "company": "Mando Softtech India Pvt Ltd (Halla Group)",
+        "period": "2020年3月 - 2022年2月",
+        "points": [
+          "VectorCASTでターゲットカバレッジを達成するユニットテストスイートの開発・実行。",
+          "モジュールインターフェースとデータフローを検証する統合テストシナリオの作成。",
+          "見積り、タスク割り当て、ピアレビューの推進；MC/DCプラクティスの実施。",
+          "体系的なレビューと計装を通じて欠陥を早期に積極的に特定。"
+        ]
+      },
+      {
+        "title": "テストエンジニア",
+        "company": "Binsoft Techno Solutions",
+        "period": "2017年9月 - 2020年2月",
+        "points": [
+          "コアモジュール用VectorCASTを使用した基礎的なユニットテストの実装。",
+          "欠陥の捕捉、トリアージ、追跡；フィードバックループ速度の改善。",
+          "カバレッジメトリクスの監視・向上、未テストパスのハイライト。"
+        ]
+      }
+    ]
+  },
+  "skills": {
+    "title": "スキル & 専門知識",
+    "subtitle": "様々な分野での私の技術的能力を探索してください。カテゴリをクリックして、具体的なスキル、習熟度レベル、経験をより深く掘り下げてください。",
+    "no_javascript": "詳細ビューでインタラクティブなスキルを探索するためにJavaScriptを有効にしてください。"
+  },
+  "skills_categories": {
+    "coverage": "カバレッジ",
+    "programming": "プログラミング",
+    "protocols": "プロトコル",
+    "requirements": "要件",
+    "safety": "安全",
+    "simulation": "シミュレーション",
+    "software_lifecycle": "ソフトウェアライフサイクル",
+    "testing": "テスト",
+    "tools": "ツール",
+    "version_control": "バージョン管理",
+    "learning": "学習"
+  },
+  "projects": {
+    "title": "注目プロジェクト",
+    "details": "詳細",
+    "items": [
+      {
+        "title": "BCM-システム検証",
+        "description": "Stellantis OEM向け自動車ソフトウェア検証、ステアリングコントロール、クラッシュ検出、車両照明を含む安全重要インフォテインメント組み込みシステムに焦点。要件分析から自動検証までのエンドツーエンドテストプロセスを実装。",
+        "tags": ["Stellantis", "IBM RQM/DNG", "ECU-Test", "dSPACE"],
+        "link_text": "詳細"
+      },
+      {
+        "title": "DCU 20（ドメインコントロールユニット）",
+        "description": "カメラやレーダーを含む様々な車両センサーからのデータを処理するよう設計された集中型ADASドメインコントローラー（DCU）。集中化アプローチにより、アーキテクチャが簡素化され、コストが削減され、スケーラビリティとソフトウェアアップデートが向上。",
+        "tags": ["ADAS", "CAPL", "Trace32", "Canoe"],
+        "link_text": "詳細"
+      },
+      {
+        "title": "CAnalyzerAI",
+        "description": "自動車組み込みシステム向けの高度な品質評価、脆弱性検出、パフォーマンス最適化推奨を提供するAI搭載Cコード解析ツール。",
+        "tags": ["AI/ML", "C言語", "コード解析", "自動車"],
+        "github_text": "GitHub",
+        "demo_text": "ライブデモ"
+      }
+    ]
+  },
+  "achievements": {
+    "title": "成果 & 受賞",
+    "items": [
+      {
+        "title": "A+グレードパフォーマンス",
+        "description": "一貫して最高のパフォーマンス基準を維持。"
+      },
+      {
+        "title": "ベストプロジェクト賞 - LRR25",
+        "description": "HL Mando Softtech India"
+      },
+      {
+        "title": "ベストプロジェクト賞 - MRR30",
+        "description": "HL Mando Softtech India"
+      },
+      {
+        "title": "スポットライト賞",
+        "description": "HL Mando Softtech India & HL Klemove India"
+      }
+    ]
+  },
+  "recommendations": {
+    "title": "推薦状",
+    "testimonial_title": "推薦状",
+    "recommendations_this_year": "今年の推薦",
+    "total_recommendations": "合計推薦数",
+    "description": "自動車テストおよび検証の専門知識を強調する同僚およびクライアントからの専門的な推薦"
+  },
+  "education": {
+    "title": "教育",
+    "degree": "工学士（B.E）",
+    "institution": "The Aeronautical Society of India",
+    "year": "2017年修了",
+    "description": "自動車および航空宇宙分野における技術的基礎と実用的応用に焦点を当てた包括的な工学教育。"
+  },
+  "languages": {
+    "title": "言語",
+    "items": [
+      {
+        "name": "英語",
+        "level": "プロフェッショナル"
+      },
+      {
+        "name": "ヒンディー語",
+        "level": "ネイティブ"
+      }
+    ]
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "subtitle": "つながりましょう",
+    "description": "自動車テストの機会、IV&Vコラボレーション、または組み込みシステム検証に関する洞察と自動車分野での専門知識を共有することについて議論する準備ができています。",
+    "methods": {
+      "email": "メール",
+      "linkedin": "LinkedIn",
+      "phone": "電話",
+      "location": "所在地"
+    },
+    "phone_hidden": "クリックして連絡先番号を表示",
+    "phone_reveal": "表示",
+    "form": {
+      "title": "メッセージを送る",
+      "subtitle": "協力の準備はできていますか？メッセージをお送りいただき、次のプロジェクトについて話し合いましょう。",
+      "placeholders": {
+        "name": "お名前",
+        "email": "メールアドレス",
+        "message": "メッセージ"
+      },
+      "labels": {
+        "name": "お名前",
+        "email": "メールアドレス",
+        "message": "メッセージ"
+      },
+      "send": "メッセージを送信"
+    }
+  },
+  "footer": {
+    "copyright": "© 2024 Suduli Kumar Balabantaray. 全著作権所有。"
+  },
+  "lang_names": {
+    "en": "英語",
+    "de": "ドイツ語",
+    "fr": "フランス語",
+    "ja": "日本語",
+    "ko": "韓国語",
+    "zh": "中国語"
+  },
+  "theme": {
+    "light": "ライトテーマに切り替え",
+    "dark": "ダークテーマに切り替え"
+  },
+  "visitor_counter": {
+    "title": "訪問者統計",
+    "total_views": "合計閲覧数",
+    "unique_visitors": "ユニーク訪問者数",
+    "return_visits": "再訪問数",
+    "last_updated": "最終更新"
+  }
+}

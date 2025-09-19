@@ -26,7 +26,9 @@
       "experience": "년 경력",
       "projects": "완료 프로젝트",
       "companies": "회사"
-    }
+    },
+    "years_experience": "년 경력",
+    "projects_completed": "완료 프로젝트"
   },
   "experience": {
     "title": "경력",
@@ -124,22 +126,44 @@
   "skills": {
     "title": "기술 & 전문성",
     "subtitle": "다양한 분야에서의 제 기술적 역량을 탐색해보세요. 카테고리를 클릭하여 특정 기술, 숙련도 수준 및 경험을 더 깊이 알아보세요.",
-    "no_javascript": "자세한 보기로 대화형 기술을 탐색하려면 JavaScript를 활성화하세요."
+    "no_javascript": "자세한 보기로 대화형 기술을 탐색하려면 JavaScript를 활성화하세요.",
+    "categories": {
+      "Coverage": "커버리지",
+      "Programming": "프로그래밍",
+      "Protocols": "프로토콜",
+      "Requirements": "요구사항",
+      "Safety": "안전",
+      "Simulation": "시뮬레이션",
+      "Software Lifecycle": "소프트웨어 라이프사이클",
+      "Testing": "테스트",
+      "Tools": "도구",
+      "Version Control": "버전 관리",
+      "Learning": "학습"
+    },
+    "skill": "기술",
+    "skills": "기술",
+    "skill_count": "기술",
+    "skills_count": "기술",
+    "view_skill_in": "{category}에서 {count} {skill} 보기",
+    "view_skills_in": "{category}에서 {count} {skills} 보기"
   },
   "projects": {
     "title": "주요 프로젝트",
+    "details": "자세히 보기",
+    "github": "GitHub",
+    "demo": "라이브 데모",
     "items": [
       {
         "title": "BCM-시스템 검증",
         "description": "스티어링 컨트롤, 충돌 감지, 차량 조명을 포함한 안전 중요 인포테인먼트 임베디드 시스템에 중점을 둔 Stellantis OEM용 자동차 소프트웨어 검증. 요구사항 분석부터 자동화된 검증까지 엔드투엔드 테스트 프로세스 구현.",
         "tags": ["Stellantis", "IBM RQM/DNG", "ECU-Test", "dSPACE"],
-        "link_text": "세부 정보"
+        "link_text": "자세히 보기"
       },
       {
         "title": "DCU 20 (도메인 제어 유닛)",
         "description": "카메라와 레이더를 포함한 다양한 차량 센서의 데이터를 처리하도록 설계된 중앙 집중식 ADAS 도메인 컨트롤러(DCU). 중앙화 접근 방식은 아키텍처를 단순화하고 비용을 절감하며 확장성과 소프트웨어 업데이트를 향상시킵니다.",
         "tags": ["ADAS", "CAPL", "Trace32", "Canoe"],
-        "link_text": "세부 정보"
+        "link_text": "자세히 보기"
       },
       {
         "title": "CAnalyzerAI",
@@ -172,7 +196,11 @@
     ]
   },
   "recommendations": {
-    "title": "추천서"
+    "title": "추천서",
+    "testimonial_title": "2025년 받은 추천서",
+    "recommendations_this_year": "올해 추천 수",
+    "total_recommendations": "총 추천 수",
+    "description": "자동차 분야의 테스팅 및 검증 전문성을 입증하는 동료와 고객의 평가"
   },
   "education": {
     "title": "교육",
@@ -209,6 +237,11 @@
     "form": {
       "title": "메시지 보내기",
       "subtitle": "협업할 준비가 되셨나요? 메시지를 보내주시고 다음 프로젝트에 대해 논의해봅시다.",
+      "labels": {
+        "name": "이름",
+        "email": "이메일 주소",
+        "message": "메시지"
+      },
       "placeholders": {
         "name": "이름",
         "email": "이메일",
@@ -220,6 +253,13 @@
   "footer": {
     "copyright": "© 2024 Suduli Kumar Balabantaray. 모든 권리 보유."
   },
+  "visitor_counter": {
+    "title": "방문자 통계",
+    "total_views": "총 조회수",
+    "unique_visitors": "고유 방문자",
+    "return_visits": "재방문",
+    "last_updated": "마지막 업데이트"
+  },
   "lang_names": {
     "en": "영어",
     "de": "독일어",
@@ -227,5 +267,17 @@
     "ja": "일본어",
     "ko": "한국어",
     "zh": "중국어"
+  },
+  "social": {
+    "linkedin_profile": "LinkedIn 프로필",
+    "github_profile": "GitHub 프로필",
+    "twitter_profile": "Twitter 프로필",
+    "connect_linkedin": "LinkedIn에서 연결하기",
+    "follow_github": "GitHub 팔로우하기",
+    "follow_twitter": "Twitter 팔로우하기"
+  },
+  "theme": {
+    "light": "라이트 테마로 변경",
+    "dark": "다크 테마로 변경"
   }
 }

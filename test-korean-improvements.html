@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korean Translation Test</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/language-switcher.css">
+    <style>
+        .test-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+        }
+        .test-section {
+            margin: 2rem 0;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+        }
+        .test-title {
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Korean Translation Test</h1>
+        
+        <!-- Language Switcher -->
+        <div id="language-switcher-container"></div>
+        
+        <!-- Hero Section Test -->
+        <div class="test-section">
+            <h2 class="test-title">Hero Section</h2>
+            <p><span data-i18n="hero.greeting">Hello, I'm</span></p>
+            <p><span data-i18n="hero.title">Test Lead & IV&V Specialist</span></p>
+            <button><span data-i18n="hero.contact_button">Get In Touch</span></button>
+            <button><span data-i18n="hero.download_resume">Download Resume</span></button>
+        </div>
+
+        <!-- Skills Section Test -->
+        <div class="test-section">
+            <h2 class="test-title">Skills Section</h2>
+            <p><span data-i18n="skills.title">Skills & Expertise</span></p>
+            <p>Coverage: <span data-i18n="skills.categories.Coverage">Coverage</span></p>
+            <p>Programming: <span data-i18n="skills.categories.Programming">Programming</span></p>
+            <p>Testing: <span data-i18n="skills.categories.Testing">Testing</span></p>
+            <p>5 <span data-i18n="skills.skills_count">skills</span></p>
+        </div>
+
+        <!-- Projects Section Test -->
+        <div class="test-section">
+            <h2 class="test-title">Projects Section</h2>
+            <p><span data-i18n="projects.title">Featured Projects</span></p>
+            <button><span data-i18n="projects.details">Details</span></button>
+            <button><span data-i18n="projects.github">GitHub</span></button>
+        </div>
+
+        <!-- Contact Form Test -->
+        <div class="test-section">
+            <h2 class="test-title">Contact Form</h2>
+            <form>
+                <input type="text" data-i18n="contact.form.placeholders.name" data-i18n-attr="placeholder" placeholder="Your Name">
+                <input type="email" data-i18n="contact.form.placeholders.email" data-i18n-attr="placeholder" placeholder="Your Email">
+                <textarea data-i18n="contact.form.placeholders.message" data-i18n-attr="placeholder" placeholder="Your Message"></textarea>
+                <button type="submit"><span data-i18n="contact.form.send">Send Message</span></button>
+            </form>
+        </div>
+
+        <!-- Visitor Counter Test -->
+        <div class="test-section">
+            <h2 class="test-title">Visitor Counter</h2>
+            <p><span data-i18n="visitor_counter.title">Website Analytics</span></p>
+            <p><span data-i18n="visitor_counter.total_views">Total Views</span></p>
+            <p><span data-i18n="visitor_counter.unique_visitors">Unique Visitors</span></p>
+            <p><span data-i18n="visitor_counter.return_visits">Return Visits</span></p>
+        </div>
+
+        <!-- Recommendations Test -->
+        <div class="test-section">
+            <h2 class="test-title">Recommendations</h2>
+            <p><span data-i18n="recommendations.title">Testimonial</span></p>
+            <p><span data-i18n="recommendations.testimonial_title">Testimonial Received in 2025</span></p>
+            <p><span data-i18n="recommendations.recommendations_this_year">Recommendations This Year</span></p>
+            <p><span data-i18n="recommendations.total_recommendations">Total Recommendations Received</span></p>
+        </div>
+
+        <!-- Social & Theme Test -->
+        <div class="test-section">
+            <h2 class="test-title">Social & Theme</h2>
+            <button data-i18n-aria-label="social.linkedin_profile" aria-label="LinkedIn Profile">LinkedIn</button>
+            <button data-i18n-aria-label="social.github_profile" aria-label="GitHub Profile">GitHub</button>
+            <button data-i18n-aria-label="theme.light" aria-label="Switch to light theme">Theme Toggle</button>
+        </div>
+    </div>
+
+    <!-- Load Scripts -->
+    <script src="assets/js/features/language-switcher.js"></script>
+    <script>
+        // Test translation functionality
+        window.addEventListener('languageChanged', (event) => {
+            console.log('Language changed to:', event.detail.language);
+        });
+    </script>
+</body>
+</html>
