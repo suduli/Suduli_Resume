@@ -18,23 +18,6 @@
     "download_resume": "Télécharger le CV",
     "learn_more": "En savoir plus"
   },
-    "about": "À propos",
-    "experience": "Expérience",
-    "skills": "Compétences",
-    "projects": "Projets",
-    "achievements": "Réalisations",
-    "education": "Éducation",
-    "contact": "Contact"
-  },
-  "hero": {
-    "greeting": "Bonjour, je suis",
-    "name": "SUDULI KUMAR BALABANTARAY",
-    "title": "Chef de Test & Spécialiste IV&V",
-    "description": "Je recherche un environnement professionnel qui offre des opportunités de montrer mes compétences et d'assumer des rôles stimulants où je peux contribuer à la croissance de moi-même et de mon organisation.",
-    "cta_contact": "Entrer en Contact",
-    "cta_resume": "Télécharger CV",
-    "cta_learn": "En Savoir Plus"
-  },
   "about": {
     "title": "À Propos de Moi",
     "intro": "J'ai 8 ans d'expérience dans la vérification indépendante (IV) et la validation (V) pour les systèmes critiques dans le domaine automobile.",

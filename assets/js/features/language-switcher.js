@@ -135,6 +135,14 @@ class LanguageSwitcher {
             }
         });
 
+        // Handle aria-label translations
+        const elementsWithAriaLabel = document.querySelectorAll('[data-i18n-aria-label]');
+        elementsWithAriaLabel.forEach(element => {
+            const key = element.getAttribute('data-i18n-aria-label');
+            const translatedText = this.t(key);
+            element.setAttribute('aria-label', translatedText);
+        });
+
         // Update document language attribute
         document.documentElement.lang = this.currentLang;
         
@@ -220,6 +228,24 @@ class LanguageSwitcher {
                     dropdown.classList.toggle('show');
                 }
             }
+            
+            // Handle navigation links to preserve language parameter
+            const navLink = e.target.closest('.nav-link');
+            if (navLink && navLink.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                const targetSection = navLink.getAttribute('href');
+                
+                // Scroll to the section
+                const targetElement = document.querySelector(targetSection);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Update URL hash while preserving language parameter
+                const url = new URL(window.location);
+                url.hash = targetSection;
+                window.history.replaceState({}, '', url);
+            }
         });
 
         // Close dropdown when clicking outside
@@ -235,6 +261,11 @@ class LanguageSwitcher {
             this.detectLanguage();
             this.applyTranslations();
             this.updateLanguageSwitcherUI();
+        });
+        
+        // Update all internal links when language changes
+        window.addEventListener('languageChanged', () => {
+            this.updateInternalLinks();
         });
     }
 
@@ -278,6 +309,33 @@ class LanguageSwitcher {
                 </ul>
             </div>
         `;
+    }
+
+    // Update internal links to preserve language parameter
+    updateInternalLinks() {
+        const currentUrl = new URL(window.location);
+        const langParam = currentUrl.searchParams.get('lang');
+        
+        if (langParam && langParam !== this.defaultLang) {
+            // Update download links to include language parameter
+            const downloadLinks = document.querySelectorAll('a[download]');
+            downloadLinks.forEach(link => {
+                const linkUrl = new URL(link.href, window.location.origin);
+                linkUrl.searchParams.set('lang', langParam);
+                link.href = linkUrl.toString();
+            });
+            
+            // Update external links that should preserve language context
+            const externalLinks = document.querySelectorAll('a[target="_blank"]');
+            externalLinks.forEach(link => {
+                // Only update if it's an internal link that opens in new tab
+                if (link.href.includes(window.location.hostname)) {
+                    const linkUrl = new URL(link.href);
+                    linkUrl.searchParams.set('lang', langParam);
+                    link.href = linkUrl.toString();
+                }
+            });
+        }
     }
 
     // Render the language switcher into the DOM

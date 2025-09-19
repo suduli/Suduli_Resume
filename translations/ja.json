@@ -14,9 +14,9 @@
     "name": "SUDULI KUMAR BALABANTARAY",
     "title": "テストリード & IV&V スペシャリスト",
     "description": "私のスキルを披露し、自分自身と組織の成長に貢献できる挑戦的な役割を担える機会を提供する専門的な環境を求めています。",
-    "cta_contact": "お問い合わせ",
-    "cta_resume": "履歴書ダウンロード",
-    "cta_learn": "詳細を見る"
+    "contact_button": "お問い合わせ",
+    "download_resume": "履歴書ダウンロード",
+    "learn_more": "詳細を見る"
   },
   "about": {
     "title": "私について",

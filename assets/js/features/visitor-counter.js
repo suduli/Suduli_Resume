@@ -51,12 +51,13 @@ class VisitorCounter {
             });
             
             this.setupPeriodicUpdates();
-            this.log('Visitor counter initialized successfully');
             
-            // Listen for language changes
+            // Listen for language changes to update counter text
             window.addEventListener('languageChanged', () => {
-                this.updateCounterLabels();
+                this.displayCounter();
             });
+            
+            this.log('Visitor counter initialized successfully');
         } catch (error) {
             this.handleError('Initialization failed', error);
             
@@ -426,64 +427,6 @@ class VisitorCounter {
             throw error;
         }
     }
-    updateCounterLabels() {
-        const getTranslation = (key, fallback) => {
-            if (window.LanguageSwitcher && window.LanguageSwitcher.getTranslation) {
-                return window.LanguageSwitcher.getTranslation(key, fallback);
-            }
-            return fallback;
-        };
-
-        const container = document.querySelector('#visitor-counter');
-        if (container) {
-            // Update counter title
-            const titleSpan = container.querySelector('.counter-title span');
-            if (titleSpan) {
-                titleSpan.textContent = getTranslation('footer.visitorCounter', 'Website Analytics');
-            }
-
-            // Update stat labels if they exist
-            const stats = container.querySelectorAll('.counter-stat');
-            stats.forEach((stat, index) => {
-                const label = stat.querySelector('.counter-label');
-                if (label) {
-                    const icon = label.querySelector('i');
-                    const statType = stat.getAttribute('data-stat');
-                    
-                    let translationKey = '';
-                    let fallbackText = '';
-                    
-                    switch (statType) {
-                        case 'total-views':
-                            translationKey = 'visitorCounter.totalViews';
-                            fallbackText = 'Total Views';
-                            break;
-                        case 'unique-visitors':
-                            translationKey = 'visitorCounter.uniqueVisitors';
-                            fallbackText = 'Unique Visitors';
-                            break;
-                        case 'return-visitors':
-                            translationKey = 'visitorCounter.returnVisits';
-                            fallbackText = 'Return Visits';
-                            break;
-                    }
-                    
-                    if (translationKey) {
-                        const iconHTML = icon ? icon.outerHTML : '';
-                        label.innerHTML = iconHTML + getTranslation(translationKey, fallbackText);
-                    }
-                }
-            });
-
-            // Update "Last updated" text
-            const updated = container.querySelector('.counter-updated');
-            if (updated && updated.textContent.includes('Last updated:')) {
-                const timestamp = this.getFormattedTime();
-                updated.textContent = `${getTranslation('visitorCounter.lastUpdated', 'Last updated')}: ${timestamp}`;
-            }
-        }
-    }
-
     displayCounter() {
         // Find or create the counter element
         let element = document.querySelector(this.config.displayElement);
@@ -560,19 +503,27 @@ class VisitorCounter {
             return new Intl.NumberFormat().format(num);
         };
         
-        // Get translations if language switcher is available
-        const getTranslation = (key, fallback) => {
-            if (window.LanguageSwitcher && window.LanguageSwitcher.getTranslation) {
-                return window.LanguageSwitcher.getTranslation(key, fallback);
+        // Get translations from the global language switcher if available
+        const t = (key) => {
+            if (window.languageSwitcher && typeof window.languageSwitcher.t === 'function') {
+                return window.languageSwitcher.t(key);
             }
-            return fallback;
+            // Fallback to English
+            const fallbackTranslations = {
+                'visitor_counter.title': 'Website Analytics',
+                'visitor_counter.total_views': 'Total Views',
+                'visitor_counter.unique_visitors': 'Unique Visitors', 
+                'visitor_counter.return_visits': 'Return Visits',
+                'visitor_counter.last_updated': 'Last updated'
+            };
+            return fallbackTranslations[key] || key;
         };
         
         return `
             <div class="visitor-counter-container">
                 <div class="counter-title">
                     <i class="fas fa-chart-line"></i>
-                    <span>${getTranslation('footer.visitorCounter', 'Website Analytics')}</span>
+                    <span>${t('visitor_counter.title')}</span>
                 </div>
                 <div class="counter-stats">
                     ${this.config.trackTotalViews ? `
@@ -580,7 +531,7 @@ class VisitorCounter {
                             <span class="counter-number" data-target="${this.visitorData.totalPageViews}">${formatNumber(this.visitorData.totalPageViews)}</span>
                             <span class="counter-label">
                                 <i class="fas fa-eye"></i>
-                                Total Views
+                                ${t('visitor_counter.total_views')}
                             </span>
                         </div>
                     ` : ''}
@@ -589,7 +540,7 @@ class VisitorCounter {
                             <span class="counter-number" data-target="${this.visitorData.uniqueVisitors}">${formatNumber(this.visitorData.uniqueVisitors)}</span>
                             <span class="counter-label">
                                 <i class="fas fa-users"></i>
-                                Unique Visitors
+                                ${t('visitor_counter.unique_visitors')}
                             </span>
                         </div>
                     ` : ''}
@@ -598,13 +549,13 @@ class VisitorCounter {
                             <span class="counter-number" data-target="${this.visitorData.returnVisitors}">${formatNumber(this.visitorData.returnVisitors)}</span>
                             <span class="counter-label">
                                 <i class="fas fa-redo"></i>
-                                Return Visits
+                                ${t('visitor_counter.return_visits')}
                             </span>
                         </div>
                     ` : ''}
                 </div>
                 <div class="counter-footer">
-                    <span class="counter-updated">Last updated: ${this.getFormattedTime()}</span>
+                    <span class="counter-updated">${t('visitor_counter.last_updated')}: ${this.getFormattedTime()}</span>
                 </div>
             </div>
         `;

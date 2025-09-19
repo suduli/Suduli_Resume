@@ -14,9 +14,9 @@
     "name": "SUDULI KUMAR BALABANTARAY",
     "title": "测试主管 & IV&V 专家",
     "description": "我寻求一个专业环境，提供展示我技能的机会，承担具有挑战性的角色，在这里我可以为自己和组织的成长做出贡献。",
-    "cta_contact": "联系我",
-    "cta_resume": "下载简历",
-    "cta_learn": "了解更多"
+    "contact_button": "联系我",
+    "download_resume": "下载简历",
+    "learn_more": "了解更多"
   },
   "about": {
     "title": "关于我",

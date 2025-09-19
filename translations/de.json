@@ -13,7 +13,7 @@
     "greeting": "Hallo, ich bin",
     "name": "SUDULI KUMAR BALABANTARAY",
     "position": "Testleiter & IV&V-Spezialist",
-    "description": "Ich suche ein professionelles Umfeld, das Möglichkeiten bietet, meine Fähigkeiten zu zeigen und herausfordernde Rollen zu übernehmen, wo ich zum Wachstum sowohl meiner selbst als auch meiner Organisation beitragen kann.",
+    "description": "Ich suche eine Position in einem professionellen Umfeld, die es mir ermöglicht, meine Fähigkeiten einzubringen und anspruchsvolle Aufgaben zu übernehmen. Ziel ist es, sowohl zum eigenen Wachstum als auch zum Wachstum meines Unternehmens beizutragen.",
     "contact_button": "Kontakt aufnehmen",
     "download_resume": "Lebenslauf herunterladen",
     "learn_more": "Mehr erfahren"
@@ -31,7 +31,46 @@
     "test_lead": {
       "title": "Testleiter",
       "company": "KPIT Technologies Ltd",
-      "duration": "Nov 2023 – Gegenwart"
+      "duration": "Nov 2023 – Gegenwart",
+      "responsibilities": [
+        "Entwicklung und Verwaltung umfassender Validierungspläne mit IBM ALM",
+        "Sicherstellung vollständiger Anforderungsrückverfolgbarkeit über DOORS Next Generation (DNG)",
+        "Durchführung von Sanity-, Manual-, Funktions- und Leistungstestzyklen",
+        "Förderung von Automatisierungsinitiativen mit dSPACE und ECU-Test Tool",
+        "Validierung von Infotainment-Funktionen: Lenkradsteuerung, Hupenfunktionalität, Crash-Erkennungsmechanismen"
+      ]
+    },
+    "senior_engineer": {
+      "title": "Spezialist Embedded Test Engineer",
+      "company": "HL Klemove India Pvt Ltd (Halla Group)",
+      "duration": "Februar 2022 - November 2023",
+      "responsibilities": [
+        "Entwicklung und Durchführung eingebetteter Testpläne zur Sicherstellung von Abdeckung und Rückverfolgbarkeit",
+        "Flashen und Validierung von ECUs mit Trace32; Bestätigung der Firmware-Integrität",
+        "Aufbau von Zero-DTC-Testumgebungen unter Verwendung des ADAS-Analysers",
+        "Verwaltung des Fehlerzyklus mit strukturierter Ursachenanalyse und Datenbank-Hygiene"
+      ]
+    },
+    "test_engineer": {
+      "title": "Senior Embedded Test Engineer",
+      "company": "Mando Softtech India Pvt Ltd (Halla Group)",
+      "duration": "März 2020 - Februar 2022",
+      "responsibilities": [
+        "Entwicklung und Durchführung von Unit-Test-Suiten mit VectorCAST zur Erreichung der Zielabdeckung",
+        "Erstellung von Integrationstestszenarien zur Validierung von Modulschnittstellen und Datenfluss",
+        "Förderung von Schätzung, Aufgabenverteilung und Peer-Reviews; Durchsetzung von MC/DC-Praktiken",
+        "Proaktive Identifizierung von Fehlern durch systematische Überprüfung und Instrumentierung"
+      ]
+    },
+    "junior_engineer": {
+      "title": "Test Engineer",
+      "company": "Binsoft Techno Solutions",
+      "duration": "September 2017 - Februar 2020",
+      "responsibilities": [
+        "Implementierung grundlegender Unit-Tests mit VectorCAST für Kernmodule",
+        "Erfassung, Triage und Verfolgung von Fehlern; Verbesserung der Feedback-Loop-Geschwindigkeit",
+        "Überwachung und Anhebung von Abdeckungsmetriken, Hervorhebung ungetesteter Pfade"
+      ]
     }
   },
   "skills": {
@@ -39,7 +78,7 @@
     "description": "Erkunden Sie meine technischen Kompetenzen in verschiedenen Bereichen. Klicken Sie auf eine Kategorie, um tiefer in spezifische Fähigkeiten, Kompetenzniveaus und Erfahrungen einzutauchen."
   },
   "projects": {
-    "title": "Ausgewählte Projekte",
+    "title": "Hervorgehobene Projekte",
     "items": [
       {
         "title": "BCM-Systems Validierung",
@@ -66,25 +105,29 @@
     "title": "Erfolge & Auszeichnungen",
     "items": [
       {
-        "title": "A+ Note Leistung",
+        "title": "A+ Leistungsklasse",
         "description": "Konsistent die höchsten Leistungsstandards beibehalten."
       },
       {
-        "title": "Bestes Projekt Auszeichnung - LRR25",
+        "title": "Bester Projektpreis - LRR25",
         "description": "HL Mando Softtech India"
       },
       {
-        "title": "Bestes Projekt Auszeichnung - MRR30",
+        "title": "Bester Projektpreis - MRR30",
         "description": "HL Mando Softtech India"
       },
       {
-        "title": "Spotlight Auszeichnung",
+        "title": "Auszeichnung im Rampenlicht",
         "description": "HL Mando Softtech India & HL Klemove India"
       }
     ]
   },
   "recommendations": {
-    "title": "Empfehlung"
+    "title": "Empfehlung",
+    "testimonial_title": "Testimonial erhalten in 2025",
+    "recommendations_this_year": "Empfehlungen dieses Jahr",
+    "total_recommendations": "Gesamte erhaltene Empfehlungen",
+    "description": "Professionelle Empfehlungen von Kollegen und Kunden, die Expertise in Automotive-Testing und -Validierung hervorheben."
   },
   "education": {
     "title": "Bildung",
@@ -98,7 +141,7 @@
     "items": [
       {
         "name": "Englisch",
-        "level": "Professionelle Kompetenz"
+        "level": "Verhandlungssicher"
       },
       {
         "name": "Hindi",
@@ -122,8 +165,8 @@
       "title": "Nachricht senden",
       "subtitle": "Bereit zur Zusammenarbeit? Schreiben Sie mir eine Nachricht und lassen Sie uns über Ihr nächstes Projekt sprechen.",
       "placeholders": {
-        "name": "Ihr Name",
-        "email": "Ihre E-Mail",
+        "name": "Ihr vollständiger Name",
+        "email": "Ihre E-Mail-Adresse",
         "message": "Ihre Nachricht"
       },
       "send": "Nachricht senden"
@@ -131,6 +174,13 @@
   },
   "footer": {
     "copyright": "© 2024 Suduli Kumar Balabantaray. Alle Rechte vorbehalten."
+  },
+  "visitor_counter": {
+    "title": "Website-Analyse",
+    "total_views": "Gesamtaufrufe",
+    "unique_visitors": "Einzelbesucher",
+    "return_visits": "Rückkehrende Besuche",
+    "last_updated": "Zuletzt aktualisiert"
   },
   "lang_names": {
     "en": "Englisch",

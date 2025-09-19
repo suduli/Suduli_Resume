@@ -4,6 +4,7 @@ class RecommendationSummary {
         this.currentYear = new Date().getFullYear();
         this.csvPath = 'assets/data/Recommendations_Received.csv';
         this.containerId = 'recommendation-summary';
+        this.cachedResult = null; // Cache for language switching
     }
 
     get utils() {
@@ -58,6 +59,24 @@ class RecommendationSummary {
         }
     }
 
+    // Helper method to get translated text
+    t(key) {
+        // Check if language switcher is available
+        if (window.languageSwitcher && typeof window.languageSwitcher.t === 'function') {
+            return window.languageSwitcher.t(key);
+        }
+        
+        // Fallback values if translation system is not available
+        const fallbacks = {
+            'recommendations.testimonial_title': `Testimonial Received in ${this.currentYear}`,
+            'recommendations.recommendations_this_year': 'Recommendations This Year',
+            'recommendations.total_recommendations': 'Total Recommendations Received',
+            'recommendations.description': 'Professional endorsements from colleagues and clients highlighting expertise in automotive testing and validation.'
+        };
+        
+        return fallbacks[key] || key;
+    }
+
     createSummaryHTML(result) {
         return `
             <div class="recommendation-summary-content">
@@ -65,17 +84,17 @@ class RecommendationSummary {
                     <i class="fas fa-thumbs-up"></i>
                 </div>
                 <div class="recommendation-info">
-                    <h3 class="recommendation-title">Testimonial Received in ${this.currentYear}</h3>
+                    <h3 class="recommendation-title">${this.t('recommendations.testimonial_title')}</h3>
                     <div class="recommendation-count">
                         <span class="count-number">${result.currentYearCount}</span>
-                        <span class="count-label">Recommendations This Year</span>
+                        <span class="count-label">${this.t('recommendations.recommendations_this_year')}</span>
                     </div>
                     <div class="recommendation-count" style="margin-top:10px;">
                         <span class="count-number">${result.totalCount}</span>
-                        <span class="count-label">Total Recommendations Received</span>
+                        <span class="count-label">${this.t('recommendations.total_recommendations')}</span>
                     </div>
                     <p class="recommendation-description">
-                        Professional endorsements from colleagues and clients highlighting expertise in automotive testing and validation.
+                        ${this.t('recommendations.description')}
                     </p>
                 </div>
             </div>
@@ -117,8 +136,16 @@ class RecommendationSummary {
         `;
         try {
             const result = await this.loadRecommendations();
+            this.cachedResult = result; // Cache the result for language changes
             container.innerHTML = this.createSummaryHTML(result);
             console.log(`[RecommendationSummary] Successfully loaded ${result.currentYearCount} recommendations for ${this.currentYear}`);
+            
+            // Listen for language changes to update the display
+            document.addEventListener('languageChanged', () => {
+                if (this.cachedResult) {
+                    container.innerHTML = this.createSummaryHTML(this.cachedResult);
+                }
+            });
             
             // Dispatch a custom event to notify other components that the content is ready
             const event = new CustomEvent('recommendationSummaryReady', {

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Icon Internationalization Test</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/language-switcher.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Rajdhani', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Orbitron', monospace;
+            background: linear-gradient(45deg, #00f5ff, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .test-section {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid var(--border-primary);
+        }
+        
+        .language-controls {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .lang-btn {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn:hover {
+            background: var(--accent-secondary);
+            transform: translateY(-2px);
+        }
+        
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+        }
+        
+        #language-switcher-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .status {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        
+        .success { border-left: 4px solid #28a745; }
+        .warning { border-left: 4px solid #ffc107; }
+        .error { border-left: 4px solid #dc3545; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Download Icon Internationalization Test</h1>
+        
+        <div class="test-section">
+            <h3>Language Switcher</h3>
+            <div id="language-switcher-container">
+                <!-- Language switcher will be injected here -->
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Download Icon Container Test</h3>
+            <p>The download icon container should display translated text based on the selected language:</p>
+            
+            <div class="hero-visual">
+                <a href="../assets/data/Suduli_Resume.pdf" download="Suduli_Resume.pdf" class="floating-download-link" aria-label="Download Resume" data-i18n-aria-label="hero.download_resume">
+                    <div class="floating-element">
+                        <div class="download-icon-container">
+                            <i class="fas fa-download"></i>
+                            <span data-i18n="hero.download_resume">Download Resume</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Manual Language Test Controls</h3>
+            <div class="language-controls">
+                <button class="lang-btn" onclick="testLanguage('en')">English</button>
+                <button class="lang-btn" onclick="testLanguage('de')">Deutsch</button>
+                <button class="lang-btn" onclick="testLanguage('fr')">Français</button>
+                <button class="lang-btn" onclick="testLanguage('ja')">日本語</button>
+                <button class="lang-btn" onclick="testLanguage('ko')">한국어</button>
+                <button class="lang-btn" onclick="testLanguage('zh')">中文</button>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Test Results</h3>
+            <div id="test-log">
+                <div class="status">Starting tests...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/features/language-switcher.js"></script>
+    
+    <script>
+        let testResults = [];
+        
+        function log(message, type = 'info') {
+            const logElement = document.getElementById('test-log');
+            const statusElement = document.createElement('div');
+            statusElement.className = `status ${type}`;
+            statusElement.innerHTML = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logElement.appendChild(statusElement);
+            
+            // Keep only last 10 logs
+            const logs = logElement.querySelectorAll('.status');
+            if (logs.length > 10) {
+                logElement.removeChild(logs[0]);
+            }
+        }
+        
+        async function testLanguage(lang) {
+            log(`Testing language: ${lang}`, 'info');
+            
+            try {
+                await window.languageSwitcher.switchLanguage(lang);
+                
+                // Check if the download icon text was updated
+                const downloadSpan = document.querySelector('.download-icon-container span[data-i18n="hero.download_resume"]');
+                const downloadLink = document.querySelector('a[data-i18n-aria-label="hero.download_resume"]');
+                
+                if (downloadSpan) {
+                    const currentText = downloadSpan.textContent;
+                    const expectedTranslations = {
+                        'en': 'Download Resume',
+                        'de': 'Lebenslauf herunterladen',
+                        'fr': 'Télécharger le CV',
+                        'ja': '履歴書ダウンロード',
+                        'ko': '이력서 다운로드',
+                        'zh': '下载简历'
+                    };
+                    
+                    const expected = expectedTranslations[lang];
+                    if (currentText === expected) {
+                        log(`✅ Text translation correct for ${lang}: "${currentText}"`, 'success');
+                    } else {
+                        log(`❌ Text translation incorrect for ${lang}. Expected: "${expected}", Got: "${currentText}"`, 'error');
+                    }
+                } else {
+                    log(`❌ Download span element not found`, 'error');
+                }
+                
+                if (downloadLink) {
+                    const ariaLabel = downloadLink.getAttribute('aria-label');
+                    log(`📋 Aria-label updated to: "${ariaLabel}"`, 'info');
+                } else {
+                    log(`❌ Download link element not found`, 'error');
+                }
+                
+            } catch (error) {
+                log(`❌ Error testing language ${lang}: ${error.message}`, 'error');
+            }
+        }
+        
+        // Run initial test when page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                log('Page loaded, running initial test...', 'info');
+                testLanguage('en');
+            }, 1000);
+        });
+        
+        // Listen for language changes
+        window.addEventListener('languageChanged', (event) => {
+            log(`🌐 Language changed to: ${event.detail.language}`, 'success');
+        });
+    </script>
+</body>
+</html>
