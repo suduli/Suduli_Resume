@@ -125,26 +125,21 @@
   "skills": {
     "title": "スキル & 専門知識",
     "subtitle": "様々な分野での私の技術的能力を探索してください。カテゴリをクリックして、具体的なスキル、習熟度レベル、経験をより深く掘り下げてください。",
-    "no_javascript": "詳細ビューでインタラクティブなスキルを探索するためにJavaScriptを有効にしてください。",
-    "skill_count": "スキル",
-    "skills_count": "スキル",
-    "view_skill_in": "{category}の{count}{skill}を表示",
-    "view_skills_in": "{category}の{count}{skills}を表示",
-    "categories": {
-      "Coverage": "カバレッジ",
-      "Programming": "プログラミング", 
-      "Protocols": "プロトコル",
-      "Requirements": "要件",
-      "Safety": "安全",
-      "Simulation": "シミュレーション",
-      "Software Lifecycle": "ソフトウェアライフサイクル",
-      "Testing": "テスト",
-      "Tools": "ツール",
-      "Version Control": "バージョン管理",
-      "Learning": "学習"
-    }
+    "no_javascript": "詳細ビューでインタラクティブなスキルを探索するためにJavaScriptを有効にしてください。"
   },
-
+  "skills_categories": {
+    "coverage": "カバレッジ",
+    "programming": "プログラミング",
+    "protocols": "プロトコル",
+    "requirements": "要件",
+    "safety": "安全",
+    "simulation": "シミュレーション",
+    "software_lifecycle": "ソフトウェアライフサイクル",
+    "testing": "テスト",
+    "tools": "ツール",
+    "version_control": "バージョン管理",
+    "learning": "学習"
+  },
   "projects": {
     "title": "注目プロジェクト",
     "details": "詳細",
@@ -258,8 +253,8 @@
     "zh": "中国語"
   },
   "theme": {
-    "switch_to_light": "ライトテーマに切り替え",
-    "switch_to_dark": "ダークテーマに切り替え"
+    "light": "ライトテーマに切り替え",
+    "dark": "ダークテーマに切り替え"
   },
   "visitor_counter": {
     "title": "ビジターカウンター",
@@ -267,11 +262,5 @@
     "unique_visitors": "ユニーク訪問者数",
     "return_visits": "再訪問数",
     "last_updated": "最終更新"
-  },
-  "social": {
-    "linkedin_profile": "LinkedInプロフィール",
-    "github_profile": "GitHubプロフィール", 
-    "connect_linkedin": "LinkedInでつながる",
-    "follow_github": "GitHubでフォロー"
   }
 }
