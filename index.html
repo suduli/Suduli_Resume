@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="assets/css/visitor-counter.css">
     <link rel="stylesheet" href="assets/css/youtube-icon.css">
     <link rel="stylesheet" href="assets/css/mobile-about-patch.css">
+    <link rel="stylesheet" href="assets/css/language-switcher.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -25,14 +26,14 @@
                 <span class="logo-text">SUDULI</span>
             </div>
             <ul class="nav-menu">
-                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
-                <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
-                <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
-                <li class="nav-item"><a href="#achievements" class="nav-link">Achievements</a></li>
-                <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
-                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="#home" class="nav-link" data-i18n="nav.home">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link" data-i18n="nav.about">About</a></li>
+                <li class="nav-item"><a href="#experience" class="nav-link" data-i18n="nav.experience">Experience</a></li>
+                <li class="nav-item"><a href="#skills" class="nav-link" data-i18n="nav.skills">Skills</a></li>
+                <li class="nav-item"><a href="#projects" class="nav-link" data-i18n="nav.projects">Projects</a></li>
+                <li class="nav-item"><a href="#achievements" class="nav-link" data-i18n="nav.achievements">Achievements</a></li>
+                <li class="nav-item"><a href="#education" class="nav-link" data-i18n="nav.education">Education</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a></li>
             </ul>
             <div class="nav-right-group">
                 <div class="nav-social-icons">
@@ -43,6 +44,8 @@
                         <i class="fab fa-github" aria-hidden="true"></i>
                     </a>
                 </div>
+                <!-- Language Switcher -->
+                <div id="language-switcher-container"></div>
                 <button class="theme-toggle" id="theme-toggle" 
                         aria-label="Switch to light theme" 
                         role="button" 
@@ -64,17 +67,17 @@
         <div class="hero-container">
             <div class="hero-content">
                 <h1 class="hero-title">
-                    <span class="title-line">Hello, I'm</span>
-                    <span class="title-main">SUDULI KUMAR BALABANTARAY</span>
-                    <span class="title-subtitle">Test Lead & IV&V Specialist</span>
+                    <span class="title-line" data-i18n="hero.greeting">Hello, I'm</span>
+                    <span class="title-main" data-i18n="hero.name">SUDULI KUMAR BALABANTARAY</span>
+                    <span class="title-subtitle" data-i18n="hero.position">Test Lead & IV&V Specialist</span>
                 </h1>
-                <p class="hero-description">
+                <p class="hero-description" data-i18n="hero.description">
                     I seek a professional environment that offers opportunities to showcase my skills and take on challenging roles where I can contribute to the growth of both myself and my organization.
                 </p>
                 <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                    <a href="assets/data/Suduli_Resume.pdf" class="btn btn-secondary" download="Suduli_Resume.pdf"><i class="fas fa-download"></i> Download Resume</a>
-                    <a href="#about" class="btn btn-secondary">Learn More</a>
+                    <a href="#contact" class="btn btn-primary" data-i18n="hero.contact_button">Get In Touch</a>
+                    <a href="assets/data/Suduli_Resume.pdf" class="btn btn-secondary" download="Suduli_Resume.pdf" data-i18n="hero.download_resume"><i class="fas fa-download"></i> Download Resume</a>
+                    <a href="#about" class="btn btn-secondary" data-i18n="hero.learn_more">Learn More</a>
                 </div>
             </div>
             <div class="hero-visual">
@@ -96,28 +99,28 @@
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
+            <h2 class="section-title" data-i18n="about.title">About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p class="about-intro">
+                    <p class="about-intro" data-i18n="about.intro">
                         I have 8 years of experience in independent verification (IV) and validation (V) for critical systems in the automotive domain.
                     </p>
-                    <p class="about-details">
+                    <p class="about-details" data-i18n="about.details">
                         Expertise in automotive testing with extensive experience in RQM tools, programming languages, and advanced automotive software analysis. 
                         Proficient in functional testing, performance testing, and validation, with a focus on infotainment systems, ADAS, and critical automotive components.
                     </p>
                     <div class="about-stats">
                         <div class="stat-item">
                             <span class="stat-number">8+</span>
-                            <span class="stat-label">Years Experience</span>
+                            <span class="stat-label" data-i18n="about.years_experience">Years Experience</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number">50+</span>
-                            <span class="stat-label">Projects Completed</span>
+                            <span class="stat-label" data-i18n="about.projects_completed">Projects Completed</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number">4+</span>
-                            <span class="stat-label">Companies</span>
+                            <span class="stat-label" data-i18n="about.companies">Companies</span>
                         </div>
                     </div>
                 </div>
@@ -133,13 +136,13 @@
     <!-- Experience Section -->
     <section id="experience" class="experience">
         <div class="container">
-            <h2 class="section-title">Experience</h2>
+            <h2 class="section-title" data-i18n="experience.title">Experience</h2>
             <!-- Highlight Card: Test Lead (Enhanced Bullet Format) -->
         <article class="experience-highlight" aria-labelledby="exp-testlead-title">
                 <header class="exp-header">
                     <div class="exp-role-block">
-                        <h3 class="exp-role" id="exp-testlead-title">Test Lead</h3>
-                        <p class="exp-company"><a href="https://www.kpit.com/" target="_blank" rel="noopener noreferrer">KPIT Technologies Ltd</a> <span class="exp-dates" aria-label="Employment period">Nov 2023 – Present</span></p>
+                        <h3 class="exp-role" id="exp-testlead-title" data-i18n="experience.test_lead.title">Test Lead</h3>
+                        <p class="exp-company"><a href="https://www.kpit.com/" target="_blank" rel="noopener noreferrer" data-i18n="experience.test_lead.company">KPIT Technologies Ltd</a> <span class="exp-dates" aria-label="Employment period" data-i18n="experience.test_lead.duration">Nov 2023 – Present</span></p>
                     </div>
                 </header>
                 <ul class="exp-points">
@@ -206,8 +209,8 @@
     <section id="skills" class="skills">
         <div class="container">
             <div class="skills-intro">
-                <h2>Skills & Expertise</h2>
-                <p>Explore my technical competencies across various domains. Click on a category to dive deeper into specific skills, proficiency levels, and experience.</p>
+                <h2 data-i18n="skills.title">Skills & Expertise</h2>
+                <p data-i18n="skills.description">Explore my technical competencies across various domains. Click on a category to dive deeper into specific skills, proficiency levels, and experience.</p>
             </div>
             
             <!-- Innovative Skills Carousel -->
@@ -548,11 +551,11 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
+            <h2 class="section-title" data-i18n="contact.title">Get In Touch</h2>
             <div class="contact-content">
                 <div class="contact-info">
-                    <h3 class="contact-subtitle">Let's Connect</h3>
-                    <p class="contact-description">
+                    <h3 class="contact-subtitle" data-i18n="contact.subtitle">Let's Connect</h3>
+                    <p class="contact-description" data-i18n="contact.description">
                         I'm ready to discuss automotive testing opportunities, IV&V collaboration, or share insights about embedded systems validation and expertise in the automotive domain.
                     </p>
                     <div class="contact-methods">
@@ -659,6 +662,8 @@
     <script src="assets/js/utils/recommendation-utils.js"></script>
     <script src="assets/js/features/recommendations/recommendation-summary.js"></script>
     <script src="assets/js/features/recommendations/recommendation-cards.js"></script>
+    <!-- Language switcher -->
+    <script src="assets/js/features/language-switcher.js"></script>
     <script type="module" src="assets/js/core/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,177 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "experience": "Experience",
+    "skills": "Skills",
+    "projects": "Projects",
+    "achievements": "Achievements",
+    "education": "Education",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hello, I'm",
+    "name": "SUDULI KUMAR BALABANTARAY",
+    "position": "Test Lead & IV&V Specialist",
+    "description": "I seek a professional environment that offers opportunities to showcase my skills and take on challenging roles where I can contribute to the growth of both myself and my organization.",
+    "contact_button": "Get In Touch",
+    "download_resume": "Download Resume",
+    "learn_more": "Learn More"
+  },
+  "about": {
+    "title": "About Me",
+    "intro": "I have 8 years of experience in independent verification (IV) and validation (V) for critical systems in the automotive domain.",
+    "details": "Expertise in automotive testing with extensive experience in RQM tools, programming languages, and advanced automotive software analysis. Proficient in functional testing, performance testing, and validation, with a focus on infotainment systems, ADAS, and critical automotive components.",
+    "years_experience": "Years Experience",
+    "projects_completed": "Projects Completed",
+    "companies": "Companies"
+  },
+  "experience": {
+    "title": "Experience",
+    "test_lead": {
+      "title": "Test Lead",
+      "company": "KPIT Technologies Ltd",
+      "duration": "Nov 2023 – Present"
+    },
+    "roles": [
+      {
+        "title": "Specialist Embedded Test Engineer",
+        "company": "HL Klemove India Pvt Ltd (Halla Group)",
+        "period": "February 2022 - November 2023",
+        "points": [
+          "Designed & executed embedded test plans ensuring coverage & traceability.",
+          "Flashed & validated ECUs using Trace32; confirmed firmware integrity.",
+          "Established Zero DTC test environments leveraging ADAS Analyser.",
+          "Managed defect lifecycle with structured root cause tracking & database hygiene."
+        ]
+      },
+      {
+        "title": "Senior Embedded Test Engineer",
+        "company": "Mando Softtech India Pvt Ltd (Halla Group)",
+        "period": "March 2020 - February 2022",
+        "points": [
+          "Developed & executed unit test suites with VectorCAST achieving target coverage.",
+          "Created integration test scenarios validating module interfaces & data flow.",
+          "Drove estimation, task allocation & peer reviews; enforced MC/DC practices.",
+          "Proactively identified defects early through systematic review & instrumentation."
+        ]
+      },
+      {
+        "title": "Test Engineer",
+        "company": "Binsoft Techno Solutions",
+        "period": "September 2017 - February 2020",
+        "points": [
+          "Implemented foundational unit tests with VectorCAST for core modules.",
+          "Captured, triaged & tracked defects; improved feedback loop speed.",
+          "Monitored & raised coverage metrics, highlighting untested paths."
+        ]
+      }
+    ]
+  },
+  "skills": {
+    "title": "Skills & Expertise",
+    "description": "Explore my technical competencies across various domains. Click on a category to dive deeper into specific skills, proficiency levels, and experience."
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "items": [
+      {
+        "title": "BCM-Systems Validation",
+        "description": "Automotive software validation for Stellantis OEM, focusing on safety-critical Infotainment embedded systems including steering controls, crash detection, and vehicle lighting. Implemented end-to-end testing processes from requirement analysis to automated validation.",
+        "tags": ["Stellantis", "IBM RQM/DNG", "ECU-Test", "dSPACE"],
+        "link_text": "Details"
+      },
+      {
+        "title": "DCU 20 (Domain Control Unit)",
+        "description": "Centralized ADAS domain controller (DCU) designed to process data from various vehicle sensors, including cameras and radars. Centralization approach simplifies the architecture, reduces costs, and enhances scalability and software updates.",
+        "tags": ["ADAS", "CAPL", "Trace32", "Canoe"],
+        "link_text": "Details"
+      },
+      {
+        "title": "CAnalyzerAI",
+        "description": "AI-powered C code analysis tool that provides intelligent code quality assessment, vulnerability detection, and performance optimization recommendations for automotive embedded systems.",
+        "tags": ["AI/ML", "C Language", "Code Analysis", "Automotive"],
+        "github_text": "GitHub",
+        "demo_text": "Live Demo"
+      }
+    ]
+  },
+  "achievements": {
+    "title": "Achievements & Awards",
+    "items": [
+      {
+        "title": "A+ Grade Performance",
+        "description": "Consistently maintained the highest performance standards."
+      },
+      {
+        "title": "Best Project Award - LRR25",
+        "description": "HL Mando Softtech India"
+      },
+      {
+        "title": "Best Project Award - MRR30", 
+        "description": "HL Mando Softtech India"
+      },
+      {
+        "title": "Spotlight Award",
+        "description": "HL Mando Softtech India & HL Klemove India"
+      }
+    ]
+  },
+  "recommendations": {
+    "title": "Testimonial"
+  },
+  "education": {
+    "title": "Education",
+    "degree": "Bachelor of Engineering (B.E)",
+    "institution": "The Aeronautical Society of India",
+    "year": "Completed 2017",
+    "description": "Comprehensive engineering education with focus on technical fundamentals and practical applications in the automotive and aerospace domains."
+  },
+  "languages": {
+    "title": "Languages",
+    "items": [
+      {
+        "name": "English",
+        "level": "Professional Proficiency"
+      },
+      {
+        "name": "Hindi",
+        "level": "Native"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Let's Connect",
+    "description": "I'm ready to discuss automotive testing opportunities, IV&V collaboration, or share insights about embedded systems validation and expertise in the automotive domain.",
+    "methods": {
+      "email": "Email",
+      "linkedin": "LinkedIn", 
+      "phone": "Phone",
+      "location": "Location"
+    },
+    "phone_hidden": "Click to Reveal Contact Number",
+    "phone_reveal": "Reveal",
+    "form": {
+      "title": "Send a Message",
+      "subtitle": "Ready to collaborate? Drop me a line and let's discuss your next project.",
+      "placeholders": {
+        "name": "Your Name",
+        "email": "Your Email",
+        "message": "Your Message"
+      },
+      "send": "Send Message"
+    }
+  },
+  "footer": {
+    "copyright": "© 2024 Suduli Kumar Balabantaray. All rights reserved."
+  },
+  "lang_names": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "ja": "Japanese",
+    "ko": "Korean",
+    "zh": "Chinese"
+  }
+}

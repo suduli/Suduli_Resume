@@ -52,6 +52,11 @@ class VisitorCounter {
             
             this.setupPeriodicUpdates();
             this.log('Visitor counter initialized successfully');
+            
+            // Listen for language changes
+            window.addEventListener('languageChanged', () => {
+                this.updateCounterLabels();
+            });
         } catch (error) {
             this.handleError('Initialization failed', error);
             
@@ -421,6 +426,64 @@ class VisitorCounter {
             throw error;
         }
     }
+    updateCounterLabels() {
+        const getTranslation = (key, fallback) => {
+            if (window.LanguageSwitcher && window.LanguageSwitcher.getTranslation) {
+                return window.LanguageSwitcher.getTranslation(key, fallback);
+            }
+            return fallback;
+        };
+
+        const container = document.querySelector('#visitor-counter');
+        if (container) {
+            // Update counter title
+            const titleSpan = container.querySelector('.counter-title span');
+            if (titleSpan) {
+                titleSpan.textContent = getTranslation('footer.visitorCounter', 'Website Analytics');
+            }
+
+            // Update stat labels if they exist
+            const stats = container.querySelectorAll('.counter-stat');
+            stats.forEach((stat, index) => {
+                const label = stat.querySelector('.counter-label');
+                if (label) {
+                    const icon = label.querySelector('i');
+                    const statType = stat.getAttribute('data-stat');
+                    
+                    let translationKey = '';
+                    let fallbackText = '';
+                    
+                    switch (statType) {
+                        case 'total-views':
+                            translationKey = 'visitorCounter.totalViews';
+                            fallbackText = 'Total Views';
+                            break;
+                        case 'unique-visitors':
+                            translationKey = 'visitorCounter.uniqueVisitors';
+                            fallbackText = 'Unique Visitors';
+                            break;
+                        case 'return-visitors':
+                            translationKey = 'visitorCounter.returnVisits';
+                            fallbackText = 'Return Visits';
+                            break;
+                    }
+                    
+                    if (translationKey) {
+                        const iconHTML = icon ? icon.outerHTML : '';
+                        label.innerHTML = iconHTML + getTranslation(translationKey, fallbackText);
+                    }
+                }
+            });
+
+            // Update "Last updated" text
+            const updated = container.querySelector('.counter-updated');
+            if (updated && updated.textContent.includes('Last updated:')) {
+                const timestamp = this.getFormattedTime();
+                updated.textContent = `${getTranslation('visitorCounter.lastUpdated', 'Last updated')}: ${timestamp}`;
+            }
+        }
+    }
+
     displayCounter() {
         // Find or create the counter element
         let element = document.querySelector(this.config.displayElement);
@@ -497,11 +560,19 @@ class VisitorCounter {
             return new Intl.NumberFormat().format(num);
         };
         
+        // Get translations if language switcher is available
+        const getTranslation = (key, fallback) => {
+            if (window.LanguageSwitcher && window.LanguageSwitcher.getTranslation) {
+                return window.LanguageSwitcher.getTranslation(key, fallback);
+            }
+            return fallback;
+        };
+        
         return `
             <div class="visitor-counter-container">
                 <div class="counter-title">
                     <i class="fas fa-chart-line"></i>
-                    <span>Website Analytics</span>
+                    <span>${getTranslation('footer.visitorCounter', 'Website Analytics')}</span>
                 </div>
                 <div class="counter-stats">
                     ${this.config.trackTotalViews ? `

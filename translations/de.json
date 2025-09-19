@@ -1,0 +1,143 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "about": "Über mich",
+    "experience": "Erfahrung",
+    "skills": "Fähigkeiten",
+    "projects": "Projekte",
+    "achievements": "Erfolge",
+    "education": "Bildung",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "greeting": "Hallo, ich bin",
+    "name": "SUDULI KUMAR BALABANTARAY",
+    "position": "Testleiter & IV&V-Spezialist",
+    "description": "Ich suche ein professionelles Umfeld, das Möglichkeiten bietet, meine Fähigkeiten zu zeigen und herausfordernde Rollen zu übernehmen, wo ich zum Wachstum sowohl meiner selbst als auch meiner Organisation beitragen kann.",
+    "contact_button": "Kontakt aufnehmen",
+    "download_resume": "Lebenslauf herunterladen",
+    "learn_more": "Mehr erfahren"
+  },
+  "about": {
+    "title": "Über mich",
+    "intro": "Ich habe 8 Jahre Erfahrung in der unabhängigen Verifikation (IV) und Validierung (V) für kritische Systeme im Automobilbereich.",
+    "details": "Expertise im Automotive-Testing mit umfangreicher Erfahrung in RQM-Tools, Programmiersprachen und fortgeschrittener Automotive-Software-Analyse. Kompetent in Funktionstests, Leistungstests und Validierung, mit Fokus auf Infotainment-Systeme, ADAS und kritische Automobilkomponenten.",
+    "years_experience": "Jahre Erfahrung",
+    "projects_completed": "Projekte abgeschlossen",
+    "companies": "Unternehmen"
+  },
+  "experience": {
+    "title": "Erfahrung",
+    "test_lead": {
+      "title": "Testleiter",
+      "company": "KPIT Technologies Ltd",
+      "duration": "Nov 2023 – Gegenwart"
+    }
+  },
+  "skills": {
+    "title": "Fähigkeiten & Expertise",
+    "description": "Erkunden Sie meine technischen Kompetenzen in verschiedenen Bereichen. Klicken Sie auf eine Kategorie, um tiefer in spezifische Fähigkeiten, Kompetenzniveaus und Erfahrungen einzutauchen."
+  },
+  "projects": {
+    "title": "Ausgewählte Projekte",
+    "items": [
+      {
+        "title": "BCM-Systems Validierung",
+        "description": "Automotive-Software-Validierung für Stellantis OEM, mit Fokus auf sicherheitskritische Infotainment-eingebettete Systeme einschließlich Lenkradsteuerung, Crash-Erkennung und Fahrzeugbeleuchtung. Implementierte End-to-End-Testprozesse von der Anforderungsanalyse bis zur automatisierten Validierung.",
+        "tags": ["Stellantis", "IBM RQM/DNG", "ECU-Test", "dSPACE"],
+        "link_text": "Details"
+      },
+      {
+        "title": "DCU 20 (Domain Control Unit)",
+        "description": "Zentralisierte ADAS-Domain-Controller (DCU) zur Verarbeitung von Daten verschiedener Fahrzeugsensoren, einschließlich Kameras und Radare. Der Zentralisierungsansatz vereinfacht die Architektur, reduziert Kosten und verbessert Skalierbarkeit und Software-Updates.",
+        "tags": ["ADAS", "CAPL", "Trace32", "Canoe"],
+        "link_text": "Details"
+      },
+      {
+        "title": "CAnalyzerAI",
+        "description": "KI-gestütztes C-Code-Analyse-Tool, das intelligente Code-Qualitätsbewertung, Schwachstellenerkennung und Leistungsoptimierungsempfehlungen für eingebettete Automotive-Systeme bietet.",
+        "tags": ["AI/ML", "C-Sprache", "Code-Analyse", "Automotive"],
+        "github_text": "GitHub",
+        "demo_text": "Live Demo"
+      }
+    ]
+  },
+  "achievements": {
+    "title": "Erfolge & Auszeichnungen",
+    "items": [
+      {
+        "title": "A+ Note Leistung",
+        "description": "Konsistent die höchsten Leistungsstandards beibehalten."
+      },
+      {
+        "title": "Bestes Projekt Auszeichnung - LRR25",
+        "description": "HL Mando Softtech India"
+      },
+      {
+        "title": "Bestes Projekt Auszeichnung - MRR30",
+        "description": "HL Mando Softtech India"
+      },
+      {
+        "title": "Spotlight Auszeichnung",
+        "description": "HL Mando Softtech India & HL Klemove India"
+      }
+    ]
+  },
+  "recommendations": {
+    "title": "Empfehlung"
+  },
+  "education": {
+    "title": "Bildung",
+    "degree": "Bachelor of Engineering (B.E)",
+    "institution": "The Aeronautical Society of India",
+    "year": "Abgeschlossen 2017",
+    "description": "Umfassende Ingenieurausbildung mit Fokus auf technische Grundlagen und praktische Anwendungen in der Automobil- und Luft- und Raumfahrtdomäne."
+  },
+  "languages": {
+    "title": "Sprachen",
+    "items": [
+      {
+        "name": "Englisch",
+        "level": "Professionelle Kompetenz"
+      },
+      {
+        "name": "Hindi",
+        "level": "Muttersprache"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Kontakt aufnehmen",
+    "subtitle": "Lass uns verbinden",
+    "description": "Ich bin bereit, über Automotive-Testing-Möglichkeiten, IV&V-Zusammenarbeit zu diskutieren oder Einblicke in die Validierung eingebetteter Systeme und Expertise im Automobilbereich zu teilen.",
+    "methods": {
+      "email": "E-Mail",
+      "linkedin": "LinkedIn",
+      "phone": "Telefon",
+      "location": "Standort"
+    },
+    "phone_hidden": "Klicken Sie, um die Kontaktnummer anzuzeigen",
+    "phone_reveal": "Anzeigen",
+    "form": {
+      "title": "Nachricht senden",
+      "subtitle": "Bereit zur Zusammenarbeit? Schreiben Sie mir eine Nachricht und lassen Sie uns über Ihr nächstes Projekt sprechen.",
+      "placeholders": {
+        "name": "Ihr Name",
+        "email": "Ihre E-Mail",
+        "message": "Ihre Nachricht"
+      },
+      "send": "Nachricht senden"
+    }
+  },
+  "footer": {
+    "copyright": "© 2024 Suduli Kumar Balabantaray. Alle Rechte vorbehalten."
+  },
+  "lang_names": {
+    "en": "Englisch",
+    "de": "Deutsch",
+    "fr": "Französisch",
+    "ja": "Japanisch",
+    "ko": "Koreanisch",
+    "zh": "Chinesisch"
+  }
+}

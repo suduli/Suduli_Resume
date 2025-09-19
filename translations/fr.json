@@ -1,0 +1,204 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "experience": "Expérience",
+    "skills": "Compétences",
+    "projects": "Projets",
+    "achievements": "Réalisations",
+    "education": "Éducation",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Bonjour, je suis",
+    "name": "SUDULI KUMAR BALABANTARAY",
+    "position": "Chef de Test & Spécialiste IV&V",
+    "description": "Je recherche un environnement professionnel qui offre des opportunités de mettre en valeur mes compétences et d'assumer des rôles stimulants où je peux contribuer à la croissance de moi-même et de mon organisation.",
+    "contact_button": "Entrer en contact",
+    "download_resume": "Télécharger le CV",
+    "learn_more": "En savoir plus"
+  },
+    "about": "À propos",
+    "experience": "Expérience",
+    "skills": "Compétences",
+    "projects": "Projets",
+    "achievements": "Réalisations",
+    "education": "Éducation",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Bonjour, je suis",
+    "name": "SUDULI KUMAR BALABANTARAY",
+    "title": "Chef de Test & Spécialiste IV&V",
+    "description": "Je recherche un environnement professionnel qui offre des opportunités de montrer mes compétences et d'assumer des rôles stimulants où je peux contribuer à la croissance de moi-même et de mon organisation.",
+    "cta_contact": "Entrer en Contact",
+    "cta_resume": "Télécharger CV",
+    "cta_learn": "En Savoir Plus"
+  },
+  "about": {
+    "title": "À Propos de Moi",
+    "intro": "J'ai 8 ans d'expérience dans la vérification indépendante (IV) et la validation (V) pour les systèmes critiques dans le domaine automobile.",
+    "details": "Expertise en tests automobiles avec une vaste expérience dans les outils RQM, les langages de programmation et l'analyse avancée de logiciels automobiles. Compétent en tests fonctionnels, tests de performance et validation, avec un focus sur les systèmes d'infodivertissement, ADAS et les composants automobiles critiques.",
+    "stats": {
+      "experience": "Années d'Expérience",
+      "projects": "Projets Terminés",
+      "companies": "Entreprises"
+    }
+  },
+  "experience": {
+    "title": "Expérience",
+    "current_role": {
+      "title": "Chef de Test",
+      "company": "KPIT Technologies Ltd",
+      "period": "Nov 2023 – Présent",
+      "points": [
+        "Développé et géré des plans de validation complets utilisant IBM ALM.",
+        "Assuré la traçabilité complète des exigences via DOORS Next Generation (DNG).",
+        "Exécuté des cycles de tests Sanity, Manuels, Fonctionnels et de Performance.",
+        "Dirigé les initiatives d'automatisation avec dSPACE et l'Outil ECU-Test.",
+        "Validé l'ensemble de fonctionnalités d'infodivertissement : Contrôles du Volant, Fonctionnalité du Klaxon, Mécanismes de détection de crash."
+      ]
+    },
+    "roles": [
+      {
+        "title": "Ingénieur Test Embarqué Spécialisé",
+        "company": "HL Klemove India Pvt Ltd (Halla Group)",
+        "period": "Février 2022 - Novembre 2023",
+        "points": [
+          "Conçu et exécuté des plans de test embarqués assurant la couverture et la traçabilité.",
+          "Flashé et validé des ECUs utilisant Trace32 ; confirmé l'intégrité du firmware.",
+          "Établi des environnements de test Zero DTC en utilisant ADAS Analyser.",
+          "Géré le cycle de vie des défauts avec un suivi structuré des causes racines et l'hygiène de la base de données."
+        ]
+      },
+      {
+        "title": "Ingénieur Test Embarqué Senior",
+        "company": "Mando Softtech India Pvt Ltd (Halla Group)",
+        "period": "Mars 2020 - Février 2022",
+        "points": [
+          "Développé et exécuté des suites de tests unitaires avec VectorCAST atteignant la couverture cible.",
+          "Créé des scénarios de tests d'intégration validant les interfaces de modules et le flux de données.",
+          "Dirigé l'estimation, l'allocation des tâches et les revues par les pairs ; appliqué les pratiques MC/DC.",
+          "Identifié de manière proactive les défauts tôt grâce à la revue systématique et l'instrumentation."
+        ]
+      },
+      {
+        "title": "Ingénieur Test",
+        "company": "Binsoft Techno Solutions",
+        "period": "Septembre 2017 - Février 2020",
+        "points": [
+          "Implémenté des tests unitaires fondamentaux avec VectorCAST pour les modules centraux.",
+          "Capturé, trié et suivi les défauts ; amélioré la vitesse de la boucle de rétroaction.",
+          "Surveillé et élevé les métriques de couverture, mettant en évidence les chemins non testés."
+        ]
+      }
+    ]
+  },
+  "skills": {
+    "title": "Compétences & Expertise",
+    "subtitle": "Explorez mes compétences techniques dans divers domaines. Cliquez sur une catégorie pour approfondir les compétences spécifiques, les niveaux de compétence et l'expérience.",
+    "no_javascript": "Activez JavaScript pour explorer les compétences interactives avec des vues détaillées."
+  },
+  "projects": {
+    "title": "Projets en Vedette",
+    "items": [
+      {
+        "title": "Validation Systèmes BCM",
+        "description": "Validation logicielle automobile pour l'OEM Stellantis, se concentrant sur les systèmes embarqués d'infodivertissement critiques pour la sécurité incluant les contrôles de direction, la détection de crash et l'éclairage véhicule. Implémenté des processus de test de bout en bout de l'analyse des exigences à la validation automatisée.",
+        "tags": ["Stellantis", "IBM RQM/DNG", "ECU-Test", "dSPACE"],
+        "link_text": "Détails"
+      },
+      {
+        "title": "DCU 20 (Unité de Contrôle de Domaine)",
+        "description": "Contrôleur de domaine ADAS centralisé (DCU) conçu pour traiter les données de divers capteurs véhicule, incluant caméras et radars. L'approche de centralisation simplifie l'architecture, réduit les coûts et améliore l'évolutivité et les mises à jour logicielles.",
+        "tags": ["ADAS", "CAPL", "Trace32", "Canoe"],
+        "link_text": "Détails"
+      },
+      {
+        "title": "CAnalyzerAI",
+        "description": "Outil d'analyse de code C alimenté par IA qui fournit une évaluation intelligente de la qualité du code, la détection de vulnérabilités et des recommandations d'optimisation de performance pour les systèmes embarqués automobiles.",
+        "tags": ["AI/ML", "Langage C", "Analyse de Code", "Automobile"],
+        "github_text": "GitHub",
+        "demo_text": "Démo en Direct"
+      }
+    ]
+  },
+  "achievements": {
+    "title": "Réalisations & Prix",
+    "items": [
+      {
+        "title": "Performance Grade A+",
+        "description": "Maintenu constamment les plus hauts standards de performance."
+      },
+      {
+        "title": "Prix du Meilleur Projet - LRR25",
+        "description": "HL Mando Softtech India"
+      },
+      {
+        "title": "Prix du Meilleur Projet - MRR30",
+        "description": "HL Mando Softtech India"
+      },
+      {
+        "title": "Prix Spotlight",
+        "description": "HL Mando Softtech India & HL Klemove India"
+      }
+    ]
+  },
+  "recommendations": {
+    "title": "Témoignage"
+  },
+  "education": {
+    "title": "Éducation",
+    "degree": "Baccalauréat en Ingénierie (B.E)",
+    "institution": "The Aeronautical Society of India",
+    "year": "Terminé en 2017",
+    "description": "Éducation d'ingénierie complète avec focus sur les fondamentaux techniques et les applications pratiques dans les domaines automobiles et aérospatiaux."
+  },
+  "languages": {
+    "title": "Langues",
+    "items": [
+      {
+        "name": "Anglais",
+        "level": "Compétence Professionnelle"
+      },
+      {
+        "name": "Hindi",
+        "level": "Natif"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Entrer en Contact",
+    "subtitle": "Connectons-nous",
+    "description": "Je suis prêt à discuter d'opportunités de tests automobiles, de collaboration IV&V ou à partager des insights sur la validation de systèmes embarqués et l'expertise dans le domaine automobile.",
+    "methods": {
+      "email": "E-mail",
+      "linkedin": "LinkedIn",
+      "phone": "Téléphone",
+      "location": "Localisation"
+    },
+    "phone_hidden": "Cliquez pour Révéler le Numéro de Contact",
+    "phone_reveal": "Révéler",
+    "form": {
+      "title": "Envoyer un Message",
+      "subtitle": "Prêt à collaborer ? Écrivez-moi et discutons de votre prochain projet.",
+      "placeholders": {
+        "name": "Votre Nom",
+        "email": "Votre E-mail",
+        "message": "Votre Message"
+      },
+      "send": "Envoyer le Message"
+    }
+  },
+  "footer": {
+    "copyright": "© 2024 Suduli Kumar Balabantaray. Tous droits réservés."
+  },
+  "lang_names": {
+    "en": "Anglais",
+    "de": "Allemand",
+    "fr": "Français",
+    "ja": "Japonais",
+    "ko": "Coréen",
+    "zh": "Chinois"
+  }
+}

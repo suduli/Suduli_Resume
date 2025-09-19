@@ -1,0 +1,187 @@
+{
+  "nav": {
+    "home": "首页",
+    "about": "关于",
+    "experience": "经验",
+    "skills": "技能",
+    "projects": "项目",
+    "achievements": "成就",
+    "education": "教育",
+    "contact": "联系"
+  },
+  "hero": {
+    "greeting": "你好，我是",
+    "name": "SUDULI KUMAR BALABANTARAY",
+    "title": "测试主管 & IV&V 专家",
+    "description": "我寻求一个专业环境，提供展示我技能的机会，承担具有挑战性的角色，在这里我可以为自己和组织的成长做出贡献。",
+    "cta_contact": "联系我",
+    "cta_resume": "下载简历",
+    "cta_learn": "了解更多"
+  },
+  "about": {
+    "title": "关于我",
+    "intro": "我在汽车领域关键系统的独立验证（IV）和确认（V）方面拥有8年经验。",
+    "details": "汽车测试专业知识，在RQM工具、编程语言和高级汽车软件分析方面拥有丰富经验。精通功能测试、性能测试和验证，专注于信息娱乐系统、ADAS和关键汽车组件。",
+    "stats": {
+      "experience": "年经验",
+      "projects": "完成项目",
+      "companies": "公司"
+    }
+  },
+  "experience": {
+    "title": "经验",
+    "current_role": {
+      "title": "测试主管",
+      "company": "KPIT Technologies Ltd",
+      "period": "2023年11月 – 至今",
+      "points": [
+        "使用IBM ALM开发和管理综合验证计划。",
+        "通过DOORS Next Generation（DNG）确保完整的需求可追溯性。",
+        "执行Sanity、手动、功能和性能测试周期。",
+        "使用dSPACE和ECU-Test工具推动自动化计划。",
+        "验证信息娱乐功能集：方向盘控制、喇叭功能、碰撞检测机制。"
+      ]
+    },
+    "roles": [
+      {
+        "title": "专业嵌入式测试工程师",
+        "company": "HL Klemove India Pvt Ltd (Halla Group)",
+        "period": "2022年2月 - 2023年11月",
+        "points": [
+          "设计和执行确保覆盖率和可追溯性的嵌入式测试计划。",
+          "使用Trace32刷写和验证ECU；确认固件完整性。",
+          "利用ADAS分析仪建立零DTC测试环境。",
+          "通过结构化根因跟踪和数据库维护管理缺陷生命周期。"
+        ]
+      },
+      {
+        "title": "高级嵌入式测试工程师",
+        "company": "Mando Softtech India Pvt Ltd (Halla Group)",
+        "period": "2020年3月 - 2022年2月",
+        "points": [
+          "使用VectorCAST开发和执行达到目标覆盖率的单元测试套件。",
+          "创建验证模块接口和数据流的集成测试场景。",
+          "推动估算、任务分配和同行评审；执行MC/DC实践。",
+          "通过系统性审查和仪器主动早期识别缺陷。"
+        ]
+      },
+      {
+        "title": "测试工程师",
+        "company": "Binsoft Techno Solutions",
+        "period": "2017年9月 - 2020年2月",
+        "points": [
+          "为核心模块使用VectorCAST实施基础单元测试。",
+          "捕获、分类和跟踪缺陷；改善反馈循环速度。",
+          "监控和提高覆盖率指标，突出未测试路径。"
+        ]
+      }
+    ]
+  },
+  "skills": {
+    "title": "技能 & 专业知识",
+    "subtitle": "探索我在各个领域的技术能力。点击类别深入了解具体技能、熟练程度和经验。",
+    "no_javascript": "启用JavaScript以探索具有详细视图的交互式技能。"
+  },
+  "projects": {
+    "title": "精选项目",
+    "items": [
+      {
+        "title": "BCM-系统验证",
+        "description": "为Stellantis OEM进行汽车软件验证，专注于安全关键信息娱乐嵌入式系统，包括方向盘控制、碰撞检测和车辆照明。实施从需求分析到自动化验证的端到端测试流程。",
+        "tags": ["Stellantis", "IBM RQM/DNG", "ECU-Test", "dSPACE"],
+        "link_text": "详细信息"
+      },
+      {
+        "title": "DCU 20（域控制单元）",
+        "description": "设计用于处理包括摄像头和雷达在内的各种车辆传感器数据的集中式ADAS域控制器（DCU）。集中化方法简化了架构，降低了成本，增强了可扩展性和软件更新。",
+        "tags": ["ADAS", "CAPL", "Trace32", "Canoe"],
+        "link_text": "详细信息"
+      },
+      {
+        "title": "CAnalyzerAI",
+        "description": "AI驱动的C代码分析工具，为汽车嵌入式系统提供智能代码质量评估、漏洞检测和性能优化建议。",
+        "tags": ["AI/ML", "C语言", "代码分析", "汽车"],
+        "github_text": "GitHub",
+        "demo_text": "在线演示"
+      }
+    ]
+  },
+  "achievements": {
+    "title": "成就 & 奖项",
+    "items": [
+      {
+        "title": "A+级绩效",
+        "description": "持续保持最高绩效标准。"
+      },
+      {
+        "title": "最佳项目奖 - LRR25",
+        "description": "HL Mando Softtech India"
+      },
+      {
+        "title": "最佳项目奖 - MRR30",
+        "description": "HL Mando Softtech India"
+      },
+      {
+        "title": "聚光灯奖",
+        "description": "HL Mando Softtech India & HL Klemove India"
+      }
+    ]
+  },
+  "recommendations": {
+    "title": "推荐信"
+  },
+  "education": {
+    "title": "教育",
+    "degree": "工程学士（B.E）",
+    "institution": "The Aeronautical Society of India",
+    "year": "2017年完成",
+    "description": "全面的工程教育，专注于汽车和航空航天领域的技术基础和实际应用。"
+  },
+  "languages": {
+    "title": "语言",
+    "items": [
+      {
+        "name": "英语",
+        "level": "专业水平"
+      },
+      {
+        "name": "印地语",
+        "level": "母语"
+      }
+    ]
+  },
+  "contact": {
+    "title": "联系我",
+    "subtitle": "让我们连接",
+    "description": "我准备讨论汽车测试机会、IV&V合作，或分享关于嵌入式系统验证和汽车领域专业知识的见解。",
+    "methods": {
+      "email": "邮箱",
+      "linkedin": "LinkedIn",
+      "phone": "电话",
+      "location": "位置"
+    },
+    "phone_hidden": "点击显示联系电话",
+    "phone_reveal": "显示",
+    "form": {
+      "title": "发送消息",
+      "subtitle": "准备合作了吗？给我留言，让我们讨论您的下一个项目。",
+      "placeholders": {
+        "name": "您的姓名",
+        "email": "您的邮箱",
+        "message": "您的消息"
+      },
+      "send": "发送消息"
+    }
+  },
+  "footer": {
+    "copyright": "© 2024 Suduli Kumar Balabantaray. 保留所有权利。"
+  },
+  "lang_names": {
+    "en": "英语",
+    "de": "德语",
+    "fr": "法语",
+    "ja": "日语",
+    "ko": "韩语",
+    "zh": "中文"
+  }
+}

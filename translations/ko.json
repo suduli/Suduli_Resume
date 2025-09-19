@@ -1,0 +1,187 @@
+{
+  "nav": {
+    "home": "홈",
+    "about": "소개",
+    "experience": "경력",
+    "skills": "기술",
+    "projects": "프로젝트",
+    "achievements": "성과",
+    "education": "교육",
+    "contact": "연락처"
+  },
+  "hero": {
+    "greeting": "안녕하세요, 저는",
+    "name": "SUDULI KUMAR BALABANTARAY",
+    "title": "테스트 리드 & IV&V 전문가",
+    "description": "제 기술을 보여주고 저와 조직 모두의 성장에 기여할 수 있는 도전적인 역할을 맡을 기회를 제공하는 전문적인 환경을 추구합니다.",
+    "cta_contact": "연락하기",
+    "cta_resume": "이력서 다운로드",
+    "cta_learn": "더 알아보기"
+  },
+  "about": {
+    "title": "소개",
+    "intro": "자동차 분야의 중요 시스템에 대한 독립 검증(IV) 및 유효성 확인(V)에서 8년의 경험을 보유하고 있습니다.",
+    "details": "RQM 도구, 프로그래밍 언어, 고급 자동차 소프트웨어 분석에 대한 광범위한 경험을 가진 자동차 테스팅 전문가. 인포테인먼트 시스템, ADAS, 중요한 자동차 구성 요소에 중점을 둔 기능 테스트, 성능 테스트 및 검증에 능숙합니다.",
+    "stats": {
+      "experience": "년 경력",
+      "projects": "완료 프로젝트",
+      "companies": "회사"
+    }
+  },
+  "experience": {
+    "title": "경력",
+    "current_role": {
+      "title": "테스트 리드",
+      "company": "KPIT Technologies Ltd",
+      "period": "2023년 11월 – 현재",
+      "points": [
+        "IBM ALM을 사용한 포괄적인 검증 계획 개발 및 관리.",
+        "DOORS Next Generation(DNG)을 통한 완전한 요구사항 추적성 보장.",
+        "Sanity, Manual, Functional & Performance 테스트 사이클 실행.",
+        "dSPACE & ECU-Test Tool을 활용한 자동화 이니셔티브 추진.",
+        "인포테인먼트 기능 세트 검증: 스티어링 휠 컨트롤, 경적 기능, 충돌 감지 메커니즘."
+      ]
+    },
+    "roles": [
+      {
+        "title": "전문 임베디드 테스트 엔지니어",
+        "company": "HL Klemove India Pvt Ltd (Halla Group)",
+        "period": "2022년 2월 - 2023년 11월",
+        "points": [
+          "커버리지와 추적성을 보장하는 임베디드 테스트 계획 설계 및 실행.",
+          "Trace32를 사용한 ECU 플래싱 및 검증; 펌웨어 무결성 확인.",
+          "ADAS Analyser를 활용한 Zero DTC 테스트 환경 구축.",
+          "구조화된 근본 원인 추적 및 데이터베이스 위생을 통한 결함 생명 주기 관리."
+        ]
+      },
+      {
+        "title": "시니어 임베디드 테스트 엔지니어",
+        "company": "Mando Softtech India Pvt Ltd (Halla Group)",
+        "period": "2020년 3월 - 2022년 2월",
+        "points": [
+          "VectorCAST로 목표 커버리지를 달성하는 단위 테스트 스위트 개발 및 실행.",
+          "모듈 인터페이스 및 데이터 흐름을 검증하는 통합 테스트 시나리오 생성.",
+          "추정, 작업 할당 및 동료 검토 주도; MC/DC 관행 시행.",
+          "체계적인 검토 및 계측을 통해 결함을 조기에 적극적으로 식별."
+        ]
+      },
+      {
+        "title": "테스트 엔지니어",
+        "company": "Binsoft Techno Solutions",
+        "period": "2017년 9월 - 2020년 2월",
+        "points": [
+          "핵심 모듈용 VectorCAST를 사용한 기본 단위 테스트 구현.",
+          "결함 포착, 분류 및 추적; 피드백 루프 속도 개선.",
+          "커버리지 메트릭 모니터링 및 향상, 테스트되지 않은 경로 강조."
+        ]
+      }
+    ]
+  },
+  "skills": {
+    "title": "기술 & 전문성",
+    "subtitle": "다양한 분야에서의 제 기술적 역량을 탐색해보세요. 카테고리를 클릭하여 특정 기술, 숙련도 수준 및 경험을 더 깊이 알아보세요.",
+    "no_javascript": "자세한 보기로 대화형 기술을 탐색하려면 JavaScript를 활성화하세요."
+  },
+  "projects": {
+    "title": "주요 프로젝트",
+    "items": [
+      {
+        "title": "BCM-시스템 검증",
+        "description": "스티어링 컨트롤, 충돌 감지, 차량 조명을 포함한 안전 중요 인포테인먼트 임베디드 시스템에 중점을 둔 Stellantis OEM용 자동차 소프트웨어 검증. 요구사항 분석부터 자동화된 검증까지 엔드투엔드 테스트 프로세스 구현.",
+        "tags": ["Stellantis", "IBM RQM/DNG", "ECU-Test", "dSPACE"],
+        "link_text": "세부 정보"
+      },
+      {
+        "title": "DCU 20 (도메인 제어 유닛)",
+        "description": "카메라와 레이더를 포함한 다양한 차량 센서의 데이터를 처리하도록 설계된 중앙 집중식 ADAS 도메인 컨트롤러(DCU). 중앙화 접근 방식은 아키텍처를 단순화하고 비용을 절감하며 확장성과 소프트웨어 업데이트를 향상시킵니다.",
+        "tags": ["ADAS", "CAPL", "Trace32", "Canoe"],
+        "link_text": "세부 정보"
+      },
+      {
+        "title": "CAnalyzerAI",
+        "description": "자동차 임베디드 시스템을 위한 지능적인 코드 품질 평가, 취약점 감지 및 성능 최적화 권장 사항을 제공하는 AI 기반 C 코드 분석 도구.",
+        "tags": ["AI/ML", "C 언어", "코드 분석", "자동차"],
+        "github_text": "GitHub",
+        "demo_text": "라이브 데모"
+      }
+    ]
+  },
+  "achievements": {
+    "title": "성과 & 수상",
+    "items": [
+      {
+        "title": "A+ 등급 성과",
+        "description": "지속적으로 최고 성과 기준 유지."
+      },
+      {
+        "title": "최우수 프로젝트 상 - LRR25",
+        "description": "HL Mando Softtech India"
+      },
+      {
+        "title": "최우수 프로젝트 상 - MRR30",
+        "description": "HL Mando Softtech India"
+      },
+      {
+        "title": "스포트라이트 상",
+        "description": "HL Mando Softtech India & HL Klemove India"
+      }
+    ]
+  },
+  "recommendations": {
+    "title": "추천서"
+  },
+  "education": {
+    "title": "교육",
+    "degree": "공학사 (B.E)",
+    "institution": "The Aeronautical Society of India",
+    "year": "2017년 졸업",
+    "description": "자동차 및 항공우주 분야의 기술적 기초와 실용적 응용에 중점을 둔 포괄적인 공학 교육."
+  },
+  "languages": {
+    "title": "언어",
+    "items": [
+      {
+        "name": "영어",
+        "level": "전문 수준"
+      },
+      {
+        "name": "힌디어",
+        "level": "모국어"
+      }
+    ]
+  },
+  "contact": {
+    "title": "연락하기",
+    "subtitle": "함께 연결해요",
+    "description": "자동차 테스팅 기회, IV&V 협업에 대해 논의하거나 임베디드 시스템 검증 및 자동차 분야 전문성에 대한 통찰을 공유할 준비가 되어 있습니다.",
+    "methods": {
+      "email": "이메일",
+      "linkedin": "LinkedIn",
+      "phone": "전화",
+      "location": "위치"
+    },
+    "phone_hidden": "클릭하여 연락처 번호 표시",
+    "phone_reveal": "표시",
+    "form": {
+      "title": "메시지 보내기",
+      "subtitle": "협업할 준비가 되셨나요? 메시지를 보내주시고 다음 프로젝트에 대해 논의해봅시다.",
+      "placeholders": {
+        "name": "이름",
+        "email": "이메일",
+        "message": "메시지"
+      },
+      "send": "메시지 보내기"
+    }
+  },
+  "footer": {
+    "copyright": "© 2024 Suduli Kumar Balabantaray. 모든 권리 보유."
+  },
+  "lang_names": {
+    "en": "영어",
+    "de": "독일어",
+    "fr": "프랑스어",
+    "ja": "일본어",
+    "ko": "한국어",
+    "zh": "중국어"
+  }
+}
