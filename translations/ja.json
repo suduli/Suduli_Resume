@@ -125,20 +125,33 @@
   "skills": {
     "title": "スキル & 専門知識",
     "subtitle": "様々な分野での私の技術的能力を探索してください。カテゴリをクリックして、具体的なスキル、習熟度レベル、経験をより深く掘り下げてください。",
-    "no_javascript": "詳細ビューでインタラクティブなスキルを探索するためにJavaScriptを有効にしてください。"
+    "no_javascript": "詳細ビューでインタラクティブなスキルを探索するためにJavaScriptを有効にしてください。",
+    "categories": {
+      "Coverage": "カバレッジ",
+      "Programming": "プログラミング",
+      "Protocols": "プロトコル",
+      "Requirements": "要件",
+      "Safety": "安全",
+      "Simulation": "シミュレーション",
+      "Software Lifecycle": "ソフトウェアライフサイクル",
+      "Testing": "テスト",
+      "Tools": "ツール",
+      "Version Control": "バージョン管理",
+      "Learning": "学習"
+    }
   },
   "skills_categories": {
-    "coverage": "カバレッジ",
-    "programming": "プログラミング",
-    "protocols": "プロトコル",
-    "requirements": "要件",
-    "safety": "安全",
-    "simulation": "シミュレーション",
-    "software_lifecycle": "ソフトウェアライフサイクル",
-    "testing": "テスト",
-    "tools": "ツール",
-    "version_control": "バージョン管理",
-    "learning": "学習"
+    "Coverage": "カバレッジ",
+    "Programming": "プログラミング",
+    "Protocols": "プロトコル",
+    "Requirements": "要件",
+    "Safety": "安全",
+    "Simulation": "シミュレーション",
+    "Software Lifecycle": "ソフトウェアライフサイクル",
+    "Testing": "テスト",
+    "Tools": "ツール",
+    "Version Control": "バージョン管理",
+    "Learning": "学習"
   },
   "projects": {
     "title": "注目プロジェクト",
