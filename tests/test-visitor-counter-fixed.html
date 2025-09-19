@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Visitor Counter Test</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/visitor-counter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            padding: 50px;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            margin: 0;
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Orbitron', monospace;
+            background: linear-gradient(45deg, #00f5ff, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .test-panel {
+            background: rgba(30, 30, 60, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .test-panel h2 {
+            margin-top: 0;
+            color: #00f5ff;
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .test-button {
+            background: linear-gradient(45deg, #00f5ff, #ff6b6b);
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+        
+        .test-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 245, 255, 0.5);
+        }
+        
+        .control-panel {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .log-panel {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 14px;
+            color: #00ff9d;
+        }
+        
+        .log-entry {
+            margin: 5px 0;
+            padding: 5px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .log-timestamp {
+            color: #999;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+        
+        .mode-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 245, 255, 0.3);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .toggle-switch label {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #333;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: #00f5ff;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(30px);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Visitor Counter - Fixed Implementation</h1>
+        
+        <div id="visitor-counter"></div>
+        
+        <div class="test-panel">
+            <h2>Test Controls</h2>
+            
+            <div class="toggle-switch">
+                <label for="demo-mode-toggle">Demo Mode:</label>
+                <label class="switch">
+                    <input type="checkbox" id="demo-mode-toggle" checked onclick="toggleDemoMode()">
+                    <span class="slider"></span>
+                </label>
+                <span id="demo-mode-status" style="margin-left: 10px; color: #00f5ff;">Enabled</span>
+            </div>
+            
+            <div class="toggle-switch">
+                <label for="debug-toggle">Debug Logging:</label>
+                <label class="switch">
+                    <input type="checkbox" id="debug-toggle" checked onclick="toggleDebug()">
+                    <span class="slider"></span>
+                </label>
+                <span id="debug-status" style="margin-left: 10px; color: #00f5ff;">Enabled</span>
+            </div>
+            
+            <div class="control-panel">
+                <button class="test-button" onclick="refreshCounter()">
+                    <i class="fas fa-sync-alt"></i> Refresh Counter
+                </button>
+                
+                <button class="test-button" onclick="simulateNewVisit()">
+                    <i class="fas fa-user-plus"></i> Simulate New Visit
+                </button>
+                
+                <button class="test-button" onclick="simulateReturnVisit()">
+                    <i class="fas fa-redo"></i> Simulate Return Visit
+                </button>
+                
+                <button class="test-button" onclick="clearStorage()">
+                    <i class="fas fa-trash-alt"></i> Clear Storage
+                </button>
+                
+                <button class="test-button" onclick="reinitializeCounter()">
+                    <i class="fas fa-power-off"></i> Reinitialize
+                </button>
+            </div>
+            
+            <div class="log-panel" id="log-panel">
+                <div class="log-entry">
+                    <span class="log-timestamp">[System]</span>
+                    Visitor counter test page loaded. Check logs here.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mode-indicator" id="mode-indicator">
+        DEMO MODE
+    </div>
+
+    <script src="assets/js/features/visitor-counter.js"></script>
+    <script>
+        // Override console.log to capture output
+        const originalLog = console.log;
+        console.log = function() {
+            // Call original console.log
+            originalLog.apply(console, arguments);
+            
+            // Only log visitor counter messages
+            if (arguments[0] === '[VisitorCounter]') {
+                const logPanel = document.getElementById('log-panel');
+                const logEntry = document.createElement('div');
+                logEntry.className = 'log-entry';
+                
+                const timestamp = document.createElement('span');
+                timestamp.className = 'log-timestamp';
+                timestamp.textContent = `[${new Date().toLocaleTimeString()}]`;
+                
+                logEntry.appendChild(timestamp);
+                
+                // Convert all arguments to string and append
+                const logText = Array.from(arguments).slice(1).map(arg => {
+                    if (typeof arg === 'object') {
+                        return JSON.stringify(arg);
+                    }
+                    return arg;
+                }).join(' ');
+                
+                logEntry.appendChild(document.createTextNode(logText));
+                logPanel.appendChild(logEntry);
+                
+                // Scroll to bottom
+                logPanel.scrollTop = logPanel.scrollHeight;
+            }
+        };
+        
+        // Global variable to store counter instance
+        let visitorCounter;
+        
+        // Initialize visitor counter
+        function initializeCounter(options = {}) {
+            const defaultOptions = {
+                displayElement: '#visitor-counter',
+                animateNumbers: true,
+                trackUniqueVisitors: true,
+                trackTotalViews: true,
+                trackReturnVisitors: true,
+                useLocalStorage: true,
+                demoMode: true,
+                debug: true
+            };
+            
+            // Merge default options with provided options
+            const mergedOptions = { ...defaultOptions, ...options };
+            
+            // Initialize counter
+            visitorCounter = new VisitorCounter(mergedOptions);
+            
+            // Log initialization
+            logSystemMessage('Visitor counter initialized with options: ' + JSON.stringify(mergedOptions));
+            
+            updateModeIndicator();
+        }
+        
+        // System log message
+        function logSystemMessage(message) {
+            const logPanel = document.getElementById('log-panel');
+            const logEntry = document.createElement('div');
+            logEntry.className = 'log-entry';
+            
+            const timestamp = document.createElement('span');
+            timestamp.className = 'log-timestamp';
+            timestamp.textContent = `[${new Date().toLocaleTimeString()}]`;
+            
+            logEntry.appendChild(timestamp);
+            logEntry.appendChild(document.createTextNode('[System] ' + message));
+            logPanel.appendChild(logEntry);
+            
+            // Scroll to bottom
+            logPanel.scrollTop = logPanel.scrollHeight;
+        }
+        
+        // Toggle demo mode
+        function toggleDemoMode() {
+            const toggle = document.getElementById('demo-mode-toggle');
+            const status = document.getElementById('demo-mode-status');
+            
+            if (toggle.checked) {
+                status.textContent = 'Enabled';
+                status.style.color = '#00f5ff';
+                window.visitorCounterDemoMode = true;
+            } else {
+                status.textContent = 'Disabled';
+                status.style.color = '#ff6b6b';
+                window.visitorCounterDemoMode = false;
+            }
+            
+            // Reinitialize counter with new demo mode setting
+            reinitializeCounter();
+        }
+        
+        // Toggle debug mode
+        function toggleDebug() {
+            const toggle = document.getElementById('debug-toggle');
+            const status = document.getElementById('debug-status');
+            
+            if (toggle.checked) {
+                status.textContent = 'Enabled';
+                status.style.color = '#00f5ff';
+            } else {
+                status.textContent = 'Disabled';
+                status.style.color = '#ff6b6b';
+            }
+            
+            // Reinitialize counter with new debug setting
+            reinitializeCounter();
+        }
+        
+        // Refresh counter
+        function refreshCounter() {
+            logSystemMessage('Manual refresh triggered');
+            visitorCounter.refresh();
+        }
+        
+        // Simulate new visit
+        function simulateNewVisit() {
+            logSystemMessage('Simulating new visitor');
+            
+            // Force a new session
+            localStorage.removeItem('visitor_session');
+            
+            // Reinitialize counter
+            reinitializeCounter();
+        }
+        
+        // Simulate return visit
+        function simulateReturnVisit() {
+            logSystemMessage('Simulating return visitor');
+            
+            // Make sure we have an existing session first
+            const session = JSON.parse(localStorage.getItem('visitor_session') || '{}');
+            session.isNewVisitor = false;
+            session.visitCount = (session.visitCount || 0) + 1;
+            localStorage.setItem('visitor_session', JSON.stringify(session));
+            
+            // Reinitialize counter
+            reinitializeCounter();
+        }
+        
+        // Clear storage
+        function clearStorage() {
+            logSystemMessage('Clearing localStorage');
+            localStorage.clear();
+            
+            // Update log
+            logSystemMessage('localStorage cleared successfully');
+            
+            // Reinitialize counter
+            reinitializeCounter();
+        }
+        
+        // Reinitialize counter
+        function reinitializeCounter() {
+            logSystemMessage('Reinitializing visitor counter');
+            
+            // Get current settings
+            const demoMode = document.getElementById('demo-mode-toggle').checked;
+            const debug = document.getElementById('debug-toggle').checked;
+            
+            // Initialize with current settings
+            initializeCounter({
+                demoMode: demoMode,
+                debug: debug
+            });
+        }
+        
+        // Update mode indicator
+        function updateModeIndicator() {
+            const indicator = document.getElementById('mode-indicator');
+            
+            if (window.visitorCounterDemoMode || document.getElementById('demo-mode-toggle').checked) {
+                indicator.textContent = 'DEMO MODE';
+                indicator.style.background = 'rgba(0, 245, 255, 0.3)';
+            } else {
+                indicator.textContent = 'LIVE MODE';
+                indicator.style.background = 'rgba(255, 107, 107, 0.3)';
+            }
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            logSystemMessage('Page loaded, initializing visitor counter test suite');
+            initializeCounter();
+        });
+    </script>
+</body>
+</html>

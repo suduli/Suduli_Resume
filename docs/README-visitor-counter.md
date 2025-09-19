@@ -243,10 +243,42 @@ window.visitorCounter = new VisitorCounter({
     sessionDuration: 30 * 60 * 1000, // 30 minutes
     updateCooldown: 5000, // 5 seconds
     
+    // Local Development
+    demoMode: false, // Set to true to use demo data without API
+    
     // Debug mode
     debug: false // Set to true for development
 });
 ```
+
+### Demo Mode for Local Development
+
+A robust demo mode has been implemented for local testing:
+
+```javascript
+// Enable demo mode in several ways:
+
+// 1. Via configuration
+const counter = new VisitorCounter({
+    demoMode: true
+});
+
+// 2. Via global variable
+window.visitorCounterDemoMode = true;
+
+// 3. Automatic detection
+// Demo mode activates automatically on localhost,
+// 127.0.0.1, or when running on a non-standard port
+```
+
+Demo mode features:
+- Generates realistic visitor statistics
+- Bypasses API calls completely
+- Works without a backend or database
+- Stores data in localStorage for persistence
+- Avoids 404 errors in the console
+
+For complete demo mode documentation, see [VISITOR-COUNTER-SETUP.md](./VISITOR-COUNTER-SETUP.md).
 
 ### Database Schema Extensions
 

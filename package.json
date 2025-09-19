@@ -7,9 +7,9 @@
     "dev": "vercel dev",
     "build": "echo 'Build step not required for static site'",
     "start": "vercel dev",
-  "preview": "http-server -p 5173 -c-1",
+    "preview": "http-server -p 5173 -c-1",
     "deploy": "vercel --prod",
-  "test": "node tests/visitor-counter.test.js && node tests/recommendations.test.js"
+    "test": "node tests/visitor-counter.test.js && node tests/recommendations.test.js"
   },
   "keywords": [
     "visitor-counter",
@@ -21,12 +21,12 @@
   "author": "Suduli Kumar Balabantaray",
   "license": "MIT",
   "dependencies": {
-    "firebase-admin": "^11.11.1",
-    "@supabase/supabase-js": "^2.38.5"
+    "@supabase/supabase-js": "^2.38.5",
+    "firebase-admin": "^11.11.1"
   },
   "devDependencies": {
-  "vercel": "^32.5.0",
-  "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "vercel": "^32.5.0"
   },
   "engines": {
     "node": ">=18.0.0"

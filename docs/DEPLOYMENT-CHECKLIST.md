@@ -3,7 +3,7 @@
 ## Pre-Deployment Verification
 
 ### ✅ Local Testing Complete
-1. **Test Interface:** Visit http://localhost:8080/test-visitor-counter.html
+1. **Test Interface:** Visit http://localhost:8080/tests/test-visitor-counter.html
    - Counter display works ✅
    - Mock data loads properly ✅
    - Styling matches theme ✅

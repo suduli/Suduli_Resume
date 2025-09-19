@@ -1,3 +1,4 @@
+````markdown
 # Experience Section Mobile Fixes
 
 ## Overview
@@ -120,3 +121,4 @@ If timeline entries still appear misaligned:
 - CSS Grid fallbacks maintain layout integrity
 - Flexbox used for optimal mobile rendering
 - Semantic HTML structure preserved for accessibility
+````

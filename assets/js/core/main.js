@@ -104,7 +104,7 @@ class ThemeManager {
     }
     
     init() {
-        // Check for saved theme, default to dark theme
+        // Check for saved theme, always default to dark theme
         const savedTheme = localStorage.getItem('theme');
         
         if (savedTheme) {
@@ -112,6 +112,8 @@ class ThemeManager {
         } else {
             // Default to dark theme regardless of system preference
             this.currentTheme = 'dark';
+            // Save this preference
+            localStorage.setItem('theme', 'dark');
         }
         
         this.applyTheme(this.currentTheme);
@@ -1086,15 +1088,15 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     /**
      * Initialize visitor counter
-     * Note: The visitor counter is now managed by visit-counter.js
+     * Note: The visitor counter is now managed by assets/js/features/visitor-counter.js
      * which provides a simpler, client-side only implementation
      * that doesn't require a server backend.
      */
     function initializeVisitorCounter() {
         try {
-            // No need to initialize here as visit-counter.js
+            // No need to initialize here as assets/js/features/visitor-counter.js
             // automatically initializes itself
-            console.log('Visitor counter is handled by visit-counter.js');
+            console.log('Visitor counter is handled by assets/js/features/visitor-counter.js');
             
             // Just make sure the visitor-counter element exists
             if (!document.querySelector('#visitor-counter')) {

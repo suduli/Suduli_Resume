@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redesigned Visitor Counter Test</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/visitor-counter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            padding: 50px;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            margin: 0;
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Orbitron', monospace;
+            background: linear-gradient(45deg, #00f5ff, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #00f5ff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: #00f5ff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            background: rgba(0, 245, 255, 0.2);
+            transform: scale(1.1);
+        }
+        
+        .test-controls {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 30px;
+            border: 1px solid rgba(0, 245, 255, 0.2);
+        }
+        
+        .control-group {
+            margin-bottom: 15px;
+        }
+        
+        .control-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #00f5ff;
+        }
+        
+        button {
+            background: linear-gradient(45deg, #00f5ff, #ff6b6b);
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+        
+        button:hover {
+            transform: scale(1.05);
+        }
+        
+        .status-log {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #0f0;
+        }
+        
+        .log-entry {
+            margin-bottom: 5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 5px;
+        }
+    </style>
+    <!-- Enable demo mode globally for this test page -->
+    <script>
+        window.visitorCounterDemoMode = true;
+    </script>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Visitor Counter Test Page</h1>
+        
+        <div id="visitor-counter"></div>
+        
+        <div class="test-controls">
+            <div class="control-title">Test Controls</div>
+            
+            <div class="control-group">
+                <button onclick="refreshCounter()">
+                    <i class="fas fa-refresh"></i> Refresh Counter
+                </button>
+                
+                <button onclick="simulateNewVisit()">
+                    <i class="fas fa-user-plus"></i> Simulate New Visit
+                </button>
+                
+                <button onclick="simulateReturnVisit()">
+                    <i class="fas fa-user-check"></i> Simulate Return Visit
+                </button>
+                
+                <button onclick="clearData()">
+                    <i class="fas fa-trash"></i> Clear Stored Data
+                </button>
+            </div>
+            
+            <div class="status-log" id="statusLog">
+                <div class="log-entry">Visitor counter test initialized in demo mode...</div>
+            </div>
+        </div>
+    </div>
+    
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+
+    <script src="assets/js/features/visitor-counter.js"></script>
+    <script>
+        // Log function
+        function log(message) {
+            const statusLog = document.getElementById('statusLog');
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            statusLog.appendChild(entry);
+            statusLog.scrollTop = statusLog.scrollHeight;
+        }
+        
+        // Initialize visitor counter with explicit demo mode
+        document.addEventListener('DOMContentLoaded', () => {
+            log('DOM loaded, counter should initialize automatically');
+            
+            // Access the global instance
+            setTimeout(() => {
+                if (window.visitorCounterInstance) {
+                    log(`Counter initialized with data: ${JSON.stringify(window.visitorCounterInstance.getData())}`);
+                } else {
+                    log('Error: Counter instance not found');
+                    
+                    // Create our own instance if global one failed
+                    const counter = new VisitorCounter({
+                        displayElement: '#visitor-counter',
+                        demoMode: true,
+                        debug: true
+                    });
+                    window.visitorCounterInstance = counter;
+                    log('Created fallback counter instance');
+                }
+            }, 500);
+        });
+        
+        function refreshCounter() {
+            log('Refreshing counter...');
+            if (window.visitorCounterInstance) {
+                window.visitorCounterInstance.refresh();
+                log(`Updated data: ${JSON.stringify(window.visitorCounterInstance.getData())}`);
+            }
+        }
+        
+        function simulateNewVisit() {
+            log('Simulating new visitor...');
+            if (window.visitorCounterInstance) {
+                window.visitorCounterInstance.visitorData.uniqueVisitors += 1;
+                window.visitorCounterInstance.visitorData.totalPageViews += 1;
+                window.visitorCounterInstance.visitorData.lastUpdated = Date.now();
+                window.visitorCounterInstance.displayCounter();
+                log(`New visitor added: ${JSON.stringify(window.visitorCounterInstance.getData())}`);
+            }
+        }
+        
+        function simulateReturnVisit() {
+            log('Simulating return visitor...');
+            if (window.visitorCounterInstance) {
+                window.visitorCounterInstance.visitorData.returnVisitors += 1;
+                window.visitorCounterInstance.visitorData.totalPageViews += 1;
+                window.visitorCounterInstance.visitorData.lastUpdated = Date.now();
+                window.visitorCounterInstance.displayCounter();
+                log(`Return visitor added: ${JSON.stringify(window.visitorCounterInstance.getData())}`);
+            }
+        }
+        
+        function clearData() {
+            log('Clearing stored data...');
+            localStorage.clear();
+            log('LocalStorage cleared');
+            
+            // Reset the counter with fresh data
+            if (window.visitorCounterInstance) {
+                window.visitorCounterInstance.visitorData = {
+                    uniqueVisitors: 0,
+                    totalPageViews: 0,
+                    returnVisitors: 0,
+                    lastUpdated: Date.now()
+                };
+                window.visitorCounterInstance.displayCounter();
+                log('Counter reset with empty data');
+            }
+        }
+        
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (body.getAttribute('data-theme') === 'light') {
+                body.removeAttribute('data-theme');
+                themeIcon.className = 'fas fa-moon';
+                log('Switched to dark theme');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                themeIcon.className = 'fas fa-sun';
+                log('Switched to light theme');
+            }
+        }
+    </script>
+</body>
+</html>

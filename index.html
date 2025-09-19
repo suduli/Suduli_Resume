@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
     <title>Suduli Kumar Balabantaray - Test Lead & IV&V Specialist</title>
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/visitor-counter.css">
     <link rel="stylesheet" href="assets/css/youtube-icon.css">
-    <link rel="stylesheet" href="mobile-about-patch.css">
+    <link rel="stylesheet" href="assets/css/mobile-about-patch.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -43,11 +44,11 @@
                     </a>
                 </div>
                 <button class="theme-toggle" id="theme-toggle" 
-                        aria-label="Toggle theme" 
+                        aria-label="Switch to light theme" 
                         role="button" 
                         tabindex="0"
-                        title="Toggle between light and dark theme">
-                    <i class="fas fa-moon" id="theme-icon" aria-hidden="true"></i>
+                        title="Switch to light theme">
+                    <i class="fas fa-sun" id="theme-icon" aria-hidden="true"></i>
                 </button>
                 <div class="hamburger">
                     <span class="bar"></span>
@@ -642,7 +643,18 @@
         onerror="this.onerror=null; var script = document.createElement('script'); script.src='assets/js/vendor/particles-fallback.js'; document.head.appendChild(script);"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
             onerror="this.onerror=null; console.log('Anime.js fallback loaded');"></script>
-    <script src="visit-counter.js"></script>
+    <script src="assets/js/features/visitor-counter.js"></script>
+    <script>
+        // Check if we're in local development and enable demo mode
+        if (window.location.hostname === 'localhost' || 
+            window.location.hostname === '127.0.0.1' ||
+            window.location.hostname.startsWith('192.168.') ||
+            window.location.port !== '') {
+            
+            window.visitorCounterDemoMode = true;
+            console.log('Visitor Counter: Local development detected, demo mode enabled');
+        }
+    </script>
     <!-- Shared utilities for recommendations -->
     <script src="assets/js/utils/recommendation-utils.js"></script>
     <script src="assets/js/features/recommendations/recommendation-summary.js"></script>

@@ -3,322 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visitor Counter Test</title>
+    <title>Redesigned Visitor Counter Test</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/visitor-counter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            padding: 50px;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            margin: 0;
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        .test-container {
             max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #f5f5f5;
+            margin: 0 auto;
         }
-        .test-section {
-            background: white;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Orbitron', monospace;
+            background: linear-gradient(45deg, #00f5ff, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .test-result {
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 4px;
-        }
-        .test-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        .test-error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        .test-info {
-            background: #d1ecf1;
-            color: #0c5460;
-            border: 1px solid #bee5eb;
-        }
-        #test-counter {
-            margin: 20px 0;
-            padding: 20px;
-            background: #f8f9fa;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
-        }
-        button {
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
+        
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #00f5ff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: #00f5ff;
             cursor: pointer;
-            margin: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
         }
-        button:hover {
-            background: #0056b3;
-        }
-        pre {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 4px;
-            overflow-x: auto;
-            white-space: pre-wrap;
+        
+        .theme-toggle:hover {
+            background: rgba(0, 245, 255, 0.2);
+            transform: scale(1.1);
         }
     </style>
-    <!-- Include the visitor counter CSS for testing -->
-    <link rel="stylesheet" href="assets/css/visitor-counter.css">
 </head>
 <body>
-    <h1>🧪 Visitor Counter Test Suite</h1>
-    <p>This page tests the visitor counter functionality in a real browser environment.</p>
-
-    <div class="test-section">
-        <h2>Test Counter Display</h2>
-        <div id="test-counter">
-            <!-- Counter will be rendered here -->
+    <div class="test-container">
+        <h1>Redesigned Visitor Counter</h1>
+        
+        <div id="visitor-counter"></div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <button onclick="refreshCounter()" style="
+                background: linear-gradient(45deg, #00f5ff, #ff6b6b);
+                border: none;
+                color: white;
+                padding: 12px 24px;
+                border-radius: 25px;
+                font-family: 'Rajdhani', sans-serif;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                <i class="fas fa-refresh"></i> Refresh Counter
+            </button>
         </div>
-        <button onclick="testBasicFunctionality()">Test Basic Functionality</button>
-        <button onclick="testCounterDisplay()">Test Counter Display</button>
-        <button onclick="testStorageFunctions()">Test Storage Functions</button>
-        <button onclick="clearTestData()">Clear Test Data</button>
     </div>
+    
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
 
-    <div class="test-section">
-        <h2>Test Results</h2>
-        <div id="test-results"></div>
-    </div>
-
-    <div class="test-section">
-        <h2>Debug Information</h2>
-        <div id="debug-info"></div>
-    </div>
-
-    <div class="test-section">
-        <h2>Real Counter (if API is configured)</h2>
-        <div id="real-counter"></div>
-        <button onclick="initRealCounter()">Initialize Real Counter</button>
-    </div>
-
-    <!-- Include the visitor counter script -->
-    <script src="../visit-counter.js"></script>
-
+    <script src="assets/js/features/visitor-counter.js"></script>
     <script>
-        let testResults = [];
-
-        function addTestResult(testName, success, message) {
-            const result = {
-                name: testName,
-                success: success,
-                message: message,
-                timestamp: new Date().toLocaleTimeString()
-            };
-            testResults.push(result);
-            
-            const resultsDiv = document.getElementById('test-results');
-            const resultDiv = document.createElement('div');
-            resultDiv.className = `test-result ${success ? 'test-success' : 'test-error'}`;
-            resultDiv.innerHTML = `
-                <strong>${testName}</strong> [${result.timestamp}]<br>
-                ${success ? '✅' : '❌'} ${message}
-            `;
-            resultsDiv.appendChild(resultDiv);
-        }
-
-        function updateDebugInfo(info) {
-            const debugDiv = document.getElementById('debug-info');
-            const infoDiv = document.createElement('div');
-            infoDiv.className = 'test-result test-info';
-            infoDiv.innerHTML = `<pre>${JSON.stringify(info, null, 2)}</pre>`;
-            debugDiv.appendChild(infoDiv);
-        }
-
-        function testBasicFunctionality() {
-            try {
-                // Test 1: Class exists
-                if (typeof VisitorCounter === 'undefined') {
-                    addTestResult('Class Availability', false, 'VisitorCounter class is not defined');
-                    return;
-                }
-                addTestResult('Class Availability', true, 'VisitorCounter class is available');
-
-                // Test 2: Can instantiate
-                const counter = new VisitorCounter({
-                    displayElement: '#test-counter',
-                    debug: true,
-                    useLocalStorage: true
-                });
-                addTestResult('Class Instantiation', true, 'VisitorCounter instantiated successfully');
-
-                // Test 3: Session ID generation
-                const sessionId = counter.generateSessionId();
-                if (sessionId && sessionId.startsWith('session_')) {
-                    addTestResult('Session ID Generation', true, `Generated session ID: ${sessionId.substring(0, 20)}...`);
-                } else {
-                    addTestResult('Session ID Generation', false, 'Invalid session ID format');
-                }
-
-                // Test 4: Configuration
-                if (counter.config && counter.config.displayElement === '#test-counter') {
-                    addTestResult('Configuration', true, 'Configuration applied correctly');
-                } else {
-                    addTestResult('Configuration', false, 'Configuration not applied correctly');
-                }
-
-                updateDebugInfo({
-                    counterConfig: counter.config,
-                    visitorData: counter.visitorData,
-                    userSession: counter.userSession
-                });
-
-            } catch (error) {
-                addTestResult('Basic Functionality', false, `Error: ${error.message}`);
-            }
-        }
-
-        function testCounterDisplay() {
-            try {
-                const counter = new VisitorCounter({
-                    displayElement: '#test-counter',
-                    debug: true,
-                    trackUniqueVisitors: true,
-                    trackTotalViews: true,
-                    trackReturnVisitors: true
-                });
-
-                // Set test data
-                counter.visitorData = {
-                    uniqueVisitors: 42,
-                    totalPageViews: 123,
-                    returnVisitors: 15,
-                    lastUpdated: Date.now()
-                };
-
-                // Test HTML generation
-                const html = counter.generateCounterHTML();
-                if (html && html.includes('42') && html.includes('123')) {
-                    addTestResult('HTML Generation', true, 'Counter HTML generated with test data');
-                } else {
-                    addTestResult('HTML Generation', false, 'Counter HTML generation failed');
-                }
-
-                // Test display
-                counter.displayCounter();
-                const element = document.querySelector('#test-counter');
-                if (element && element.innerHTML.includes('42')) {
-                    addTestResult('Counter Display', true, 'Counter displayed in DOM successfully');
-                } else {
-                    addTestResult('Counter Display', false, 'Counter display failed');
-                }
-
-            } catch (error) {
-                addTestResult('Counter Display', false, `Error: ${error.message}`);
-            }
-        }
-
-        function testStorageFunctions() {
-            try {
-                const counter = new VisitorCounter({
-                    displayElement: '#test-counter',
-                    debug: true
-                });
-
-                // Test storage save/load
-                const testData = {
-                    test: 'value',
-                    number: 123,
-                    boolean: true
-                };
-
-                counter.saveToStorage('test_key', testData);
-                const retrieved = counter.getFromStorage('test_key');
-
-                if (retrieved && retrieved.test === 'value' && retrieved.number === 123) {
-                    addTestResult('Storage Functions', true, 'LocalStorage save/load works correctly');
-                } else {
-                    addTestResult('Storage Functions', false, 'LocalStorage functions failed');
-                }
-
-                // Test session initialization
-                counter.initSession();
-                if (counter.userSession && counter.userSession.sessionId) {
-                    addTestResult('Session Initialization', true, 'Session initialized successfully');
-                } else {
-                    addTestResult('Session Initialization', false, 'Session initialization failed');
-                }
-
-                updateDebugInfo({
-                    testData: testData,
-                    retrievedData: retrieved,
-                    userSession: counter.userSession,
-                    localStorage: Object.keys(localStorage).filter(key => key.includes('visitor'))
-                });
-
-            } catch (error) {
-                addTestResult('Storage Functions', false, `Error: ${error.message}`);
-            }
-        }
-
-        function initRealCounter() {
-            try {
-                // Initialize with a test API endpoint (will fail but show network activity)
-                const realCounter = new VisitorCounter({
-                    displayElement: '#real-counter',
-                    apiEndpoint: window.location.origin + '/api/visitors',
-                    debug: true,
-                    trackUniqueVisitors: true,
-                    trackTotalViews: true,
-                    trackReturnVisitors: true
-                });
-
-                addTestResult('Real Counter Init', true, 'Real counter initialized (check network tab for API calls)');
-                
-                updateDebugInfo({
-                    apiEndpoint: realCounter.config.apiEndpoint,
-                    currentURL: window.location.href,
-                    userAgent: navigator.userAgent,
-                    viewport: `${window.innerWidth}x${window.innerHeight}`
-                });
-
-            } catch (error) {
-                addTestResult('Real Counter Init', false, `Error: ${error.message}`);
-            }
-        }
-
-        function clearTestData() {
-            // Clear localStorage
-            Object.keys(localStorage).forEach(key => {
-                if (key.includes('visitor')) {
-                    localStorage.removeItem(key);
-                }
-            });
-
-            // Clear test results
-            testResults = [];
-            document.getElementById('test-results').innerHTML = '';
-            document.getElementById('debug-info').innerHTML = '';
-            document.getElementById('test-counter').innerHTML = '';
-            document.getElementById('real-counter').innerHTML = '';
-
-            addTestResult('Cleanup', true, 'Test data cleared');
-        }
-
-        // Auto-run basic tests when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                console.log('🧪 Auto-running basic tests...');
-                testBasicFunctionality();
-            }, 500);
+        // Initialize visitor counter with test data
+        const visitorCounter = new VisitorCounter({
+            displayElement: '#visitor-counter',
+            animateNumbers: true,
+            trackUniqueVisitors: true,
+            trackTotalViews: true,
+            trackReturnVisitors: true,
+            useLocalStorage: true,
+            demoMode: true, // Enable demo mode for local testing
+            debug: true
         });
-
-        // Log page load info
-        console.log('🧪 Visitor Counter Test Page Loaded');
-        console.log('Available functions:');
-        console.log('- testBasicFunctionality()');
-        console.log('- testCounterDisplay()');
-        console.log('- testStorageFunctions()');
-        console.log('- initRealCounter()');
-        console.log('- clearTestData()');
+        
+        // Override with test data for demonstration
+        visitorCounter.visitorData = {
+            uniqueVisitors: 1547,
+            totalPageViews: 8932,
+            returnVisitors: 423,
+            lastUpdated: Date.now()
+        };
+        
+        // Display the counter
+        visitorCounter.displayCounter();
+        
+        function refreshCounter() {
+            // Simulate new data
+            visitorCounter.visitorData.totalPageViews += Math.floor(Math.random() * 10) + 1;
+            visitorCounter.visitorData.uniqueVisitors += Math.floor(Math.random() * 3);
+            visitorCounter.visitorData.returnVisitors += Math.floor(Math.random() * 2);
+            visitorCounter.visitorData.lastUpdated = Date.now();
+            
+            visitorCounter.displayCounter();
+        }
+        
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (body.getAttribute('data-theme') === 'light') {
+                body.removeAttribute('data-theme');
+                themeIcon.className = 'fas fa-moon';
+            } else {
+                body.setAttribute('data-theme', 'light');
+                themeIcon.className = 'fas fa-sun';
+            }
+        }
     </script>
 </body>
 </html>

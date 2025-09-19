@@ -21,7 +21,7 @@ Your website visitor counter system has been successfully designed and implement
 
 4. **Testing & Documentation:**
    - `test/visitor-counter.test.js` - Node.js test suite
-   - `test-visitor-counter.html` - Browser-based testing interface
+   - `tests/test-visitor-counter.html` - Browser-based testing interface
    - `README-visitor-counter.md` - Comprehensive documentation
    - `QUICKSTART.md` - 15-minute setup guide
 
@@ -210,7 +210,7 @@ Your visitor counter implementation achieves:
 ## 🚀 Next Steps
 
 ### Immediate (Today)
-1. **Test locally** using the test interface at `test-visitor-counter.html`
+1. **Test locally** using the test interface at `tests/test-visitor-counter.html`
 2. **Choose database** (Firebase or Supabase) and create account
 3. **Deploy to Vercel** following the QUICKSTART.md guide
 4. **Update API endpoint** in script.js configuration
@@ -231,7 +231,7 @@ Your visitor counter implementation achieves:
 
 - **📖 Full Documentation:** `README-visitor-counter.md`
 - **⚡ Quick Setup:** `QUICKSTART.md`
-- **🧪 Testing:** `test-visitor-counter.html`
+- **🧪 Testing:** `tests/test-visitor-counter.html`
 - **💬 Support:** suduli.office@gmail.com
 
 ---
