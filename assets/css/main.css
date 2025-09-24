@@ -2151,6 +2151,8 @@ section {
     backdrop-filter: blur(10px);
     text-align: center;
     transition: all 0.3s ease;
+    box-sizing: border-box; /* prevent overflow from padding on mobile */
+    overflow: hidden; /* guard against icon/long text overflow */
 }
 
 .education-item:hover {
@@ -2187,6 +2189,40 @@ section {
 .education-description {
     color: var(--text-secondary);
     line-height: 1.6;
+}
+
+/* Education: Responsive adjustments */
+@media (max-width: 768px) {
+    .education-grid {
+        grid-template-columns: 1fr; /* single column */
+        gap: 24px;
+        justify-items: center; /* center the card */
+    }
+    .education-item {
+        width: 100%;
+        max-width: min(95vw, 520px);
+        margin: 0 auto;
+        padding: 22px 18px;
+        text-align: center;
+    }
+    .education-icon { font-size: 42px; margin-bottom: 12px; }
+    .education-degree { font-size: 20px; }
+    .education-institution { font-size: 16px; }
+    .education-year { font-size: 14px; }
+    .education-description { font-size: 14px; line-height: 1.55; }
+}
+
+@media (max-width: 480px) {
+    .education-item {
+        max-width: 92vw;
+        padding: 16px 14px;
+        border-radius: 16px;
+    }
+    .education-icon { font-size: 34px; margin-bottom: 8px; }
+    .education-degree { font-size: 18px; }
+    .education-institution { font-size: 15px; }
+    .education-year { font-size: 13px; }
+    .education-description { font-size: 13.5px; line-height: 1.5; }
 }
 
 /* Projects Section */
