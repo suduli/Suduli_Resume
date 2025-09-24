@@ -755,6 +755,7 @@ console.log('Skills data imported successfully:', SKILLS.length, 'skills loaded'
 // Carousel state
 let currentCategory = null;
 let carouselInitialized = false;
+let carouselGlobalEventsBound = false; // guard to avoid duplicate global listeners
 
 // Initialize carousel after DOM content loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -771,8 +772,9 @@ function refreshSkillsDisplay() {
         console.log('Refreshing skills display for language change...');
         
         const carouselContainer = document.querySelector('.categories-carousel');
+    const detailPanel = document.querySelector('.skills-detail-panel');
         
-        if (!carouselContainer) return;
+    if (!carouselContainer || !detailPanel) return;
         
         // Clear existing categories
         carouselContainer.innerHTML = '';
@@ -780,6 +782,8 @@ function refreshSkillsDisplay() {
         // Recreate categories with new translations
         const skillsByCategory = groupSkillsByCategory();
         createCategoryItems(carouselContainer, skillsByCategory);
+    // Rebind listeners for newly created items
+    attachCategoryItemListeners(carouselContainer, detailPanel, skillsByCategory);
         
         console.log('Skills display refreshed');
     } catch (error) {
@@ -907,7 +911,8 @@ function getCategoryIcon(category) {
     return iconMap[category] || 'fa-circle-notch';
 }
 
-function setupCarouselEvents(carouselContainer, detailPanel, skillsByCategory) {
+// Bind per-item listeners (idempotent because items are recreated)
+function attachCategoryItemListeners(carouselContainer, detailPanel, skillsByCategory) {
     const categoryItems = carouselContainer.querySelectorAll('.category-item');
 
     categoryItems.forEach(item => {
@@ -937,20 +942,30 @@ function setupCarouselEvents(carouselContainer, detailPanel, skillsByCategory) {
             item.classList.remove('hover');
         });
     });
+}
 
-    // Close detail panel when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!carouselContainer.contains(e.target) && !detailPanel.contains(e.target)) {
-            closeDetailPanel(detailPanel);
-        }
-    });
+function setupCarouselEvents(carouselContainer, detailPanel, skillsByCategory) {
+    // Bind per-item listeners
+    attachCategoryItemListeners(carouselContainer, detailPanel, skillsByCategory);
 
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && detailPanel.classList.contains('active')) {
-            closeDetailPanel(detailPanel);
-        }
-    });
+    // Bind global listeners once
+    if (!carouselGlobalEventsBound) {
+        // Close detail panel when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!carouselContainer.contains(e.target) && !detailPanel.contains(e.target)) {
+                closeDetailPanel(detailPanel);
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && detailPanel.classList.contains('active')) {
+                closeDetailPanel(detailPanel);
+            }
+        });
+
+        carouselGlobalEventsBound = true;
+    }
 }
 
 function selectCategory(category, item, detailPanel, skillsByCategory) {
