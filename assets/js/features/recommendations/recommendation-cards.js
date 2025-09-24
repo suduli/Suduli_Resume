@@ -124,6 +124,16 @@
                     <p class="rec-full">${text}</p>
                 </div>
                 <div class="rec-toggle"><span class="rec-toggle-text">View</span><i class="fas fa-chevron-down" aria-hidden="true"></i></div>
+                <div class="rec-actions" role="group" aria-label="Card navigation">
+                    <button type="button" class="rec-prev-btn" aria-label="Previous testimonial">
+                        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                        <span class="rec-prev-text">Previous</span>
+                    </button>
+                    <button type="button" class="rec-next-btn" aria-label="Next testimonial">
+                        <span class="rec-next-text">Next</span>
+                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    </button>
+                </div>
             </div>
         `;
 
@@ -246,6 +256,59 @@
             if (a) return;
             toggle();
         });
+        // Next button advances to the next original card and expands it
+        const nextBtn = card.querySelector('.rec-next-btn');
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation(); // avoid toggling current card
+                const wrapper = card.closest('.rec-cards-wrapper');
+                if (!wrapper) return;
+                // Build list of original (non-clone) cards
+                const cards = Array.from(wrapper.querySelectorAll('.rec-card'))
+                    .filter(c => !c.dataset.clone);
+                if (cards.length === 0) return;
+                const idx = cards.indexOf(card);
+                const nextIdx = (idx + 1) % cards.length;
+                const nextCard = cards[nextIdx];
+                if (!nextCard) return;
+                // Pause marquee and enable centered mode for smooth transition
+                wrapper.dataset.paused = 'true';
+                wrapper.classList.add('has-expanded');
+                wrapper.classList.add('center-card');
+                // Center and expand the next card
+                centerHorizontally(nextCard);
+                const inner = nextCard.querySelector('.rec-card-inner');
+                if (inner) inner.click();
+                // Focus next card for accessibility
+                nextCard.focus({ preventScroll: true });
+            });
+        }
+
+        // Previous button goes to the previous original card and expands it
+        const prevBtn = card.querySelector('.rec-prev-btn');
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const wrapper = card.closest('.rec-cards-wrapper');
+                if (!wrapper) return;
+                const cards = Array.from(wrapper.querySelectorAll('.rec-card'))
+                    .filter(c => !c.dataset.clone);
+                if (cards.length === 0) return;
+                const idx = cards.indexOf(card);
+                const prevIdx = (idx - 1 + cards.length) % cards.length;
+                const prevCard = cards[prevIdx];
+                if (!prevCard) return;
+                wrapper.dataset.paused = 'true';
+                wrapper.classList.add('has-expanded');
+                wrapper.classList.add('center-card');
+                centerHorizontally(prevCard);
+                const inner = prevCard.querySelector('.rec-card-inner');
+                if (inner) inner.click();
+                prevCard.focus({ preventScroll: true });
+            });
+        }
         card.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
