@@ -114,19 +114,32 @@ class VisitorCounter {
             
             // If we're in demo mode or local development with demo mode enabled, skip API call
             if ((isLocal && (this.config.demoMode || window.visitorCounterDemoMode)) || this.config.demoMode) {
-                this.log('Demo mode active - using generated data');
+                this.log('Demo mode active - checking for existing data');
                 
-                // Use fixed data for consistent demo display
-                this.visitorData = {
-                    uniqueVisitors: 1480,
-                    totalPageViews: 6551, 
-                    returnVisitors: 842,
-                    lastUpdated: Date.now()
-                };
-                
-                // Store in localStorage for consistency
+                // Try to load existing demo data from localStorage first
+                let loadedFromStorage = false;
                 if (this.config.useLocalStorage) {
-                    this.saveToStorage('visitor_data', this.visitorData);
+                    const localData = this.getFromStorage('visitor_data');
+                    if (localData) {
+                        this.visitorData = { ...this.visitorData, ...localData };
+                        this.log('Loaded existing demo data from localStorage:', this.visitorData);
+                        loadedFromStorage = true;
+                    }
+                }
+                
+                // If no data in storage, use fixed defaults
+                if (!loadedFromStorage) {
+                    this.visitorData = {
+                        uniqueVisitors: 1480,
+                        totalPageViews: 6551, 
+                        returnVisitors: 842,
+                        lastUpdated: Date.now()
+                    };
+                    
+                    // Store in localStorage for consistency
+                    if (this.config.useLocalStorage) {
+                        this.saveToStorage('visitor_data', this.visitorData);
+                    }
                 }
                 
                 return;

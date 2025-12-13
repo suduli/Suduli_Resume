@@ -378,12 +378,74 @@ body {
     border: 1px solid var(--border-primary);
 }
 
+
 .social-icon:hover {
     color: var(--accent-primary);
     transform: translateY(-3px);
     border-color: var(--accent-primary);
     background: var(--bg-card-hover);
     box-shadow: 0 6px 16px -4px var(--shadow-primary);
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 0 16px;
+    }
+
+    .hamburger {
+        display: flex;
+        z-index: 1003;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        bottom: 0; /* Full height */
+        gap: 0;
+        flex-direction: column;
+        background: var(--bg-secondary);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        z-index: 1001;
+        padding-top: 80px; /* Space for navbar */
+        backdrop-filter: blur(15px);
+        box-shadow: 0 0 0 0 rgba(0,0,0,0);
+    }
+
+    .nav-menu.active {
+        left: 0;
+        box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    }
+
+    .nav-item {
+        margin: 16px 0;
+    }
+
+    .nav-link {
+        font-size: 24px;
+        display: inline-block;
+        padding: 5px 0;
+    }
+    
+    /* Ensure only valid nav items shown */
+    .nav-social-icons {
+        justify-content: center;
+        margin-top: 20px;
+    }
 }
 
 .hamburger {
