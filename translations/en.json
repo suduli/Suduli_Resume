@@ -17,6 +17,7 @@
     "name": "SUDULI KUMAR BALABANTARAY",
     "position": "Test Lead & IV&V Specialist",
     "description": "I seek a professional environment that offers opportunities to showcase my skills and take on challenging roles where I can contribute to the growth of both myself and my organization.",
+    "availability": "Open to opportunities in the EU",
     "contact_button": "Get In Touch",
     "download_resume": "Download Resume",
     "learn_more": "Learn More"
@@ -31,6 +32,17 @@
   },
   "experience": {
     "title": "Experience",
+    "uds_simulator": {
+      "title": "Founder & Developer",
+      "company": "UDS Simulator",
+      "duration": "Jan 2026 – Present",
+      "responsibilities": [
+        "Built and launched a browser-based UDS (ISO 14229) protocol simulator covering 19 diagnostic services, from session control to firmware updates, with zero hardware required.",
+        "Designed an interactive visual learning engine with real-time protocol state machines and message flows to make diagnostic concepts explorable.",
+        "Achieved WCAG 2.1 AAA accessibility compliance across the platform.",
+        "Delivered measurable pilot results: 60% faster engineer onboarding and fewer hardware-damage incidents during training."
+      ]
+    },
     "test_lead": {
       "title": "Test Lead",
       "company": "KPIT Technologies Ltd",
@@ -186,6 +198,14 @@
       {
         "title": "Spotlight Award",
         "description": "HL Mando Softtech India & HL Klemove India"
+      },
+      {
+        "title": "Breakthrough Achievement Award",
+        "description": "KPIT Technologies — Growth & Learning Champion (Nov 2025)"
+      },
+      {
+        "title": "Dr. A.P.J. Abdul Kalam Prize",
+        "description": "Highest marks in Aircraft Structures — The Aeronautical Society of India"
       }
     ]
   },
@@ -204,7 +224,10 @@
     "degree": "Bachelor of Engineering (B.E)",
     "institution": "The Aeronautical Society of India",
     "year": "Completed 2017",
-    "description": "Comprehensive engineering education with focus on technical fundamentals and practical applications in the automotive and aerospace domains."
+    "description": "Comprehensive engineering education with focus on technical fundamentals and practical applications in the automotive and aerospace domains.",
+    "second_degree": "Bachelor of Science (B.Sc), Mathematics",
+    "second_institution": "Alagappa University",
+    "second_description": "Focused on statistical analysis, mathematical modeling, and computational techniques, with practical experience applying Python for data analysis."
   },
   "languages": {
     "title": "Languages",

@@ -1174,38 +1174,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1000);
 });
 
-// Initialize visitor counter
-document.addEventListener('DOMContentLoaded', () => {
-    /**
-     * Initialize visitor counter
-     * Note: The visitor counter is now managed by assets/js/features/visitor-counter.js
-     * which provides a simpler, client-side only implementation
-     * that doesn't require a server backend.
-     */
-    function initializeVisitorCounter() {
-        try {
-            // No need to initialize here as assets/js/features/visitor-counter.js
-            // automatically initializes itself
-            console.log('Visitor counter is handled by assets/js/features/visitor-counter.js');
-            
-            // Just make sure the visitor-counter element exists
-            if (!document.querySelector('#visitor-counter')) {
-                console.log('Creating visitor-counter placeholder');
-                const placeholder = document.createElement('div');
-                placeholder.id = 'visitor-counter';
-                const footer = document.querySelector('footer');
-                if (footer) {
-                    footer.appendChild(placeholder);
-                }
-            }
-        } catch (error) {
-            console.error('[VisitorCounter] Failed to initialize:', error);
-        }
-    }
-    
-    // Initialize visitor counter with a small delay to ensure DOM is ready
-    setTimeout(initializeVisitorCounter, 500);
-});
-
 
 

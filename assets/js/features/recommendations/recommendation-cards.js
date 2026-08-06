@@ -425,34 +425,21 @@
         `;
     }
 
-    // Trigger mechanism: Event delegation approach from main branch
-    function attachTrigger() {
+    // Render the testimonial cards automatically alongside the summary widget
+    // (previously gated behind a click on the summary, which had no visible affordance)
+    async function initCards() {
         const root = document.getElementById(SUMMARY_CONTAINER_ID);
         if (!root) return;
 
-        // Delegate to handle re-renders
-        root.addEventListener('click', async (e) => {
-            const info = e.target.closest('.recommendation-info');
-            if (!info) return;
-
-            // Prevent hash-anchor default jump if any
-            const anchor = e.target.closest('a[href^="#"]');
-            if (anchor) e.preventDefault();
-
-            const container = ensureCardsContainer();
-            if (!container.dataset.loaded) {
-                renderLoading(container);
-                const recs = await loadRecommendations();
-                renderCards(container, recs);
-                container.dataset.loaded = 'true';
-                // Intentionally no scrolling here to avoid any nudge
-            } else {
-                // Already loaded: do nothing scroll-wise
-            }
-        });
+        const container = ensureCardsContainer();
+        if (container.dataset.loaded) return;
+        renderLoading(container);
+        const recs = await loadRecommendations();
+        renderCards(container, recs);
+        container.dataset.loaded = 'true';
     }
 
     if (typeof window !== 'undefined') {
-        document.addEventListener('DOMContentLoaded', attachTrigger);
+        document.addEventListener('DOMContentLoaded', initCards);
     }
 })();
