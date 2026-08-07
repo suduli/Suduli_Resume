@@ -387,9 +387,39 @@ body {
     box-shadow: 0 6px 16px -4px var(--shadow-primary);
 }
 
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background: var(--text-primary);
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
 @media (max-width: 768px) {
     .nav-container {
         padding: 0 16px;
+        position: relative;
+        min-height: 70px;
+        gap: 10px;
+    }
+
+    .nav-right-group {
+        gap: 10px;
+    }
+
+    .nav-logo .logo-text {
+        font-size: 20px;
+    }
+
+    .theme-toggle {
+        width: 36px;
+        height: 36px;
     }
 
     .hamburger {
@@ -409,57 +439,61 @@ body {
         transform: translateY(-8px) rotate(-45deg);
     }
 
+    /* Fixed-position sizing note: .navbar has backdrop-filter (see .navbar rule
+       above), which makes it the containing block for its position:fixed
+       descendants instead of the viewport. Sizing via `bottom: 0` resolves
+       against that 70px-tall containing block and collapses to near-zero
+       height. Use an explicit viewport-relative height instead. */
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 0;
-        bottom: 0; /* Full height */
+        top: 70px;
+        height: calc(100vh - 70px);
+        height: calc(100dvh - 70px);
         gap: 0;
         flex-direction: column;
-        background: var(--bg-secondary);
+        overflow-y: auto;
+        background: rgba(12, 12, 12, 0.98);
+        backdrop-filter: blur(20px);
         width: 100%;
         text-align: center;
-        transition: 0.3s;
+        transition: left 0.3s ease;
         z-index: 1001;
-        padding-top: 80px; /* Space for navbar */
-        backdrop-filter: blur(15px);
-        box-shadow: 0 0 0 0 rgba(0,0,0,0);
+        padding: 24px 0;
+        box-shadow: none;
     }
 
     .nav-menu.active {
         left: 0;
-        box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    [data-theme="light"] .nav-menu {
+        background: rgba(248, 250, 252, 0.98);
+        border-top: 1px solid rgba(0, 112, 243, 0.2);
     }
 
     .nav-item {
-        margin: 16px 0;
+        margin: 8px 0;
     }
 
     .nav-link {
-        font-size: 24px;
-        display: inline-block;
-        padding: 5px 0;
+        font-size: 20px;
+        display: block;
+        padding: 12px 20px;
+        margin: 0 20px;
+        border-radius: 8px;
     }
-    
-    /* Ensure only valid nav items shown */
+
+    .nav-link:hover,
+    .nav-link:focus-visible {
+        background: var(--bg-card-hover);
+    }
+
+    /* Hide social icons in the mobile nav to save space; they remain reachable in the footer */
     .nav-social-icons {
-        justify-content: center;
-        margin-top: 20px;
+        display: none;
     }
-}
-
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.bar {
-    width: 25px;
-    height: 3px;
-    background: var(--text-primary);
-    margin: 3px 0;
-    transition: 0.3s;
 }
 
 /* Hero Section */
@@ -2937,109 +2971,6 @@ textarea.form-input {
 /* RESPONSIVE DESIGN ENHANCEMENTS */
 /* ============================================================================ */
 
-/* Mobile Navigation Styles */
-@media (max-width: 768px) {
-    .nav-menu {
-        position: fixed;
-        left: -100%;
-        top: 70px;
-        flex-direction: column;
-        background: rgba(12, 12, 12, 0.98);
-        backdrop-filter: blur(20px);
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-        border-top: 1px solid var(--border-primary);
-        z-index: 1000;
-        padding: 20px 0;
-    }
-
-    .nav-menu.active {
-        left: 0;
-    }
-
-    .nav-menu li {
-        margin: 12px 0;
-    }
-
-    .nav-menu a {
-        font-size: 18px;
-        padding: 12px 20px;
-        display: block;
-        border-radius: 8px;
-        margin: 0 20px;
-    }
-
-    .nav-menu a:hover {
-        background: var(--bg-card-hover);
-    }
-
-    .hamburger {
-        display: flex !important;
-        cursor: pointer;
-        z-index: 1001;
-    }
-
-    .hamburger.active .bar:nth-child(2) {
-        opacity: 0;
-    }
-
-    .hamburger.active .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-
-    .hamburger.active .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-    }
-
-    /* Hide social icons in mobile nav to save space */
-    .nav-social-icons {
-        display: none;
-    }
-
-    /* Adjust navigation layout for mobile */
-    .nav-container {
-        padding: 0 15px;
-        position: relative;
-        min-height: 70px; /* Ensure minimum height */
-        gap: 10px; /* Reduce gap on mobile */
-    }
-
-    /* Mobile navigation right group */
-    .nav-right-group {
-        gap: 10px; /* Reduce gap on mobile */
-    }
-
-    /* Mobile theme toggle - keep as flex item, no absolute positioning needed */
-    .theme-toggle {
-        width: 36px;
-        height: 36px;
-        /* No position absolute needed - stays as flex item */
-    }
-
-    /* No special active state transform needed for flex item */
-    .theme-toggle:active {
-        transform: scale(0.95);
-    }
-
-    /* Ensure hamburger is positioned correctly in flex container */
-    .hamburger {
-        position: relative; /* Change from absolute to relative */
-        /* Remove absolute positioning since it's now in flex container */
-    }
-
-    .nav-logo .logo-text {
-        font-size: 20px;
-    }
-
-    /* Light theme mobile nav */
-    [data-theme="light"] .nav-menu {
-        background: rgba(248, 250, 252, 0.98);
-        border-top: 1px solid rgba(0, 112, 243, 0.2);
-    }
-}
-
 /* Enhanced Mobile Hero Section */
 @media (max-width: 768px) {
     .hero {
@@ -4059,46 +3990,6 @@ textarea.form-input {
     }
 }
 
-/* Large Mobile / Small Tablet */
-@media (min-width: 481px) and (max-width: 900px) {
-    .nav-menu {
-        display: flex !important;
-        position: static;
-        flex-direction: row;
-        background: none;
-        box-shadow: none;
-        border-top: none;
-        padding: 0;
-        width: auto;
-    }
-
-    .nav-menu li {
-        margin: 0 10px;
-    }
-
-    .nav-menu a {
-        font-size: 14px;
-        padding: 8px 12px;
-        margin: 0;
-    }
-
-    .hamburger {
-        display: none !important;
-    }
-
-    .nav-social-icons {
-        display: flex;
-        gap: 12px;
-        margin-left: 15px;
-    }
-
-    .social-icon {
-        width: 32px;
-        height: 32px;
-        font-size: 16px;
-    }
-}
-
 /* Improved Accessibility for Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
     .nav-menu {
@@ -4127,17 +4018,6 @@ textarea.form-input {
 
     .about-image .image-placeholder {
         border-width: 2px;
-    }
-}
-
-/* Dark Mode Specific Mobile Adjustments */
-@media (max-width: 768px) {
-    [data-theme="light"] .nav-menu a:hover {
-        background: rgba(0, 112, 243, 0.1);
-    }
-
-    [data-theme="light"] .hamburger .bar {
-        background: var(--text-primary);
     }
 }
 

@@ -150,6 +150,10 @@
       "Version Control": "Version Control",
       "Learning": "Learning"
     },
+    "skill": "skill",
+    "skills": "skills",
+    "view_skill_in": "View {count} {skill} in {category}",
+    "view_skills_in": "View {count} {skills} in {category}",
     "skills_count": "skills",
     "skill_count": "skill"
   },

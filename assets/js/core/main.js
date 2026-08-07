@@ -646,16 +646,22 @@ window.addEventListener('scroll', () => {
 // Auto-typing effect for hero subtitle
 function typeWriter(element, text, speed = 100) {
     let i = 0;
-    element.innerHTML = '';
-    
+
     function type() {
+        // Clear right as typing starts, not at call time — the 1500ms delay below
+        // gives the async language-switcher translation pass time to repopulate
+        // this element first; clearing early left a window where that write
+        // landed, then this loop appended onto it, duplicating the text.
+        if (i === 0) {
+            element.innerHTML = '';
+        }
         if (i < text.length) {
             element.innerHTML += text.charAt(i);
             i++;
             setTimeout(type, speed);
         }
     }
-    
+
     setTimeout(type, 1500); // Start after other animations
 }
 
