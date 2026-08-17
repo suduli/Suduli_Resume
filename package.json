@@ -22,10 +22,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/suduli/Suduli_Resume_Automotive.git"
+    "url": "https://github.com/suduli/Suduli_Resume.git"
   },
   "bugs": {
-    "url": "https://github.com/suduli/Suduli_Resume_Automotive/issues"
+    "url": "https://github.com/suduli/Suduli_Resume/issues"
   },
-  "homepage": "https://github.com/suduli/Suduli_Resume_Automotive#readme"
+  "homepage": "https://github.com/suduli/Suduli_Resume#readme"
 }
