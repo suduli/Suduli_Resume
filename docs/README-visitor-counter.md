@@ -53,7 +53,7 @@ This document provides a comprehensive guide for implementing a robust, scalable
 ## 📁 File Structure
 
 ```
-Suduli_Resume_Automotive/
+Suduli_Resume/
 ├── visitor-counter.js          # Main counter implementation
 ├── visitor-counter.css         # Counter-specific styles
 ├── api/
