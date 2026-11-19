@@ -1,154 +1,133 @@
 {
   "page": {
-    "title": "Suduli Kumar Balabantaray - Test Lead & IV&V Specialist"
+    "title": "Suduli Kumar Balabantaray - Automotive HIL / ECU Validation | Test Automation | ADAS"
   },
   "nav": {
     "home": "Home",
-    "about": "About",
-    "experience": "Experience",
+    "about": "Profile",
     "skills": "Skills",
+    "experience": "Experience",
     "projects": "Projects",
-    "achievements": "Achievements",
+    "achievements": "Awards",
+    "recommendations": "Testimonials",
     "education": "Education",
     "contact": "Contact"
   },
   "hero": {
     "greeting": "Hello, I'm",
     "name": "SUDULI KUMAR BALABANTARAY",
-    "position": "Test Lead & IV&V Specialist",
-    "description": "I seek a professional environment that offers opportunities to showcase my skills and take on challenging roles where I can contribute to the growth of both myself and my organization.",
-    "availability": "Open to opportunities in the EU",
+    "position": "Automotive HIL / ECU Validation | Test Automation | ADAS",
+    "description": "Automotive embedded software validation and test lead with 9+ years of experience in HIL/SIL, ECU bench integration, ADAS system testing and automation. Hands-on with Vector CANoe/CAPL, camera/radar simulation, Gherkin-to-CAPL workflows using Python, UDS diagnostics with Corvos, ECU flashing/recovery, dSPACE VEOS and ECU-TEST. Experienced in requirements-based validation, failsafe testing, regression execution, debugging and code coverage across Jaguar Land Rover, Stellantis and ADAS programs.",
+    "availability": "Open to opportunities in the EU & Globally",
     "contact_button": "Get In Touch",
     "download_resume": "Download Resume",
-    "learn_more": "Learn More"
+    "learn_more": "Explore Experience",
+    "view_simulator": "View UDS Simulator"
+  },
+  "telemetry": {
+    "exp_years": "9+",
+    "exp_label": "Years in Automotive IV&V",
+    "oem_programs": "4+",
+    "oem_label": "Global OEM Programs",
+    "mcdc_coverage": "98%",
+    "mcdc_label": "MC/DC Structural Coverage",
+    "test_reduction": "40%",
+    "test_reduction_label": "Manual Test Reduction"
   },
   "about": {
-    "title": "About Me",
-    "intro": "I have 8 years of experience in independent verification (IV) and validation (V) for critical systems in the automotive domain.",
-    "details": "Expertise in automotive testing with extensive experience in RQM tools, programming languages, and advanced automotive software analysis. Proficient in functional testing, performance testing, and validation, with a focus on infotainment systems, ADAS, and critical automotive components.",
+    "title": "Professional Profile",
+    "intro": "Automotive embedded software validation and test lead with 9+ years of experience in HIL/SIL, ECU bench integration, ADAS system testing and automation.",
+    "details": "Hands-on with Vector CANoe/CAPL, camera/radar simulation, Gherkin-to-CAPL workflows using Python, UDS diagnostics with Corvos, ECU flashing/recovery, dSPACE VEOS and ECU-TEST. Experienced in requirements-based validation, failsafe testing, regression execution, debugging and code coverage across Jaguar Land Rover, Stellantis and ADAS programs.",
     "years_experience": "Years Experience",
-    "projects_completed": "Projects Completed",
-    "companies": "Companies"
+    "projects_completed": "Global Programs",
+    "companies": "Tier-1 & OEM Leaders"
   },
   "experience": {
-    "title": "Experience",
+    "title": "Professional Experience",
+    "subtitle": "Track record of delivering safety-critical ECU validation, HIL automation, and ADAS testing across world-class automotive programs.",
     "uds_simulator": {
+      "badge": "Personal Venture",
       "title": "Founder & Developer",
       "company": "UDS Simulator",
-      "duration": "Jan 2026 – Present",
+      "duration": "Selected Personal Project",
+      "website": "udssimulator.com",
       "responsibilities": [
-        "Built and launched a browser-based UDS (ISO 14229) protocol simulator covering 19 diagnostic services, from session control to firmware updates, with zero hardware required.",
-        "Designed an interactive visual learning engine with real-time protocol state machines and message flows to make diagnostic concepts explorable.",
-        "Achieved WCAG 2.1 AAA accessibility compliance across the platform.",
-        "Delivered measurable pilot results: 60% faster engineer onboarding and fewer hardware-damage incidents during training."
+        "Built and launched a web-based UDS (ISO 14229) diagnostic simulator and learning platform using AI-assisted development and REST APIs.",
+        "Engineered production-level coverage across 19 diagnostic services, from diagnostic session control and security access to ECU firmware updates, with zero physical hardware required.",
+        "Designed an interactive visual learning engine featuring real-time protocol state machines and live request-response message flows.",
+        "Achieved WCAG 2.1 AAA accessibility compliance; pilot engineering teams recorded 60% faster onboarding and zero hardware damage during training."
       ]
     },
     "test_lead": {
       "title": "Test Lead",
-      "company": "KPIT Technologies Ltd",
+      "company": "KPIT Technologies Ltd.",
       "duration": "Nov 2023 – Present",
+      "location": "Bengaluru, India",
+      "jlr": "Jaguar Land Rover (JLR), UK | Current assignment",
+      "jlr_responsibilities": [
+        "Execute ECU functional and regression validation in Vector-based HIL environments using CANoe and CAPL, including manual test verification and failure analysis.",
+        "Automate Gherkin test scenarios through Python-based parsing and reusable step-definition (SD) files to generate CAPL test scripts for execution in CANoe.",
+        "Create and maintain missing SD files and CAPL functionality to support test coverage and resolve automation execution issues.",
+        "Perform UDS diagnostic testing and ECU software flashing using Corvos; use Lauterbach Trace32 for bootloader recovery and application software version restoration when needed.",
+        "Run overnight automated regression suites through Kiara and manage test cases, execution IDs and results in Jira Xray.",
+        "Version-control CAPL and step-definition assets in GitLab; use Jira and Confluence for test and engineering coordination.",
+        "Completed training in AI-DLC and prompt engineering; explored Amazon Kiro IDE with Jira, Confluence and GitLab integrations for AI-assisted Gherkin test automation."
+      ],
+      "stellantis": "Stellantis | Previous assignment",
       "responsibilities": [
-        "Developed and managed comprehensive validation plans using IBM ALM.",
-        "Ensured complete requirement traceability via DOORS Next Generation (DNG).",
-        "Executed Sanity, Manual, Functional & Performance test cycles.",
-        "Spearheaded automation initiatives with dSPACE & ECU-Test Tool.",
-        "Validated Infotainment feature set: Steering Wheel Controls, Horn Functionality, Crash detection mechanisms."
+        "Led system-level validation for steering wheel controls, horn, crash detection and related body-control features using dSPACE VEOS and ECU-TEST.",
+        "Managed requirements-to-test traceability with IBM RQM and DOORS Next Generation, achieving 95% requirement traceability.",
+        "Reduced manual test effort by 40% through ECU-TEST automation; developed reusable XAM signal mapping files that reduced setup time by 30%.",
+        "Supported integration, defect triage and resolution of 30+ issues across critical vehicle functions, working with software and validation teams."
       ]
     },
     "senior_engineer": {
       "title": "Specialist Embedded Test Engineer",
       "company": "HL Klemove India Pvt Ltd (Halla Group)",
-      "duration": "February 2022 - November 2023",
+      "duration": "Feb 2022 – Nov 2023",
+      "location": "Bengaluru, India",
       "responsibilities": [
-        "Designed & executed embedded test plans ensuring coverage & traceability.",
-        "Flashed & validated ECUs using Trace32; confirmed firmware integrity.",
-        "Established Zero DTC test environments leveraging ADAS Analyser.",
-        "Managed defect lifecycle with structured root cause tracking & database hygiene."
+        "Prepared and verified DCU-20 ECU test benches using CANcase XL interfaces, variable power supplies, JTAG/Trace32, JIG fixtures, CAN harnesses and DB9/120-ohm CAN termination; checked requirements, DBC, diagnostic and software inputs before testing.",
+        "Developed CANoe simulations for camera and radar inputs by integrating DBC files, configuring environment variables, implementing CAPL logic and linking control/monitoring panels for signal-level testing.",
+        "Established and maintained a Zero-DTC ADAS validation environment; checked ECU startup, sensor/network communication, diagnostic status, fault-triggering CAN signals and required recovery conditions.",
+        "Analyzed vehicle-variant requirements and designed ADAS failsafe test cases; automated execution in vTESTstudio/CANoe with configurable voltage, vehicle speed, variant coding and sensor blockage scenarios.",
+        "Verified camera/radar blockage fault detection, timing and recovery through UDS DTC status changes (0x89 active and 0x08 history), signal states and requirement-based acceptance criteria.",
+        "Executed smoke, End-of-Line (EOL), failsafe and Update Software Management (USM) testing; performed Trace32-assisted ECU flashing/debugging and published reviewed execution reports in Jira.",
+        "Served as project point of contact during an onsite assignment at Korea head office, coordinating test evidence, issues and engineering discussions with stakeholders."
       ]
     },
     "test_engineer": {
       "title": "Senior Embedded Test Engineer",
       "company": "Mando Softtech India Pvt Ltd (Halla Group)",
-      "duration": "March 2020 - February 2022",
+      "duration": "Mar 2020 – Feb 2022",
+      "location": "Bengaluru, India",
       "responsibilities": [
-        "Developed & executed unit test suites with VectorCAST achieving target coverage.",
-        "Created integration test scenarios validating module interfaces & data flow.",
-        "Drove estimation, task allocation & peer reviews; enforced MC/DC practices.",
-        "Proactively identified defects early through systematic review & instrumentation."
+        "Designed unit and integration tests for automotive radar/ADAS software, including adaptive cruise control systems, using VectorCAST.",
+        "Built automated regression workflows, reporting a 60% reduction in testing effort and 98% MC/DC structural coverage for radar programs.",
+        "Performed requirement reviews, defect analysis, work allocation and peer reviews; mentored junior engineers in coverage-driven unit testing."
       ]
     },
     "junior_engineer": {
       "title": "Test Engineer",
       "company": "Binsoft Techno Solutions",
-      "duration": "September 2017 - February 2020",
+      "duration": "Sep 2017 – Feb 2020",
+      "location": "Bengaluru, India",
       "responsibilities": [
-        "Implemented foundational unit tests with VectorCAST for core modules.",
-        "Captured, triaged & tracked defects; improved feedback loop speed.",
-        "Monitored & raised coverage metrics, highlighting untested paths."
+        "Implemented VectorCAST unit tests for embedded automotive software; analyzed statement, branch and MC/DC coverage.",
+        "Maintained defect records and collaborated with developers to investigate and resolve software issues."
       ]
-    },
-    "current_role": {
-      "title": "Test Lead",
-      "company": "KPIT Technologies Ltd",
-      "period": "Nov 2023 – Present",
-      "points": [
-        "Developed and managed comprehensive validation plans using IBM ALM.",
-        "Ensured complete requirement traceability via DOORS Next Generation (DNG).",
-        "Executed Sanity, Manual, Functional & Performance test cycles.",
-        "Spearheaded automation initiatives with dSPACE & ECU-Test Tool.",
-        "Validated Infotainment feature set: Steering Wheel Controls, Horn Functionality, Crash detection mechanisms."
-      ]
-    },
-    "roles": [
-      {
-        "title": "Specialist Embedded Test Engineer",
-        "company": "HL Klemove India Pvt Ltd (Halla Group)",
-        "period": "February 2022 - November 2023",
-        "points": [
-          "Designed & executed embedded test plans ensuring coverage & traceability.",
-          "Flashed & validated ECUs using Trace32; confirmed firmware integrity.",
-          "Established Zero DTC test environments leveraging ADAS Analyser.",
-          "Managed defect lifecycle with structured root cause tracking & database hygiene."
-        ]
-      },
-      {
-        "title": "Senior Embedded Test Engineer",
-        "company": "Mando Softtech India Pvt Ltd (Halla Group)",
-        "period": "March 2020 - February 2022",
-        "points": [
-          "Developed & executed unit test suites with VectorCAST achieving target coverage.",
-          "Created integration test scenarios validating module interfaces & data flow.",
-          "Drove estimation, task allocation & peer reviews; enforced MC/DC practices.",
-          "Proactively identified defects early through systematic review & instrumentation."
-        ]
-      },
-      {
-        "title": "Test Engineer",
-        "company": "Binsoft Techno Solutions",
-        "period": "September 2017 - February 2020",
-        "points": [
-          "Implemented foundational unit tests with VectorCAST for core modules.",
-          "Captured, triaged & tracked defects; improved feedback loop speed.",
-          "Monitored & raised coverage metrics, highlighting untested paths."
-        ]
-      }
-    ]
+    }
   },
   "skills": {
-    "title": "Skills & Expertise",
-    "subtitle": "Explore my technical competencies across various domains. Click on a category to dive deeper into specific skills, proficiency levels, and experience.",
+    "title": "Core Technical Skills",
+    "subtitle": "High-integrity automotive validation competencies categorized across simulation, automation, diagnostics, and AI tooling.",
     "categories": {
-      "Coverage": "Coverage",
-      "Programming": "Programming",
-      "Protocols": "Protocols",
-      "Requirements": "Requirements",
-      "Safety": "Safety",
-      "Simulation": "Simulation",
-      "Software Lifecycle": "Software Lifecycle",
-      "Testing": "Testing",
-      "Tools": "Tools",
-      "Version Control": "Version Control",
-      "Learning": "Learning"
+      "HIL & Simulation": "HIL, Bench & Simulation",
+      "Automation & Scripting": "Automation & Scripting",
+      "Diagnostics & Networks": "Diagnostics & Networks",
+      "Tools & Configuration": "Tools & Configuration",
+      "Validation & Standards": "Validation & Standards",
+      "AI-Assisted Engineering": "AI-Assisted Engineering"
     },
     "skill": "skill",
     "skills": "skills",
@@ -158,87 +137,109 @@
     "skill_count": "skill"
   },
   "projects": {
-    "title": "Featured Projects",
+    "title": "Featured Projects & Innovations",
+    "subtitle": "Flagship simulation platforms, OEM ECU architectures, and AI diagnostic tooling.",
     "details": "Details",
-    "github": "GitHub", 
+    "github": "GitHub",
     "demo": "Live Demo",
     "items": [
       {
-        "title": "BCM-Systems Validation",
-        "description": "Automotive software validation for Stellantis OEM, focusing on safety-critical Infotainment embedded systems including steering controls, crash detection, and vehicle lighting. Implemented end-to-end testing processes from requirement analysis to automated validation.",
-        "tags": ["Stellantis", "IBM RQM/DNG", "ECU-Test", "dSPACE"],
-        "link_text": "Details"
+        "title": "UDS Protocol Simulator",
+        "description": "Web-based UDS (ISO 14229) diagnostic simulator and learning platform built and launched using AI-assisted development and REST APIs. Covers 19 diagnostic services with production accuracy, visual state machines, and WCAG 2.1 AAA compliance.",
+        "tags": ["UDS (ISO 14229)", "Zero-Hardware", "REST APIs", "WCAG 2.1 AAA", "udssimulator.com"],
+        "link": "https://udssimulator.com/",
+        "demo_text": "Live Simulator"
       },
       {
         "title": "DCU 20 (Domain Control Unit)",
-        "description": "Centralized ADAS domain controller (DCU) designed to process data from various vehicle sensors, including cameras and radars. Centralization approach simplifies the architecture, reduces costs, and enhances scalability and software updates.",
-        "tags": ["ADAS", "CAPL", "Trace32", "Canoe"],
+        "description": "Centralized ADAS domain controller validation for HKMC. Prepared ECU test benches with CANcase XL, Trace32, and variable power supplies. Developed camera/radar simulations in CANoe, established Zero-DTC environments, and executed EOL/USM testing during onsite Korea assignment.",
+        "tags": ["ADAS", "CANoe / CAPL", "vTESTstudio", "Trace32", "Korea Onsite"],
+        "link_text": "Details"
+      },
+      {
+        "title": "BCM-Systems Validation",
+        "description": "System-level software validation for Stellantis OEM covering steering wheel controls, horn, and crash detection using dSPACE VEOS and ECU-TEST. Achieved 95% requirement traceability in DOORS NG and cut manual effort by 40% with reusable XAM mapping.",
+        "tags": ["Stellantis", "dSPACE VEOS", "ECU-TEST", "IBM DOORS NG", "XAM Signal Mapping"],
         "link_text": "Details"
       },
       {
         "title": "CAnalyzerAI",
         "description": "AI-powered C code analysis tool that provides intelligent code quality assessment, vulnerability detection, and performance optimization recommendations for automotive embedded systems.",
-        "tags": ["AI/ML", "C Language", "Code Analysis", "Automotive"],
+        "tags": ["AI/ML", "Embedded C", "Static Analysis", "Automotive MISRA"],
         "github_text": "GitHub",
         "demo_text": "Live Demo"
+      },
+      {
+        "title": "AI-ASIL-Analyser",
+        "description": "Advanced AI-driven ASIL (Automotive Safety Integrity Level) analysis tool for ISO 26262 compliance, providing automated safety assessments for automotive software components.",
+        "tags": ["ISO 26262", "ASIL Assessment", "Safety Critical", "AI/ML"],
+        "github_text": "GitHub",
+        "demo_text": "Live Demo"
+      },
+      {
+        "title": "VectorCAST Test Automation Suite",
+        "description": "Custom Python-based suite including Unit Report Generator, System Integration (SI) Report Generator, Import Error Remover, and Bench Setup automation for VectorCAST testing environments.",
+        "tags": ["VectorCAST", "Python", "MC/DC 98%", "Test Reporting", "Automation"],
+        "github_text": "GitHub"
       }
     ]
   },
   "achievements": {
-    "title": "Achievements & Awards",
+    "title": "Awards & Recognition",
+    "subtitle": "Honors awarded for high-impact project delivery, technical innovation, and safety-critical execution.",
     "items": [
       {
-        "title": "A+ Grade Performance",
-        "description": "Consistently maintained the highest performance standards."
-      },
-      {
         "title": "Best Project Award - LRR25",
-        "description": "HL Mando Softtech India"
+        "description": "HL Mando Softtech India — Awarded for outstanding execution in automotive Long-Range Radar validation."
       },
       {
-        "title": "Best Project Award - MRR30", 
-        "description": "HL Mando Softtech India"
+        "title": "Best Project Award - MRR30",
+        "description": "HL Mando Softtech India — Mid-Range Radar test automation and verification excellence."
       },
       {
-        "title": "Spotlight Award",
-        "description": "HL Mando Softtech India & HL Klemove India"
+        "title": "Spotlight Awards",
+        "description": "Dual recipient across HL Mando Softtech India and HL Klemove India for exemplary technical leadership and zero-defect deliveries."
       },
       {
         "title": "Breakthrough Achievement Award",
-        "description": "KPIT Technologies — Growth & Learning Champion (Nov 2025)"
+        "description": "KPIT Technologies — Growth & Learning Champion, recognizing AI-DLC adoption and engineering innovation (Nov 2025)."
+      },
+      {
+        "title": "A+ Grade Performance Recognition",
+        "description": "Consistently maintained highest performance ratings across Tier-1 automotive engineering engagements."
       },
       {
         "title": "Dr. A.P.J. Abdul Kalam Prize",
-        "description": "Highest marks in Aircraft Structures — The Aeronautical Society of India"
+        "description": "The Aeronautical Society of India — Awarded for achieving the highest marks in Aircraft Structures."
       }
     ]
   },
   "recommendations": {
-    "title": "Testimonials",
-    "testimonial_title": "Testimonial Received in 2025",
+    "title": "Client & Peer Testimonials",
+    "testimonial_title": "Verified Endorsements",
     "recommendations_this_year": "Recommendations This Year",
-    "total_recommendations": "Total Recommendations Received",
-    "description": "Professional endorsements from colleagues and clients highlighting expertise in automotive testing and validation.",
+    "total_recommendations": "Total Verified Endorsements",
+    "description": "Real endorsements from supervisors, lead validation engineers, and technical specialists across Stellantis, KPIT, Bosch, Opel, Magna, and Capgemini.",
     "loading": "Loading testimonials...",
     "error": "Error loading testimonials",
     "no_data": "No testimonials available at the moment"
   },
   "education": {
-    "title": "Education",
-    "degree": "Bachelor of Engineering (B.E)",
+    "title": "Education & Academics",
+    "degree": "Bachelor of Engineering (B.E) in Aeronautical Engineering",
     "institution": "The Aeronautical Society of India",
     "year": "Completed 2017",
-    "description": "Comprehensive engineering education with focus on technical fundamentals and practical applications in the automotive and aerospace domains.",
+    "description": "Rigorous engineering curriculum emphasizing structural analysis, aerodynamics, mathematical modeling, and core engineering principles.",
     "second_degree": "Bachelor of Science (B.Sc), Mathematics",
     "second_institution": "Alagappa University",
-    "second_description": "Focused on statistical analysis, mathematical modeling, and computational techniques, with practical experience applying Python for data analysis."
+    "second_description": "Focused on statistical analysis, mathematical modeling, and computational techniques with application in engineering algorithms."
   },
   "languages": {
     "title": "Languages",
     "items": [
       {
         "name": "English",
-        "level": "Professional Proficiency"
+        "level": "Professional Working Proficiency"
       },
       {
         "name": "Hindi",
@@ -248,11 +249,11 @@
   },
   "contact": {
     "title": "Get In Touch",
-    "subtitle": "Let's Connect",
-    "description": "I'm ready to discuss automotive testing opportunities, IV&V collaboration, or share insights about embedded systems validation and expertise in the automotive domain.",
+    "subtitle": "Available for Automotive Validation & HIL Automation Engineering",
+    "description": "Open to discussing automotive HIL/SIL validation leadership, ECU test automation consulting, ADAS testing opportunities, or speaking about UDS diagnostics.",
     "methods": {
       "email": "Email",
-      "linkedin": "LinkedIn", 
+      "linkedin": "LinkedIn",
       "phone": "Phone",
       "location": "Location"
     },
@@ -260,7 +261,7 @@
     "phone_reveal": "Reveal",
     "form": {
       "title": "Send a Message",
-      "subtitle": "Ready to collaborate? Drop me a line and let's discuss your next project.",
+      "subtitle": "Let's connect to discuss your automotive testing or validation project.",
       "placeholders": {
         "name": "Your Name",
         "email": "Your Email",
@@ -270,10 +271,10 @@
     }
   },
   "footer": {
-    "copyright": "© 2024 Suduli Kumar Balabantaray. All rights reserved."
+    "copyright": "© 2026 Suduli Kumar Balabantaray. All rights reserved. Built for Automotive Engineering."
   },
   "visitor_counter": {
-    "title": "Visitor Counter",
+    "title": "Visitor Telemetry",
     "total_views": "Total Views",
     "unique_visitors": "Unique Visitors",
     "return_visits": "Return Visits",

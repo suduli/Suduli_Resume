@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://suduli.github.io/Suduli_Resume_Automotive/sitemap.xml
+Sitemap: https://suduli-resume.vercel.app/sitemap.xml

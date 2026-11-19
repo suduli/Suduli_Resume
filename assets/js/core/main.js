@@ -902,6 +902,12 @@ function createCategoryItems(container, skillsByCategory) {
 
 function getCategoryIcon(category) {
     const iconMap = {
+        'HIL & Simulation': 'fa-microchip',
+        'Automation & Scripting': 'fa-code',
+        'Diagnostics & Networks': 'fa-network-wired',
+        'Tools & Configuration': 'fa-toolbox',
+        'Validation & Standards': 'fa-shield-halved',
+        'AI-Assisted Engineering': 'fa-brain',
         'Testing': 'fa-vials',
         'Simulation': 'fa-cogs',
         'Programming': 'fa-code',

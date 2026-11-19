@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "suduli-automotive-resume",
+  "name": "suduli-resume",
   "builds": [
     {
       "src": "*.html",
@@ -8,6 +8,18 @@
     },
     {
       "src": "assets/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "robots.txt",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "sitemap.xml",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "favicon.png",
       "use": "@vercel/static"
     }
   ],

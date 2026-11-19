@@ -48,9 +48,6 @@ body {
     text-rendering: auto;
 }
 
-.fas:before, .fab:before {
-    content: 'G��'; /* Default bullet as fallback */
-}
 
 /* Reset and Base Styles */
 * {
@@ -869,6 +866,8 @@ section {
 .exp-role { font-size: 34px; line-height: 1.1; font-weight: 800; letter-spacing: .5px; background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
 .exp-company { font-size: 18px; color: var(--accent-secondary); font-weight: 600; }
 .exp-dates { font-size: 14px; color: var(--text-tertiary); margin-left: 10px; font-weight: 400; }
+.exp-assignment { font-size: 16px; color: var(--text-primary); font-weight: 700; margin: 18px 0 12px; letter-spacing: .3px; }
+.exp-assignment:first-of-type { margin-top: 0; }
 
 .exp-points { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; font-size: 17px; line-height: 1.65; }
 .exp-points > li { position: relative; padding-left: 36px; color: var(--text-secondary); transition: color var(--transition-duration) var(--transition-easing); }

@@ -7,21 +7,24 @@
     "projects": "Projekte",
     "achievements": "Erfolge",
     "education": "Bildung",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "recommendations": "Referenzen"
   },
   "hero": {
     "greeting": "Hallo, ich bin",
     "name": "SUDULI KUMAR BALABANTARAY",
-    "position": "Testleiter & IV&V-Spezialist",
-    "description": "Ich suche eine Position in einem professionellen Umfeld, die es mir ermöglicht, meine Fähigkeiten einzubringen und anspruchsvolle Aufgaben zu übernehmen. Ziel ist es, sowohl zum eigenen Wachstum als auch zum Wachstum meines Unternehmens beizutragen.",
+    "position": "Automotive HIL / ECU-Validierung | Testautomatisierung | ADAS",
+    "description": "Validierungs- und Test-Lead für eingebettete Automotive-Software mit 9+ Jahren Erfahrung in HIL/SIL, ECU-Bench-Integration, ADAS-Systemtests und Automatisierung. Praxiserfahrung mit Vector CANoe/CAPL, Kamera-/Radar-Simulation, Gherkin-to-CAPL-Workflows mit Python, UDS-Diagnostik, ECU-Flashing/Recovery, dSPACE VEOS und ECU-TEST.",
     "contact_button": "Kontakt aufnehmen",
     "download_resume": "Lebenslauf herunterladen",
-    "learn_more": "Mehr erfahren"
+    "learn_more": "Mehr erfahren",
+    "availability": "Offen für Möglichkeiten in der EU und weltweit",
+    "view_simulator": "UDS-Simulator ansehen"
   },
   "about": {
     "title": "Über mich",
-    "intro": "Ich habe 8 Jahre Erfahrung in der unabhängigen Verifikation (IV) und Validierung (V) für kritische Systeme im Automobilbereich.",
-    "details": "Expertise im Automotive-Testing mit umfangreicher Erfahrung in RQM-Tools, Programmiersprachen und fortgeschrittener Automotive-Software-Analyse. Kompetent in Funktionstests, Leistungstests und Validierung, mit Fokus auf Infotainment-Systeme, ADAS und kritische Automobilkomponenten.",
+    "intro": "Ich verfüge über 9+ Jahre Erfahrung in der Validierung eingebetteter Automotive-Software — HIL/SIL, ECU-Bench-Integration, ADAS-Systemtests und Automatisierung.",
+    "details": "Praxiserfahrung mit Vector CANoe/CAPL, Kamera-/Radar-Simulation, Gherkin-to-CAPL-Workflows mit Python, UDS-Diagnostik, ECU-Flashing/Recovery, dSPACE VEOS und ECU-TEST. Erfahrung in anforderungsbasierter Validierung, Failsafe-Tests, Regressionsausführung, Debugging und Code-Abdeckung in Programmen für Jaguar Land Rover, Stellantis und ADAS.",
     "years_experience": "Jahre Erfahrung",
     "projects_completed": "Projekte abgeschlossen",
     "companies": "Unternehmen"
@@ -32,13 +35,25 @@
       "title": "Testleiter",
       "company": "KPIT Technologies Ltd",
       "duration": "Nov 2023 – Gegenwart",
+      "jlr": "Jaguar Land Rover (JLR), UK | Aktuelle Tätigkeit",
+      "jlr_responsibilities": [
+        "Durchführung funktionaler ECU- und Regressionsvalidierung in Vector-basierten HIL-Umgebungen mit CANoe und CAPL, einschließlich manueller Testverifikation und Fehleranalyse",
+        "Automatisierung von Gherkin-Testszenarien durch Python-basiertes Parsing und wiederverwendbare Step-Definition-Dateien (SD) zur Generierung von CAPL-Testskripten für die Ausführung in CANoe",
+        "Durchführung von UDS-Diagnosetests und ECU-Software-Flashing mit Corvos; Nutzung von Lauterbach Trace32 für Bootloader-Recovery und Softwareversions-Wiederherstellung",
+        "Durchführung nächtlicher automatisierter Regressionssuiten über Kiara; Verwaltung von Testfällen, Ausführungs-IDs und Ergebnissen in Jira Xray",
+        "Abgeschlossene Schulung in AI-DLC und Prompt Engineering; Erkundung von Amazon Kiro IDE mit Jira-, Confluence- und GitLab-Integrationen für KI-gestützte Gherkin-Testautomatisierung",
+        "Versionskontrolle für CAPL- und Step-Definition-Dateien in GitLab; Jira und Confluence für die Abstimmung von Test und Entwicklung.",
+        "Schulung in AI-DLC und Prompt Engineering abgeschlossen; Erkundung der Amazon Kiro IDE mit Jira-, Confluence- und GitLab-Integration für KI-gestützte Gherkin-Testautomatisierung."
+      ],
+      "stellantis": "Stellantis | Frühere Tätigkeit",
       "responsibilities": [
         "Entwicklung und Verwaltung umfassender Validierungspläne mit IBM ALM",
         "Sicherstellung vollständiger Anforderungsrückverfolgbarkeit über DOORS Next Generation (DNG)",
         "Durchführung von Sanity-, Manual-, Funktions- und Leistungstestzyklen",
         "Förderung von Automatisierungsinitiativen mit dSPACE und ECU-Test Tool",
         "Validierung von Infotainment-Funktionen: Lenkradsteuerung, Hupenfunktionalität, Crash-Erkennungsmechanismen"
-      ]
+      ],
+      "location": "Bengaluru, Indien"
     },
     "senior_engineer": {
       "title": "Spezialist Embedded Test Engineer",
@@ -48,19 +63,25 @@
         "Entwicklung und Durchführung eingebetteter Testpläne zur Sicherstellung von Abdeckung und Rückverfolgbarkeit",
         "Flashen und Validierung von ECUs mit Trace32; Bestätigung der Firmware-Integrität",
         "Aufbau von Zero-DTC-Testumgebungen unter Verwendung des ADAS-Analysers",
-        "Verwaltung des Fehlerzyklus mit strukturierter Ursachenanalyse und Datenbank-Hygiene"
-      ]
+        "Verwaltung des Fehlerzyklus mit strukturierter Ursachenanalyse und Datenbank-Hygiene",
+        "Entwicklung von CANoe-Simulationen für Kamera- und Radar-Eingaben — DBC-Integration, Umgebungsvariablen, CAPL-Logik und Steuerungs-/Überwachungspanels für Tests auf Signal-Ebene",
+        "Entwurf und Automatisierung von ADAS-Failsafe-Testfällen in vTESTstudio/CANoe mit konfigurierbarer Spannung, Geschwindigkeit, Variantencodierung und Sensorblockade-Szenarien; Durchführung von Smoke-, EOL-, Failsafe- und USM-Tests",
+        "Als Projekt-Ansprechpartner während eines Einsatzes vor Ort in der Konzernzentrale in Korea tätig; Koordination von Testnachweisen, Problemen und fachlichen Diskussionen mit Stakeholdern."
+      ],
+      "location": "Bengaluru, Indien"
     },
     "test_engineer": {
       "title": "Senior Embedded Test Engineer",
       "company": "Mando Softtech India Pvt Ltd (Halla Group)",
       "duration": "März 2020 - Februar 2022",
       "responsibilities": [
-        "Entwicklung und Durchführung von Unit-Test-Suiten mit VectorCAST zur Erreichung der Zielabdeckung",
+        "Entwurf von Unit- und Integrationstests für Automotive-Radar-/ADAS-Software, einschließlich Adaptive-Cruise-Control-Systemen, mit VectorCAST",
         "Erstellung von Integrationstestszenarien zur Validierung von Modulschnittstellen und Datenfluss",
-        "Förderung von Schätzung, Aufgabenverteilung und Peer-Reviews; Durchsetzung von MC/DC-Praktiken",
-        "Proaktive Identifizierung von Fehlern durch systematische Überprüfung und Instrumentierung"
-      ]
+        "Förderung von Schätzung, Aufgabenverteilung und Peer-Reviews; Durchsetzung von MC/DC-Praktiken und Anleitung von Junior-Ingenieuren im abdeckungsbasierten Unit-Testing",
+        "Proaktive Identifizierung von Fehlern durch systematische Überprüfung und Instrumentierung",
+        "Aufbau automatisierter Regressions-Workflows mit 60 % Reduzierung des Testaufwands und 98 % MC/DC-struktureller Abdeckung für Radarprogramme"
+      ],
+      "location": "Bengaluru, Indien"
     },
     "junior_engineer": {
       "title": "Test Engineer",
@@ -70,12 +91,27 @@
         "Implementierung grundlegender Unit-Tests mit VectorCAST für Kernmodule",
         "Erfassung, Triage und Verfolgung von Fehlern; Verbesserung der Feedback-Loop-Geschwindigkeit",
         "Überwachung und Anhebung von Abdeckungsmetriken, Hervorhebung ungetesteter Pfade"
-      ]
+      ],
+      "location": "Bengaluru, Indien"
+    },
+    "subtitle": "Erfolgsbilanz bei sicherheitskritischer ECU-Validierung, HIL-Automatisierung und ADAS-Tests in führenden Automobilprojekten.",
+    "uds_simulator": {
+      "duration": "Ausgewähltes persönliches Projekt",
+      "company": "UDS Simulator",
+      "title": "Gründer und Entwickler",
+      "responsibilities": {
+        "0": "Entwicklung und Veröffentlichung eines webbasierten UDS-Diagnosesimulators (ISO 14229) und einer Lernplattform mit KI-gestützter Entwicklung und REST-APIs.",
+        "1": "Abdeckung von 19 Diagnosediensten auf Produktionsniveau, von der Sitzungssteuerung und dem Sicherheitszugriff bis zu ECU-Firmware-Updates, ganz ohne physische Hardware.",
+        "2": "Entwicklung einer interaktiven visuellen Lernumgebung mit Protokoll-Zustandsautomaten und Live-Nachrichtenabläufen.",
+        "3": "WCAG-2.1-AAA-Barrierefreiheit erreicht; Pilot-Engineering-Teams verzeichneten 60 % schnelleres Onboarding und keine Hardwareschäden im Training."
+      },
+      "website": "udssimulator.com"
     }
   },
   "skills": {
     "title": "Fähigkeiten & Expertise",
-    "description": "Erkunden Sie meine technischen Kompetenzen in verschiedenen Bereichen. Klicken Sie auf eine Kategorie, um tiefer in spezifische Fähigkeiten, Kompetenzniveaus und Erfahrungen einzutauchen."
+    "description": "Erkunden Sie meine technischen Kompetenzen in verschiedenen Bereichen. Klicken Sie auf eine Kategorie, um tiefer in spezifische Fähigkeiten, Kompetenzniveaus und Erfahrungen einzutauchen.",
+    "subtitle": "Hochintegre Validierungskompetenzen für die Automobilentwicklung, gegliedert nach Simulation, Automatisierung, Diagnose und KI-Werkzeugen."
   },
   "projects": {
     "title": "Hervorgehobene Projekte",
@@ -83,23 +119,74 @@
       {
         "title": "BCM-Systems Validierung",
         "description": "Automotive-Software-Validierung für Stellantis OEM, mit Fokus auf sicherheitskritische Infotainment-eingebettete Systeme einschließlich Lenkradsteuerung, Crash-Erkennung und Fahrzeugbeleuchtung. Implementierte End-to-End-Testprozesse von der Anforderungsanalyse bis zur automatisierten Validierung.",
-        "tags": ["Stellantis", "IBM RQM/DNG", "ECU-Test", "dSPACE"],
-        "link_text": "Details"
+        "tags": [
+          "Stellantis",
+          "IBM RQM/DNG",
+          "ECU-Test",
+          "dSPACE"
+        ],
+        "link_text": "Details",
+        "demo_text": "Live-Simulator"
       },
       {
         "title": "DCU 20 (Domain Control Unit)",
         "description": "Zentralisierte ADAS-Domain-Controller (DCU) zur Verarbeitung von Daten verschiedener Fahrzeugsensoren, einschließlich Kameras und Radare. Der Zentralisierungsansatz vereinfacht die Architektur, reduziert Kosten und verbessert Skalierbarkeit und Software-Updates.",
-        "tags": ["ADAS", "CAPL", "Trace32", "Canoe"],
+        "tags": [
+          "ADAS",
+          "CAPL",
+          "Trace32",
+          "Canoe"
+        ],
         "link_text": "Details"
       },
       {
         "title": "CAnalyzerAI",
         "description": "KI-gestütztes C-Code-Analyse-Tool, das intelligente Code-Qualitätsbewertung, Schwachstellenerkennung und Leistungsoptimierungsempfehlungen für eingebettete Automotive-Systeme bietet.",
-        "tags": ["AI/ML", "C-Sprache", "Code-Analyse", "Automotive"],
+        "tags": [
+          "AI/ML",
+          "C-Sprache",
+          "Code-Analyse",
+          "Automotive"
+        ],
         "github_text": "GitHub",
         "demo_text": "Live Demo"
+      },
+      {
+        "title": "CAnalyzerAI",
+        "description": "KI-gestütztes Werkzeug für C-Code, das Codequalität bewertet, Schwachstellen erkennt und Optimierungen für eingebettete Automotive-Systeme vorschlägt.",
+        "tags": {
+          "0": "KI/ML",
+          "1": "Eingebettetes C",
+          "2": "Statische Analyse",
+          "3": "Automotive MISRA"
+        },
+        "github_text": "GitHub",
+        "demo_text": "Live-Demo"
+      },
+      {
+        "title": "AI-ASIL-Analyser",
+        "description": "KI-gestütztes Werkzeug zur ASIL-Analyse (Automotive Safety Integrity Level) für die Konformität mit ISO 26262, mit automatisierten Sicherheitsbewertungen für Automotive-Software.",
+        "tags": {
+          "0": "ISO 26262",
+          "1": "ASIL-Bewertung",
+          "2": "Sicherheitskritisch",
+          "3": "KI/ML"
+        },
+        "github_text": "GitHub",
+        "demo_text": "Live-Demo"
+      },
+      {
+        "title": "VectorCAST-Testautomatisierungssuite",
+        "description": "Python-basierte Suite mit Generator für Unit-Berichte, Generator für Systemintegrationsberichte (SI), Werkzeug zum Entfernen von Importfehlern und Automatisierung der Prüfstandseinrichtung für VectorCAST-Testumgebungen.",
+        "tags": {
+          "0": "VectorCAST",
+          "1": "Python",
+          "2": "MC/DC 98 %",
+          "3": "Testberichte"
+        }
       }
-    ]
+    ],
+    "subtitle": "Flaggschiff-Simulationsplattformen, OEM-ECU-Architekturen und KI-gestützte Diagnosewerkzeuge."
   },
   "achievements": {
     "title": "Erfolge & Auszeichnungen",
@@ -119,8 +206,17 @@
       {
         "title": "Auszeichnung im Rampenlicht",
         "description": "HL Mando Softtech India & HL Klemove India"
+      },
+      {
+        "title": "A+-Leistungsauszeichnung",
+        "description": "Durchgehend höchste Leistungsbewertungen in Automotive-Engineering-Projekten der Tier-1-Zulieferer."
+      },
+      {
+        "title": "Dr.-A.P.J.-Abdul-Kalam-Preis",
+        "description": "Die Aeronautical Society of India: ausgezeichnet für die höchste Punktzahl in Flugzeugstrukturen."
       }
-    ]
+    ],
+    "subtitle": "Auszeichnungen für wirkungsvolle Projektumsetzung, technische Innovation und sicherheitskritische Ausführung."
   },
   "recommendations": {
     "title": "Empfehlung",
@@ -152,7 +248,7 @@
   "contact": {
     "title": "Kontakt aufnehmen",
     "subtitle": "Lass uns verbinden",
-    "description": "Ich bin bereit, über Automotive-Testing-Möglichkeiten, IV&V-Zusammenarbeit zu diskutieren oder Einblicke in die Validierung eingebetteter Systeme und Expertise im Automobilbereich zu teilen.",
+    "description": "Ich bin bereit, über Automotive-Testing-Möglichkeiten, Zusammenarbeit bei HIL/ECU-Validierung zu diskutieren oder Einblicke in die Validierung eingebetteter Systeme und Expertise im Automobilbereich zu teilen.",
     "methods": {
       "email": "E-Mail",
       "linkedin": "LinkedIn",
@@ -189,5 +285,11 @@
     "ja": "Japanisch",
     "ko": "Koreanisch",
     "zh": "Chinesisch"
+  },
+  "telemetry": {
+    "exp_label": "Jahre in der Automobil-IV&V",
+    "oem_label": "Globale OEM-Programme",
+    "mcdc_label": "MC/DC-Strukturabdeckung",
+    "test_reduction_label": "Reduzierung manueller Tests"
   }
 }
