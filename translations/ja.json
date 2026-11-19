@@ -7,27 +7,32 @@
     "projects": "プロジェクト",
     "achievements": "成果",
     "education": "教育",
-    "contact": "お問い合わせ"
+    "contact": "お問い合わせ",
+    "recommendations": "推薦の声"
   },
   "hero": {
     "greeting": "こんにちは、私は",
     "name": "SUDULI KUMAR BALABANTARAY",
-    "title": "テストリード & IV&V スペシャリスト",
-    "position": "テストリード & IV&V スペシャリスト",
-    "description": "私のスキルを披露し、自分自身と組織の成長に貢献できる挑戦的な役割を担える機会を提供する専門的な環境を求めています。",
+    "title": "自動車 HIL / ECU バリデーション | テストオートメーション | ADAS",
+    "position": "自動車 HIL / ECU バリデーション | テストオートメーション | ADAS",
+    "description": "組み込み自動車ソフトウェアの検証・テストリードとして、HIL/SIL、ECUベンチ統合、ADASシステムテスト、自動化において9年以上の経験を持っています。Vector CANoe/CAPL、カメラ/レーダーシミュレーション、PythonによるGherkin-to-CAPLワークフロー、UDS診断、ECUフラッシング/リカバリ、dSPACE VEOS、ECU-TESTでの実務経験があります。",
     "contact_button": "お問い合わせ",
     "download_resume": "履歴書ダウンロード",
-    "learn_more": "詳細を見る"
+    "learn_more": "詳細を見る",
+    "availability": "EU および海外での機会を募集中",
+    "view_simulator": "UDS シミュレーターを見る"
   },
   "about": {
     "title": "私について",
-    "intro": "自動車分野のクリティカルシステムにおける独立検証（IV）および妥当性確認（V）で8年の経験があります。",
-    "details": "RQMツール、プログラミング言語、高度な自動車ソフトウェア解析における豊富な経験を持つ自動車テストの専門知識。インフォテインメントシステム、ADAS、重要な自動車コンポーネントに焦点を当てた機能テスト、パフォーマンステスト、検証に精通しています。",
+    "intro": "組み込み自動車ソフトウェアの検証において、HIL/SIL、ECUベンチ統合、ADASシステムテスト、自動化で9年以上の経験があります。",
+    "details": "Vector CANoe/CAPL、カメラ/レーダーシミュレーション、PythonによるGherkin-to-CAPLワークフロー、UDS診断、ECUフラッシング/リカバリ、dSPACE VEOS、ECU-TESTでの実務経験。Jaguar Land Rover、Stellantis、ADASプログラムにおける要件ベースの検証、フェイルセーフテスト、回帰実行、デバッグ、コードカバレッジの経験があります。",
     "stats": {
       "experience": "年の経験",
       "projects": "完了プロジェクト",
       "companies": "企業"
-    }
+    },
+    "years_experience": "実務経験年数",
+    "projects_completed": "海外プログラム"
   },
   "experience": {
     "title": "経験",
@@ -35,13 +40,25 @@
       "title": "テストリード",
       "company": "KPIT Technologies Ltd",
       "duration": "2023年11月 – 現在",
+      "jlr": "Jaguar Land Rover（JLR）、英国 | 現在のプロジェクト",
+      "jlr_responsibilities": [
+        "VectorベースのHIL環境においてCANoeとCAPLを使用したECU機能検証および回帰検証の実行。手動テスト検証と障害分析を含みます。",
+        "Pythonベースの解析と再利用可能なステップ定義（SD）ファイルによるGherkinテストシナリオの自動化。CANoeで実行するCAPLテストスクリプトを生成します。",
+        "Corvosを使用したUDS診断テストとECUソフトウェアフラッシングの実施。Lauterbach Trace32を使用したブートローダーリカバリとソフトウェアバージョンの復元。",
+        "Kiaraによる夜間自動回帰テストスイートの実行。Jira Xrayでテストケース、実行ID、結果を管理。",
+        "AI-DLCとプロンプトエンジニアリングの研修を修了。Jira、Confluence、GitLab連携によるAmazon Kiro IDEを活用したAI支援Gherkinテスト自動化を探索中。",
+        "CAPL およびステップ定義資産を GitLab でバージョン管理し、テストとエンジニアリングの連携に Jira と Confluence を利用。",
+        "AI-DLC およびプロンプトエンジニアリングの研修を修了。Jira、Confluence、GitLab と連携する Amazon Kiro IDE を検討し、AI 支援の Gherkin テスト自動化に取り組む。"
+      ],
+      "stellantis": "Stellantis | 過去のプロジェクト",
       "responsibilities": [
         "IBM ALMを使用した包括的な検証計画の開発・管理。",
         "DOORS Next Generation（DNG）を介した完全な要件トレーサビリティの確保。",
         "Sanity、Manual、Functional & Performanceテストサイクルの実行。",
         "dSPACE & ECU-Test Toolを使用した自動化イニシアチブの推進。",
         "インフォテインメント機能セットの検証：ステアリングホイールコントロール、ホーン機能、クラッシュ検出メカニズム。"
-      ]
+      ],
+      "location": "インド・ベンガルール"
     },
     "senior_engineer": {
       "title": "スペシャリスト組み込みテストエンジニア",
@@ -51,19 +68,25 @@
         "カバレッジとトレーサビリティを保証する組み込みテスト計画の設計・実行。",
         "Trace32を使用したECUのフラッシュと検証；ファームウェアの整合性確認。",
         "ADAS Analyserを活用したZero DTCテスト環境の確立。",
-        "構造化された根本原因追跡とデータベース衛生による欠陥ライフサイクルの管理。"
-      ]
+        "構造化された根本原因追跡とデータベース衛生による欠陥ライフサイクルの管理。",
+        "カメラおよびレーダー入力向けのCANoeシミュレーションの開発 — DBC統合、環境変数、CAPLロジック、シグナルレベルテスト用のコントロール/モニタリングパネル。",
+        "電圧、車速、バリアントコーディング、センサー遮断シナリオを設定可能なvTESTstudio/CANoeでのADASフェイルセーフテストケースの設計・自動化。スモーク、EOL、フェイルセーフ、USMテストの実行。",
+        "韓国本社での現地派遣中にプロジェクトの窓口を務め、テスト証跡・課題・技術的な議論をステークホルダーと調整。"
+      ],
+      "location": "インド・ベンガルール"
     },
     "test_engineer": {
       "title": "シニア組み込みテストエンジニア",
       "company": "Mando Softtech India Pvt Ltd (Halla Group)",
       "duration": "2020年3月 - 2022年2月",
       "responsibilities": [
-        "VectorCASTでターゲットカバレッジを達成するユニットテストスイートの開発・実行。",
+        "アダプティブクルーズコントロールシステムを含む自動車レーダー/ADASソフトウェアのユニット・統合テストをVectorCASTで設計。",
         "モジュールインターフェースとデータフローを検証する統合テストシナリオの作成。",
-        "見積り、タスク割り当て、ピアレビューの推進；MC/DCプラクティスの実施。",
-        "体系的なレビューと計装を通じて欠陥を早期に積極的に特定。"
-      ]
+        "見積り、タスク割り当て、ピアレビューの推進；MC/DCプラクティスの実施と、カバレッジ駆動ユニットテストにおけるジュニアエンジニアの指導。",
+        "体系的なレビューと計装を通じて欠陥を早期に積極的に特定。",
+        "レーダープログラムにおいて、テスト工数60%削減と98%のMC/DC構造カバレッジを報告する自動回帰ワークフローの構築。"
+      ],
+      "location": "インド・ベンガルール"
     },
     "junior_engineer": {
       "title": "テストエンジニア",
@@ -73,7 +96,8 @@
         "コアモジュール用VectorCASTを使用した基礎的なユニットテストの実装。",
         "欠陥の捕捉、トリアージ、追跡；フィードバックループ速度の改善。",
         "カバレッジメトリクスの監視・向上、未テストパスのハイライト。"
-      ]
+      ],
+      "location": "インド・ベンガルール"
     },
     "current_role": {
       "title": "テストリード",
@@ -120,7 +144,20 @@
           "カバレッジメトリクスの監視・向上、未テストパスのハイライト。"
         ]
       }
-    ]
+    ],
+    "subtitle": "安全性が重視される ECU 検証、HIL 自動化、ADAS テストを、世界トップクラスの自動車プログラムで実施してきた実績。",
+    "uds_simulator": {
+      "duration": "個人プロジェクト（選抜）",
+      "company": "UDS Simulator",
+      "title": "創設者・開発者",
+      "responsibilities": {
+        "0": "AI 支援開発と REST API を用いて、Web ベースの UDS（ISO 14229）診断シミュレーターと学習プラットフォームを構築・公開。",
+        "1": "セッション制御やセキュリティアクセスから ECU ファームウェア更新まで、19 の診断サービスを本番品質で網羅。物理的なハードウェアは不要。",
+        "2": "リアルタイムのプロトコル状態遷移と、ライブのリクエスト・レスポンス通信フローを備えた、インタラクティブな視覚的学習エンジンを設計。",
+        "3": "WCAG 2.1 AAA のアクセシビリティ準拠を達成。パイロット導入したエンジニアリングチームでは、オンボーディングが 60% 速くなり、研修中のハードウェア損傷はゼロだったと記録。"
+      },
+      "website": "udssimulator.com"
+    }
   },
   "skills": {
     "title": "スキル & 専門知識",
@@ -160,23 +197,74 @@
       {
         "title": "BCM-システム検証",
         "description": "Stellantis OEM向け自動車ソフトウェア検証、ステアリングコントロール、クラッシュ検出、車両照明を含む安全重要インフォテインメント組み込みシステムに焦点。要件分析から自動検証までのエンドツーエンドテストプロセスを実装。",
-        "tags": ["Stellantis", "IBM RQM/DNG", "ECU-Test", "dSPACE"],
-        "link_text": "詳細"
+        "tags": [
+          "Stellantis",
+          "IBM RQM/DNG",
+          "ECU-Test",
+          "dSPACE"
+        ],
+        "link_text": "詳細",
+        "demo_text": "ライブシミュレーター"
       },
       {
         "title": "DCU 20（ドメインコントロールユニット）",
         "description": "カメラやレーダーを含む様々な車両センサーからのデータを処理するよう設計された集中型ADASドメインコントローラー（DCU）。集中化アプローチにより、アーキテクチャが簡素化され、コストが削減され、スケーラビリティとソフトウェアアップデートが向上。",
-        "tags": ["ADAS", "CAPL", "Trace32", "Canoe"],
+        "tags": [
+          "ADAS",
+          "CAPL",
+          "Trace32",
+          "Canoe"
+        ],
         "link_text": "詳細"
       },
       {
         "title": "CAnalyzerAI",
         "description": "自動車組み込みシステム向けの高度な品質評価、脆弱性検出、パフォーマンス最適化推奨を提供するAI搭載Cコード解析ツール。",
-        "tags": ["AI/ML", "C言語", "コード解析", "自動車"],
+        "tags": [
+          "AI/ML",
+          "C言語",
+          "コード解析",
+          "自動車"
+        ],
         "github_text": "GitHub",
         "demo_text": "ライブデモ"
+      },
+      {
+        "title": "CAnalyzerAI",
+        "description": "自動車組込みシステム向けに、コード品質の評価、脆弱性の検出、性能最適化の提案を行う AI 搭載の C コード解析ツール。",
+        "tags": {
+          "0": "AI/ML",
+          "1": "組込み C",
+          "2": "静的解析",
+          "3": "自動車 MISRA"
+        },
+        "github_text": "GitHub",
+        "demo_text": "ライブデモ"
+      },
+      {
+        "title": "AI-ASIL-Analyser",
+        "description": "ISO 26262 への適合を支援する、AI 駆動の ASIL（自動車安全度水準）分析ツール。自動車ソフトウェアコンポーネントの安全性評価を自動化。",
+        "tags": {
+          "0": "ISO 26262",
+          "1": "ASIL 評価",
+          "2": "安全重要",
+          "3": "AI/ML"
+        },
+        "github_text": "GitHub",
+        "demo_text": "ライブデモ"
+      },
+      {
+        "title": "VectorCAST テスト自動化スイート",
+        "description": "Python ベースのスイート。ユニットレポート生成、システム統合（SI）レポート生成、インポートエラー除去、ベンチセットアップの自動化により VectorCAST のテスト環境を支援。",
+        "tags": {
+          "0": "VectorCAST",
+          "1": "Python",
+          "2": "MC/DC 98%",
+          "3": "テストレポート"
+        }
       }
-    ]
+    ],
+    "subtitle": "主力のシミュレーション基盤、OEM ECU アーキテクチャ、AI 診断ツール。"
   },
   "achievements": {
     "title": "成果 & 受賞",
@@ -196,8 +284,17 @@
       {
         "title": "スポットライト賞",
         "description": "HL Mando Softtech India & HL Klemove India"
+      },
+      {
+        "title": "A+ 評価 パフォーマンス表彰",
+        "description": "Tier-1 の自動車エンジニアリング案件において、一貫して最高水準の評価を維持。"
+      },
+      {
+        "title": "A.P.J. アブドゥル・カラム賞",
+        "description": "インド航空学会より、航空機構造の科目で最高点を取得したことに対して授与。"
       }
-    ]
+    ],
+    "subtitle": "高インパクトなプロジェクト遂行、技術革新、安全重視の実行によって授与された表彰。"
   },
   "recommendations": {
     "title": "推薦状",
@@ -229,7 +326,7 @@
   "contact": {
     "title": "お問い合わせ",
     "subtitle": "つながりましょう",
-    "description": "自動車テストの機会、IV&Vコラボレーション、または組み込みシステム検証に関する洞察と自動車分野での専門知識を共有することについて議論する準備ができています。",
+    "description": "自動車テストの機会、HIL/ECUバリデーションに関するコラボレーション、または組み込みシステム検証に関する洞察と自動車分野での専門知識を共有することについて議論する準備ができています。",
     "methods": {
       "email": "メール",
       "linkedin": "LinkedIn",
@@ -275,5 +372,11 @@
     "unique_visitors": "ユニーク訪問者数",
     "return_visits": "再訪問数",
     "last_updated": "最終更新"
+  },
+  "telemetry": {
+    "exp_label": "自動車 IV&V の経験年数",
+    "oem_label": "海外 OEM プログラム",
+    "mcdc_label": "MC/DC 構造カバレッジ",
+    "test_reduction_label": "手動テストの削減率"
   }
 }

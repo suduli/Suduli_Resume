@@ -1,60 +1,59 @@
-// Shared skills data (subset reused) for variant pages
+// Core Skills data synchronized with updated Automotive Validation Resume
 export const SKILLS = [
-  // Learning category (newly added section)
-  { name: 'Machine Learning', category: 'Learning', level: 60, tags:['ai','algorithms','data'], desc: 'Statistical modeling techniques for predictive analytics.', experience: 'Currently exploring applications in automotive testing' },
-  { name: 'AI', category: 'Learning', level: 55, tags:['deep-learning','neural-networks'], desc: 'Artificial intelligence systems and algorithms.', experience: 'Studying applications for automotive systems' },
-  { name: 'Vibe Coding', category: 'Learning', level: 50, tags:['innovative','experimental'], desc: 'Modern coding approach emphasizing aesthetic and intuitive design.', experience: 'Exploring for enhanced UI/UX implementation' },
-  { name: 'KDT (Keyword-Driven Testing)', category: 'Learning', level: 65, tags:['automation','frameworks'], desc: 'Framework approach using keywords for test automation.', experience: 'Implementing in current test processes' },
-  { name: 'Xray', category: 'Learning', level: 58, tags:['jira','test-management'], desc: 'Test management tool for Jira ecosystems.', experience: 'Adopting for test reporting and management' },
-  { name: 'Gherkin', category: 'Learning', level: 62, tags:['bdd','specifications'], desc: 'Business-readable domain-specific language for behavior descriptions.', experience: 'Implementing in current project documentation' },
-  { name: 'Behavior-Driven Development (BDD)', category: 'Learning', level: 60, tags:['agile','collaboration'], desc: 'Development approach emphasizing collaboration between technical and non-technical participants.', experience: 'Adopting methodologies for current projects' },
-  { name: 'Cucumber in Python', category: 'Learning', level: 55, tags:['bdd','automation'], desc: 'Python implementation of Cucumber for BDD test automation.', experience: 'Building test suites with this framework' },
-  { name: 'Love', category: 'Learning', level: 95, tags:['passion','dedication'], desc: 'Bringing passion and dedication to all technical endeavors.', experience: 'Lifelong commitment to craftsmanship', youtubeLink: 'https://www.youtube.com/watch?v=exDJJ3Fqyr4&ab_channel=GiveSomethingBackToBerlin' },
+  // 1. HIL, Bench & Simulation
+  { name: 'Vector-based HIL', category: 'HIL & Simulation', level: 92, tags: ['hil', 'vector', 'bench', 'realtime'], desc: 'ECU functional and regression validation in Vector-based Hardware-in-the-Loop environments.', experience: 'Hands-on validation across JLR and OEM programs' },
+  { name: 'ECU Bench Setup & Integration', category: 'HIL & Simulation', level: 90, tags: ['bench', 'ecu', 'hardware', 'wiring'], desc: 'DCU-20 and ECU test benches setup using variable power supplies, JTAG, JIG fixtures, and harnesses.', experience: 'Setup and verified complex multi-ECU validation benches' },
+  { name: 'CANcase XL Hardware', category: 'HIL & Simulation', level: 88, tags: ['vector', 'hardware', 'can', 'bus-interface'], desc: 'Vector hardware interface integration, DB9/120-ohm CAN termination, and physical layer analysis.', experience: 'Utilized across bench testing and physical ECU verification' },
+  { name: 'dSPACE VEOS', category: 'HIL & Simulation', level: 86, tags: ['dspace', 'veos', 'virtual-ecu', 'hil'], desc: 'Virtual ECU simulation and test execution for body control and safety-critical functions.', experience: 'Extensive use on Stellantis automotive validation projects' },
+  { name: 'ECU-TEST Tool', category: 'HIL & Simulation', level: 90, tags: ['automation', 'trace-analysis', 'test-bench'], desc: 'Test automation, execution, and testbench management across dSPACE and virtual environments.', experience: 'Automated test suites reducing manual testing by 40%' },
+  { name: 'SIL Testing', category: 'HIL & Simulation', level: 82, tags: ['sil', 'simulation', 'embedded'], desc: 'Software-in-the-Loop simulation environments for pre-hardware algorithm verification.', experience: 'Executed module and system-level SIL testing' },
 
-  { name: 'Black Box Testing', category: 'Testing', level: 92, tags:['functional','system','validation'], desc: 'Testing based on requirements and specifications without knowledge of internal structure.', experience: '5+ years in automotive testing projects' },
-  { name: 'White Box Testing', category: 'Testing', level: 85, tags:['structural','internal','code-based'], desc: 'Testing based on the internal structure of the component or system.', experience: '4 years in structural testing' },
-  { name: 'Regression Testing', category: 'Testing', level: 88, tags:['stability','maintenance'], desc: 'Ensures that changes have not negatively impacted existing functionality.', experience: '4 years in software maintenance' },
-  { name: 'Integration Testing', category: 'Testing', level: 86, tags:['interfaces','modules'], desc: 'Validates contract between combined modules.', experience: '3 years in module integration' },
-  { name: 'Unit Testing', category: 'Testing', level: 83, tags:['granular','logic','component'], desc: 'Testing individual components in isolation.', experience: '4 years in unit-level validation' },
-  { name: 'System Testing', category: 'Testing', level: 84, tags:['end-to-end','integrated'], desc: 'Assesses the integrated system as a whole.', experience: '3 years in end-to-end testing' },
-  { name: 'Smoke Testing', category: 'Testing', level: 82, tags:['build','stability','sanity'], desc: 'Test run on a new build to verify its stability for further testing.', experience: '3 years in build verification' },
-  { name: 'Sanity Testing', category: 'Testing', level: 80, tags:['focused','regression','minor-changes'], desc: 'Focused regression test to check a specific function after a minor change.', experience: '3 years in targeted validation' },
-  { name: 'Re-Testing', category: 'Testing', level: 78, tags:['defect','validation','fix-verification'], desc: 'Executing a test that previously failed to confirm that a fix has been implemented.', experience: '4 years in defect validation' },
-  { name: 'SDLC', category: 'Software Lifecycle', level: 85, tags:['process','development','methodology'], desc: 'Software Development Life Cycle methodology and processes.', experience: '6 years in software development processes' },
-  { name: 'STLC', category: 'Software Lifecycle', level: 88, tags:['testing','process','lifecycle'], desc: 'Software Testing Life Cycle methodology and best practices.', experience: '7 years in testing lifecycle processes' },
-  { name: 'Bug Life Cycle', category: 'Software Lifecycle', level: 83, tags:['defect','tracking','resolution'], desc: 'Complete defect management from identification to closure.', experience: '6 years in defect management' },
-  { name: 'HIL Testing', category: 'Simulation', level: 70, tags:['hardware','realtime','embedded'], desc: 'Specialized environment for conducting system testing, particularly in embedded systems.', experience: '2 years in hardware simulation' },
-  { name: 'SIL Testing', category: 'Simulation', level: 68, tags:['simulation','early','embedded'], desc: 'Specialized environment for conducting system testing, particularly in embedded systems.', experience: '2 years in software simulation' },
-  { name: 'Embedded C', category: 'Programming', level: 82, tags:['firmware','memory'], desc: 'Low-level language for performance and control.', experience: '6 years in embedded systems' },
-  { name: 'Python', category: 'Programming', level: 78, tags:['automation','scripting'], desc: 'Automation, reporting & tooling scripts.', experience: '5 years in scripting and automation' },
-  { name: 'CAPL', category: 'Programming', level: 72, tags:['vector','bus'], desc: 'Vector tool scripting for CAN bus scenarios.', experience: '3 years in CAN bus scripting' },
-  { name: 'UDS', category: 'Protocols', level: 70, tags:['diagnostics','ecu'], desc: 'Unified Diagnostic Services for ECUs.', experience: '2 years in ECU diagnostics' },
-  { name: 'CAN', category: 'Protocols', level: 85, tags:['network','bus'], desc: 'Primary automotive communication bus.', experience: '7 years in automotive networking' },
-  { name: 'AUTOSAR', category: 'Protocols', level: 65, tags:['architecture'], desc: 'Standardized automotive software framework.', experience: '2 years in AUTOSAR implementation' },
-  { name: 'ISO 26262', category: 'Safety', level: 60, tags:['functional safety'], desc: 'Guidelines for automotive functional safety.', experience: '1 year in safety compliance' },
-  { name: 'VectorCast', category: 'Tools', level: 80, tags:['unit','coverage'], desc: 'Unit & integration test environment.', experience: '4 years using VectorCast' },
-  { name: 'Trace32 Debugging', category: 'Tools', level: 74, tags:['jtag','firmware'], desc: 'Hardware level debugging & introspection.', experience: '3 years in hardware debugging' },
-  { name: 'dSPACE', category: 'Tools', level: 68, tags:['hil','simulation'], desc: 'Real-time hardware in the loop platform.', experience: '2 years with dSPACE' },
-  { name: 'ECU-Test Tool', category: 'Tools', level: 66, tags:['automation','ecu'], desc: 'Automated functional/integration ECU testing.', experience: '2 years in ECU testing automation' },
-  { name: 'CANoe', category: 'Tools', level: 82, tags:['vector','can','analysis'], desc: 'Comprehensive CAN bus analysis and simulation tool.', experience: '5 years in CAN bus analysis' },
-  { name: 'CANalyzer', category: 'Tools', level: 80, tags:['vector','can','monitoring'], desc: 'CAN bus monitoring and analysis tool.', experience: '4 years in bus monitoring' },
-  { name: 'CANdb', category: 'Tools', level: 75, tags:['vector','database','can'], desc: 'CAN database management and signal definition.', experience: '3 years in database management' },
-  { name: 'CANdela', category: 'Tools', level: 70, tags:['vector','diagnostics','uds'], desc: 'Diagnostic test and development tool.', experience: '2 years in diagnostic testing' },
-  { name: 'VtestStudio', category: 'Tools', level: 72, tags:['vector','automation','testing'], desc: 'Test automation framework for automotive systems.', experience: '3 years in test automation' },
-  { name: 'UnderstandC', category: 'Tools', level: 68, tags:['static-analysis','code-review'], desc: 'Static code analysis and reverse engineering tool.', experience: '2 years in code analysis' },
-  { name: 'RQM', category: 'Tools', level: 78, tags:['ibm','test-management','quality'], desc: 'IBM Rational Quality Manager for test management.', experience: '4 years in test management' },
-  { name: 'RTC', category: 'Tools', level: 76, tags:['ibm','collaboration','alm'], desc: 'IBM Rational Team Concert for application lifecycle management.', experience: '3 years in ALM processes' },
-  { name: 'Structural Coverage', category: 'Coverage', level: 77, tags:['branch','statement'], desc: 'Execution path measurement for untested code.', experience: '3 years in coverage analysis' },
-  { name: 'MC/DC', category: 'Coverage', level: 78, tags:['safety','logic'], desc: 'Modified Condition/Decision Coverage expertise.', experience: '3 years in MC/DC coverage' },
-  { name: 'DOORS', category: 'Requirements', level: 75, tags:['traceability'], desc: 'Requirement management & impact tracking.', experience: '4 years in requirements management' },
-  { name: 'Rhapsody', category: 'Requirements', level: 55, tags:['modeling'], desc: 'UML/SysML model-driven design tool.', experience: '1 year in modeling tools' },
-  { name: 'Git', category: 'Version Control', level: 82, tags:['branching'], desc: 'Distributed version control & collaboration.', experience: '6 years in version control' },
-  { name: 'SVN', category: 'Version Control', level: 60, tags:['centralized'], desc: 'Centralized version control (legacy flows).', experience: '2 years in legacy systems' }
+  // 2. Automation & Scripting
+  { name: 'Python', category: 'Automation & Scripting', level: 90, tags: ['python', 'automation', 'parsing', 'tooling'], desc: 'Test automation scripts, report generation, and Gherkin scenario parsing into CAPL test scripts.', experience: '5+ years developing custom engineering automation frameworks' },
+  { name: 'CAPL', category: 'Automation & Scripting', level: 88, tags: ['capl', 'vector', 'can', 'scripting'], desc: 'Vector tool scripting for CAN bus messaging, sensor simulation, and automated test sequences.', experience: 'Core scripting language for CANoe test environments across JLR/Halla' },
+  { name: 'Gherkin / BDD', category: 'Automation & Scripting', level: 88, tags: ['bdd', 'gherkin', 'automation', 'test-cases'], desc: 'Behavior-Driven Development test scenarios, feature files, and reusable step-definition (SD) files.', experience: 'Automated Gherkin test scenarios with Python parsing for CANoe execution' },
+  { name: 'Embedded C', category: 'Automation & Scripting', level: 84, tags: ['c', 'embedded', 'firmware', 'unit-test'], desc: 'Low-level programming language for automotive ECUs, firmware introspection, and algorithm analysis.', experience: '6+ years in automotive embedded systems' },
+  { name: 'vTESTstudio', category: 'Automation & Scripting', level: 86, tags: ['vector', 'test-design', 'automation'], desc: 'Test design environment for automated testing of embedded software via CANoe.', experience: 'Automated ADAS failsafe test cases with variant coding' },
+  { name: 'VectorCAST', category: 'Automation & Scripting', level: 92, tags: ['unit-testing', 'coverage', 'integration'], desc: 'Automated unit and integration test suite development, achieving up to 98% MC/DC coverage.', experience: '4+ years driving coverage-driven unit and integration validation' },
+  { name: 'Kiara', category: 'Automation & Scripting', level: 80, tags: ['regression', 'nightly-runs', 'automation'], desc: 'Execution platform for automated overnight regression suites linked with Jira Xray.', experience: 'Configured and executed overnight regression suites on JLR programs' },
+
+  // 3. Diagnostics & Networks
+  { name: 'UDS (ISO 14229)', category: 'Diagnostics & Networks', level: 95, tags: ['uds', 'diagnostics', 'iso14229', 'dtc'], desc: 'Unified Diagnostic Services: session control, security access, routine control, and flashing.', experience: 'Deep expertise; architected the browser-based UDS Simulator covering 19 services' },
+  { name: 'CAN (ISO 11898)', category: 'Diagnostics & Networks', level: 92, tags: ['can', 'can-fd', 'bus', 'iso11898'], desc: 'Controller Area Network protocol architecture, signal matrix verification, and timing validation.', experience: '7+ years across body control, infotainment, and ADAS networks' },
+  { name: 'Zero-DTC & Fault Injection', category: 'Diagnostics & Networks', level: 90, tags: ['zero-dtc', 'dtc', 'fault-injection', 'recovery'], desc: 'Establishment of Zero-DTC baselines, sensor blockage simulation, and UDS DTC status verification.', experience: 'Verified camera/radar blockage fault detection (0x89 active / 0x08 history)' },
+  { name: 'Corvos Flashing', category: 'Diagnostics & Networks', level: 85, tags: ['corvos', 'uds', 'flashing', 'firmware'], desc: 'ECU software flashing, bootloader execution, and UDS diagnostic validation tool.', experience: 'Performed ECU flashing and diagnostics on JLR programs' },
+  { name: 'Lauterbach Trace32', category: 'Diagnostics & Networks', level: 88, tags: ['trace32', 'jtag', 'bootloader', 'debugging'], desc: 'Hardware-level JTAG debugging, bootloader recovery, memory inspection, and flashing.', experience: 'Used for bootloader recovery and firmware integrity verification' },
+  { name: 'XCP Protocol', category: 'Diagnostics & Networks', level: 75, tags: ['xcp', 'calibration', 'measurement'], desc: 'Universal Measurement and Calibration Protocol for ECU internal variable access.', experience: 'Measurement and calibration on powertrain and ADAS controllers' },
+  { name: 'SOME/IP (Familiarity)', category: 'Diagnostics & Networks', level: 65, tags: ['someip', 'ethernet', 'soa'], desc: 'Scalable service-Oriented MiddlewarE over IP for automotive Ethernet architectures.', experience: 'Working familiarity from modern ADAS and zonal architectures' },
+
+  // 4. Tools & Configuration
+  { name: 'CANoe', category: 'Tools & Configuration', level: 94, tags: ['vector', 'canoe', 'simulation', 'bus'], desc: 'Full-featured simulation and analysis tool for CAN networks, DBC integration, and test panels.', experience: 'Primary Vector tool for camera/radar simulation and HIL execution' },
+  { name: 'CANalyzer & CANdb/CANdela', category: 'Tools & Configuration', level: 90, tags: ['vector', 'canalyzer', 'candb', 'candela'], desc: 'Network analysis, signal logging, database maintenance (DBC), and diagnostic CDD authoring.', experience: 'Extensive use in bus monitoring and diagnostic parameter definition' },
+  { name: 'Jira Xray', category: 'Tools & Configuration', level: 88, tags: ['jira', 'xray', 'test-management', 'traceability'], desc: 'Test management ecosystem inside Jira: test case definition, execution sets, and defect links.', experience: 'Managed test cases, execution IDs, and overnight test runs' },
+  { name: 'IBM RQM & DOORS NG', category: 'Tools & Configuration', level: 88, tags: ['ibm', 'rqm', 'doors', 'alm'], desc: 'Requirements traceability and test management with IBM Engineering Lifecycle Management (ELM).', experience: 'Achieved 95% requirements-to-test traceability on Stellantis programs' },
+  { name: 'Git & GitLab', category: 'Tools & Configuration', level: 86, tags: ['git', 'gitlab', 'version-control', 'ci'], desc: 'Version control for CAPL scripts, step-definition files, and test automation codebases.', experience: 'Managed repositories and collaboration workflows across distributed teams' },
+  { name: 'Confluence', category: 'Tools & Configuration', level: 85, tags: ['confluence', 'documentation', 'collaboration'], desc: 'Technical documentation, test specifications, validation reports, and team collaboration.', experience: 'Authored engineering test procedures and stakeholder reports' },
+
+  // 5. Validation & Standards
+  { name: 'ADAS Failsafe Testing', category: 'Validation & Standards', level: 90, tags: ['adas', 'failsafe', 'camera', 'radar'], desc: 'Failsafe validation under sensor blockage, variant coding, voltage drops, and bus faults.', experience: 'Automated ADAS failsafe test execution for DCU-20 domain controller' },
+  { name: 'Camera & Radar Simulation', category: 'Validation & Standards', level: 90, tags: ['camera', 'radar', 'sensor-simulation'], desc: 'Simulated sensor streams into ADAS domain controller via DBC environment variables and CAPL.', experience: 'End-to-end signal level verification on Halla Group programs' },
+  { name: 'EOL & USM Testing', category: 'Validation & Standards', level: 88, tags: ['eol', 'usm', 'end-of-line', 'software-management'], desc: 'End-of-Line manufacturing testing and Update Software Management testing routines.', experience: 'Executed EOL and USM validation for production vehicle lines' },
+  { name: 'MC/DC Coverage (Structural)', category: 'Validation & Standards', level: 92, tags: ['mcdc', 'structural-coverage', 'statement', 'branch'], desc: 'Modified Condition/Decision Coverage for ISO 26262 ASIL-D safety compliance.', experience: 'Achieved 98% MC/DC structural coverage on automotive radar projects' },
+  { name: 'ISO 26262 Guidelines', category: 'Validation & Standards', level: 80, tags: ['iso26262', 'functional-safety', 'asil'], desc: 'Automotive functional safety standard compliance across V-model verification phases.', experience: 'Applied ISO 26262 guidelines to test plans, fault injection, and coverage' },
+  { name: 'AUTOSAR Architecture', category: 'Validation & Standards', level: 75, tags: ['autosar', 'bsw', 'rte'], desc: 'Standardized automotive software architecture, layered software stacks, and interfaces.', experience: 'Familiarity with AUTOSAR layered models during ECU integration' },
+
+  // 6. AI-Assisted Engineering
+  { name: 'Amazon Kiro IDE', category: 'AI-Assisted Engineering', level: 80, tags: ['kiro', 'ide', 'ai', 'gitlab', 'jira'], desc: 'AI-assisted development environment integrated with Jira, Confluence, and GitLab.', experience: 'Explored for AI-assisted Gherkin test automation and code generation' },
+  { name: 'AI-DLC & Prompt Engineering', category: 'AI-Assisted Engineering', level: 85, tags: ['ai-dlc', 'prompts', 'llm', 'automation'], desc: 'AI Development Life Cycle methodologies and precision prompt design for test engineering.', experience: 'Certified training completed; integrated into daily testing workflows' },
+  { name: 'UDS Simulator Core (udssimulator.com)', category: 'AI-Assisted Engineering', level: 96, tags: ['uds-simulator', 'fullstack', 'rest-api', 'architecture'], desc: 'Architected and launched interactive browser-based UDS protocol simulator with WCAG 2.1 AAA.', experience: 'Self-employed founder; reduced trainee onboarding by 60%' }
 ];
 
-export const CATEGORY_COLORS = ['teal','blue','purple','green','orange','red','gold','rose'];
+export const CATEGORY_COLORS = ['teal', 'blue', 'purple', 'green', 'orange', 'gold'];
 
-export function colorForCategory(cat){
-  let h=0; for(let i=0;i<cat.length;i++){ h = Math.imul(31,h)+cat.charCodeAt(i)|0; }
-  return CATEGORY_COLORS[Math.abs(h)%CATEGORY_COLORS.length];
+export function colorForCategory(cat) {
+  let h = 0;
+  for (let i = 0; i < cat.length; i++) {
+    h = Math.imul(31, h) + cat.charCodeAt(i) | 0;
+  }
+  return CATEGORY_COLORS[Math.abs(h) % CATEGORY_COLORS.length];
 }
