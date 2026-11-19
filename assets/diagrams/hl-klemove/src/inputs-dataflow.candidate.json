@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "Client Input Files: Where Each One Goes",
+    "output": ".archify/dataflow-inputs-tight-20261119-214541/inputs-dataflow.html",
+    "viewBox": [
+      961,
+      620
+    ],
+    "animation": "trace",
+    "quality_profile": "showcase"
+  },
+  "stages": [
+    {
+      "label": "Client files"
+    },
+    {
+      "label": "Validate"
+    },
+    {
+      "label": "Consumers"
+    },
+    {
+      "label": "Used in"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "reqs",
+      "type": "external",
+      "label": "Master Req + RQMT",
+      "sublabel": "requirement sheets",
+      "stage": 0,
+      "row": 0
+    },
+    {
+      "id": "dbc",
+      "type": "external",
+      "label": "DBC Files",
+      "sublabel": "signal definitions",
+      "stage": 0,
+      "row": 1
+    },
+    {
+      "id": "exe",
+      "type": "external",
+      "label": "Executable File",
+      "sublabel": "ECU software image",
+      "stage": 0,
+      "row": 2
+    },
+    {
+      "id": "cdd",
+      "type": "external",
+      "label": "CDD and DLL",
+      "sublabel": "diagnostic description",
+      "stage": 0,
+      "row": 3
+    },
+    {
+      "id": "design",
+      "type": "backend",
+      "label": "Test Design",
+      "sublabel": "tests from requirements",
+      "stage": 2,
+      "row": 0
+    },
+    {
+      "id": "canoe_db",
+      "type": "database",
+      "label": "CANoe Database",
+      "sublabel": "signal layer",
+      "stage": 2,
+      "row": 1
+    },
+    {
+      "id": "flash",
+      "type": "backend",
+      "label": "Flashing",
+      "sublabel": "ECU programming",
+      "stage": 2,
+      "row": 2
+    },
+    {
+      "id": "diag",
+      "type": "backend",
+      "label": "Diagnostics",
+      "sublabel": "UDS services",
+      "stage": 2,
+      "row": 3
+    },
+    {
+      "id": "execute",
+      "type": "messagebus",
+      "label": "Test Execution",
+      "sublabel": "CANoe and VTESTstudio",
+      "stage": 3,
+      "row": 0
+    },
+    {
+      "id": "simrun",
+      "type": "messagebus",
+      "label": "CANoe Simulation",
+      "sublabel": "camera and radar inputs",
+      "stage": 3,
+      "row": 1
+    },
+    {
+      "id": "trace",
+      "type": "messagebus",
+      "label": "Trace32",
+      "sublabel": "bootloader and debug",
+      "stage": 3,
+      "row": 2
+    },
+    {
+      "id": "uds",
+      "type": "messagebus",
+      "label": "UDS Tests",
+      "sublabel": "DTC and diagnostics",
+      "stage": 3,
+      "row": 3
+    },
+    {
+      "id": "chk-reqs",
+      "type": "backend",
+      "label": "Validate",
+      "sublabel": "check on receipt",
+      "stage": 1,
+      "row": 0
+    },
+    {
+      "id": "chk-dbc",
+      "type": "backend",
+      "label": "Validate",
+      "sublabel": "check on receipt",
+      "stage": 1,
+      "row": 1
+    },
+    {
+      "id": "chk-exe",
+      "type": "backend",
+      "label": "Validate",
+      "sublabel": "check on receipt",
+      "stage": 1,
+      "row": 2
+    },
+    {
+      "id": "chk-cdd",
+      "type": "backend",
+      "label": "Validate",
+      "sublabel": "check on receipt",
+      "stage": 1,
+      "row": 3
+    }
+  ],
+  "flows": [
+    {
+      "id": "in-f-req",
+      "from": "reqs",
+      "to": "chk-reqs",
+      "label": "file"
+    },
+    {
+      "id": "f-req",
+      "from": "chk-reqs",
+      "to": "design",
+      "label": "requirements"
+    },
+    {
+      "id": "in-f-dbc",
+      "from": "dbc",
+      "to": "chk-dbc",
+      "label": "file"
+    },
+    {
+      "id": "f-dbc",
+      "from": "chk-dbc",
+      "to": "canoe_db",
+      "label": "DBC"
+    },
+    {
+      "id": "in-f-exe",
+      "from": "exe",
+      "to": "chk-exe",
+      "label": "file"
+    },
+    {
+      "id": "f-exe",
+      "from": "chk-exe",
+      "to": "flash",
+      "label": "executable"
+    },
+    {
+      "id": "in-f-cdd",
+      "from": "cdd",
+      "to": "chk-cdd",
+      "label": "file"
+    },
+    {
+      "id": "f-cdd",
+      "from": "chk-cdd",
+      "to": "diag",
+      "label": "CDD + DLL"
+    },
+    {
+      "id": "f-design-exec",
+      "from": "design",
+      "to": "execute",
+      "label": "test cases"
+    },
+    {
+      "id": "f-db-sim",
+      "from": "canoe_db",
+      "to": "simrun",
+      "label": "signals"
+    },
+    {
+      "id": "f-flash-trace",
+      "from": "flash",
+      "to": "trace",
+      "label": "image"
+    },
+    {
+      "id": "f-diag-uds",
+      "from": "diag",
+      "to": "uds",
+      "label": "services"
+    }
+  ]
+}

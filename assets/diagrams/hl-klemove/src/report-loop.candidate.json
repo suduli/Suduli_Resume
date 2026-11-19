@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Test Report: Review and Publish",
+    "animation": "trace",
+    "visual_preset": "editorial",
+    "quality_profile": "showcase",
+    "output": ".archify/workflow-report-loop-20261119-211823/report-loop.html"
+  },
+  "lanes": [
+    { "id": "report", "label": "Report" },
+    { "id": "fix", "label": "Comments & re-test" }
+  ],
+  "mainPath": ["collect", "self", "final", "publish"],
+  "nodes": [
+    { "id": "collect", "lane": "report", "col": 0, "type": "backend", "label": "Collect", "sublabel": "attach reports to test cases", "width": 132 },
+    { "id": "self", "lane": "report", "col": 1, "type": "backend", "label": "Self-Review", "sublabel": "thorough check before review", "width": 132 },
+    { "id": "final", "lane": "report", "col": 2, "type": "security", "label": "Final Review", "sublabel": "approval gate", "tag": "reviewer", "width": 132 },
+    { "id": "publish", "lane": "report", "col": 3, "type": "cloud", "label": "Publish to Jira", "sublabel": "pass, fail and N/A totals", "width": 132 },
+    { "id": "address", "lane": "fix", "col": 2, "type": "messagebus", "label": "Address Comments", "sublabel": "discrepancies found", "width": 132 },
+    { "id": "retest", "lane": "fix", "col": 1, "type": "messagebus", "label": "Re-test", "sublabel": "regenerate the report", "width": 132 }
+  ],
+  "edges": [
+    { "id": "e-collect-self", "from": "collect", "to": "self", "variant": "default" },
+    { "id": "e-self-final", "from": "self", "to": "final", "variant": "default" },
+    { "id": "e-final-publish", "from": "final", "to": "publish", "label": "approved", "variant": "emphasis" },
+    { "id": "e-final-address", "from": "final", "to": "address", "label": "comments", "variant": "security", "role": "branch" },
+    { "id": "e-address-retest", "from": "address", "to": "retest", "variant": "dashed", "role": "branch" },
+    { "id": "e-retest-self", "from": "retest", "to": "self", "label": "regenerated", "variant": "dashed", "role": "branch" }
+  ]
+}

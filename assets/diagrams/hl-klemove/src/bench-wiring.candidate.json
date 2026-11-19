@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Bench Wiring: Debug, CAN and Power Paths",
+    "output": ".archify/architecture-bench-20261119-213148/bench-wiring.html",
+    "quality_profile": "showcase"
+  },
+  "components": [
+    { "id": "laptop", "type": "frontend", "label": "Laptop", "sublabel": "CANoe and Trace32 host", "pos": [40, 60], "size": [170, 70] },
+    { "id": "trace32", "type": "database", "label": "Trace32", "sublabel": "debug and flash", "pos": [300, 40], "size": [160, 64] },
+    { "id": "can_case", "type": "messagebus", "label": "CAN Case XL", "sublabel": "1640 / 1630 / 5610", "pos": [300, 220], "size": [160, 64] },
+    { "id": "psu", "type": "cloud", "label": "Power Supply", "sublabel": "variable V / A", "pos": [40, 360], "size": [170, 64] },
+    { "id": "jig", "type": "security", "label": "JIG", "sublabel": "JTAG and DB9 pins", "pos": [580, 40], "size": [170, 70] },
+    { "id": "harness", "type": "backend", "label": "Harness Cable", "sublabel": "crocodile and CAN harness", "pos": [580, 220], "size": [170, 64] },
+    { "id": "ecu", "type": "backend", "label": "ECU Under Test", "sublabel": "DCU", "pos": [840, 130], "size": [160, 80] }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "Test bench", "wraps": ["laptop", "trace32", "can_case", "psu", "jig", "harness"] }
+  ],
+  "connections": [
+    { "id": "lap-tr", "from": "laptop", "to": "trace32", "label": "USB", "variant": "default" },
+    { "id": "tr-jig", "from": "trace32", "to": "jig", "label": "JTAG", "variant": "emphasis" },
+    { "id": "jig-ecu", "from": "jig", "to": "ecu", "label": "JTAG", "variant": "emphasis" },
+    { "id": "lap-can", "from": "laptop", "to": "can_case", "label": "USB", "variant": "default" },
+    { "id": "can-har", "from": "can_case", "to": "harness", "label": "DB9 + 120 ohm", "variant": "emphasis" },
+    { "id": "har-ecu", "from": "harness", "to": "ecu", "label": "CAN and power", "variant": "emphasis" },
+    { "id": "psu-har", "from": "psu", "to": "harness", "label": "power", "variant": "dashed" }
+  ]
+}

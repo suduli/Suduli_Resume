@@ -1,0 +1,194 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "DCU Smoke Test: Eight Checks",
+    "animation": "trace",
+    "visual_preset": "editorial",
+    "quality_profile": "showcase",
+    "output": ".archify/workflow-smoke-phases-20261119-213330/smoke-checks.html"
+  },
+  "lanes": [
+    {
+      "id": "health",
+      "label": "Power-up & health"
+    },
+    {
+      "id": "req",
+      "label": "Requirements"
+    },
+    {
+      "id": "fault",
+      "label": "Fault & recovery"
+    },
+    {
+      "id": "restart",
+      "label": "Restart"
+    }
+  ],
+  "mainPath": [
+    "init",
+    "comms",
+    "dtc",
+    "messages",
+    "zero",
+    "requirement"
+  ],
+  "nodes": [
+    {
+      "id": "init",
+      "lane": "health",
+      "col": 0,
+      "type": "external",
+      "label": "Initialization",
+      "sublabel": "powers up, no errors",
+      "tag": "check 1",
+      "width": 132
+    },
+    {
+      "id": "comms",
+      "lane": "health",
+      "col": 1,
+      "type": "backend",
+      "label": "Communication",
+      "sublabel": "camera, radar, LiDAR",
+      "tag": "check 2",
+      "width": 132
+    },
+    {
+      "id": "dtc",
+      "lane": "health",
+      "col": 2,
+      "type": "messagebus",
+      "label": "DTC Read",
+      "sublabel": "Read DTC, no delays",
+      "tag": "check 3",
+      "width": 132
+    },
+    {
+      "id": "messages",
+      "lane": "health",
+      "col": 3,
+      "type": "backend",
+      "label": "Messages",
+      "sublabel": "responds correctly",
+      "tag": "check 4",
+      "width": 132
+    },
+    {
+      "id": "zero",
+      "lane": "health",
+      "col": 4,
+      "type": "security",
+      "label": "Zero DTC",
+      "sublabel": "baseline cleared",
+      "tag": "check 5",
+      "width": 132
+    },
+    {
+      "id": "requirement",
+      "lane": "req",
+      "col": 5,
+      "type": "backend",
+      "label": "Requirement",
+      "sublabel": "critical items from sheet",
+      "tag": "check 6",
+      "width": 132
+    },
+    {
+      "id": "recovery",
+      "lane": "fault",
+      "col": 5,
+      "type": "messagebus",
+      "label": "Recovery",
+      "sublabel": "fault in, DCU recovers",
+      "tag": "check 7",
+      "width": 132
+    },
+    {
+      "id": "restart",
+      "lane": "restart",
+      "col": 5,
+      "type": "frontend",
+      "label": "Restart",
+      "sublabel": "last good state",
+      "tag": "check 8",
+      "width": 132
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-init-comms",
+      "from": "init",
+      "to": "comms",
+      "label": "sensors ok",
+      "variant": "emphasis"
+    },
+    {
+      "id": "e-comms-dtc",
+      "from": "comms",
+      "to": "dtc",
+      "variant": "default"
+    },
+    {
+      "id": "e-dtc-messages",
+      "from": "dtc",
+      "to": "messages",
+      "variant": "default"
+    },
+    {
+      "id": "e-zero-requirement",
+      "from": "zero",
+      "to": "requirement",
+      "label": "baseline clean",
+      "variant": "emphasis"
+    },
+    {
+      "id": "e-requirement-recovery",
+      "from": "requirement",
+      "to": "recovery",
+      "variant": "default"
+    },
+    {
+      "id": "e-recovery-restart",
+      "from": "recovery",
+      "to": "restart",
+      "label": "fault cleared",
+      "variant": "emphasis"
+    },
+    {
+      "id": "e-messages-zero",
+      "from": "messages",
+      "to": "zero",
+      "variant": "default"
+    }
+  ],
+  "phases": [
+    {
+      "id": "power",
+      "label": "Power-up",
+      "fromCol": 0,
+      "toCol": 1
+    },
+    {
+      "id": "diag",
+      "label": "Diagnostics",
+      "fromCol": 2,
+      "toCol": 3
+    },
+    {
+      "id": "baseline",
+      "label": "Baseline",
+      "fromCol": 4,
+      "toCol": 4,
+      "variant": "emphasis"
+    },
+    {
+      "id": "resilience",
+      "label": "Resilience",
+      "fromCol": 5,
+      "toCol": 5,
+      "variant": "dashed"
+    }
+  ]
+}
