@@ -1,0 +1,110 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "Failsafe Blockage: DTC Status Walk",
+    "output": ".archify/lifecycle-failsafe-20261119-213409/failsafe-blockage.html",
+    "quality_profile": "showcase"
+  },
+  "mainPath": [
+    "healthy",
+    "injected",
+    "active",
+    "recovered",
+    "history"
+  ],
+  "states": [
+    {
+      "id": "healthy",
+      "type": "start",
+      "label": "Healthy",
+      "sublabel": "engine on, variant set",
+      "tag": "pre-condition",
+      "step": "01"
+    },
+    {
+      "id": "injected",
+      "type": "active",
+      "label": "Blockage Injected",
+      "sublabel": "signal set to fault value",
+      "tag": "camera or radar",
+      "step": "02"
+    },
+    {
+      "id": "active",
+      "type": "decision",
+      "label": "DTC Active (89)",
+      "sublabel": "logged, time measured",
+      "tag": "status mask 89",
+      "step": "03"
+    },
+    {
+      "id": "recovered",
+      "type": "active",
+      "label": "Blockage Removed",
+      "sublabel": "recovery value applied",
+      "tag": "signal restored",
+      "step": "04"
+    },
+    {
+      "id": "history",
+      "type": "success",
+      "label": "DTC History (08)",
+      "sublabel": "verified, test passes",
+      "tag": "status mask 08",
+      "step": "05"
+    },
+    {
+      "id": "missed",
+      "type": "failure",
+      "label": "Not Detected",
+      "sublabel": "no DTC within time limit",
+      "tag": "fail"
+    },
+    {
+      "id": "flag",
+      "type": "neutral",
+      "label": "Flag Check",
+      "sublabel": "no DTC number: verify flag",
+      "tag": "no DTC"
+    }
+  ],
+  "transitions": [
+    {
+      "id": "healthy-injected",
+      "from": "healthy",
+      "to": "injected",
+      "label": "fault value"
+    },
+    {
+      "id": "injected-active",
+      "from": "injected",
+      "to": "active",
+      "label": "detected"
+    },
+    {
+      "id": "active-recovered",
+      "from": "active",
+      "to": "recovered",
+      "label": "recovery"
+    },
+    {
+      "id": "recovered-history",
+      "from": "recovered",
+      "to": "history",
+      "label": "89 to 08"
+    },
+    {
+      "id": "injected-missed",
+      "from": "injected",
+      "to": "missed",
+      "label": "timeout"
+    },
+    {
+      "id": "injected-flag",
+      "from": "injected",
+      "to": "flag",
+      "label": "no DTC defined"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Achieving Zero DTC",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "output": ".archify/workflow-zero-dtc-20261119-213350/zero-dtc.html"
+  },
+  "lanes": [
+    { "id": "steps", "label": "Zero DTC run" },
+    { "id": "fix", "label": "DTC resolution loop" }
+  ],
+  "mainPath": ["sim", "session", "read", "gate", "zero", "ready"],
+  "nodes": [
+    { "id": "sim", "lane": "steps", "col": 0, "type": "messagebus", "label": "CANoe Simulation", "sublabel": "start the simulation", "width": 132 },
+    { "id": "session", "lane": "steps", "col": 1, "type": "messagebus", "label": "Extended Session", "sublabel": "UDS extended mode", "width": 132 },
+    { "id": "read", "lane": "steps", "col": 2, "type": "backend", "label": "Read DTC", "sublabel": "status and count", "width": 132 },
+    { "id": "gate", "lane": "steps", "col": 3, "type": "security", "label": "DTC Count = 0?", "sublabel": "check against requirements", "tag": "gate", "width": 132 },
+    { "id": "zero", "lane": "steps", "col": 4, "type": "backend", "label": "Zero DTC", "sublabel": "baseline reached", "width": 132 },
+    { "id": "ready", "lane": "steps", "col": 5, "type": "external", "label": "Execution Ready", "sublabel": "next phase", "width": 132 },
+    { "id": "xcheck", "lane": "fix", "col": 3, "type": "backend", "label": "Req Cross-Check", "sublabel": "match each DTC", "width": 132 },
+    { "id": "signal", "lane": "fix", "col": 4, "type": "messagebus", "label": "Find Signal", "sublabel": "messages that trigger it", "width": 132 },
+    { "id": "recover", "lane": "fix", "col": 5, "type": "messagebus", "label": "Apply Recovery", "sublabel": "recovery condition", "width": 132 }
+  ],
+  "edges": [
+    { "id": "e-sim-session", "from": "sim", "to": "session", "variant": "default" },
+    { "id": "e-session-read", "from": "session", "to": "read", "variant": "default" },
+    { "id": "e-read-gate", "from": "read", "to": "gate", "variant": "default" },
+    { "id": "e-gate-zero", "from": "gate", "to": "zero", "label": "yes", "variant": "emphasis" },
+    { "id": "e-zero-ready", "from": "zero", "to": "ready", "variant": "emphasis" },
+    { "id": "e-gate-xcheck", "from": "gate", "to": "xcheck", "label": "no", "variant": "security", "role": "branch" },
+    { "id": "e-xcheck-signal", "from": "xcheck", "to": "signal", "variant": "dashed", "role": "branch" },
+    { "id": "e-signal-recover", "from": "signal", "to": "recover", "variant": "dashed", "role": "branch" },
+    { "id": "e-recover-read", "from": "recover", "to": "read", "label": "re-read DTCs", "variant": "dashed", "role": "branch" }
+  ]
+}

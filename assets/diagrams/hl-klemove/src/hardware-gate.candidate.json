@@ -1,0 +1,180 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Hardware Pre-Flight Gate",
+    "animation": "trace",
+    "quality_profile": "showcase",
+    "output": ".archify/workflow-hardware-gate-20261119-213209/hardware-gate.html",
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "lanes": [
+    {
+      "id": "debug",
+      "label": "Debug (JTAG)"
+    },
+    {
+      "id": "can",
+      "label": "CAN"
+    },
+    {
+      "id": "power",
+      "label": "Power"
+    },
+    {
+      "id": "gate",
+      "label": "Gate"
+    }
+  ],
+  "mainPath": [
+    "jtag",
+    "tr32",
+    "gate",
+    "ready"
+  ],
+  "nodes": [
+    {
+      "id": "jtag",
+      "lane": "debug",
+      "col": 0,
+      "type": "messagebus",
+      "label": "JTAG Connector",
+      "sublabel": "matches hardware requirements",
+      "width": 132
+    },
+    {
+      "id": "tr32",
+      "lane": "debug",
+      "col": 1,
+      "type": "database",
+      "label": "Trace32",
+      "sublabel": "working and ready",
+      "width": 132
+    },
+    {
+      "id": "jig",
+      "lane": "can",
+      "col": 0,
+      "type": "messagebus",
+      "label": "JIG Pins",
+      "sublabel": "DB9 and 120 ohm",
+      "width": 132
+    },
+    {
+      "id": "canxl",
+      "lane": "can",
+      "col": 1,
+      "type": "messagebus",
+      "label": "CAN Case XL",
+      "sublabel": "1640, 1630 or 5610",
+      "width": 132
+    },
+    {
+      "id": "psu",
+      "lane": "power",
+      "col": 0,
+      "type": "cloud",
+      "label": "Variable PSU",
+      "sublabel": "voltage and current set",
+      "width": 132
+    },
+    {
+      "id": "harn",
+      "lane": "power",
+      "col": 1,
+      "type": "external",
+      "label": "Crocodile + Harness",
+      "sublabel": "no damage or loose parts",
+      "width": 132
+    },
+    {
+      "id": "gate",
+      "lane": "gate",
+      "col": 2,
+      "type": "security",
+      "label": "Bench Ready?",
+      "sublabel": "all three paths checked",
+      "tag": "gate",
+      "width": 132
+    },
+    {
+      "id": "ready",
+      "lane": "gate",
+      "col": 3,
+      "type": "backend",
+      "label": "Ready to Flash",
+      "sublabel": "start the test run",
+      "width": 132
+    },
+    {
+      "id": "fix",
+      "lane": "power",
+      "col": 3,
+      "type": "messagebus",
+      "label": "Fix or Replace",
+      "sublabel": "then check again",
+      "width": 132
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-jtag-tr32",
+      "from": "jtag",
+      "to": "tr32",
+      "label": "JTAG",
+      "variant": "emphasis"
+    },
+    {
+      "id": "e-jig-canxl",
+      "from": "jig",
+      "to": "canxl",
+      "label": "DB9",
+      "variant": "default"
+    },
+    {
+      "id": "e-psu-harn",
+      "from": "psu",
+      "to": "harn",
+      "label": "power",
+      "variant": "default"
+    },
+    {
+      "id": "e-canxl-gate",
+      "from": "canxl",
+      "to": "gate",
+      "label": "CAN ok",
+      "variant": "default"
+    },
+    {
+      "id": "e-harn-gate",
+      "from": "harn",
+      "to": "gate",
+      "label": "wired",
+      "variant": "default"
+    },
+    {
+      "id": "e-tr32-gate",
+      "from": "tr32",
+      "to": "gate",
+      "label": "debug ok",
+      "variant": "emphasis"
+    },
+    {
+      "id": "e-gate-ready",
+      "from": "gate",
+      "to": "ready",
+      "label": "pass",
+      "variant": "emphasis"
+    },
+    {
+      "id": "e-gate-fix",
+      "from": "gate",
+      "to": "fix",
+      "label": "fail",
+      "variant": "security",
+      "role": "error"
+    }
+  ]
+}
