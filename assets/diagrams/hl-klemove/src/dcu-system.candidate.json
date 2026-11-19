@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "DCU System Under Test: Vehicle Side",
+    "output": ".archify/architecture-system-vehicle-20261119-213422/dcu-system.html",
+    "quality_profile": "showcase"
+  },
+  "components": [
+    {
+      "id": "camera_l",
+      "type": "external",
+      "label": "Camera",
+      "sublabel": "front / left",
+      "pos": [
+        60,
+        70
+      ],
+      "size": [
+        130,
+        60
+      ]
+    },
+    {
+      "id": "radar_l",
+      "type": "external",
+      "label": "Radar",
+      "sublabel": "front / left",
+      "pos": [
+        60,
+        190
+      ],
+      "size": [
+        130,
+        60
+      ]
+    },
+    {
+      "id": "zecu_l",
+      "type": "backend",
+      "label": "ZECU",
+      "sublabel": "zonal ECU",
+      "pos": [
+        240,
+        120
+      ],
+      "size": [
+        120,
+        64
+      ]
+    },
+    {
+      "id": "dcu",
+      "type": "security",
+      "label": "DCU",
+      "sublabel": "domain control unit",
+      "tag": "domain controller",
+      "pos": [
+        430,
+        110
+      ],
+      "size": [
+        170,
+        100
+      ]
+    },
+    {
+      "id": "zecu_r",
+      "type": "backend",
+      "label": "ZECU",
+      "sublabel": "zonal ECU",
+      "pos": [
+        660,
+        120
+      ],
+      "size": [
+        120,
+        64
+      ]
+    },
+    {
+      "id": "camera_r",
+      "type": "external",
+      "label": "Camera",
+      "sublabel": "rear / right",
+      "pos": [
+        840,
+        70
+      ],
+      "size": [
+        130,
+        60
+      ]
+    },
+    {
+      "id": "radar_r",
+      "type": "external",
+      "label": "Radar",
+      "sublabel": "rear / right",
+      "pos": [
+        840,
+        190
+      ],
+      "size": [
+        130,
+        60
+      ]
+    },
+    {
+      "id": "output",
+      "type": "cloud",
+      "label": "Vehicle Outputs",
+      "sublabel": "ADAS actions",
+      "pos": [
+        430,
+        270
+      ],
+      "size": [
+        170,
+        60
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Vehicle: DCU under test",
+      "wraps": [
+        "camera_l",
+        "radar_l",
+        "zecu_l",
+        "dcu",
+        "zecu_r",
+        "camera_r",
+        "radar_r",
+        "output"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "cam-l-zecu",
+      "from": "camera_l",
+      "to": "zecu_l",
+      "label": "video",
+      "variant": "default"
+    },
+    {
+      "id": "rad-l-zecu",
+      "from": "radar_l",
+      "to": "zecu_l",
+      "label": "radar",
+      "variant": "default"
+    },
+    {
+      "id": "zecu-l-dcu",
+      "from": "zecu_l",
+      "to": "dcu",
+      "label": "CAN",
+      "variant": "emphasis"
+    },
+    {
+      "id": "zecu-r-dcu",
+      "from": "zecu_r",
+      "to": "dcu",
+      "label": "CAN",
+      "variant": "emphasis"
+    },
+    {
+      "id": "cam-r-zecu",
+      "from": "camera_r",
+      "to": "zecu_r",
+      "label": "video",
+      "variant": "default"
+    },
+    {
+      "id": "rad-r-zecu",
+      "from": "radar_r",
+      "to": "zecu_r",
+      "label": "radar",
+      "variant": "default"
+    },
+    {
+      "id": "dcu-output",
+      "from": "dcu",
+      "to": "output",
+      "label": "decisions",
+      "variant": "emphasis"
+    }
+  ]
+}

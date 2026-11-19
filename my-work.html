@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark light">
+    <title>My Work | Suduli Kumar Balabantaray - DCU Validation</title>
+    <meta name="description" content="Walkthrough of automotive DCU validation work: input files, hardware and bench setup, CANoe environment, smoke testing, Zero DTC, failsafe test cases and reporting.">
+    <link rel="canonical" href="https://suduli.github.io/Suduli_Resume_Automotive/my-work.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="My Work | DCU Validation">
+    <meta property="og:description" content="Automotive DCU validation: bench setup, CANoe simulation, smoke testing, Zero DTC and failsafe test execution.">
+    <meta property="og:url" content="https://suduli.github.io/Suduli_Resume_Automotive/my-work.html">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <script>
+        document.documentElement.classList.add('js');
+        // Apply the saved theme before first paint (same key as the resume index)
+        (function () {
+            try {
+                document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') === 'light' ? 'light' : 'dark');
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/editorial.css">
+    <link rel="stylesheet" href="assets/css/my-work.css?v=3">
+</head>
+
+<body>
+    <header class="mw-top">
+        <div class="mw-top-inner">
+            <a class="mw-back" href="index.html#projects"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to resume</a>
+            <nav class="mw-chapters" aria-label="Chapters">
+                <a href="#system">System</a>
+                <a href="#inputs">Inputs</a>
+                <a href="#hardware">Hardware</a>
+                <a href="#bench">Bench</a>
+                <a href="#environment">Environment</a>
+                <a href="#smoke">Smoke</a>
+                <a href="#zero-dtc">Zero DTC</a>
+                <a href="#failsafe">Failsafe</a>
+                <a href="#reports">Reports</a>
+                <a href="#challenges">Challenges</a>
+            </nav>
+            <button class="mw-theme-toggle" id="mw-theme-toggle" type="button" aria-label="Switch to light theme" title="Switch to light theme">
+                <i class="fas fa-sun" id="mw-theme-icon" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="mw-progress" id="mw-progress" aria-hidden="true"></div>
+    </header>
+
+    <main class="mw">
+        <!-- Hero -->
+        <section class="mw-hero" aria-labelledby="mw-title">
+            <div class="container">
+                <p class="eyebrow">Roles &amp; Responsibilities</p>
+                <h1 class="mw-title" id="mw-title">
+                    <span class="word" style="animation-delay:.05s">My</span>
+                    <span class="word" style="animation-delay:.2s">work</span>
+                    <span class="word" style="animation-delay:.35s">in</span><br>
+                    <span class="word" style="animation-delay:.5s">DCU</span>
+                    <span class="word" style="animation-delay:.65s">validation</span>
+                </h1>
+                <p class="mw-sub">Automotive system testing from the first input file to the final Jira report: bench setup, CANoe simulation, smoke tests, Zero DTC and failsafe test execution.</p>
+                <div class="mw-cta-row">
+                    <a class="mw-btn" href="#system"><i class="fas fa-play" aria-hidden="true"></i> Start the walkthrough</a>
+                    <a class="mw-btn ghost" href="index.html#contact">Get in touch</a>
+                </div>
+                <div class="mw-scroll-hint" aria-hidden="true">scroll</div>
+            </div>
+        </section>
+
+        <!-- 01 Introduction -->
+        <section class="mw-chapter" aria-labelledby="intro-h">
+            <div class="container">
+                <header class="mw-chapter-head reveal">
+                    <p class="section-index">01 — Introduction</p>
+                    <h2 id="intro-h">Who I am, in one view</h2>
+                    <p>Specialist engineer working on unit, integration and system testing of automotive ECUs.</p>
+                </header>
+                <div class="mw-grid">
+                    <article class="mw-card reveal" style="--d:0ms">
+                        <span class="mw-icon"><i class="fas fa-id-badge" aria-hidden="true"></i></span>
+                        <span class="mw-tag">Profile</span>
+                        <h3>Suduli Kumar Balabantaray</h3>
+                        <p>Specialist Engineer, Automotive HIL / ECU Validation.</p>
+                    </article>
+                    <article class="mw-card reveal" style="--d:120ms">
+                        <span class="mw-icon"><i class="fas fa-briefcase" aria-hidden="true"></i></span>
+                        <span class="mw-tag">Experience</span>
+                        <h3>9+ years</h3>
+                        <p>Unit, integration and system testing of safety-critical automotive software.</p>
+                    </article>
+                    <article class="mw-card reveal" style="--d:240ms">
+                        <span class="mw-icon"><i class="fas fa-bullseye" aria-hidden="true"></i></span>
+                        <span class="mw-tag">Objective</span>
+                        <h3>Keep growing</h3>
+                        <p>Contribute testing expertise while continuously learning and growing with the team.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- The system under test -->
+        <section id="system" class="mw-chapter" aria-labelledby="system-h">
+            <div class="container">
+                <header class="mw-chapter-head reveal">
+                    <p class="section-index">The system</p>
+                    <h2 id="system-h">The DCU under test</h2>
+                    <p>Cameras and radars feed two zonal ECUs, which feed the DCU, which drives the vehicle outputs.</p>
+                </header>
+                <figure class="mw-embed reveal" style="margin:0">
+                    <iframe class="mw-embed-frame" data-base="assets/diagrams/hl-klemove/dcu-system.html" src="assets/diagrams/hl-klemove/dcu-system.html?embed=1&amp;theme=dark" title="Interactive DCU system architecture diagram" loading="lazy"></iframe>
+                    <figcaption class="mw-embed-caption">
+                        <span>Interactive diagram built with Archify.</span>
+                        <a href="assets/diagrams/hl-klemove/dcu-system.html" target="_blank" rel="noopener">Open full screen <i class="fas fa-up-right-from-square" aria-hidden="true"></i></a>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- 02 Input files -->
+        <section id="inputs" class="mw-chapter" aria-labelledby="inputs-h">
+            <div class="container">
+                <header class="mw-chapter-head reveal">
+                    <p class="section-index">02 — Input files</p>
+                    <h2 id="inputs-h">Client files and where each one goes</h2>
+                    <p>I engage the client for the input files, then validate every file on receipt before project execution starts.</p>
+                </header>
+                <figure class="mw-embed reveal" style="margin:0">
+                    <iframe class="mw-embed-frame" data-base="assets/diagrams/hl-klemove/inputs-dataflow.html" src="assets/diagrams/hl-klemove/inputs-dataflow.html?embed=1&amp;theme=dark" title="Interactive dataflow: where each client input file goes" loading="lazy"></iframe>
+                    <figcaption class="mw-embed-caption">
+                        <span>Interactive diagram built with Archify.</span>
+                        <a href="assets/diagrams/hl-klemove/inputs-dataflow.html" target="_blank" rel="noopener">Open full screen <i class="fas fa-up-right-from-square" aria-hidden="true"></i></a>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- 03 Hardware -->
+        <section id="hardware" class="mw-chapter" aria-labelledby="hw-h">
+            <div class="container">
+                <header class="mw-chapter-head reveal">
+                    <p class="section-index">03 — Hardware</p>
+                    <h2 id="hw-h">Pre-flight hardware gate</h2>
+                    <p>Three paths are checked before any flashing or test run: debug, CAN and power. The bench is only ready when all three pass.</p>
+                </header>
+                <figure class="mw-embed reveal" style="margin:0">
+                    <iframe class="mw-embed-frame" data-base="assets/diagrams/hl-klemove/hardware-gate.html" src="assets/diagrams/hl-klemove/hardware-gate.html?embed=1&amp;theme=dark" title="Interactive hardware pre-flight gate workflow" loading="lazy"></iframe>
+                    <figcaption class="mw-embed-caption">
+                        <span>Interactive diagram built with Archify.</span>
+                        <a href="assets/diagrams/hl-klemove/hardware-gate.html" target="_blank" rel="noopener">Open full screen <i class="fas fa-up-right-from-square" aria-hidden="true"></i></a>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- 04 Bench -->
+        <section id="bench" class="mw-chapter" aria-labelledby="bench-h">
+            <div class="container">
+                <header class="mw-chapter-head reveal">
+                    <p class="section-index">04 — Bench</p>
+                    <h2 id="bench-h">Bench wiring</h2>
+                    <p>The laptop reaches the ECU through two paths: Trace32 over JTAG for debug, and CAN Case XL over the harness for CAN. A separate supply powers the harness.</p>
+                </header>
+                <figure class="mw-embed reveal" style="margin:0">
+                    <iframe class="mw-embed-frame" data-base="assets/diagrams/hl-klemove/bench-wiring.html" src="assets/diagrams/hl-klemove/bench-wiring.html?embed=1&amp;theme=dark" title="Interactive bench wiring architecture diagram" loading="lazy"></iframe>
+                    <figcaption class="mw-embed-caption">
+                        <span>Interactive diagram built with Archify.</span>
+                        <a href="assets/diagrams/hl-klemove/bench-wiring.html" target="_blank" rel="noopener">Open full screen <i class="fas fa-up-right-from-square" aria-hidden="true"></i></a>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- 05 Environment -->
+        <section id="environment" class="mw-chapter" aria-labelledby="env-h">
+            <div class="container">
+                <header class="mw-chapter-head reveal">
+                    <p class="section-index">05 — Environment creation</p>
+                    <h2 id="env-h">A simulation for camera and radar inputs</h2>
+                    <p>Built in CANoe so the DCU can be validated without the vehicle around it. Six steps, in order.</p>
+                </header>
+                <figure class="mw-embed reveal" style="margin:0">
+                    <iframe class="mw-embed-frame" data-base="assets/diagrams/hl-klemove/environment.html" src="assets/diagrams/hl-klemove/environment.html?embed=1&amp;theme=dark" title="Interactive CANoe environment creation workflow" loading="lazy"></iframe>
+                    <figcaption class="mw-embed-caption">
+                        <span>Interactive diagram built with Archify.</span>
+                        <a href="assets/diagrams/hl-klemove/environment.html" target="_blank" rel="noopener">Open full screen <i class="fas fa-up-right-from-square" aria-hidden="true"></i></a>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- 06 Smoke -->
+        <section id="smoke" class="mw-chapter" aria-labelledby="smoke-h">
+            <div class="container">
+                <header class="mw-chapter-head reveal">
+                    <p class="section-index">06 — Smoke testing</p>
+                    <h2 id="smoke-h">Eight smoke checks in four phases</h2>
+                    <p>A fast health check of the DCU before deeper test execution. Each check gates the next.</p>
+                </header>
+                <figure class="mw-embed reveal" style="margin:0">
+                    <iframe class="mw-embed-frame" data-base="assets/diagrams/hl-klemove/smoke-checks.html" src="assets/diagrams/hl-klemove/smoke-checks.html?embed=1&amp;theme=dark" title="Interactive DCU smoke test workflow diagram" loading="lazy"></iframe>
+                    <figcaption class="mw-embed-caption">
+                        <span>Interactive diagram built with Archify.</span>
+                        <a href="assets/diagrams/hl-klemove/smoke-checks.html" target="_blank" rel="noopener">Open full screen <i class="fas fa-up-right-from-square" aria-hidden="true"></i></a>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- 07 Zero DTC -->
+        <section id="zero-dtc" class="mw-chapter" aria-labelledby="zd-h">
+            <div class="container">
+                <header class="mw-chapter-head reveal">
+                    <p class="section-index">07 — Achieving Zero DTC</p>
+                    <h2 id="zd-h">From faults to a Zero DTC environment</h2>
+                    <p>Read the DTCs, and if any remain, trace each one to its signal, apply the recovery and read again until the count is zero.</p>
+                </header>
+                <figure class="mw-embed reveal" style="margin:0">
+                    <iframe class="mw-embed-frame" data-base="assets/diagrams/hl-klemove/zero-dtc.html" src="assets/diagrams/hl-klemove/zero-dtc.html?embed=1&amp;theme=dark" title="Interactive Zero DTC workflow with return loop" loading="lazy"></iframe>
+                    <figcaption class="mw-embed-caption">
+                        <span>Interactive diagram built with Archify.</span>
+                        <a href="assets/diagrams/hl-klemove/zero-dtc.html" target="_blank" rel="noopener">Open full screen <i class="fas fa-up-right-from-square" aria-hidden="true"></i></a>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- 08 Failsafe -->
+        <section id="failsafe" class="mw-chapter" aria-labelledby="fs-h">
+            <div class="container">
+                <header class="mw-chapter-head reveal">
+                    <p class="section-index">08 — Failsafe test execution</p>
+                    <h2 id="fs-h">Example: camera blockage</h2>
+                    <p>Requirements are filtered by vehicle type (HEV, EV or Normal), turned into VTESTstudio scripts, imported into CANoe and run with controlled voltage, variant code and vehicle speed.</p>
+                </header>
+                <figure class="mw-embed reveal" style="margin:0">
+                    <iframe class="mw-embed-frame" data-base="assets/diagrams/hl-klemove/failsafe-blockage.html" src="assets/diagrams/hl-klemove/failsafe-blockage.html?embed=1&amp;theme=dark" title="Interactive failsafe blockage DTC lifecycle" loading="lazy"></iframe>
+                    <figcaption class="mw-embed-caption">
+                        <span>Interactive diagram built with Archify.</span>
+                        <a href="assets/diagrams/hl-klemove/failsafe-blockage.html" target="_blank" rel="noopener">Open full screen <i class="fas fa-up-right-from-square" aria-hidden="true"></i></a>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- 09 Reports -->
+        <section id="reports" class="mw-chapter" aria-labelledby="rep-h">
+            <div class="container">
+                <header class="mw-chapter-head reveal">
+                    <p class="section-index">09 — Test report</p>
+                    <h2 id="rep-h">Review, comment and publish</h2>
+                    <p>Any comment sends the work back to re-test and regenerate the report. Only an approved report is published to Jira, with its pass, fail and not-applicable totals.</p>
+                </header>
+                <figure class="mw-embed reveal" style="margin:0">
+                    <iframe class="mw-embed-frame" data-base="assets/diagrams/hl-klemove/report-loop.html" src="assets/diagrams/hl-klemove/report-loop.html?embed=1&amp;theme=dark" title="Interactive test report review loop diagram" loading="lazy"></iframe>
+                    <figcaption class="mw-embed-caption">
+                        <span>Interactive diagram built with Archify.</span>
+                        <a href="assets/diagrams/hl-klemove/report-loop.html" target="_blank" rel="noopener">Open full screen <i class="fas fa-up-right-from-square" aria-hidden="true"></i></a>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- 10 Challenges -->
+        <section id="challenges" class="mw-chapter" aria-labelledby="ch-h">
+            <div class="container">
+                <header class="mw-chapter-head reveal">
+                    <p class="section-index">10 — Conclusion</p>
+                    <h2 id="ch-h">Challenges in system testing</h2>
+                    <p>What makes this work demanding, and how I plan around it.</p>
+                </header>
+                <div class="mw-grid mw-challenges">
+                    <article class="mw-card mw-challenge reveal" style="--d:0ms"><h3>ECU hardware limits</h3><p>Customer hardware versions can differ from what is on the bench; a lower-version setup may not give accurate results.</p></article>
+                    <article class="mw-card mw-challenge reveal" style="--d:100ms"><h3>Flashing risks</h3><p>Power interruptions or the wrong file can leave an ECU unusable or "bricked".</p></article>
+                    <article class="mw-card mw-challenge reveal" style="--d:200ms"><h3>Complex setup</h3><p>JTAG connectors, Trace32 and harness cables must all be in proper condition.</p></article>
+                    <article class="mw-card mw-challenge reveal" style="--d:300ms"><h3>Zero DTC accuracy</h3><p>No false positives or negatives during DTC checks.</p></article>
+                    <article class="mw-card mw-challenge reveal" style="--d:400ms"><h3>Test volume</h3><p>Large numbers of test cases across vehicle types and conditions.</p></article>
+                    <article class="mw-card mw-challenge reveal" style="--d:500ms"><h3>Intermittent failures</h3><p>Some faults do not reproduce consistently, so they are harder to diagnose.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="mw-close" aria-labelledby="close-h">
+            <div class="container reveal">
+                <h2 id="close-h">Thank you.</h2>
+                <p>Questions and discussion are welcome.</p>
+                <div class="mw-cta-row">
+                    <a class="mw-btn" href="index.html#contact"><i class="fas fa-envelope" aria-hidden="true"></i> Contact me</a>
+                    <a class="mw-btn ghost" href="index.html#projects">Back to projects</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="assets/js/features/my-work.js?v=4"></script>
+</body>
+
+</html>
