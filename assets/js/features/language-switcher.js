@@ -88,6 +88,9 @@ class LanguageSwitcher {
         const translation = this.translations[lang];
         if (!translation) {
             console.warn(`No translation found for language: ${lang}`);
+            // The default language is the last resort: returning the key stops
+            // a missing English file from recursing forever (which broke the theme toggle)
+            if (lang === this.defaultLang) return key;
             return this.t(key, this.defaultLang); // Fallback to default language
         }
 

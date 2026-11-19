@@ -61,11 +61,28 @@
 
     const frames = Array.from(document.querySelectorAll('.mw-embed-frame'));
 
+    // Archify shows the viewer chrome (toolbar, guide, cards) unless told otherwise. The
+    // embed needs only the diagram, so hide the chrome here. Motion runs only outside
+    // embed mode, so the diagram is loaded without embed=1 and the chrome is hidden instead.
+    const CHROME_CSS = `
+        html .toolbar, html .header, html .cards, html .diagram-nav, html .overview-map,
+        html .focus-chip, html .route-probe, html .semantic-lens, html .diagram-guide,
+        html .node-finder, html .node-outline { display: none !important; }
+        html body { padding: 0 !important; min-height: 0 !important; overflow: hidden !important; }
+        html .container { max-width: none !important; }
+        html .diagram-container { padding: 0.5rem !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; }
+    `;
+    // Diagrams play their motion only when the stored choice is "live". This is the
+    // same origin as the embeds, so the choice carries to every diagram.
+    try {
+        if (localStorage.getItem("archify-motion") !== "live") localStorage.setItem("archify-motion", "live");
+    } catch (e) { /* storage blocked: diagrams start still */ }
+
     const injectTokens = (doc) => {
         if (doc.getElementById('site-tokens')) return;
         const style = doc.createElement('style');
         style.id = 'site-tokens';
-        style.textContent = tokenCss('dark') + tokenCss('light');
+        style.textContent = tokenCss('dark') + tokenCss('light') + CHROME_CSS;
         doc.head.appendChild(style);
     };
     const applyFrameTheme = (frame) => {

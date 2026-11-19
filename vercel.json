@@ -21,6 +21,10 @@
     {
       "src": "favicon.png",
       "use": "@vercel/static"
+    },
+    {
+      "src": "translations/**/*",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
